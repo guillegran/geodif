@@ -1,0 +1,289 @@
+\documentclass[11pt,a4paper]{amsbook}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage{amsmath, amssymb, amsthm}
+
+\usepackage{hyperref}
+\urlstyle{same}
+
+\usepackage{tikz,tikz-cd}
+
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
+
+%\usepackage[bb=boondox,scr=boondox]{mathalfa}
+
+\usepackage{bm}
+
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{biblio_guillermo.bib}
+
+\newtheorem{thm}[subsubsection]{Theorem}
+\newtheorem{prop}[subsubsection]{Proposition}
+%\newtheorem{conj}[thm]{Conjecture}
+%\newtheorem{lemma}[thm]{Lemma}
+%\newtheorem{corol}[thm]{Corollary}
+%\theoremstyle{remark} \newtheorem{rmk}[thm]{Remark}
+\theoremstyle{definition} \newtheorem{defn}[subsubsection]{Definition}
+%\theoremstyle{definition} \newtheorem{ex}[thm]{Example}
+\theoremstyle{definition} \newtheorem{ej}{Exercise}
+
+%\input{commands_guillermo.tex}
+\title{Differential Geometry}
+\author{Guillermo Gallego}
+
+\address{Departamento de Matemáticas \\ Universidad Autónoma de Madrid}
+\email{\normalfont\href{mailto:guillermo.gallego@uam.es}{guillermo.gallego@uam.es}}
+\urladdr{\normalfont\href{https://guillegallego.xyz}{https://guillegallego.xyz}}
+
+\makeatletter
+\hypersetup{
+    pdfauthor={\authors},
+    pdftitle={\@title},
+    colorlinks,
+    linkcolor=[rgb]{0.2,0.2,0.6},
+    citecolor=[rgb]{0.2,0.6,0.2},
+    urlcolor=[rgb]{0.6,0.2,0.2}}
+\makeatother
+
+\begin{document}
+\begin{titlepage}
+\setcounter{page}{1}
+\thispagestyle{empty}
+\begin{center}
+\Huge \bfseries Differential Geometry \par\vspace{2em}
+\Large Guillermo Gallego \par\bigskip
+\end{center}
+
+\vspace{7em}
+
+\begin{center}
+\textbf{Abstract}
+\end{center}
+aaa
+%This paper provides an introduction to non-abelian Hodge theory and moduli spaces of Higgs bundles on compact Riemann surfaces. We develop the moduli theory of vector bundles and Higgs bundles, establish the main correspondences of non-abelian Hodge theory, and interpret them through the hyperkähler structure on the Hitchin moduli space. We study the Hitchin fibration and its geometric properties, including SYZ mirror symmetry and topological mirror symmetry for type $\mathsf{A}$ Hitchin systems. As an illustration, we compute the Poincaré polynomial of the rank 2 moduli space and verify topological mirror symmetry in this case. \\
+%\\
+%\textbf{Mathematics Subject Classification (2020)}: Primary: 14D20, 53C26. Secondary: 14H60, 14H70, 14J33 \\
+%\\
+%\textbf{Keywords}: Higgs bundles, non-abelian Hodge theory, Hitchin fibration
+
+
+\vfill
+\hrule \vspace{1em}
+\begin{center}
+\textsc{Departamento de Matemáticas, Universidad Autónoma de Madrid} \vspace{1em}
+\textit{Email:} \normalfont\href{mailto:guillermo.gallego@uam.es}{guillermo.gallego@uam.es} \hspace{1em}
+\textit{URL:} \normalfont\href{https://guillegallego.xyz}{https://guillegallego.xyz}
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\chapter{Smooth manifolds}
+\section{Definition and examples}
+\subsection{Cartesian spaces}
+\begin{defn}
+By a \emph{Cartesian space} or \emph{abstract coordinate space} we mean an open subset $U\subset \mathbb{R}^n$, for some positive integer $n$, called the \emph{dimension of $U$}, $n=\dim U$. A map $f:U\subset \mathbb{R}^n \rightarrow V \subset \mathbb{R}^m$ between two Cartesian spaces is \emph{smooth} if all the iterated partial derivatives of $f$ exist and are continuous in $U$.
+\end{defn}
+
+\subsubsection{} The chain rule implies that, given Cartesian spaces $U\subset \mathbb{R}^n$, $V\subset \mathbb{R}^m$ and $W\subset \mathbb{R}^p$ and smooth maps $f:U\rightarrow V$ and $g:V\rightarrow W$, the composition $g\circ f:U\rightarrow W$ is also smooth. Therefore, there is a category, that we denote by $\mathbf{CartSp}$ whose objects are Cartesian spaces and whose morphisms are the smooth maps between them. An isomorphism in the category $\mathbf{CartSp}$ is a \emph{diffeomorphism}, by definition, a smooth bijective map whose inverse is also smooth.
+
+\begin{defn}
+Given a smooth map $f:U\subset \mathbb{R}^n\rightarrow V\subset \mathbb{R}^m$ between Cartesian spaces and a point $x\in U$, the \emph{differential of $f$ at $x$} is the linear map $d_xf:\mathbb{R}^n \rightarrow \mathbb{R}^m$ defined by the Jacobian matrix of $f$ at $x$
+\begin{equation*}
+  J_x f =
+  \begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} (x) & \dots & \frac{\partial f_1}{\partial x_n} (x) \\
+& \ddots & \\
+\frac{\partial f_m}{\partial x_1} (x) & \dots & \frac{\partial f_m}{\partial x_n} (x)
+  \end{pmatrix}.
+\end{equation*}
+Here, we are denoting by $f_i:U\rightarrow \mathbb{R}$ the composition of $f$ with the projection $\mathrm{pr}_i:V\rightarrow \mathbb{R}$ to the $i$-th coordinate.
+\end{defn}
+
+\subsubsection{} Again, the chain rule implies that the differential is ``functorial'' in the sense that, if $f:U\rightarrow V$ and $g:V\rightarrow W$ are smooth maps between Cartesian spaces, for any $x\in U$, we have
+\begin{equation*}
+d_x(g\circ f) = d_{f(x)} g \circ d_x f.
+\end{equation*}
+We can reformulate this as follows. Consider the category $\mathbf{CartSp}_*$ of \emph{based} Cartesian spaces, whose objects are pairs $(U\subset \mathbb{R}^n,x)$, formed by a Cartesian space $U$ and a point $x\in U$, and such that the morphisms $f:(U,x)\rightarrow (V,y)$ are given by smooth maps $f:U\rightarrow V$ such that $f(x)=y$. If we denote by $\mathbf{Vect}_{\mathbb{R}}$ the category of real vector spaces with linear maps, the chain rule is the statement that there is a functor, called the \emph{tangent functor}
+\begin{equation*}
+T: \mathbf{CartSp}_* \longrightarrow \mathbf{Vect}_{\mathbb{R}}
+\end{equation*}
+sending a based Cartesian space $(U,x)$ to the vector space $T_xU:= \mathbb{R}^{\dim U}$ and a map $f:(U,x)\rightarrow (V,y)$ to the linear map $d_xf:T_xU=\mathbb{R}^{\dim U} \rightarrow T_yV=\mathbb{R}^{\dim V}$. An immediate consequence is the invariance of dimension.
+
+\begin{prop}[Invariance of dimension]
+If two Cartesian spaces $U$ and $V$ are diffeomorphic, then $\dim U = \dim V$.
+\end{prop}
+
+\begin{proof}
+Functors preserve isomorphisms. Therefore, if $f:U\rightarrow V$ is a diffeomorphism, then, for any $x\in U$, the linear map $d_xf:T_xU\rightarrow T_{f(x)}V$ is an isomorphism and thus $\dim U = \dim V$.
+\end{proof}
+
+\subsubsection{} The converse of the above is true only locally. This is the statement of the well-known inverse function theorem.
+
+\begin{thm}[Inverse function theorem]
+Let $f:U\rightarrow V$ be a smooth map of Cartesian spaces and let $x\in U$ be a point such that $d_xf:T_xU \rightarrow T_{f(x)}V$ is a linear isomorphism. Then, there exists some open neighbourhood $U'\subset U$ of $x$ such that the restriction $f|_{U'}:U'\rightarrow f(U')\subset V$ is a diffeomorphism.
+\end{thm}
+
+\subsection{Definition of smooth manifold}
+\begin{defn}
+Let $M$ be a topological space. A (local) \emph{Cartesian coordinate system} or \emph{chart} on $M$ is a tuple $(U,V,\varphi)$ formed by an open subset $U\subset M$, a Cartesian space $V\subset \mathbb{R}^n$, and a homeomorphism $\varphi:U\rightarrow V$. An \emph{atlas} on $M$ is a set of charts $\mathcal{A}$ such that $M=\bigcup_{(U,V,\varphi)\in \mathcal{A}} U$. We say that $M$ is \emph{locally Cartesian} if there exists an atlas on $M$.
+\end{defn}
+
+\begin{defn}
+A topological space $M$ is a \emph{topological manifold} if it is
+\begin{enumerate}
+  \item locally Cartesian,
+  \item Hausdorff, and
+        \item second countable.
+\end{enumerate}
+\end{defn}
+
+\begin{ej}
+Can you think of examples of topological spaces which are locally Cartesian but not Hausdorff, or not second countable?
+\end{ej}
+
+\subsubsection{} Let $M$ be a topological space. Suppose that there are two charts $(U_1,V_1,\varphi_1)$ and $(U_2,V_2,\varphi_2)$ with $U_1\cap U_2 \neq \varnothing$. The homeomorphisms $\varphi_1$ and $\varphi_2$ restrict to homeomorphisms $\varphi_{12}:=\varphi_1|_{U_1\cap U_2}:U_1\cap U_2\rightarrow \varphi_1(U_1\cap U_2) \subset V_1$ and $\varphi_{21}:=\varphi_2|_{U_1\cap U_2}:U_1\cap U_2\rightarrow \varphi_2(U_1\cap U_2) \subset V_2$. We thus obtain a homeomorphism
+\begin{equation*}
+\psi_{12}:= \varphi_{21} \circ \varphi_{12}^{-1} : \varphi_1(U_1\cap U_2) \longrightarrow \varphi_2(U_1\cap U_2),
+\end{equation*}
+called the \emph{coordinate change map}.
+
+\begin{defn}
+Let $M$ be a topological manifold and let $\mathcal{A}$ be an atlas on $M$. We say that $\mathcal{A}$ is a \emph{smooth atlas} if, for every two charts $(U_1,V_1,\varphi_1), (U_2,V_2,\varphi_2)\in \mathcal{A}$, the coordinate change map $\psi_{12}: \varphi_1(U_1\cap U_2) \rightarrow \varphi_2(U_1\cap U_2)$ is a diffeomorphism.
+\end{defn}
+
+\subsubsection{} One could initially try to define a smooth manifold as a topological manifold endowed with a smooth atlas $\mathcal{A}$. However, two different atlases can determine essentially the same ``smooth structure''. Two smooth atlases $\mathcal{A}_1$ and $\mathcal{A}_2$ on a topological manifold $M$ are \emph{compatible} if their union $\mathcal{A}_1 \cup \mathcal{A}_2$ is also a smooth atlas on $M$. In other words, if for any two charts $(U_1,V_1,\varphi_1) \in \mathcal{A}_1$ and $(U_2,V_2,\varphi_2) \in \mathcal{A}_2$, the coordinate change map $\psi_{12}$ is a diffeomorphism. Given any smooth atlas $\mathcal{A}$ on $M$, we can consider the union of all the smooth atlas compatible with it. This union is again an atlas $\bar{\mathcal{A}}$, which is maximal with respect to inclusion. Such a maximal atlas is called a \emph{smooth structure} on $M$. If two smooth manifolds have the same maximal atlas, then they are essentially the same smooth manifold.
+
+\begin{defn}
+A \emph{smooth manifold} is a pair $(M,\mathcal{A})$ formed by a topological manifold $M$ and a smooth structure $\bar{\mathcal{A}}$ on $M$.
+\end{defn}
+
+\subsubsection{} If $(M,\mathcal{A})$ is a smooth manifold and $(U_1,V_1,\varphi_1)\in \mathcal{A}$ is a chart, for every point $x\in U$, we define the \emph{dimension of $M$ at $x$} to be the dimension
+\begin{equation*}
+\dim_x M:= \dim V_1.
+\end{equation*}
+Note that this number does not depend on the choice of chart, since, for any other chart $(U_2,V_2,\varphi_2)$, the coordinate change map $\psi_{12}$ induces a linear isomorphism $$d_{\varphi_1(x)}\psi_{12}:T_{\varphi_1(x)}V_1 \rightarrow T_{\varphi_2(x)}V_2.$$ Therefore, we obtain a well defined map
+\begin{equation*}
+\dim: M \rightarrow \mathbb{N}, x \mapsto \dim_x M.
+\end{equation*}
+Moreover, note that, since, for every chart $(U,V,\varphi)\in \mathcal{A}$ and for every point $x\in U$, the open subset $U\subset M$ is contained in the preimage $\dim^{-1}(\dim_x M)$, the map $\dim$ is continuous if we endow $\mathbb{N}$ with the discrete topology. Thus the dimension is constant on connected components and it makes sense to talk about the \emph{dimension} $\dim M$ of a connected smooth manifold $M$.
+
+\subsubsection{} A connected smooth manifold of dimension $n$ is called a (smooth) \emph{$n$-manifold} or \emph{$n$-fold}. A $1$-fold is also called a (smooth) \emph{curve}. A $2$-fold is called a (smooth) \emph{surface}.
+
+\subsection{Smooth maps}
+\subsubsection{} Let $f:M\rightarrow N$ be a continuous map between two topological spaces. Suppose that there are charts $(U,V,\varphi)$ and $(U',V',\varphi')$ with $f(U)\subset U'$. The \emph{localization} of $f$ with respect to the charts $(U,V,\varphi)$ and $(U',V',\varphi')$ is the map $\tilde{f}: V \rightarrow V'$ given by the diagram
+\begin{center}
+  \begin{tikzcd}
+   U \ar{r}{f|_U} \ar{d}{\varphi} & U' \ar{d}{\varphi'} \\
+   V \ar{r}{\tilde{f}} & V'.
+  \end{tikzcd}
+\end{center}
+That is, $\tilde{f}=\varphi'\circ f \circ \varphi^{-1}$.
+
+\begin{defn}
+A map $f:M\rightarrow N$ between two smooth manifolds is \emph{smooth} if, for every two charts $(U,V,\varphi)$ and $(U',V',\varphi')$ of $M$ and $N$ with $f(U)\subset U'$, the localization $\tilde{f}:V\rightarrow V'$ is a smooth map.
+\end{defn}
+
+\subsubsection{} Note that localization commutes with composition. That is, if $f:M\rightarrow N$ and $g:N\rightarrow P$ are maps between smooth manifolds and $(U,V,\varphi)$, $(U',V',\varphi')$ and $(U'',V'',\varphi'')$ are charts of $M$, $N$ and $P$, respectively, with $f(U)\subset U'$ and $g(U')\subset U''$, then the localization $\widetilde{(g\circ f)}$ of the composition of $f$ and $g$ coincides with the composition of the localizations $\tilde{g}\circ \tilde{f}$. Therefore, it follows from the chain rule that if $f$ and $g$ are smooth maps then $g\circ f$ is also a smooth map.
+
+\subsubsection{} It follows that smooth manifolds with smooth maps form a category, that we denote by $\mathbf{SmoothMan}$. Isomorphisms in this category are also called \emph{diffeomorphisms}. By definition, a diffeomorphism is a smooth bijective map whose inverse is also smooth.
+
+\subsection{Some examples}
+\subsubsection{Cartesian spaces} A Cartesian space $U$ is trivially a smooth manifold if we simply endow it with the atlas $\mathcal{A}=\left\{ (U,U,\mathrm{id}_{U}) \right\}$. By construction, maps between Cartesian spaces are smooth if and only if they are smooth as maps between smooth manifolds. Therefore we have a functor $\mathbf{CartSp}\rightarrow \mathbf{SmoothMan}$, which is clearly fully faithful.
+
+\subsubsection{Spheres} The \emph{$n$-dimensional unit sphere} is the space
+\begin{equation*}
+\mathbb{S}^n=\left\{(x_1,\dots,x_n,x_{n+1}) \in \mathbb{R}^{n+1}: x_1^2+\dots +x_n^2+x_{n+1}^2=1  \right\}.
+\end{equation*}
+Let $p_N=(0,\dots,0,1)$ and $p_S=(0,\dots,0,-1)$ denote the north and south poles of the sphere, and consider the open subsets $U_1=\mathbb{S}^n \setminus \left\{ p_N \right\}$ and $U_2=\mathbb{S}^n \setminus \left\{ p_S \right\}$. The stereographic projections $\varphi_1:U_1\rightarrow \mathbb{R}^n$ and $\varphi_1:U_2\rightarrow \mathbb{R}^n$, centered on the south and north poles, respectively, are homeomorphisms, and one checks easily that the coordinate change is a diffeomorphism. Therefore, the set $\mathcal{A}=\left\{ (U_1,\mathbb{R}^n,\varphi_1), (U_2,\mathbb{R}^n,\varphi_2) \right\}$ is an smooth atlas, which endows $\mathbb{S}^n$ with the structure of an $n$-dimensional smooth manifold.
+
+\subsubsection{Projective spaces} Consider the real projective space $\mathbb{RP}^n$. It is covered by subsets of the form
+\begin{equation*}
+D(x_i)= \left\{ (x_0:x_1:\dots:x_n) : x_i \neq 0 \right\},
+\end{equation*}
+which are open subsets homeomorphic to $\mathbb{R}^n$ through the map
+\begin{equation*}
+\varphi_i: D(x_i)\rightarrow \mathbb{R}^n: (x_0:\dots:x_i:\dots:x_n) \mapsto \left(\frac{x_0}{x_i},\frac{x_1}{x_i},\dots,\frac{x_n}{x_i}\right).
+\end{equation*}
+The coordinate changes $\psi_{ij}:D(x_i)\cap D(x_j) \rightarrow D(x_i)\cap D(x_j)$ are of the form
+\begin{equation*}
+\psi_{ij}\left(\frac{x_0}{x_i},\frac{x_1}{x_i},\dots,\frac{x_n}{x_i}\right) = \left(\frac{x_0}{x_j},\frac{x_1}{x_j},\dots,\frac{x_n}{x_j}\right),
+\end{equation*}
+so they are clearly diffeomorphisms.
+
+Any linear isomorphism $\hat{f}:\mathbb{R}^{n+1}\rightarrow \mathbb{R}^{n+1}$ induces a map of projective spaces $f:\mathbb{RP}^n\rightarrow \mathbb{RP}^n$ (a \emph{homography}). As a map between manifolds, $f$ is smooth. Indeed, if we restrict $f$ to the complement $D(H)$ of any hyperplane $H\subset \mathbb{RP}^n$, the induced localization $\tilde{f}:\mathbb{R}^n \cong D(H)\rightarrow D(f(H))\cong \mathbb{R}^n$ is an affine map, and thus smooth.
+
+\subsubsection{Different smooth structures on the same topological manifold} One can endow a topological manifold with two smooth structures which are essentially different; that is, with two different maximal atlases. In order to do this, we just need to find two atlases which are not compatible. For example, we can consider the homeomorphisms
+\begin{equation*}
+\mathrm{id}_{\mathbb{R}}: \mathbb{R} \rightarrow \mathbb{R}, t \mapsto t,
+\end{equation*}
+and
+\begin{equation*}
+\varphi: \mathbb{R} \rightarrow \mathbb{R}, t \mapsto t^3.
+\end{equation*}
+These determine two different atlases $\mathcal{A}_1=\left\{ (\mathbb{R},\mathbb{R},\mathrm{id}_{\mathbb{R}}) \right\}$ and $\mathcal{A}_2=\left\{ (\mathbb{R},\mathbb{R},\varphi) \right\}$ on $\mathbb{R}$ which are not compatible, since the coordinate change map $\psi(t)=t^3$ is not a diffeomorphism (the inverse $\psi^{-1}(t)=t^{1/3}$ is not smooth). Therefore, the associated maximal atlases $\bar{\mathcal{A}}_1$ and $\bar{\mathcal{A}}_2$ are different, and thus they determine two different smooth structures.
+
+However, in this case the smooth manifolds $(\mathbb{R},\bar{\mathcal{A}}_1)$ and $(\mathbb{R},\bar{\mathcal{A}}_2)$ are diffeomorphic. Indeed, the map $\varphi(t)=t^3$ determines a diffeomorphism between $(\mathbb{R},\bar{\mathcal{A}}_1)$ and $(\mathbb{R},\bar{\mathcal{A}}_2)$, since its localization $\tilde{f}$ with respect to the charts $(\mathbb{R},\mathbb{R},\mathrm{id}_{\mathbb{R}})$ and $(\mathbb{R},\mathbb{R},\varphi)$ is just the identity.
+
+It turns out that, up to diffeomorphism, $\mathbb{R}$ only admits one smooth structure, but it is important to know that this is not the general situation. Indeed, there are some topological manifolds which admit several different smooth structures which are not diffeomorphic to each other.
+
+\subsubsection{The classification problem of smooth manifolds} a
+
+\subsection{The coordinate ring}
+
+
+\subsection{Lie groups}
+
+\subsection{Bundles}
+\subsubsection{Fibre bundles}
+\subsubsection{Vector bundles}
+\subsubsection{Principal bundles}
+
+\section{The tangent functor}
+\subsection{The tangent space of an embedded manifold}
+\subsection{Derivations}
+\subsection{Differential of a smooth map. The chain rule}
+\subsection{The tangent bundle}
+\subsection{Embeddings}
+\subsection{Partitions of unity and embedding theorem}
+
+\section{Tensor calculus. Fields and forms}
+\subsection{Multilinear algebra}
+
+\chapter{Some geometric structures}
+\section{Riemannian metrics}
+\section{Symplectic structures}
+\section{Almost complex structures}
+\section{Hermitian metrics. Kähler structures}
+
+\chapter{Differential equations on smooth manifolds}
+\section{Integrating the flow of a vector field}
+\section{Hamiltonian mechanics}
+\section{Distributions and integrability}
+\section{The Frobenius theorem}
+
+\chapter{Lie groups}
+
+\chapter{Cohomology}
+\section{Chains and singular (co)homology}
+\section{Integration on chains and the Stokes theorem}
+\section{de Rham cohomology}
+\section{The Poincaré lemma}
+\section{The de Rham theorem}
+\section{Mapping degree theory}
+
+\chapter{Harmonic forms}
+\section{The Hodge star operator and the Laplacian}
+\section{The Hodge theorem}
+\section{Applications of the Hodge theorem}
+
+\chapter{Connections on vector bundles}
+\section{The Levi-Civita connection}
+
+\chapter{Connections on principal bundles}
+
+
+%\nocite{*}
+%\printbibliography
+\end{document}
