@@ -33,8 +33,8 @@
 \setcounter{page}{1}
 \thispagestyle{empty}
 \begin{center}
-\Huge \bfseries Differential Geometry \par\vspace{2em}
-\Large Guillermo Gallego \par\bigskip
+\Large \bfseries A Master's course on Differential Geometry \par\vspace{2em}
+\large  Guillermo Gallego \par\bigskip
 \end{center}
 
 \vfill
@@ -48,7 +48,7 @@
 
 \tableofcontents
 \chapter{Smooth manifolds}
-\section{Definition and examples}
+\section{The basics}
 \subsection{Cartesian spaces}
 \begin{defn}
 By a \emph{Cartesian space} or \emph{abstract coordinate space} we mean an open subset $U\subset \mathbb{R}^n$, for some positive integer $n$, called the \emph{dimension of $U$}, $n=\dim U$. A map $f:U\subset \mathbb{R}^n \rightarrow V \subset \mathbb{R}^m$ between two Cartesian spaces is \emph{smooth} if all the iterated partial derivatives of $f$ exist and are continuous in $U$.
@@ -270,13 +270,70 @@ is fully faithful.
 \todo{}
 \end{proof}
 
-\subsection{Quotients}
+\subsection{Embedded manifolds}
+\begin{defn}
+  Consider two sets $X\subset \RR^n$ and $Y\subset \RR^m$. We say that a map $f:X\rightarrow Y$ is \emph{smooth} if there exist neighbourhoods $U\subset \RR^n$ and $V\subset \RR^m$ of $X$ and $Y$, respectively, and a smooth map $\tilde{f}:U\rightarrow V$ such that the following diagram commutes
+  \begin{center}
+    \begin{tikzcd}
+     U \ar{r}{\tilde{f}}  & V  \\
+     X \ar[hook]{u} \ar{r}{f} & Y. \ar[hook]{u}
+    \end{tikzcd}
+  \end{center}
+  We say that $f$ is a \emph{diffeomorphism} if it is smooth, bijective, and its inverse is also smooth.
+\end{defn}
+
+\begin{defn}
+A subset $M\subset \RR^N$ is called a \emph{regular submanifold of dimension $n$} if, for every $x\in M$, there exists an open neighbourhood $U\subset \RR^N$ of $x$, a Cartesian space $V\subset \RR^n$, and a diffeomorphism $\varphi:U\cap M \rightarrow V$.
+\end{defn}
+
+A regular submanifold $M\subset \RR^N$ can be endowed with the subspace topology, and open neighbourhoods from the definition determine an atlas $\mathcal{A}$ on $M$. This atlas is clearly smooth since the maps $\varphi$ are assumed diffeomorphisms. We conclude that any regular submanifold $M\subset \RR^N$ is naturally a smooth manifold.
+
+A natural source of regular submanifold is given by the implicit function theorem:
+
+\begin{thm}[Implicit function theorem]
+  Let $U\subset \RR^p$ be an open subset and $F:U\rightarrow \RR^q$ a smooth map. Suppose that there is a point $a\in U$ such that the differential $d_aF:\RR^p\rightarrow \RR^q$ is surjective. Then there is an open neighbourhood $B\subset U$ of $a$ such that the set
+  \begin{equation*}
+M=\left\{ x \in B: F(x)=F(a) \right\},
+  \end{equation*}
+is a regular submanifold of $\RR^p$ of dimension $p-q$.
+\end{thm}
+
+\begin{proof}
+  Since $d_a F$ is surjective, there is a linear isomorphism $\psi:\ker d_a F \rightarrow \RR^{p-q}$. Consider now the linear map
+  \begin{equation*}
+    g(x)=
+    \begin{cases}
+\psi(x) & \text{ if } x\in \ker d_a F \\
+      0 & \text{ else }
+\end{cases}
+  \end{equation*}
+  and the map
+  \begin{equation*}
+h:U \rightarrow \RR^p=\RR^q \times \RR^{p-q}, x \mapsto (F(x),g(x)).
+  \end{equation*}
+  Note now that the map $d_a h:\RR^p \rightarrow \RR^p$ is a linear isomorphism. Indeed, if $d_ah(v)=0$ for some $v\in \RR^p$, then $d_aF(v)=0$ and $g(v)=0$. Therefore, $v\in \ker d_a F$ and $\psi(v)=g(v)=0$. Now, since $\psi$ is a linear isomorphism, this implies that $v=0$. We conclude that $d_ah$ is a linear isomorphism, and the inverse function theorem implies that there exist an open neighbourhood $B\subset U$ of $a$ and an open neighborhood $V\subset \RR^p$ of $h(a)=(F(a),g(a))$ such that $h:B\rightarrow V$ is a diffeomorphism. We conclude that $M$ is diffeomorphic to $h(M)=(\left\{ f(a) \right\} \times \RR^{p-q}) \cap V \subset \RR^p$, which is clearly a regular submanifold of dimension $p-q$.
+\end{proof}
+
+\begin{ex}
+  A simple example of a regular submanifold given by the implicit function theorem is the $n$-sphere $\bbS^n$. Indeed, we can consider the function
+  \begin{equation*}
+F: \RR^{n+1}\rightarrow \RR, (x_1,\dots,x_n,x_{n+1}) \mapsto x_1^2 + \dots + x_n^2 + x_{n+1}^2.
+  \end{equation*}
+  The differential of $F$ at a point $a\in \RR^{n+1}$ is $d_aF(v)=2 \langle a, v \rangle$, which is surjective if $a\neq 0$. Therefore, the $n$-dimensional sphere of radius $\sqrt{F(a)}$
+  \begin{equation*}
+\bbS^{n}_{\sqrt{F(a)}} = \left\{ x\in \RR^{n+1}: F(x)=F(a) \right\}
+  \end{equation*}
+is a regular submanifold of $\RR^{n+1}$ of dimension $n$.
+\end{ex}
+
+\subsection{Quotients and products}
 ??
 
-\subsection{Lie groups}
+\section{Lie groups}
 ??
 
-\subsection{Vector bundles}
+\section{Vector bundles}
+\subsection{Basic definitions}
 \begin{defn}
   Let $M$ be a topological space and let $\mathbb{K}$ be either $\mathbb{R}$ or $\mathbb{C}$. A \emph{$\mathbb{K}$-vector bundle of rank $r$ over $M$} is a topological space $E$ together with a surjective continuous map $\pi:E\rightarrow M$ such that:
   \begin{itemize}
@@ -297,12 +354,24 @@ is fully faithful.
 
   The space $E$ is called the \emph{total space} of the bundle, $M$ is called its \emph{base}, and $\pi$ is the \emph{projection}. We typically introduce a vector bundle by saying ``$E$ is a vector bundle over $M$'', or ``$E\rightarrow M$ is a vector bundle''.
 
-  If $E$ and $M$ are smooth manifolds, $\pi$ is a smooth map, and the local trivializations can be chosen to be diffeomorphisms, then $E$ is called a \emph{smooth vector bundle}.
+  If $E$ and $M$ are smooth manifolds, $\pi$ is a smooth map, and the local trivializations can be chosen to be diffeomorphisms, then $E$ is called a \emph{smooth vector bundle}. In this text, all vector bundles are assumed to be smooth.
 
   A smooth local trivialization (resp. a continuous local trivialization) defined over all of $M$ is called a \emph{global trivialization} (resp. a \emph{continuous global trivialization}). If such a global trivialization exists, then $E$ itself is diffeomorphic (resp. homeomorphic) to $M\times \mathbb{K}^r$ and $E$ is said to be a \emph{trivial bundle} (resp. a \emph{topologically trivial bundle}).
 \end{defn}
 
-\subsubsection{The Möbius bundle}
+\begin{defn}
+Let $E_1\rightarrow M$ and $E_2\rightarrow M$ be two $\bbK$-vector bundles on $M$. A \emph{morphism} of vector bundles $f:E_1\rightarrow E_2$ is a smooth map $f$ from $E_1$ to $E_2$ such that the following diagram commutes
+\begin{center}
+  \begin{tikzcd}
+    E_1 \ar{rr}{f} \ar{rd} && E_2 \ar{ld} \\
+    & M &
+  \end{tikzcd}
+\end{center}
+and such that each restriction $f|_{E_{1,x}}:E_{1,x}\rightarrow E_{2,x}$ is a $\bbK$-linear map.
+\end{defn}
+
+
+\subsection{Example: The Möbius bundle}
 The simplest example of a non-trivial vector bundle is given by the well-known Möbius construction. We start by defining the following equivalence relation on $\RR^2$
 \begin{equation*}
 (x,y) \sim (x' ,y' ) \text{ if and only if } (x' ,y' )= (x+n, (-1)^n y) \text{ for some } n \in \Z.
@@ -335,11 +404,11 @@ s'(\exp(2\pi i t)) = q(f(t)).
   This map must satisfy the conditions $f(t)\neq 0$ for every $t\in \mathbb{R}$ and $f(1)=-f(0)$, contradicting Bolzano's theorem.
 \end{proof}
 
-\subsubsection{Transition functions}
+\subsection{Transition functions}
 \begin{prop}
-  Let $\pi:E\rightarrow M$ be a smooth $\mathbb{K}$-vector bundle of rank $r$ over $M$. Suppose that $\varphi:E|_U \rightarrow U \times \mathbb{K}^r$ and $\psi:E|_V \rightarrow V \times \mathbb{K}^r$ are two smooth local trivializations of $E$ with $U\cap V \neq \varnothing$. Then there exists a smooth map $\tau:U\cap V \rightarrow \GL_r(\bbK)$, called the \emph{transition function}, such that the composition $\varphi \circ \psi^{-1}:(U\cap V) \times \bbK^r \rightarrow (U\cap V) \times \bbK^r$ has the form
+  Let $\pi:E\rightarrow M$ be a smooth $\mathbb{K}$-vector bundle of rank $r$ over $M$. Suppose that $\varphi:E|_U \rightarrow U \times \mathbb{K}^r$ and $\psi:E|_V \rightarrow V \times \mathbb{K}^r$ are two smooth local trivializations of $E$ with $U\cap V \neq \varnothing$. Then there exists a smooth map $g:U\cap V \rightarrow \GL_r(\bbK)$, called the \emph{transition function}, such that the composition $\varphi \circ \psi^{-1}:(U\cap V) \times \bbK^r \rightarrow (U\cap V) \times \bbK^r$ has the form
   \begin{equation*}
-\varphi \circ \psi^{-1}(x,v) = (x, \tau(x)v).
+\varphi \circ \psi^{-1}(x,v) = (x, g(x)v).
   \end{equation*}
 \end{prop}
 
@@ -355,7 +424,7 @@ It follows that
 \begin{equation*}
 \varphi \circ \psi^{-1}(x,v) = (x,\sigma(x,v))
 \end{equation*}
-for some smooth map $\sigma: (U\cap V) \times \bbK^r \rightarrow \bbK^r$. Moreover, for each $x\in U\cap V$, the map $v \mapsto \sigma(x,v)$ is a linear automorphism of $\bbK^r$, and thus we can write $\sigma(x,v)=\tau(x) v$, for some $\tau(x) \in \GL_r(\bbK)$. Since $\sigma$ is smooth, the map $x \mapsto \tau(x)$ must also be smooth.
+for some smooth map $\sigma: (U\cap V) \times \bbK^r \rightarrow \bbK^r$. Moreover, for each $x\in U\cap V$, the map $v \mapsto \sigma(x,v)$ is a linear automorphism of $\bbK^r$, and thus we can write $\sigma(x,v)=g(x) v$, for some $g(x) \in \GL_r(\bbK)$. Since $\sigma$ is smooth, the map $x \mapsto g(x)$ must also be smooth.
 \end{proof}
 
 It turns out that a vector bundle can be reconstructed from its transition functions.
@@ -365,32 +434,88 @@ It turns out that a vector bundle can be reconstructed from its transition funct
   \begin{enumerate}
     \item an open cover $\mathfrak{U}$ of $M$,
           \item for each $U\in \mathfrak{U}$, a bijection $\varphi_U:\pi^{-1}(U)\rightarrow U \times \bbK^r$ whose restriction to each $E_x$ is a $\bbK$-vector space isomorphism between $E_x$ and $\left\{ x \right\}\times \bbK^r \cong \bbK^r$.,
-          \item for each $U,V \in \mathfrak{U}$ with $U\cap V\neq \varnothing$, a smooth map $\tau_{UV}:U\cap V \rightarrow \GL_r(\bbK)$ such that the map $\varphi_U \circ \varphi_V^{-1}:(U\cap V)\times \bbK^r\rightarrow (U\cap V)\times \bbK^r$ has the form
+          \item for each $U,V \in \mathfrak{U}$ with $U\cap V\neq \varnothing$, a smooth map $g_{UV}:U\cap V \rightarrow \GL_r(\bbK)$ such that the map $\varphi_U \circ \varphi_V^{-1}:(U\cap V)\times \bbK^r\rightarrow (U\cap V)\times \bbK^r$ has the form
           \begin{equation*}
-\varphi_U \circ \varphi_V^{-1}(x,v) = (x,\tau_{UV}(x) v).
+\varphi_U \circ \varphi_V^{-1}(x,v) = (x,g_{UV}(x) v).
           \end{equation*}
   \end{enumerate}
   Then $E$ has a unique topology and smooth structure making it into a smooth manifold and a smooth rank $r$ $\bbK$-vector bundle over $M$, with $\pi$ as a projection and the $(U,\varphi_U)$, for $U\in \mathfrak{U}$, as smooth local trivializations.
 \end{prop}
 
 \begin{proof}
-a
+\todo{}
 \end{proof}
 
-\subsubsection{Constructions}
+\subsection{Sections}
+\begin{defn}
+A (smooth) \emph{section} of a $\bbK$-vector bundle $\pi:E\rightarrow M$ over an open subset $U\subset M$ is a smooth map $\sigma:U\rightarrow \pi^{-1}(U)\subset E$ such that $\pi|_{\pi^{-1}(U)} \circ \sigma = \mathrm{id}_{U}$. In other words, we have $\sigma(x)\in E_x$ for every point $x\in M$. A section over $M$ is called a \emph{global section}. We denote by $\Gamma(U,E)$ the set of all sections of $E$ over $U\subset M$.
 
-\subsubsection{Sections}
-definition, extensions, module structure and reconstruction
+A \emph{frame} of $E$ over $U$ is a set of sections $\left\{ \sigma_1,\dots,\sigma_r \right\} \subset \Gamma(U,E)$ such that $\left\{ \sigma_1(x),\dots,\sigma_r(x) \right\}$ is a basis for $E_x$ for all $x\in U$.
+\end{defn}
+
+Note that giving a frame of $E$ over $U$ is the same as giving a local trivialization of $E$ on $U$. Indeed, if we denote by $\bm{e}_1,\dots,\bm{e}_r$ the canonical basis of $\bbK^r$, then, given a trivialization $\varphi:E|_U \rightarrow U \times \bbK^r$, the sections $\sigma_i(x)=\varphi^{-1}(x,\bm{e}_i)$ determine a frame of $E$ over $U$. Conversely, given a frame $\left\{ \sigma_1,\dots,\sigma_r \right\}$ of $E$ over $U$, we can define the trivialization
+\begin{equation*}
+\varphi(e) = (x,(\lambda_1,\dots,\lambda_r)),
+\end{equation*}
+where $e\in E_x$ can be (uniquely) expressed as $e=\sum_{i=1}^r \lambda_i \sigma_i(x)$.
+
+For any open subset $U\subset M$ of a smooth manifold $M$. The set $\Gamma(U,E)$ of sections of a $\bbK$-vector bundle $E\rightarrow M$ can be naturally endowed with the structure of a $C^\infty(U)$-module, where $C^\infty(U)$ denotes the ring of smooth functions $U\rightarrow \RR$. Indeed, summing sections determines an abelian group structure on $\Gamma(U,E)$, and the map
+\begin{equation*}
+C^\infty(U) \times \Gamma(U,E) \rightarrow \Gamma(U,E), (f,s) \mapsto f s,
+\end{equation*}
+determines the module structure. Giving a frame or a trivialization of $E$ over $U$ amounts to give a $C^\infty(U)$-module isomorphism $\Gamma(U,E)\cong C^\infty(U)^r$.
+
+A very similar argument to the one we gave for functions shows a version of Tietze's extension theorem for sections.
+
+\begin{prop}
+Let $\pi:E\rightarrow M$ be a $\bbK$-vector bundle, $A\subset M$ a closed subset, $U$ an open neighbourhood of $A$,  and $s\in \Gamma(U,E)$ a section. Then there exists a global section $\tilde{s}\in \Gamma(M,E)$ such that $\tilde{s}|_A = s$.
+\end{prop}
+
+\subsection{Pullback}
+\begin{defn}
+  Given a smooth map $f:M\rightarrow N$ of smooth manifolds and a $\bbK$-vector bundle $E\rightarrow N$, we define the \emph{pullback bundle} $f^*E$ as the fibered product
+  \begin{center}
+    \begin{tikzcd}
+     f^*E \ar{r} \ar{d}{f^* \pi} & E \ar{d}{\pi} \\
+      M \ar{r}{f} & N,
+    \end{tikzcd}
+  \end{center}
+  which has as fibres $(f^*E)_x = E_{f(x)}$.
+
+
+
+\end{defn}
 
 \section{The tangent functor}
 \subsection{Derivations and tangent space}
 \subsection{Differential of a smooth map. The chain rule}
-\subsection{The tangent bundle}
-\subsection{Embeddings}
+\subsection{Submanifolds}
+
+\subsubsection{Subbundles}
+\begin{defn}
+A \emph{subbundle} $F\subset E$ of a $\bbK$-vector bundle $E$ is a collection $\left\{ F_x \subset E_x : x\in M\right\}$ of $\bbK$-vector subspaces of the fibres $E_x$ of $E$ such that $F=\coprod_{x\in M} F_x$ is a submanifold of $E$. The restriction of the projection $\pi:E\rightarrow M$ to $F$ endows $F$ with the structure of a vector bundle.
+\end{defn}
+
+If $F\subset E$ is a subbundle of rank $s<r$, for every $x\in M$ there exists a neighbourhood $U\subset M$ of $x$ and a trivialization $\varphi_U:E|_U\rightarrow U \times \bbK^r$ such that $\varphi_U(F|_U)= U\times \bbK^s$. The transition functions $g_{UV}$ relative to these trivializations will then look like
+\begin{equation*}
+  g_{UV}(x) =
+  \begin{pmatrix}
+    h_{UV}(x) & k_{UV}(x) \\
+    0 & j_{UV}(x)
+\end{pmatrix}.
+\end{equation*}
+The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ determine the \emph{quotient bundle} $E/F$, with fibres $(E/F)_x=E_x/F_x$.
+
 \subsection{Embedding theorem}
+
+\subsection{The tangent bundle}
+
+
 
 \section{Tensor calculus. Fields and forms}
 \subsection{Multilinear algebra}
+\subsection{Tensor fields}
+\subsection{The exterior differential}
 
 \chapter{Some geometric structures}
 \section{Riemannian metrics}
@@ -398,15 +523,15 @@ definition, extensions, module structure and reconstruction
 \section{Almost complex structures}
 \section{Hermitian metrics. Kähler structures}
 
-\chapter{Differential equations on smooth manifolds}
+\chapter{Dynamics on smooth manifolds}
 \section{Integrating the flow of a vector field}
-\section{Hamiltonian mechanics}
+\section{Hamiltonian mechanics on symplectic manifolds}
+\section{Geodesic flow on Riemannian manifolds}
+\section{Lie algebras and exponential map}
 \section{Distributions and integrability}
 \section{The Frobenius theorem}
 
-\chapter{Lie groups}
-
-\chapter{Cohomology}
+\chapter{Cohomology and integration}
 \section{Chains and singular (co)homology}
 \section{Integration on chains and the Stokes theorem}
 \section{de Rham cohomology}
@@ -414,15 +539,19 @@ definition, extensions, module structure and reconstruction
 \section{The de Rham theorem}
 \section{Mapping degree theory}
 
-\chapter{Harmonic forms}
-\section{The Hodge star operator and the Laplacian}
-\section{The Hodge theorem}
-\section{Applications of the Hodge theorem}
-
 \chapter{Connections on vector bundles}
 \section{The Levi-Civita connection}
+\section{Characteristic classes}
+\section{Holonomy}
 
 \chapter{Connections on principal bundles}
+
+\chapter{Harmonic forms on compact manifolds}
+\section{The Hodge star operator and the Laplacian}
+\section{The Hodge theorem}
+\section{Poincaré duality}
+
+\chapter{Compact Kähler manifolds}
 
 %\nocite{*}
 %\printbibliography
