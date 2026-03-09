@@ -11,6 +11,8 @@
 
 \usepackage{bm}
 
+\usepackage[scr=boondox]{mathalfa}
+
 %\usepackage[backend=biber]{biblatex}
 %\addbibresource{biblio_guillermo.bib}
 
@@ -157,8 +159,14 @@ Note that localization commutes with composition. That is, if $f:M\rightarrow N$
 
 It follows that smooth manifolds with smooth maps form a category, that we denote by $\mathbf{SmoothMan}$. Isomorphisms in this category are also called \emph{diffeomorphisms}. By definition, a diffeomorphism is a smooth bijective map whose inverse is also smooth.
 
+\begin{defn}
+A \emph{smooth function} on a smooth manifold $M$ is a smooth map $f:M\rightarrow \RR$. The set $C^\infty(M)$ of smooth functions on $M$ forms a ring, called the \emph{coordinate ring} of $M$.
+\end{defn}
+
 \subsection{Some examples}
 \subsubsection{Cartesian spaces} A Cartesian space $U$ is trivially a smooth manifold if we simply endow it with the atlas $\mathcal{A}=\left\{ (U,U,\mathrm{id}_{U}) \right\}$. By construction, maps between Cartesian spaces are smooth if and only if they are smooth as maps between smooth manifolds. Therefore we have a functor $\mathbf{CartSp}\rightarrow \mathbf{SmoothMan}$, which is clearly fully faithful.
+
+More generally, the reader can easily check that an open subset $U\subset M$ of a smooth manifold inherits a smooth structure.
 
 \subsubsection{Spheres} The \emph{$n$-dimensional unit sphere} is the space
 \begin{equation*}
@@ -206,7 +214,65 @@ A natural question is then to classify smooth manifolds up to diffeomorphism. Th
 
 In dimension $\geq 4$ (and specifically in dimension $4$) is where the problem reaches its full complexity, since one can find topological manifolds which admit several smooth structures which are not diffeomorphic to each other. If $M$ is compact and $\dim M \geq 5$, then $M$ can admit several smooth structures not diffeomorphic to each other, but only a finite amount. For example, the sphere $\mathbb{S}^7$ admits $28$ smooth structures not diffeomorphic to each other (the $27$ smooth structures different from the ``natural'' one are called the \emph{exotic spheres}). A $4$-dimensional compact smooth manifold can admit an infinite (countable) amount of non-diffeomorphic smooth structures. In the $4$-dimensional non-compact case there are really surprising results. For example, while $\mathbb{R}^n$ admits a unique smooth structure up to diffeomorphism for $n\neq 4$, the space $\mathbb{R}^4$ admits an infinite (\emph{uncountable}) amount of non-diffeomorphic smooth structures.
 
-\subsection{Partitions of unity and the coordinate ring}
+\subsection{The structure sheaf}
+Let $M$ be a topological space. We denote by $\mathbf{Op}(M)$ the category whose objects are the open subsets $U\subset M$ and such that, if $U\subset M$ and $V\subset M$ are open subsets of $M$, then the set of morphisms from $U$ to $V$ is
+\begin{enumerate}
+\item the set containing just the inclusion $U\hookrightarrow V$, if $U\subset V$, or
+        \item empty, otherwise.
+\end{enumerate}
+
+\begin{defn}
+  A \emph{presheaf} on $M$ is a functor
+  \begin{equation*}
+    \mathscr{F}: \mathbf{Op}(M)\rightarrow \mathbf{Set}.
+  \end{equation*}
+
+\end{defn}
+
+In other words, a presheaf associates, with every open subset $U\subset M$ a set $\mathscr{F}(U)$, and with any inclusion of open subsets $U\subset V\subset M$, a map, that we denote by
+\begin{equation*}
+\mathrm{res}^V_U : \mathscr{F}(V) \rightarrow \mathscr{F}(U).
+\end{equation*}
+This map is called the \emph{restriction} of $s$ from $V$ to $U$ and, given $s\in \mathscr{F}(V)$, we denote $s|_U=\mathrm{res}^V_U (s)$.
+
+\begin{defn}
+  A \emph{sheaf} on $M$ is a presheaf satisfying the following properties:
+  \begin{itemize}
+  \item \emph{Locality}: for any open subset $U\subset M$ and any open cover $\mathfrak{U}$ of $U$, if $s_1,s_2 \in \mathscr{F}(U)$ satisfy $s_1|_V = s_2|_V$ for every $V\in \mathfrak{U}$, then $s_1=s_2$.
+  \item \emph{Gluing}: for any open subset $U\subset M$ and any open cover $\mathfrak{U}$ of $U$, given a family $\left\{ s_V:V\in \mathfrak{U} \right\}$ such that $s_V|_{V\cap W}=s_W|_{V\cap W}$ for any two $V,W \in \mathfrak{U}$, there is an element $s\in \mathscr{F}(U)$ such that $s|_V=s_V$ for every $V\in \mathfrak{U}$.
+  \end{itemize}
+
+  A \emph{subsheaf} of a sheaf $\mathscr{F}$ is another sheaf $\mathscr{G}$ such that $\mathscr{G}\subset \mathscr{F}$ for every open subset $U\subset M$.
+\end{defn}
+
+\begin{ej}
+Check that the functor
+  \begin{equation*}
+    C^0_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^0(U)=\left\{ U\rightarrow \RR \text{ continuous } \right\}
+  \end{equation*}
+  is a sheaf.
+\end{ej}
+
+\begin{defn}
+If $M$ is a smooth manifold, we define its \emph{structure sheaf} $C^\infty_M$ as the functor
+  \begin{equation*}
+    C^\infty_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^\infty(U) .
+  \end{equation*}
+\end{defn}
+
+The reader can check as an exercise that the structure sheaf $C^\infty_M$ is indeed a sheaf. In fact, as we explain in the following, we could have also used the structure sheaf $C^\infty_M$ to define the smooth structure on $M$.
+
+\begin{defn}
+  Let $M$ be a topological manifold. A \emph{smooth structure sheaf} on $M$ is a subsheaf $C^\infty_M:U\mapsto C^\infty(U)$ of the sheaf $C^0_M$ such that, for every point $x\in M$ there exists a chart $(U,V,\varphi)$ with $x\in U$ such that the map
+  \begin{equation*}
+\varphi^*: C^\infty(V) \rightarrow C^0(U), s \mapsto s\circ \varphi
+  \end{equation*}
+  factors through a bijection $\varphi^*: C^\infty(V)\rightarrow C^\infty(U)$.
+\end{defn}
+
+We leave as an exercise for the reader to check that the atlas determined by the charts $(U,V,\varphi)$ from the above definition is in fact a smooth atlas, and thus determines a smooth structure on $M$.
+
+\subsection{Partitions of unity}
 \begin{defn}
   A \emph{smooth partition of unity} on a smooth manifold $M$ is a family $\Theta$ of smooth functions $\theta:M\rightarrow \mathbb{R}$ such that
   \begin{enumerate}
@@ -235,48 +301,47 @@ Let $M$ be a smooth manifold, $A\subset M$ a closed subset, $U$ an open neighbou
 \begin{proof}
 Consider the open cover $\mathfrak{U}=\left\{ U, M\setminus A \right\}$ and let $\Theta=\left\{ \theta_U,\theta_{M\setminus A} \right\}$ be a smooth partition of unity subordinate to $\mathfrak{U}$. We can then define $F=f \theta_U + \theta_{M \setminus A}$, which clearly coincides with $f$ at any point of $A$.
 \end{proof}
+%
+%Another application of the existence of smooth partitions of unity is the existence of proper functions.
+%
+%\begin{prop}
+%For any smooth manifold $M$ there exists a proper map $f:M\rightarrow \RR$.
+%\end{prop}
+%
+%\begin{proof}
+%\todo{}
+%\end{proof}
 
-Another application of the existence of smooth partitions of unity is the existence of proper functions.
-
-\begin{prop}
-For any smooth manifold $M$ there exists a proper map $f:M\rightarrow \RR$.
-\end{prop}
-
-\begin{proof}
-\todo{}
-\end{proof}
-
-The \emph{coordinate ring} of a smooth manifold $M$ is the $\RR$-algebra $C^\infty(M)$ of functions $M\rightarrow \RR$. With any point $x\in M$ we can associate the form
-\begin{equation*}
-\bar{x}:C^\infty(M)\rightarrow \RR, f \mapsto f(x).
-\end{equation*}
-It turns out that the existence of smooth partitions of unity allows us to recover all the information about the smooth structure of $M$ from the coordinate ring $C^\infty(M)$. Indeed, we have the following.
-
-\begin{thm}
-The map $M \rightarrow \mathrm{Hom}_{\mathbb{R}}(C^\infty(M),\mathbb{R}), x\mapsto \bar{x}$ is a bijection.
-\end{thm}
-\begin{proof}
-\todo{}
-\end{proof}
-
-\begin{corol}
-The functor $C^\infty:\mathbf{SmoothMan}\rightarrow \mathbf{Alg}_{\mathbb{R}}^{\mathrm{op}}$ sending a smooth manifold $M$ to its coordinate ring $C^\infty(M)$ and a smooth map $f:M\rightarrow N$ to the morphism of $\mathbb{R}$-algebras
-\begin{equation*}
-f^*: C^\infty(N) \rightarrow C^\infty(M), \varphi \mapsto \varphi \circ f,
-\end{equation*}
-is fully faithful.
-\end{corol}
-\begin{proof}
-\todo{}
-\end{proof}
-
+%With any point $x\in M$ we can associate the form
+%\begin{equation*}
+%\bar{x}:C^\infty(M)\rightarrow \RR, f \mapsto f(x).
+%\end{equation*}
+%It turns out that the existence of smooth partitions of unity allows us to recover all the information about the smooth structure of $M$ from the coordinate ring $C^\infty(M)$. Indeed, we have the following.
+%
+%\begin{thm}
+%The map $M \rightarrow \mathrm{Hom}_{\mathbb{R}}(C^\infty(M),\mathbb{R}), x\mapsto \bar{x}$ is a bijection.
+%\end{thm}
+%\begin{proof}
+%\todo{}
+%\end{proof}
+%
+%\begin{corol}
+%The functor $C^\infty:\mathbf{SmoothMan}\rightarrow \mathbf{Alg}_{\mathbb{R}}^{\mathrm{op}}$ sending a smooth manifold $M$ to its coordinate ring $C^\infty(M)$ and a smooth map $f:M\rightarrow N$ to the morphism of $\mathbb{R}$-algebras
+%\begin{equation*}
+%f^*: C^\infty(N) \rightarrow C^\infty(M), \varphi \mapsto \varphi \circ f,
+%\end{equation*}
+%is fully faithful.
+%\end{corol}
+%\begin{proof}
+%\todo{}
+%\end{proof}
 \subsection{Embedded manifolds}
 \begin{defn}
-  Consider two sets $X\subset \RR^n$ and $Y\subset \RR^m$. We say that a map $f:X\rightarrow Y$ is \emph{smooth} if there exist neighbourhoods $U\subset \RR^n$ and $V\subset \RR^m$ of $X$ and $Y$, respectively, and a smooth map $\tilde{f}:U\rightarrow V$ such that the following diagram commutes
+  Consider two sets $A\subset \RR^n$ and $B\subset \RR^m$. We say that a map $f:A\rightarrow B$ is \emph{smooth} if there exist neighbourhoods $U\subset \RR^n$ and $V\subset \RR^m$ of $A$ and $B$, respectively, and a smooth map $\tilde{f}:U\rightarrow V$ such that the following diagram commutes
   \begin{center}
     \begin{tikzcd}
      U \ar{r}{\tilde{f}}  & V  \\
-     X \ar[hook]{u} \ar{r}{f} & Y. \ar[hook]{u}
+     A \ar[hook]{u} \ar{r}{f} & B. \ar[hook]{u}
     \end{tikzcd}
   \end{center}
   We say that $f$ is a \emph{diffeomorphism} if it is smooth, bijective, and its inverse is also smooth.
@@ -463,7 +528,12 @@ For any open subset $U\subset M$ of a smooth manifold $M$. The set $\Gamma(U,E)$
 \begin{equation*}
 C^\infty(U) \times \Gamma(U,E) \rightarrow \Gamma(U,E), (f,s) \mapsto f s,
 \end{equation*}
-determines the module structure. Giving a frame or a trivialization of $E$ over $U$ amounts to give a $C^\infty(U)$-module isomorphism $\Gamma(U,E)\cong C^\infty(U)^r$.
+determines the module structure. Giving a frame or a trivialization of $E$ over $U$ amounts to give a $C^\infty(U)$-module isomorphism $\Gamma(U,E)\cong C^\infty(U)^r$. We summarize this fact by saying that the following presheaf (which the reader can check that is in fact a sheaf)
+\begin{equation*}
+\Gamma_E : U \mapsto \Gamma(U,E),
+\end{equation*}
+called the \emph{sheaf of sections of $E$}, is a \emph{locally free sheaf of $C^\infty_M$-modules}.
+
 
 A very similar argument to the one we gave for functions shows a version of Tietze's extension theorem for sections.
 
@@ -488,7 +558,67 @@ Let $\pi:E\rightarrow M$ be a $\bbK$-vector bundle, $A\subset M$ a closed subset
 
 \section{The tangent functor}
 \subsection{Derivations and tangent space}
-\subsection{Differential of a smooth map. The chain rule}
+\begin{defn}
+  Let $M$ be a topological space and $\mathscr{F}$ a presheaf on $M$. For any point $x\in M$, we define the \emph{stalk of $\mathscr{F}$ at $x$} as the direct limit
+\begin{equation*}
+\mathscr{F}_x = \lim_{U\ni x} \mathscr{F}(U)
+\end{equation*}
+of the sets $\mathscr{F}(U)$, where the limit runs over the directed set of open neighbourhoods of $x$, with respect to the inclusion of open subsets $U\subset V$ and restriction maps $\mathscr{F}(V)\rightarrow \mathscr{F}(U)$.
+\end{defn}
+In other words, an element of $\mathscr{F}_x$ is represented by a pair $(U,f)$, where $U$ is an open neighbourhood of $x$ and $f\in \mathscr{F}(U)$. Two pairs $(U,f)$ and $(V,g)$ determine the same element of $\mathscr{F}_x$ if $f|_{U\cap V}=g|_{U \cap V}$.
+
+\begin{defn}
+Let $M$ be a smooth manifold. For any point $x\in M$, we define the \emph{ring of germs of smooth functions at $x$} as the stalk
+\begin{equation*}
+C^\infty_x = \lim_{U\ni x} C^\infty(U).
+\end{equation*}
+\end{defn}
+
+An element of $C^\infty_x$ is called a \emph{germ of smooth function at $x$}, and it is an equivalence class $[U,f]$ of pairs formed by an open neighbourhood $U\subset M$ of $x\in U$ and a smooth function $f:U\rightarrow \RR$. Note that $C^\infty_x$ is an $\RR$-algebra.
+
+\begin{defn}
+  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $D:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
+  \begin{equation*}
+D(fg)= f(x) D(g) + g(x) D(f),
+  \end{equation*}
+  for any two elements $[U,f], [V,g]\in C^\infty_x$. One checks easily that derivations form a vector space. This vector space is denoted by $T_xM$ and called the \emph{tangent space to $M$ at $x$}.
+
+\end{defn}
+
+We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $D\in T_xM$, we have $D(f)=0$. Indeed, since $D$ is assumed to be linear, we have that $D(f)=cD(1)$, and the Leibniz rule implies that $D(1)=D(1\cdot 1)=2D(1)$, so $D(1)=0$.
+
+In a previous section, we have already defined the tangent space $T_xU$ of a Cartesian space $U\subset \RR^n$ at a point $x\in U$ to be simply the real vector space $\RR^n$. This definition is justified by the following.
+
+\begin{prop}
+  Consider a point $a=(a_1,\dots,a_n)\in \RR^n$. The maps
+  \begin{equation*}
+\partial_i|_a:C^\infty_a \rightarrow \RR, f\mapsto \frac{\partial f}{\partial x_i} (a),
+  \end{equation*}
+with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
+\end{prop}
+
+\begin{proof}
+\todo{}
+\end{proof}
+
+
+\begin{prop}
+  Let $M$ be a smooth manifold and let $(U,V,\varphi) \in \bar{\mathcal{A}}_M$ be a smooth chart on $M$. For every $x\in U$, the map $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)} V$ defined by the relation
+  \begin{equation*}
+(\varphi_{*,x} D)(f) = D(f\circ \varphi),
+  \end{equation*}
+  for $f\in C^\infty_{\varphi(x)}$ and $D \in T_xM$, is a linear isomorphism. In particular, $\dim T_xM = \dim_x M$.
+\end{prop}
+\begin{proof}
+  Since $(U,V,\varphi)$ is a chart in the maximal atlas of $M$, the map
+  \begin{equation*}
+\varphi^*: C^\infty(V) \rightarrow C^\infty(U), f \mapsto f\circ \varphi
+  \end{equation*}
+  is an isomorphism of $\RR$-algebras, which induces an isomorphism at the level of the stalks $\varphi^*_x:C^\infty_x \rightarrow C^\infty_{\varphi(x)}$, and, in turn, the isomorphism $\varphi_{*,x}$.
+\end{proof}
+
+
+\subsection{Differential of a smooth map}
 \subsection{Submanifolds}
 
 \subsubsection{Subbundles}
@@ -538,6 +668,7 @@ The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ dete
 \section{The Poincaré lemma}
 \section{The de Rham theorem}
 \section{Mapping degree theory}
+\section{Dolbeault cohomology}
 
 \chapter{Connections on vector bundles}
 \section{The Levi-Civita connection}
@@ -546,10 +677,12 @@ The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ dete
 
 \chapter{Connections on principal bundles}
 
-\chapter{Harmonic forms on compact manifolds}
+\chapter{Elliptic operators on compact manifolds}
 \section{The Hodge star operator and the Laplacian}
 \section{The Hodge theorem}
-\section{Poincaré duality}
+\section{Poincaré duality and Kodaira-Serre duality}
+\section{The index theorem}
+\section{Hirzebruch-Riemann-Roch}
 
 \chapter{Compact Kähler manifolds}
 
