@@ -65,9 +65,9 @@ Given a smooth map $f:U\subset \mathbb{R}^n\rightarrow V\subset \mathbb{R}^m$ be
 \begin{equation*}
   J_x f =
   \begin{pmatrix}
-\frac{\partial f_1}{\partial x_1} (x) & \dots & \frac{\partial f_1}{\partial x_n} (x) \\
+\frac{\partial f_1}{\partial x_1} (x) & \cdots & \frac{\partial f_1}{\partial x_n} (x) \\
 & \ddots & \\
-\frac{\partial f_m}{\partial x_1} (x) & \dots & \frac{\partial f_m}{\partial x_n} (x)
+\frac{\partial f_m}{\partial x_1} (x) & \cdots & \frac{\partial f_m}{\partial x_n} (x)
   \end{pmatrix}.
 \end{equation*}
 Here, we are denoting by $f_i:U\rightarrow \mathbb{R}$ the composition of $f$ with the projection $\mathrm{pr}_i:V\rightarrow \mathbb{R}$ to the $i$-th coordinate.
@@ -135,7 +135,7 @@ If $(M,\mathcal{A})$ is a smooth manifold and $(U_1,V_1,\varphi_1)\in \mathcal{A
 \begin{equation*}
 \dim_x M:= \dim V_1.
 \end{equation*}
-Note that this number does not depend on the choice of chart, since, for any other chart $(U_2,V_2,\varphi_2)$, the coordinate change map $\psi_{12}$ induces a linear isomorphism $$d_{\varphi_1(x)}\psi_{12}:T_{\varphi_1(x)}V_1 \rightarrow T_{\varphi_2(x)}V_2.$$ Therefore, we obtain a well defined map
+Note that this number does not depend on the choice of chart, since, for any other chart $(U_2,V_2,\varphi_2)$, the coordinate change map $\psi_{12}$ induces a linear isomorphism \[d_{\varphi_1(x)}\psi_{12}:T_{\varphi_1(x)}V_1 \rightarrow T_{\varphi_2(x)}V_2.\] Therefore, we obtain a well defined map
 \begin{equation*}
 \dim: M \rightarrow \mathbb{N}, x \mapsto \dim_x M.
 \end{equation*}
@@ -172,7 +172,7 @@ More generally, the reader can easily check that an open subset $U\subset M$ of 
 
 \subsubsection{Spheres} The \emph{$n$-dimensional unit sphere} is the space
 \begin{equation*}
-\mathbb{S}^n=\left\{(x_1,\dots,x_n,x_{n+1}) \in \mathbb{R}^{n+1}: x_1^2+\dots +x_n^2+x_{n+1}^2=1  \right\}.
+\mathbb{S}^n=\left\{(x_1,\dots,x_n,x_{n+1}) \in \mathbb{R}^{n+1}: x_1^2+\cdots +x_n^2+x_{n+1}^2=1  \right\}.
 \end{equation*}
 Let $p_N=(0,\dots,0,1)$ and $p_S=(0,\dots,0,-1)$ denote the north and south poles of the sphere, and consider the open subsets $U_1=\mathbb{S}^n \setminus \left\{ p_N \right\}$ and $U_2=\mathbb{S}^n \setminus \left\{ p_S \right\}$. The stereographic projections $\varphi_1:U_1\rightarrow \mathbb{R}^n$ and $\varphi_1:U_2\rightarrow \mathbb{R}^n$, centered on the south and north poles, respectively, are homeomorphisms, and one checks easily that the coordinate change is a diffeomorphism. Therefore, the set $\mathcal{A}=\left\{ (U_1,\mathbb{R}^n,\varphi_1), (U_2,\mathbb{R}^n,\varphi_2) \right\}$ is an smooth atlas, which endows $\mathbb{S}^n$ with the structure of an $n$-dimensional smooth manifold.
 
@@ -384,7 +384,7 @@ h:U \rightarrow \RR^p=\RR^q \times \RR^{p-q}, x \mapsto (F(x),g(x)).
 \begin{ex}
   A simple example of a regular submanifold given by the implicit function theorem is the $n$-sphere $\bbS^n$. Indeed, we can consider the function
   \begin{equation*}
-F: \RR^{n+1}\rightarrow \RR, (x_1,\dots,x_n,x_{n+1}) \mapsto x_1^2 + \dots + x_n^2 + x_{n+1}^2.
+F: \RR^{n+1}\rightarrow \RR, (x_1,\dots,x_n,x_{n+1}) \mapsto x_1^2 + \cdots + x_n^2 + x_{n+1}^2.
   \end{equation*}
   The differential of $F$ at a point $a\in \RR^{n+1}$ is $d_aF(v)=2 \langle a, v \rangle$, which is surjective if $a\neq 0$. Therefore, the $n$-dimensional sphere of radius $\sqrt{F(a)}$
   \begin{equation*}
