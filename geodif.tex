@@ -16,6 +16,8 @@
 %\usepackage[backend=biber]{biblatex}
 %\addbibresource{biblio_guillermo.bib}
 
+\setcounter{tocdepth}{1}
+
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{conj}[thm]{Conjecture}
@@ -35,7 +37,7 @@
 \setcounter{page}{1}
 \thispagestyle{empty}
 \begin{center}
-\Large \bfseries A Master's course on Differential Geometry \par\vspace{2em}
+\Large \bfseries Differential Geometry \par\vspace{2em}
 \large  Guillermo Gallego \par\bigskip
 \end{center}
 
@@ -392,10 +394,13 @@ is a regular submanifold of $\RR^{n+1}$ of dimension $n$.
 \end{ex}
 
 \subsection{Quotients and products}
-??
+\todo{(also add fibered products, maybe coverings, etc)}
+
+\subsection{Manifolds with boundary}
+\todo{}
 
 \section{Lie groups}
-??
+\todo{}
 
 \section{Vector bundles}
 \subsection{Basic definitions}
@@ -551,12 +556,11 @@ Let $\pi:E\rightarrow M$ be a $\bbK$-vector bundle, $A\subset M$ a closed subset
     \end{tikzcd}
   \end{center}
   which has as fibres $(f^*E)_x = E_{f(x)}$.
-
-
-
 \end{defn}
 
 \section{The tangent functor}
+\subsection{Tangent space to an embedded manifold}
+\todo{}
 \subsection{Derivations and tangent space}
 \begin{defn}
   Let $M$ be a topological space and $\mathscr{F}$ a presheaf on $M$. For any point $x\in M$, we define the \emph{stalk of $\mathscr{F}$ at $x$} as the direct limit
@@ -577,15 +581,15 @@ C^\infty_x = \lim_{U\ni x} C^\infty(U).
 An element of $C^\infty_x$ is called a \emph{germ of smooth function at $x$}, and it is an equivalence class $[U,f]$ of pairs formed by an open neighbourhood $U\subset M$ of $x\in U$ and a smooth function $f:U\rightarrow \RR$. Note that $C^\infty_x$ is an $\RR$-algebra.
 
 \begin{defn}
-  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $D:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
+  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $X:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
   \begin{equation*}
-D(fg)= f(x) D(g) + g(x) D(f),
+X(fg)= f(x) X(g) + g(x) X(f),
   \end{equation*}
   for any two elements $[U,f], [V,g]\in C^\infty_x$. One checks easily that derivations form a vector space. This vector space is denoted by $T_xM$ and called the \emph{tangent space to $M$ at $x$}.
 
 \end{defn}
 
-We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $D\in T_xM$, we have $D(f)=0$. Indeed, since $D$ is assumed to be linear, we have that $D(f)=cD(1)$, and the Leibniz rule implies that $D(1)=D(1\cdot 1)=2D(1)$, so $D(1)=0$.
+We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $X\in T_xM$, we have $X(f)=0$. Indeed, since $X$ is assumed to be linear, we have that $X(f)=cX(1)$, and the Leibniz rule implies that $X(1)=X(1\cdot 1)=2X(1)$, so $X(1)=0$.
 
 In a previous section, we have already defined the tangent space $T_xU$ of a Cartesian space $U\subset \RR^n$ at a point $x\in U$ to be simply the real vector space $\RR^n$. This definition is justified by the following.
 
@@ -594,11 +598,39 @@ In a previous section, we have already defined the tangent space $T_xU$ of a Car
   \begin{equation*}
 \partial_i|_a:C^\infty_a \rightarrow \RR, f\mapsto \frac{\partial f}{\partial x_i} (a),
   \end{equation*}
-with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
+  with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
+  More precisely, if we let $\pr_i:\RR^n \rightarrow \RR$ denote the projection to the $i$-th component and, for any $X\in T_a \RR^n$, denote $X_i=X(\pr_i)$, then we can write
+  \begin{equation*}
+X=\sum_{i=1}^n X_i \partial_i|_a.
+  \end{equation*}
 \end{prop}
 
 \begin{proof}
-\todo{}
+  The Leibniz rule is the product rule for derivatives, so the maps $\partial_i|_a$ are obviously derivations. To show that they form a basis, first we have to prove that they are linearly independent; that is, that if $\sum_{i=1}^n v_i \partial_i|_a=0$ for some $v=(v_1,\dots,v_n) \in \RR^n$, then $v=0$. Indeed, note that
+  \begin{equation*}
+0 = \sum_{i=1}^n v_i \partial_i|_a (\pr_j) = \sum_{i=1}^n v_i \frac{\partial x_j}{\partial x_i}(a) = v_j,
+  \end{equation*}
+so $v_j=0$ for each $j=1,\dots,n$, and thus $v=0$. It remains to show that the $\partial_i|_a$ generate $T_a\RR^n$. If $f:U\rightarrow \RR$ is a smooth function defined on some neighbourhood $U$ of $a$, by Taylor's theorem we can find a smaller neighbourhood $U'\subset U$ of $a$ and smooth functions $h_i:U' \rightarrow \RR$, for $i=1,\dots,n$, with $\lim_{x\rightarrow a}h_i(x)=0$ and such that, for every $x\in U'$,
+\begin{equation*}
+f(x) = f(a) + \sum_{i=1}^n (x_i-a_i) \frac{\partial f}{\partial x_i}(a) + \sum_{i=1}^n h_i(x)(x_i-a_i).
+\end{equation*}
+Thus, for any derivation $X\in T_a\RR^n$, we have
+\begin{align*}
+X(f) =& X(f(a)) + \sum_{i=1}^n X(x_i-a_i) \frac{\partial f}{\partial x_i}(a) \\ & + \sum_{i=1}^n (x_i-a_i)|_{x=a} X \left( \frac{\partial f}{\partial x_i} \right) + X \left( \sum_{i=1}^n h_i(x)(x_i-a_i) \right).
+\end{align*}
+Now, $(x_i-a_i)|_{x=a}=(a_i-a_i)=0$. Moreover, we can apply linearity and the Leibniz rule again and write
+\begin{equation*}
+X(h_i(x)(x_i-a_i)) = h_i(a) X(x_i-a_i) + X(h_i) (x_i-a_i)|_{x=a} = 0.
+\end{equation*}
+We conclude that
+\begin{equation*}
+X(f) = \sum_{i=1}^n X(x_i) \frac{\partial f}{\partial x_i} (a)
+\end{equation*}
+for any choice of $f$, so we can write
+\begin{equation*}
+X = \sum_{i=1}^n X_i \partial_i|_a,
+\end{equation*}
+as we wanted to show.
 \end{proof}
 
 
@@ -619,7 +651,7 @@ with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. Ther
 
 
 \subsection{Differential of a smooth map}
-\subsection{Submanifolds}
+\subsection{Embeddings}
 
 \subsubsection{Subbundles}
 \begin{defn}
@@ -636,11 +668,9 @@ If $F\subset E$ is a subbundle of rank $s<r$, for every $x\in M$ there exists a 
 \end{equation*}
 The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ determine the \emph{quotient bundle} $E/F$, with fibres $(E/F)_x=E_x/F_x$.
 
-\subsection{Embedding theorem}
+\subsubsection{Embedding theorem}
 
 \subsection{The tangent bundle}
-
-
 
 \section{Tensor calculus. Fields and forms}
 \subsection{Multilinear algebra}
@@ -657,7 +687,7 @@ The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ dete
 \section{Integrating the flow of a vector field}
 \section{Hamiltonian mechanics on symplectic manifolds}
 \section{Geodesic flow on Riemannian manifolds}
-\section{Lie algebras and exponential map}
+\section{Lie groups and exponential map}
 \section{Distributions and integrability}
 \section{The Frobenius theorem}
 
