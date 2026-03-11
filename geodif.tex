@@ -560,8 +560,74 @@ Let $\pi:E\rightarrow M$ be a $\bbK$-vector bundle, $A\subset M$ a closed subset
 
 \section{The tangent functor}
 \subsection{Tangent space to an embedded manifold}
-\todo{}
-\subsection{Derivations and tangent space}
+Let $M\subset \RR^N$ be an $n$-dimensonal regular submanifold, $x\in M$ a point, and $(U,V\subset \RR^n,\varphi)$ a chart with $x\in U$. The map $\psi=\varphi^{-1}:V\rightarrow U$ is called a \emph{local parametrization} of $M$. This $\psi$ is a smooth map, so, by definition, it extends to a Cartesian space $\tilde{U}\subset \RR^N$ with $U=\tilde{U}\cap M$. Therefore, we can consider the differential $d_a\psi:\RR^n \rightarrow \RR^N$, for $a=\varphi(x)$. The image of this map does not depend on the choice of chart. Indeed, if $(U',V',\varphi')$ is a different chart with $a'=\varphi'(x)$, and denoting $\psi'=(\varphi')^{-1}$, we have, by the chain rule,
+\begin{equation*}
+d_a \psi = (d_{a' } \psi'  ) \circ d_a((\psi')^{-1}\circ \psi).
+\end{equation*}
+Thus, since $d_a((\psi')^{-1}\circ \psi):\RR^n \rightarrow \RR^n$ is a linear isomorphism, we have that \[d_a \psi(\RR^n)=d_{a' }\psi' (\RR^n).\]
+Since $\psi$ is a diffeomorphism, the dimension of this image is $n$.
+
+\begin{defn}
+The vector space $T^e_xM:=d_a \psi(\RR^n)\subset \RR^N$ is called the \emph{(embedded) tangent vector space to $M$ at $x$}. An element $v \in T^e_xM$ is called a \emph{tangent vector to $M$ at $x$}.
+\end{defn}
+
+A vector $v \in T_x M=d_a\psi (\RR^n)\subset \RR^N$ can be written as
+\begin{equation*}
+  v=
+\begin{pmatrix}
+\frac{\partial \psi_1}{\partial x_1}(a) & \cdots &\frac{\partial \psi_1}{\partial x_n}(a) \\
+  \vdots & \ddots & \vdots \\
+\frac{\partial \psi_N}{\partial x_1}(a) & \cdots &\frac{\partial \psi_N}{\partial x_n}(a)
+\end{pmatrix}
+\begin{pmatrix}
+  v_1 \\
+  \vdots \\
+  v_n
+\end{pmatrix},
+\end{equation*}
+where the $\psi_i$ are the components of $\psi$ and $(v_1,\dots,v_n)\in \RR^n$. That is, the vectors
+\begin{equation*}
+\frac{\partial \psi}{\partial x_i}(a) := \left( \frac{\partial \psi_1}{\partial x_i}(a) , \dots, \frac{\partial \psi_N}{\partial x_i}(a)  \right) \in \RR^N ,
+\end{equation*}
+for $i=1,\dots, n$, form a basis of the tangent space $T_xM$ and we can write $v=\sum_{i=1}^n v_i \frac{\partial \psi}{\partial x_i}(a)$.
+
+In the cases where the embedded manifold is given by the implicit function theorem, there is a ``dual'' way to obtain the tangent space. Let us consider an open subset $U\subset \RR^p$ and a smooth map $F:\RR^p\rightarrow \RR^q$. Given a point $a\in U$ where $d_aF$ is surjective, there is a diffeomorphism $h:B\rightarrow \RR^p$, for some open neighbourhood $B \subset U$ of $a$, mapping the set
+\begin{equation*}
+M=\left\{ x \in B: F(x)=F(a) \right\}
+\end{equation*}
+to $\left\{ F(a) \right\}\times \RR^{p-q}$. Moreover, we can write $d_a h = (d_aF, g)$, for the linear map $g:\RR^p\rightarrow \RR^{p-q}$ defined in \todo{REF}. Thus, we have
+\begin{equation*}
+T^e_x M = (d_{h(a)} h^{-1})(\RR^{p-q}) = (d_ah)^{-1}(\left\{ 0 \right\} \times \RR^{p-q}) = \ker d_a F.
+\end{equation*}
+
+\begin{ex}
+  Recall that we can define the $n$-sphere $\bbS^n$ as the set $\left\{ x\in \RR^{n+1}: F(x)=1 \right\}$, for $F(x)=x_1^2 + \cdots + x_{n+1}^2$, and that the differential of $F$ at a point $a\in \bbS^n$ is given by the formula $d_a F(v) = 2 \langle a, v \rangle$. Therefore, we can identify
+  \begin{equation*}
+T^e_a \bbS^n = \ker d_a F = \left\{ v \in \RR^{n+1}: \langle a, v\rangle =0 \right\}.
+  \end{equation*}
+In other words, the vectors which are tangent to $\bbS^n$ at a point $a$ are precisely those which are perpendicular to the vector joining the origin with $a$.
+\end{ex}
+
+We can finally define the differential of a smooth map $f:M_1\rightarrow M_2$ between two regular submanifolds $M_1\subset \RR^{N_1}$ and $M_2\subset \RR^{N_2}$. By definition, $f$ is smooth if and only if there are two open neighbourhoods $U_1\subset \RR^{N_1}$ and $U_2\subset \RR^{N_2}$ of $M_1$ and $M_2$, respectively, and a smooth map $\hat{f}:U_1\rightarrow U_2$ with $\hat{f}|_{M_1}=f$. If we choose $U_1$ and $U_2$ such that there are charts $(U_1\cap M_1,V_1,\varphi_1)$ and $(U_2\cap M_2,V_2,\varphi_2)$ we can consider the localization $\tilde{f}=\varphi_2 \circ f \circ \varphi_1^{-1}$. Note that $\hat{f}\circ \varphi_1^{-1}=\varphi_2^{-1}\circ \tilde{f}$ so, by the chain rule, for any $x\in M_1$,
+\begin{equation*}
+d_x \hat{f} \circ (d_{x}\varphi_1)^{-1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f}.
+\end{equation*}
+Now, $(d_x\varphi_1)^{-1}(\RR^{\dim M_1}) = T^e_x M_1$ and $(d_{f(x)}\varphi_2)^{-1}(\RR^{\dim M_2})=T^e_{f(x)}M_2$, so
+\begin{equation*}
+d_x \hat{f}(T^e_x M_1) \subset T^e_{f(x)}M_2.
+\end{equation*}
+Moreover,
+\begin{equation*}
+d_x \hat{f}|_{T^e_x M_1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f} \circ d_{x}\varphi_1,
+\end{equation*}
+which does not depend on the extension $\hat{f}$.
+
+\begin{defn}
+The linear map $d_x^e f:=d_x \hat{f}|_{T^e_x M_1}: T^e_x M_1 \rightarrow T^e_{f(x)}M_2$ is called the \emph{(embedded) differential of $f$ at $x$}.
+\end{defn}
+
+
+\subsection{Derivations and abstract tangent space}
 \begin{defn}
   Let $M$ be a topological space and $\mathscr{F}$ a presheaf on $M$. For any point $x\in M$, we define the \emph{stalk of $\mathscr{F}$ at $x$} as the direct limit
 \begin{equation*}
@@ -649,8 +715,10 @@ as we wanted to show.
   is an isomorphism of $\RR$-algebras, which induces an isomorphism at the level of the stalks $\varphi^*_x:C^\infty_x \rightarrow C^\infty_{\varphi(x)}$, and, in turn, the isomorphism $\varphi_{*,x}$.
 \end{proof}
 
-
 \subsection{Differential of a smooth map}
+
+\subsection{The cotangent space}
+
 \subsection{Embeddings}
 
 \subsubsection{Subbundles}
