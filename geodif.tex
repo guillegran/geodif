@@ -1,0 +1,886 @@
+\documentclass[11pt,a4paper]{book}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage{amsmath, amssymb, amsthm}
+
+\usepackage{hyperref}
+\urlstyle{same}
+
+\usepackage{tikz,tikz-cd}
+
+\usepackage{bm}
+
+\usepackage[scr=boondox]{mathalfa}
+
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{biblio_guillermo.bib}
+
+\setcounter{tocdepth}{1}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{corol}[thm]{Corollary}
+\theoremstyle{remark} \newtheorem{rmk}[thm]{Remark}
+\theoremstyle{definition} \newtheorem{defn}[thm]{Definition}
+\theoremstyle{definition} \newtheorem{ex}[thm]{Example}
+\theoremstyle{definition} \newtheorem{ej}[thm]{Exercise}
+
+\input{commands.tex}
+\title{Differential Geometry}
+\author{Guillermo Gallego}
+
+\begin{document}
+\begin{titlepage}
+\setcounter{page}{1}
+\thispagestyle{empty}
+\begin{center}
+\Large \bfseries Differential Geometry \par\vspace{2em}
+\large  Guillermo Gallego \par\bigskip
+\end{center}
+
+\vfill
+\hrule \vspace{1em}
+\begin{center}
+\textsc{Departamento de Matemáticas, Universidad Autónoma de Madrid} \\ \vspace{1em}
+\textit{Email:} \normalfont\href{mailto:guillermo.gallego@uam.es}{guillermo.gallego@uam.es} \hspace{1em}
+\textit{URL:} \normalfont\href{https://guillegallego.xyz}{https://guillegallego.xyz}
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\chapter{Smooth manifolds}
+\section{The basics}
+\subsection{Cartesian spaces}
+\begin{defn}
+By a \emph{Cartesian space} or \emph{abstract coordinate space} we mean an open subset $U\subset \mathbb{R}^n$, for some positive integer $n$, called the \emph{dimension of $U$}, $n=\dim U$. A map $f:U\subset \mathbb{R}^n \rightarrow V \subset \mathbb{R}^m$ between two Cartesian spaces is \emph{smooth} if all the iterated partial derivatives of $f$ exist and are continuous in $U$.
+\end{defn}
+
+The chain rule implies that, given Cartesian spaces $U\subset \mathbb{R}^n$, $V\subset \mathbb{R}^m$ and $W\subset \mathbb{R}^p$ and smooth maps $f:U\rightarrow V$ and $g:V\rightarrow W$, the composition $g\circ f:U\rightarrow W$ is also smooth. Therefore, there is a category, that we denote by $\mathbf{CartSp}$ whose objects are Cartesian spaces and whose morphisms are the smooth maps between them. An isomorphism in the category $\mathbf{CartSp}$ is a \emph{diffeomorphism}, by definition, a smooth bijective map whose inverse is also smooth.
+
+\begin{defn}
+Given a smooth map $f:U\subset \mathbb{R}^n\rightarrow V\subset \mathbb{R}^m$ between Cartesian spaces and a point $x\in U$, the \emph{differential of $f$ at $x$} is the linear map $d_xf:\mathbb{R}^n \rightarrow \mathbb{R}^m$ defined by the Jacobian matrix of $f$ at $x$
+\begin{equation*}
+  J_x f =
+  \begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} (x) & \cdots & \frac{\partial f_1}{\partial x_n} (x) \\
+& \ddots & \\
+\frac{\partial f_m}{\partial x_1} (x) & \cdots & \frac{\partial f_m}{\partial x_n} (x)
+  \end{pmatrix}.
+\end{equation*}
+Here, we are denoting by $f_i:U\rightarrow \mathbb{R}$ the composition of $f$ with the projection $\mathrm{pr}_i:V\rightarrow \mathbb{R}$ to the $i$-th coordinate.
+\end{defn}
+
+Again, the chain rule implies that the differential is ``functorial'' in the sense that, if $f:U\rightarrow V$ and $g:V\rightarrow W$ are smooth maps between Cartesian spaces, for any $x\in U$, we have
+\begin{equation*}
+d_x(g\circ f) = d_{f(x)} g \circ d_x f.
+\end{equation*}
+We can reformulate this as follows. Consider the category $\mathbf{CartSp}_*$ of \emph{based} Cartesian spaces, whose objects are pairs $(U\subset \mathbb{R}^n,x)$, formed by a Cartesian space $U$ and a point $x\in U$, and such that the morphisms $f:(U,x)\rightarrow (V,y)$ are given by smooth maps $f:U\rightarrow V$ such that $f(x)=y$. If we denote by $\mathbf{Vect}_{\mathbb{R}}$ the category of real vector spaces with linear maps, the chain rule is the statement that there is a functor, called the \emph{tangent functor}
+\begin{equation*}
+T: \mathbf{CartSp}_* \longrightarrow \mathbf{Vect}_{\mathbb{R}}
+\end{equation*}
+sending a based Cartesian space $(U,x)$ to the vector space $T_xU:= \mathbb{R}^{\dim U}$ and a map $f:(U,x)\rightarrow (V,y)$ to the linear map $d_xf:T_xU=\mathbb{R}^{\dim U} \rightarrow T_yV=\mathbb{R}^{\dim V}$. An immediate consequence is the invariance of dimension.
+
+\begin{prop}[Invariance of dimension]
+If two Cartesian spaces $U$ and $V$ are diffeomorphic, then $\dim U = \dim V$.
+\end{prop}
+
+\begin{proof}
+Functors preserve isomorphisms. Therefore, if $f:U\rightarrow V$ is a diffeomorphism, then, for any $x\in U$, the linear map $d_xf:T_xU\rightarrow T_{f(x)}V$ is an isomorphism and thus $\dim U = \dim V$.
+\end{proof}
+
+The converse of the above is true only locally. This is the statement of the well-known inverse function theorem.
+
+\begin{thm}[Inverse function theorem]
+Let $f:U\rightarrow V$ be a smooth map of Cartesian spaces and let $x\in U$ be a point such that $d_xf:T_xU \rightarrow T_{f(x)}V$ is a linear isomorphism. Then, there exists some open neighbourhood $U'\subset U$ of $x$ such that the restriction $f|_{U'}:U'\rightarrow f(U')\subset V$ is a diffeomorphism.
+\end{thm}
+
+\subsection{Definition of smooth manifold}
+\begin{defn}
+Let $M$ be a topological space. A (local) \emph{Cartesian coordinate system} or \emph{chart} on $M$ is a tuple $(U,V,\varphi)$ formed by an open subset $U\subset M$, a Cartesian space $V\subset \mathbb{R}^n$, and a homeomorphism $\varphi:U\rightarrow V$. An \emph{atlas} on $M$ is a set of charts $\mathcal{A}$ such that $M=\bigcup_{(U,V,\varphi)\in \mathcal{A}} U$. We say that $M$ is \emph{locally Cartesian} if there exists an atlas on $M$.
+\end{defn}
+
+\begin{defn}
+A topological space $M$ is a \emph{topological manifold} if it is
+\begin{enumerate}
+  \item locally Cartesian,
+  \item Hausdorff, and
+        \item second countable.
+\end{enumerate}
+\end{defn}
+
+\begin{ej}
+Can you think of examples of topological spaces which are locally Cartesian but not Hausdorff, or not second countable?
+\end{ej}
+
+Let $M$ be a topological space. Suppose that there are two charts $(U_1,V_1,\varphi_1)$ and $(U_2,V_2,\varphi_2)$ with $U_1\cap U_2 \neq \varnothing$. The homeomorphisms $\varphi_1$ and $\varphi_2$ restrict to homeomorphisms $\varphi_{12}:=\varphi_1|_{U_1\cap U_2}:U_1\cap U_2\rightarrow \varphi_1(U_1\cap U_2) \subset V_1$ and $\varphi_{21}:=\varphi_2|_{U_1\cap U_2}:U_1\cap U_2\rightarrow \varphi_2(U_1\cap U_2) \subset V_2$. We thus obtain a homeomorphism
+\begin{equation*}
+\psi_{12}:= \varphi_{21} \circ \varphi_{12}^{-1} : \varphi_1(U_1\cap U_2) \longrightarrow \varphi_2(U_1\cap U_2),
+\end{equation*}
+called the \emph{coordinate change map}.
+
+\begin{defn}
+Let $M$ be a topological manifold and let $\mathcal{A}$ be an atlas on $M$. We say that $\mathcal{A}$ is a \emph{smooth atlas} if, for every two charts $(U_1,V_1,\varphi_1), (U_2,V_2,\varphi_2)\in \mathcal{A}$, the coordinate change map $\psi_{12}: \varphi_1(U_1\cap U_2) \rightarrow \varphi_2(U_1\cap U_2)$ is a diffeomorphism.
+\end{defn}
+
+One could initially try to define a smooth manifold as a topological manifold endowed with a smooth atlas $\mathcal{A}$. However, two different atlases can determine essentially the same ``smooth structure''. Two smooth atlases $\mathcal{A}_1$ and $\mathcal{A}_2$ on a topological manifold $M$ are \emph{compatible} if their union $\mathcal{A}_1 \cup \mathcal{A}_2$ is also a smooth atlas on $M$. In other words, if for any two charts $(U_1,V_1,\varphi_1) \in \mathcal{A}_1$ and $(U_2,V_2,\varphi_2) \in \mathcal{A}_2$, the coordinate change map $\psi_{12}$ is a diffeomorphism. Given any smooth atlas $\mathcal{A}$ on $M$, we can consider the union of all the smooth atlas compatible with it. This union is again an atlas $\bar{\mathcal{A}}$, which is maximal with respect to inclusion. Such a maximal atlas is called a \emph{smooth structure} on $M$. If two smooth manifolds have the same maximal atlas, then they are essentially the same smooth manifold.
+
+\begin{defn}
+A \emph{smooth manifold} is a pair $(M,\mathcal{A})$ formed by a topological manifold $M$ and a smooth structure $\bar{\mathcal{A}}$ on $M$.
+\end{defn}
+
+If $(M,\mathcal{A})$ is a smooth manifold and $(U_1,V_1,\varphi_1)\in \mathcal{A}$ is a chart, for every point $x\in U$, we define the \emph{dimension of $M$ at $x$} to be the dimension
+\begin{equation*}
+\dim_x M:= \dim V_1.
+\end{equation*}
+Note that this number does not depend on the choice of chart, since, for any other chart $(U_2,V_2,\varphi_2)$, the coordinate change map $\psi_{12}$ induces a linear isomorphism \[d_{\varphi_1(x)}\psi_{12}:T_{\varphi_1(x)}V_1 \rightarrow T_{\varphi_2(x)}V_2.\] Therefore, we obtain a well defined map
+\begin{equation*}
+\dim: M \rightarrow \mathbb{N}, x \mapsto \dim_x M.
+\end{equation*}
+Moreover, note that, since, for every chart $(U,V,\varphi)\in \mathcal{A}$ and for every point $x\in U$, the open subset $U\subset M$ is contained in the preimage $\dim^{-1}(\dim_x M)$, the map $\dim$ is continuous if we endow $\mathbb{N}$ with the discrete topology. Thus the dimension is constant on connected components and it makes sense to talk about the \emph{dimension} $\dim M$ of a connected smooth manifold $M$.
+
+A connected smooth manifold of dimension $n$ is called a (smooth) \emph{$n$-manifold} or \emph{$n$-fold}. A $1$-fold is also called a (smooth) \emph{curve}. A $2$-fold is called a (smooth) \emph{surface}.
+
+\subsection{Smooth maps}
+Let $f:M\rightarrow N$ be a continuous map between two topological spaces. Suppose that there are charts $(U,V,\varphi)$ and $(U',V',\varphi')$ with $f(U)\subset U'$. The \emph{localization} of $f$ with respect to the charts $(U,V,\varphi)$ and $(U',V',\varphi')$ is the map $\tilde{f}: V \rightarrow V'$ given by the diagram
+\begin{center}
+  \begin{tikzcd}
+   U \ar{r}{f|_U} \ar{d}{\varphi} & U' \ar{d}{\varphi'} \\
+   V \ar{r}{\tilde{f}} & V'.
+  \end{tikzcd}
+\end{center}
+That is, $\tilde{f}=\varphi'\circ f \circ \varphi^{-1}$.
+
+\begin{defn}
+A map $f:M\rightarrow N$ between two smooth manifolds is \emph{smooth} if, for every two charts $(U,V,\varphi)$ and $(U',V',\varphi')$ of $M$ and $N$ with $f(U)\subset U'$, the localization $\tilde{f}:V\rightarrow V'$ is a smooth map.
+\end{defn}
+
+Note that localization commutes with composition. That is, if $f:M\rightarrow N$ and $g:N\rightarrow P$ are maps between smooth manifolds and $(U,V,\varphi)$, $(U',V',\varphi')$ and $(U'',V'',\varphi'')$ are charts of $M$, $N$ and $P$, respectively, with $f(U)\subset U'$ and $g(U')\subset U''$, then the localization $\widetilde{(g\circ f)}$ of the composition of $f$ and $g$ coincides with the composition of the localizations $\tilde{g}\circ \tilde{f}$. Therefore, it follows from the chain rule that if $f$ and $g$ are smooth maps then $g\circ f$ is also a smooth map.
+
+It follows that smooth manifolds with smooth maps form a category, that we denote by $\mathbf{SmoothMan}$. Isomorphisms in this category are also called \emph{diffeomorphisms}. By definition, a diffeomorphism is a smooth bijective map whose inverse is also smooth.
+
+\begin{defn}
+A \emph{smooth function} on a smooth manifold $M$ is a smooth map $f:M\rightarrow \RR$. The set $C^\infty(M)$ of smooth functions on $M$ forms a ring, called the \emph{coordinate ring} of $M$.
+\end{defn}
+
+\subsection{Some examples}
+\subsubsection{Cartesian spaces} A Cartesian space $U$ is trivially a smooth manifold if we simply endow it with the atlas $\mathcal{A}=\left\{ (U,U,\mathrm{id}_{U}) \right\}$. By construction, maps between Cartesian spaces are smooth if and only if they are smooth as maps between smooth manifolds. Therefore we have a functor $\mathbf{CartSp}\rightarrow \mathbf{SmoothMan}$, which is clearly fully faithful.
+
+More generally, the reader can easily check that an open subset $U\subset M$ of a smooth manifold inherits a smooth structure.
+
+\subsubsection{Spheres} The \emph{$n$-dimensional unit sphere} is the space
+\begin{equation*}
+\mathbb{S}^n=\left\{(x_1,\dots,x_n,x_{n+1}) \in \mathbb{R}^{n+1}: x_1^2+\cdots +x_n^2+x_{n+1}^2=1  \right\}.
+\end{equation*}
+Let $p_N=(0,\dots,0,1)$ and $p_S=(0,\dots,0,-1)$ denote the north and south poles of the sphere, and consider the open subsets $U_1=\mathbb{S}^n \setminus \left\{ p_N \right\}$ and $U_2=\mathbb{S}^n \setminus \left\{ p_S \right\}$. The stereographic projections $\varphi_1:U_1\rightarrow \mathbb{R}^n$ and $\varphi_1:U_2\rightarrow \mathbb{R}^n$, centered on the south and north poles, respectively, are homeomorphisms, and one checks easily that the coordinate change is a diffeomorphism. Therefore, the set $\mathcal{A}=\left\{ (U_1,\mathbb{R}^n,\varphi_1), (U_2,\mathbb{R}^n,\varphi_2) \right\}$ is an smooth atlas, which endows $\mathbb{S}^n$ with the structure of an $n$-dimensional smooth manifold.
+
+\subsubsection{Projective spaces} Consider the real projective space $\mathbb{RP}^n$. It is covered by subsets of the form
+\begin{equation*}
+D(x_i)= \left\{ (x_0:x_1:\dots:x_n) : x_i \neq 0 \right\},
+\end{equation*}
+which are open subsets homeomorphic to $\mathbb{R}^n$ through the map
+\begin{equation*}
+\varphi_i: D(x_i)\rightarrow \mathbb{R}^n: (x_0:\dots:x_i:\dots:x_n) \mapsto \left(\frac{x_0}{x_i},\frac{x_1}{x_i},\dots,\frac{x_n}{x_i}\right).
+\end{equation*}
+The coordinate changes $\psi_{ij}:D(x_i)\cap D(x_j) \rightarrow D(x_i)\cap D(x_j)$ are of the form
+\begin{equation*}
+\psi_{ij}\left(\frac{x_0}{x_i},\frac{x_1}{x_i},\dots,\frac{x_n}{x_i}\right) = \left(\frac{x_0}{x_j},\frac{x_1}{x_j},\dots,\frac{x_n}{x_j}\right),
+\end{equation*}
+so they are clearly diffeomorphisms.
+
+Any linear isomorphism $\hat{f}:\mathbb{R}^{n+1}\rightarrow \mathbb{R}^{n+1}$ induces a map of projective spaces $f:\mathbb{RP}^n\rightarrow \mathbb{RP}^n$ (a \emph{homography}). As a map between manifolds, $f$ is smooth. Indeed, if we restrict $f$ to the complement $D(H)$ of any hyperplane $H\subset \mathbb{RP}^n$, the induced localization $\tilde{f}:\mathbb{R}^n \cong D(H)\rightarrow D(f(H))\cong \mathbb{R}^n$ is an affine map, and thus smooth.
+
+\subsubsection{Different smooth structures on the same topological manifold} One can endow a topological manifold with two smooth structures which are essentially different; that is, with two different maximal atlases. In order to do this, we just need to find two atlases which are not compatible. For example, we can consider the homeomorphisms
+\begin{equation*}
+\mathrm{id}_{\mathbb{R}}: \mathbb{R} \rightarrow \mathbb{R}, t \mapsto t,
+\end{equation*}
+and
+\begin{equation*}
+\varphi: \mathbb{R} \rightarrow \mathbb{R}, t \mapsto t^3.
+\end{equation*}
+These determine two different atlases $\mathcal{A}_1=\left\{ (\mathbb{R},\mathbb{R},\mathrm{id}_{\mathbb{R}}) \right\}$ and $\mathcal{A}_2=\left\{ (\mathbb{R},\mathbb{R},\varphi) \right\}$ on $\mathbb{R}$ which are not compatible, since the coordinate change map $\psi(t)=t^3$ is not a diffeomorphism (the inverse $\psi^{-1}(t)=t^{1/3}$ is not smooth). Therefore, the associated maximal atlases $\bar{\mathcal{A}}_1$ and $\bar{\mathcal{A}}_2$ are different, and thus they determine two different smooth structures.
+
+However, in this case the smooth manifolds $(\mathbb{R},\bar{\mathcal{A}}_1)$ and $(\mathbb{R},\bar{\mathcal{A}}_2)$ are diffeomorphic. Indeed, the map $\varphi(t)=t^3$ determines a diffeomorphism between $(\mathbb{R},\bar{\mathcal{A}}_1)$ and $(\mathbb{R},\bar{\mathcal{A}}_2)$, since its localization $\tilde{f}$ with respect to the charts $(\mathbb{R},\mathbb{R},\mathrm{id}_{\mathbb{R}})$ and $(\mathbb{R},\mathbb{R},\varphi)$ is just the identity.
+
+It turns out that, up to diffeomorphism, $\mathbb{R}$ only admits one smooth structure, but it is important to know that this is not the general situation. Indeed, there are some topological manifolds which admit several different smooth structures which are not diffeomorphic to each other.
+
+\subsubsection{The classification problem of smooth manifolds}
+A natural question is then to classify smooth manifolds up to diffeomorphism. The problem is solved in low dimension. Let $M$ be a connected smooth manifold.
+\begin{itemize}
+\item If $\dim M = 1$, then $M$ is either diffeomorphic to a circle $\mathbb{S}^1$ (if it is compact) or to the real line $\mathbb{R}$ (if it is not compact). (See \todo{CITE}).
+\item In dimension $2$, every topological manifold admits a unique smooth structure, and thus the classification is reduced to the classification of topological surfaces (see \todo{CITE} for that classification). We conclude that, if $\dim M =2$, then it is diffeomorphic to a sphere with $g$ handles $\Sigma_g$ (if it is orientable) or to a sphere with $k$ crosscaps $X_k$ (if it is not orientable).
+\item In dimension $3$ the classification also coincides with the topological classification (see \todo{CITE}), but the topological classification is not complete.
+\end{itemize}
+
+In dimension $\geq 4$ (and specifically in dimension $4$) is where the problem reaches its full complexity, since one can find topological manifolds which admit several smooth structures which are not diffeomorphic to each other. If $M$ is compact and $\dim M \geq 5$, then $M$ can admit several smooth structures not diffeomorphic to each other, but only a finite amount. For example, the sphere $\mathbb{S}^7$ admits $28$ smooth structures not diffeomorphic to each other (the $27$ smooth structures different from the ``natural'' one are called the \emph{exotic spheres}). A $4$-dimensional compact smooth manifold can admit an infinite (countable) amount of non-diffeomorphic smooth structures. In the $4$-dimensional non-compact case there are really surprising results. For example, while $\mathbb{R}^n$ admits a unique smooth structure up to diffeomorphism for $n\neq 4$, the space $\mathbb{R}^4$ admits an infinite (\emph{uncountable}) amount of non-diffeomorphic smooth structures.
+
+\subsection{The structure sheaf}
+Let $M$ be a topological space. We denote by $\mathbf{Op}(M)$ the category whose objects are the open subsets $U\subset M$ and such that, if $U\subset M$ and $V\subset M$ are open subsets of $M$, then the set of morphisms from $U$ to $V$ is
+\begin{enumerate}
+\item the set containing just the inclusion $U\hookrightarrow V$, if $U\subset V$, or
+        \item empty, otherwise.
+\end{enumerate}
+
+\begin{defn}
+  A \emph{presheaf} on $M$ is a functor
+  \begin{equation*}
+    \mathscr{F}: \mathbf{Op}(M)\rightarrow \mathbf{Set}.
+  \end{equation*}
+
+\end{defn}
+
+In other words, a presheaf associates, with every open subset $U\subset M$ a set $\mathscr{F}(U)$, and with any inclusion of open subsets $U\subset V\subset M$, a map, that we denote by
+\begin{equation*}
+\mathrm{res}^V_U : \mathscr{F}(V) \rightarrow \mathscr{F}(U).
+\end{equation*}
+This map is called the \emph{restriction} of $s$ from $V$ to $U$ and, given $s\in \mathscr{F}(V)$, we denote $s|_U=\mathrm{res}^V_U (s)$.
+
+\begin{defn}
+  A \emph{sheaf} on $M$ is a presheaf satisfying the following properties:
+  \begin{itemize}
+  \item \emph{Locality}: for any open subset $U\subset M$ and any open cover $\mathfrak{U}$ of $U$, if $s_1,s_2 \in \mathscr{F}(U)$ satisfy $s_1|_V = s_2|_V$ for every $V\in \mathfrak{U}$, then $s_1=s_2$.
+  \item \emph{Gluing}: for any open subset $U\subset M$ and any open cover $\mathfrak{U}$ of $U$, given a family $\left\{ s_V:V\in \mathfrak{U} \right\}$ such that $s_V|_{V\cap W}=s_W|_{V\cap W}$ for any two $V,W \in \mathfrak{U}$, there is an element $s\in \mathscr{F}(U)$ such that $s|_V=s_V$ for every $V\in \mathfrak{U}$.
+  \end{itemize}
+
+  A \emph{subsheaf} of a sheaf $\mathscr{F}$ is another sheaf $\mathscr{G}$ such that $\mathscr{G}\subset \mathscr{F}$ for every open subset $U\subset M$.
+\end{defn}
+
+\begin{ej}
+Check that the functor
+  \begin{equation*}
+    C^0_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^0(U)=\left\{ U\rightarrow \RR \text{ continuous } \right\}
+  \end{equation*}
+  is a sheaf.
+\end{ej}
+
+\begin{defn}
+If $M$ is a smooth manifold, we define its \emph{structure sheaf} $C^\infty_M$ as the functor
+  \begin{equation*}
+    C^\infty_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^\infty(U) .
+  \end{equation*}
+\end{defn}
+
+The reader can check as an exercise that the structure sheaf $C^\infty_M$ is indeed a sheaf. In fact, as we explain in the following, we could have also used the structure sheaf $C^\infty_M$ to define the smooth structure on $M$.
+
+\begin{defn}
+  Let $M$ be a topological manifold. A \emph{smooth structure sheaf} on $M$ is a subsheaf $C^\infty_M:U\mapsto C^\infty(U)$ of the sheaf $C^0_M$ such that, for every point $x\in M$ there exists a chart $(U,V,\varphi)$ with $x\in U$ such that the map
+  \begin{equation*}
+\varphi^*: C^\infty(V) \rightarrow C^0(U), s \mapsto s\circ \varphi
+  \end{equation*}
+  factors through a bijection $\varphi^*: C^\infty(V)\rightarrow C^\infty(U)$.
+\end{defn}
+
+We leave as an exercise for the reader to check that the atlas determined by the charts $(U,V,\varphi)$ from the above definition is in fact a smooth atlas, and thus determines a smooth structure on $M$.
+
+\subsection{Partitions of unity}
+\begin{defn}
+  A \emph{smooth partition of unity} on a smooth manifold $M$ is a family $\Theta$ of smooth functions $\theta:M\rightarrow \mathbb{R}$ such that
+  \begin{enumerate}
+    \item $\theta \geq 0$ for every $\theta \in \Theta$,
+    \item it is \emph{locally finite}, meaning that for each point $x\in M$ there exists an open neighbourhood $U\subset M$ of $x$ such that all but a finite amount of the $\theta \in \Theta$ vanish at $U$, and
+          \item $\sum_{\theta \in \Theta} \theta = 1$.
+  \end{enumerate}
+
+  An \emph{open cover} $\mathfrak{U}$ of $M$ is a family of open subsets $U\subset M$ such that $M=\bigcup_{U\in \mathfrak{U}} U$. A smooth partition of unity \emph{subordinate to $\mathfrak{U}$} is a smooth partition of unity $\Theta$ together with a bijection $\mathfrak{U}\rightarrow \Theta, U\mapsto \theta_U$ such that, for each $U\in \mathfrak{U}$, the function $\theta_U$ vanishes away from $U$.
+\end{defn}
+
+\begin{defn}
+  Let $M$ be a smooth manifold.
+  \begin{itemize}
+    \item Let $A\subset M$ be a closed subset and let $U\subset M$ be an open neighbourhood of $A$. A \emph{bump function} on $A$ is a smooth non-negative function $\theta:M\rightarrow \mathbb{R}$ with $\theta|_A = 1$ and $\theta|_{M\setminus U} = 0$.
+          \item Let $A$ and $B$ be two disjoint closed subsets of $M$. An \emph{Uryshon separating function} of $A$ and $B$ is a smooth non-negative function $\theta:M\rightarrow \mathbb{R}$ with $\theta|_A=1$ and $\theta|_B = 0$.
+  \end{itemize}
+\end{defn}
+
+The existence of smooth bump functions in $\mathbb{R}^n$ implies the existence of bump functions, Uryshon separating functions and smooth partitions of unity for any smooth manifold. This is one of the most important features of differential geometry. Notably, there are no counterparts to these notions in analytic or algebraic geometry. Partitions of unity are a crucial tool in differential geometry, since they allow one to construct global objects from objects which are only locally defined. The clearest example is the following.
+
+\begin{prop}[Tietze's extension theorem]
+Let $M$ be a smooth manifold, $A\subset M$ a closed subset, $U$ an open neighbourhood of $A$ and $f:U\rightarrow \mathbb{R}$ a smooth function. Then there exists a smooth function $F:M\rightarrow \mathbb{R}$ such that $F|_A = f$.
+\end{prop}
+
+\begin{proof}
+Consider the open cover $\mathfrak{U}=\left\{ U, M\setminus A \right\}$ and let $\Theta=\left\{ \theta_U,\theta_{M\setminus A} \right\}$ be a smooth partition of unity subordinate to $\mathfrak{U}$. We can then define $F=f \theta_U + \theta_{M \setminus A}$, which clearly coincides with $f$ at any point of $A$.
+\end{proof}
+%
+%Another application of the existence of smooth partitions of unity is the existence of proper functions.
+%
+%\begin{prop}
+%For any smooth manifold $M$ there exists a proper map $f:M\rightarrow \RR$.
+%\end{prop}
+%
+%\begin{proof}
+%\todo{}
+%\end{proof}
+
+%With any point $x\in M$ we can associate the form
+%\begin{equation*}
+%\bar{x}:C^\infty(M)\rightarrow \RR, f \mapsto f(x).
+%\end{equation*}
+%It turns out that the existence of smooth partitions of unity allows us to recover all the information about the smooth structure of $M$ from the coordinate ring $C^\infty(M)$. Indeed, we have the following.
+%
+%\begin{thm}
+%The map $M \rightarrow \mathrm{Hom}_{\mathbb{R}}(C^\infty(M),\mathbb{R}), x\mapsto \bar{x}$ is a bijection.
+%\end{thm}
+%\begin{proof}
+%\todo{}
+%\end{proof}
+%
+%\begin{corol}
+%The functor $C^\infty:\mathbf{SmoothMan}\rightarrow \mathbf{Alg}_{\mathbb{R}}^{\mathrm{op}}$ sending a smooth manifold $M$ to its coordinate ring $C^\infty(M)$ and a smooth map $f:M\rightarrow N$ to the morphism of $\mathbb{R}$-algebras
+%\begin{equation*}
+%f^*: C^\infty(N) \rightarrow C^\infty(M), \varphi \mapsto \varphi \circ f,
+%\end{equation*}
+%is fully faithful.
+%\end{corol}
+%\begin{proof}
+%\todo{}
+%\end{proof}
+\subsection{Embedded manifolds}
+\begin{defn}
+  Consider two sets $A\subset \RR^n$ and $B\subset \RR^m$. We say that a map $f:A\rightarrow B$ is \emph{smooth} if there exist neighbourhoods $U\subset \RR^n$ and $V\subset \RR^m$ of $A$ and $B$, respectively, and a smooth map $\tilde{f}:U\rightarrow V$ such that the following diagram commutes
+  \begin{center}
+    \begin{tikzcd}
+     U \ar{r}{\tilde{f}}  & V  \\
+     A \ar[hook]{u} \ar{r}{f} & B. \ar[hook]{u}
+    \end{tikzcd}
+  \end{center}
+  We say that $f$ is a \emph{diffeomorphism} if it is smooth, bijective, and its inverse is also smooth.
+\end{defn}
+
+\begin{defn}
+A subset $M\subset \RR^N$ is called a \emph{regular submanifold of dimension $n$} if, for every $x\in M$, there exists an open neighbourhood $U\subset \RR^N$ of $x$, a Cartesian space $V\subset \RR^n$, and a diffeomorphism $\varphi:U\cap M \rightarrow V$.
+\end{defn}
+
+A regular submanifold $M\subset \RR^N$ can be endowed with the subspace topology, and open neighbourhoods from the definition determine an atlas $\mathcal{A}$ on $M$. This atlas is clearly smooth since the maps $\varphi$ are assumed diffeomorphisms. We conclude that any regular submanifold $M\subset \RR^N$ is naturally a smooth manifold.
+
+A natural source of regular submanifold is given by the implicit function theorem:
+
+\begin{thm}[Implicit function theorem]
+  Let $U\subset \RR^p$ be an open subset and $F:U\rightarrow \RR^q$ a smooth map. Suppose that there is a point $a\in U$ such that the differential $d_aF:\RR^p\rightarrow \RR^q$ is surjective. Then there is an open neighbourhood $B\subset U$ of $a$ such that the set
+  \begin{equation*}
+M=\left\{ x \in B: F(x)=F(a) \right\},
+  \end{equation*}
+is a regular submanifold of $\RR^p$ of dimension $p-q$.
+\end{thm}
+
+\begin{proof}
+  Since $d_a F$ is surjective, there is a linear isomorphism $\psi:\ker d_a F \rightarrow \RR^{p-q}$. Consider now the linear map
+  \begin{equation*}
+    g(x)=
+    \begin{cases}
+\psi(x) & \text{ if } x\in \ker d_a F \\
+      0 & \text{ else }
+\end{cases}
+  \end{equation*}
+  and the map
+  \begin{equation*}
+h:U \rightarrow \RR^p=\RR^q \times \RR^{p-q}, x \mapsto (F(x),g(x)).
+  \end{equation*}
+  Note now that the map $d_a h:\RR^p \rightarrow \RR^p$ is a linear isomorphism. Indeed, if $d_ah(v)=0$ for some $v\in \RR^p$, then $d_aF(v)=0$ and $g(v)=0$. Therefore, $v\in \ker d_a F$ and $\psi(v)=g(v)=0$. Now, since $\psi$ is a linear isomorphism, this implies that $v=0$. We conclude that $d_ah$ is a linear isomorphism, and the inverse function theorem implies that there exist an open neighbourhood $B\subset U$ of $a$ and an open neighborhood $V\subset \RR^p$ of $h(a)=(F(a),g(a))$ such that $h:B\rightarrow V$ is a diffeomorphism. We conclude that $M$ is diffeomorphic to $h(M)=(\left\{ f(a) \right\} \times \RR^{p-q}) \cap V \subset \RR^p$, which is clearly a regular submanifold of dimension $p-q$.
+\end{proof}
+
+\begin{ex}
+  A simple example of a regular submanifold given by the implicit function theorem is the $n$-sphere $\bbS^n$. Indeed, we can consider the function
+  \begin{equation*}
+F: \RR^{n+1}\rightarrow \RR, (x_1,\dots,x_n,x_{n+1}) \mapsto x_1^2 + \cdots + x_n^2 + x_{n+1}^2.
+  \end{equation*}
+  The differential of $F$ at a point $a\in \RR^{n+1}$ is $d_aF(v)=2 \langle a, v \rangle$, which is surjective if $a\neq 0$. Therefore, the $n$-dimensional sphere of radius $\sqrt{F(a)}$
+  \begin{equation*}
+\bbS^{n}_{\sqrt{F(a)}} = \left\{ x\in \RR^{n+1}: F(x)=F(a) \right\}
+  \end{equation*}
+is a regular submanifold of $\RR^{n+1}$ of dimension $n$.
+\end{ex}
+
+\subsection{Quotients and products}
+\todo{(also add fibered products, maybe coverings, etc)}
+
+\subsection{Manifolds with boundary}
+\todo{}
+
+\section{Lie groups}
+\todo{}
+
+\section{Vector bundles}
+\subsection{Basic definitions}
+\begin{defn}
+  Let $M$ be a topological space and let $\mathbb{K}$ be either $\mathbb{R}$ or $\mathbb{C}$. A \emph{$\mathbb{K}$-vector bundle of rank $r$ over $M$} is a topological space $E$ together with a surjective continuous map $\pi:E\rightarrow M$ such that:
+  \begin{itemize}
+    \item For each $x\in M$, the fibre $E_x:=\pi^{-1}(x)$ is endowed with the structure of an $r$-dimensional $\mathbb{K}$-vector space.
+    \item For each $x\in M$ there exists a neighbourhood $U$ of $x$ in $M$ and a homeomorphism $\varphi: E|_U:= \pi^{-1}(U)\rightarrow U \times \mathbb{K}^r$ (called a \emph{local trivialization of $E$ over $U$}) such that
+          \begin{itemize}
+            \item If $\mathrm{pr}_U: U \times \mathbb{K}^r \rightarrow U$ denotes the natural projection, the following diagram commutes
+                  \begin{center}
+                    \begin{tikzcd}
+                      E|_{U} \arrow{rd}{\pi} \rar{\varphi} & U \times \mathbb{K}^r \dar{\mathrm{pr}_U} \\
+                      & U.
+                    \end{tikzcd}
+                  \end{center}
+            \item For each $x\in U$, the restriction of $\varphi|_{E_x}: E_x \rightarrow \left\{ x \right\}\times \mathbb{K}^r \cong \mathbb{K}^r$ is a $\mathbb{K}$-vector space isomorphism.
+          \end{itemize}
+  \end{itemize}
+  When $\mathbb{K}=\mathbb{R}$, we say that $E$ is a \emph{real} vector bundle, while if $\mathbb{K}=\mathbb{C}$ we say that $E$ is a \emph{complex} vector bundle. In this text, when not specified, by a vector bundle we just mean a real vector bundle. A vector bundle of rank $1$ (real or complex) is called a \emph{line bundle}.
+
+  The space $E$ is called the \emph{total space} of the bundle, $M$ is called its \emph{base}, and $\pi$ is the \emph{projection}. We typically introduce a vector bundle by saying ``$E$ is a vector bundle over $M$'', or ``$E\rightarrow M$ is a vector bundle''.
+
+  If $E$ and $M$ are smooth manifolds, $\pi$ is a smooth map, and the local trivializations can be chosen to be diffeomorphisms, then $E$ is called a \emph{smooth vector bundle}. In this text, all vector bundles are assumed to be smooth.
+
+  A smooth local trivialization (resp. a continuous local trivialization) defined over all of $M$ is called a \emph{global trivialization} (resp. a \emph{continuous global trivialization}). If such a global trivialization exists, then $E$ itself is diffeomorphic (resp. homeomorphic) to $M\times \mathbb{K}^r$ and $E$ is said to be a \emph{trivial bundle} (resp. a \emph{topologically trivial bundle}).
+\end{defn}
+
+\begin{defn}
+Let $E_1\rightarrow M$ and $E_2\rightarrow M$ be two $\bbK$-vector bundles on $M$. A \emph{morphism} of vector bundles $f:E_1\rightarrow E_2$ is a smooth map $f$ from $E_1$ to $E_2$ such that the following diagram commutes
+\begin{center}
+  \begin{tikzcd}
+    E_1 \ar{rr}{f} \ar{rd} && E_2 \ar{ld} \\
+    & M &
+  \end{tikzcd}
+\end{center}
+and such that each restriction $f|_{E_{1,x}}:E_{1,x}\rightarrow E_{2,x}$ is a $\bbK$-linear map.
+\end{defn}
+
+
+\subsection{Example: The Möbius bundle}
+The simplest example of a non-trivial vector bundle is given by the well-known Möbius construction. We start by defining the following equivalence relation on $\RR^2$
+\begin{equation*}
+(x,y) \sim (x' ,y' ) \text{ if and only if } (x' ,y' )= (x+n, (-1)^n y) \text{ for some } n \in \Z.
+\end{equation*}
+We let $E=\RR^2/\sim$ be the quotient space and denote by $q:\RR^2 \rightarrow E$ the quotient map. To help visualize the construction, note that the image under $q$ of a rectangle $[0,1]\times [-l,l]$ is the famous Möbius band.
+
+Consider now the projection to the first factor $\mathrm{pr}_1:\RR^2\rightarrow \RR$ and the covering map $\epsilon:\RR\rightarrow \mathbb{S}^1$, $\epsilon(t)=\exp(2\pi i t)$. Since $\epsilon \circ \mathrm{pr}_1$ is constant on each equivalence class, it descends to a map $\pi:E\rightarrow \mathbb{S}^1$ making the following diagram commute
+\begin{center}
+  \begin{tikzcd}
+   \RR^2 \ar{r}{q} \ar{d}{\mathrm{pr}_1} & E \ar{d}{\pi} \\
+   \RR \ar{r}{\epsilon} & \mathbb{S}^1.
+  \end{tikzcd}
+\end{center}
+The space $E$ admits a unique smooth structure such that $q$ is a smooth covering map and $\pi:E\rightarrow \mathbb{S}^1$ is a smooth real line bundle.
+
+\begin{prop}
+The Möbius bundle $E\rightarrow \mathbb{S}^1$ is not trivial (i.e. it does not admit a global trivialization).
+\end{prop}
+
+\begin{proof}
+  Suppose that there is a global trivialization $\varphi:E\rightarrow \mathbb{S}^1 \times \mathbb{R}$ and consider the map
+  \begin{equation*}
+s:\mathbb{S}^1 \rightarrow \mathbb{S}^1  \times \mathbb{R}, x \mapsto (x,1),
+  \end{equation*}
+  and the composition $s' = \varphi^{-1}\circ s: \mathbb{S}^1\rightarrow E$.
+  Since $\varphi$ is a linear isomorphism on each fibre, for each $x\in \mathbb{S}^1$, the point $s'(x)\in E_x$ is a non-zero element of the vector space $E_x$. The map $s'$ lifts to a map $f:\RR \rightarrow \RR^2$ in the sense that
+  \begin{equation*}
+s'(\exp(2\pi i t)) = q(f(t)).
+  \end{equation*}
+  This map must satisfy the conditions $f(t)\neq 0$ for every $t\in \mathbb{R}$ and $f(1)=-f(0)$, contradicting Bolzano's theorem.
+\end{proof}
+
+\subsection{Transition functions}
+\begin{prop}
+  Let $\pi:E\rightarrow M$ be a smooth $\mathbb{K}$-vector bundle of rank $r$ over $M$. Suppose that $\varphi:E|_U \rightarrow U \times \mathbb{K}^r$ and $\psi:E|_V \rightarrow V \times \mathbb{K}^r$ are two smooth local trivializations of $E$ with $U\cap V \neq \varnothing$. Then there exists a smooth map $g:U\cap V \rightarrow \GL_r(\bbK)$, called the \emph{transition function}, such that the composition $\varphi \circ \psi^{-1}:(U\cap V) \times \bbK^r \rightarrow (U\cap V) \times \bbK^r$ has the form
+  \begin{equation*}
+\varphi \circ \psi^{-1}(x,v) = (x, g(x)v).
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+We have the following commutative diagram
+\begin{center}
+  \begin{tikzcd}
+(U\cap V) \times \bbK^r \ar{dr}{\pr_{U\cap V}} & \pi^{-1}(U\cap V) \ar{l}{\psi} \ar{r}{\varphi} \ar{d}{\pi} & (U\cap V) \times \bbK^r \ar{dl}{\pr_{U\cap V}} \\
+& U \cap V. &
+  \end{tikzcd}
+\end{center}
+It follows that
+\begin{equation*}
+\varphi \circ \psi^{-1}(x,v) = (x,\sigma(x,v))
+\end{equation*}
+for some smooth map $\sigma: (U\cap V) \times \bbK^r \rightarrow \bbK^r$. Moreover, for each $x\in U\cap V$, the map $v \mapsto \sigma(x,v)$ is a linear automorphism of $\bbK^r$, and thus we can write $\sigma(x,v)=g(x) v$, for some $g(x) \in \GL_r(\bbK)$. Since $\sigma$ is smooth, the map $x \mapsto g(x)$ must also be smooth.
+\end{proof}
+
+It turns out that a vector bundle can be reconstructed from its transition functions.
+
+\begin{prop}
+  Let $M$ be a smooth manifold and suppose that, for each $x\in M$, we are given an $r$-dimensional $\bbK$-vector space $E_x$, for some fixed positive integer $r$. Consider the disjoint union $E=\coprod_{x\in M} E_x$ and let $\pi:E\rightarrow M$ be the map sending each element of $E_x$ to the point $x$. Suppose furthermore that we are given the following data:
+  \begin{enumerate}
+    \item an open cover $\mathfrak{U}$ of $M$,
+          \item for each $U\in \mathfrak{U}$, a bijection $\varphi_U:\pi^{-1}(U)\rightarrow U \times \bbK^r$ whose restriction to each $E_x$ is a $\bbK$-vector space isomorphism between $E_x$ and $\left\{ x \right\}\times \bbK^r \cong \bbK^r$.,
+          \item for each $U,V \in \mathfrak{U}$ with $U\cap V\neq \varnothing$, a smooth map $g_{UV}:U\cap V \rightarrow \GL_r(\bbK)$ such that the map $\varphi_U \circ \varphi_V^{-1}:(U\cap V)\times \bbK^r\rightarrow (U\cap V)\times \bbK^r$ has the form
+          \begin{equation*}
+\varphi_U \circ \varphi_V^{-1}(x,v) = (x,g_{UV}(x) v).
+          \end{equation*}
+  \end{enumerate}
+  Then $E$ has a unique topology and smooth structure making it into a smooth manifold and a smooth rank $r$ $\bbK$-vector bundle over $M$, with $\pi$ as a projection and the $(U,\varphi_U)$, for $U\in \mathfrak{U}$, as smooth local trivializations.
+\end{prop}
+
+\begin{proof}
+  We start by defining the topology on $E$. We declare a subset $W\subset E$ to be open if and only if, for every $U\in \mathfrak{U}$, the image $\varphi_U(W\cap \pi^{-1}(U))$ is an open subset of the product topological space $U\times \bbK^r$. This definition is consistent on intersections. Indeed, if $W$ satisfies the condition for $U$, then for any $V$, the set
+  \[
+  \varphi_V(W \cap \pi^{-1}(V \cap U)) = (\varphi_V \circ \varphi_U^{-1}) \left( \varphi_U(W \cap \pi^{-1}(U \cap V)) \right)
+  \]
+  is open in $(U \cap V) \times \bbK^r$ because $\varphi_V \circ \varphi_U^{-1}$ is a homeomorphism.
+
+  With this topology, the maps $\varphi_U$ become homeomorphisms between the open sets $\pi^{-1}(U)$ and $U\times \bbK^r$. Since $M$ is Hausdorff and second countable, and $\bbK^r$ is as well, one can verify that $E$ is also Hausdorff and second countable. Thus, $E$ is a topological manifold.
+
+  To define the smooth structure, we construct an atlas on $E$. Let $\mathcal{A}_M$ be a smooth atlas for $M$. By refining $\mathfrak{U}$ if necessary, we can assume that each $U \in \mathfrak{U}$ is the domain of a chart $(U, V, \psi_U) \in \mathcal{A}_M$, where $\psi_U: U \to V \subset \RR^n$ is a diffeomorphism. We define charts on $E$ by considering the compositions:
+  \[
+  \Phi_U: \pi^{-1}(U) \xrightarrow{\varphi_U} U \times \bbK^r \xrightarrow{\psi_U \times \mathrm{id}} V \times \bbK^r \cong V \times \RR^{rk},
+  \]
+  where $k=1$ if $\bbK=\RR$ and $k=2$ if $\bbK=\C$.
+
+  The collection $\{( \pi^{-1}(U), V \times \bbK^r, \Phi_U )\}_{U \in \mathfrak{U}}$ forms a smooth atlas on $E$. Indeed, the coordinate change maps on overlaps $\pi^{-1}(U) \cap \pi^{-1}(V) = \pi^{-1}(U \cap V)$ are given by:
+  \[
+  \Phi_U \circ \Phi_V^{-1} (y, v) = (\psi_U \circ \psi_V^{-1}(y), g_{UV}(\psi_V^{-1}(y)) v).
+  \]
+  Since $\psi_U \circ \psi_V^{-1}$ is smooth (as $M$ is smooth) and $g_{UV}$ is smooth by hypothesis, the transition maps are smooth.
+
+  This smooth structure makes $\pi: E \to M$  smooth, and the local trivializations $\varphi_U$ become diffeomorphisms. The uniqueness follows from the fact that any other smooth structure compatible with the local trivializations must admit these $\Phi_U$ as charts.
+\end{proof}
+
+\subsection{Sections}
+\begin{defn}
+A (smooth) \emph{section} of a $\bbK$-vector bundle $\pi:E\rightarrow M$ over an open subset $U\subset M$ is a smooth map $\sigma:U\rightarrow \pi^{-1}(U)\subset E$ such that $\pi|_{\pi^{-1}(U)} \circ \sigma = \mathrm{id}_{U}$. In other words, we have $\sigma(x)\in E_x$ for every point $x\in M$. A section over $M$ is called a \emph{global section}. We denote by $\Gamma(U,E)$ the set of all sections of $E$ over $U\subset M$.
+
+A \emph{frame} of $E$ over $U$ is a set of sections $\left\{ \sigma_1,\dots,\sigma_r \right\} \subset \Gamma(U,E)$ such that $\left\{ \sigma_1(x),\dots,\sigma_r(x) \right\}$ is a basis for $E_x$ for all $x\in U$.
+\end{defn}
+
+Note that giving a frame of $E$ over $U$ is the same as giving a local trivialization of $E$ on $U$. Indeed, if we denote by $\bm{e}_1,\dots,\bm{e}_r$ the canonical basis of $\bbK^r$, then, given a trivialization $\varphi:E|_U \rightarrow U \times \bbK^r$, the sections $\sigma_i(x)=\varphi^{-1}(x,\bm{e}_i)$ determine a frame of $E$ over $U$. Conversely, given a frame $\left\{ \sigma_1,\dots,\sigma_r \right\}$ of $E$ over $U$, we can define the trivialization
+\begin{equation*}
+\varphi(e) = (x,(\lambda_1,\dots,\lambda_r)),
+\end{equation*}
+where $e\in E_x$ can be (uniquely) expressed as $e=\sum_{i=1}^r \lambda_i \sigma_i(x)$.
+
+For any open subset $U\subset M$ of a smooth manifold $M$. The set $\Gamma(U,E)$ of sections of a $\bbK$-vector bundle $E\rightarrow M$ can be naturally endowed with the structure of a $C^\infty(U)$-module, where $C^\infty(U)$ denotes the ring of smooth functions $U\rightarrow \RR$. Indeed, summing sections determines an abelian group structure on $\Gamma(U,E)$, and the map
+\begin{equation*}
+C^\infty(U) \times \Gamma(U,E) \rightarrow \Gamma(U,E), (f,s) \mapsto f s,
+\end{equation*}
+determines the module structure. Giving a frame or a trivialization of $E$ over $U$ amounts to give a $C^\infty(U)$-module isomorphism $\Gamma(U,E)\cong C^\infty(U)^r$. We summarize this fact by saying that the following presheaf (which the reader can check that is in fact a sheaf)
+\begin{equation*}
+\Gamma_E : U \mapsto \Gamma(U,E),
+\end{equation*}
+called the \emph{sheaf of sections of $E$}, is a \emph{locally free sheaf of $C^\infty_M$-modules}.
+
+
+A very similar argument to the one we gave for functions shows a version of Tietze's extension theorem for sections.
+
+\begin{prop}
+Let $\pi:E\rightarrow M$ be a $\bbK$-vector bundle, $A\subset M$ a closed subset, $U$ an open neighbourhood of $A$,  and $s\in \Gamma(U,E)$ a section. Then there exists a global section $\tilde{s}\in \Gamma(M,E)$ such that $\tilde{s}|_A = s$.
+\end{prop}
+
+\subsection{Pullback}
+\begin{defn}
+  Given a smooth map $f:M\rightarrow N$ of smooth manifolds and a $\bbK$-vector bundle $E\rightarrow N$, we define the \emph{pullback bundle} $f^*E$ as the fibered product
+  \begin{center}
+    \begin{tikzcd}
+     f^*E \ar{r} \ar{d}{f^* \pi} & E \ar{d}{\pi} \\
+      M \ar{r}{f} & N,
+    \end{tikzcd}
+  \end{center}
+  which has as fibres $(f^*E)_x = E_{f(x)}$.
+\end{defn}
+
+\section{The tangent functor}
+\subsection{Tangent space to an embedded manifold}
+Let $M\subset \RR^N$ be an $n$-dimensonal regular submanifold, $x\in M$ a point, and $(U,V\subset \RR^n,\varphi)$ a chart with $x\in U$. The map $\psi=\varphi^{-1}:V\rightarrow U$ is called a \emph{local parametrization} of $M$. This $\psi$ is a smooth map, so, by definition, it extends to a Cartesian space $\tilde{U}\subset \RR^N$ with $U=\tilde{U}\cap M$. Therefore, we can consider the differential $d_a\psi:\RR^n \rightarrow \RR^N$, for $a=\varphi(x)$. The image of this map does not depend on the choice of chart. Indeed, if $(U',V',\varphi')$ is a different chart with $a'=\varphi'(x)$, and denoting $\psi'=(\varphi')^{-1}$, we have, by the chain rule,
+\begin{equation*}
+d_a \psi = (d_{a' } \psi'  ) \circ d_a((\psi')^{-1}\circ \psi).
+\end{equation*}
+Thus, since $d_a((\psi')^{-1}\circ \psi):\RR^n \rightarrow \RR^n$ is a linear isomorphism, we have that \[d_a \psi(\RR^n)=d_{a' }\psi' (\RR^n).\]
+Since $\psi$ is a diffeomorphism, the dimension of this image is $n$.
+
+\begin{defn}
+The vector space $T^e_xM:=d_a \psi(\RR^n)\subset \RR^N$ is called the \emph{(embedded) tangent vector space to $M$ at $x$}. An element $v \in T^e_xM$ is called a \emph{tangent vector to $M$ at $x$}.
+\end{defn}
+
+A vector $v \in T_x M=d_a\psi (\RR^n)\subset \RR^N$ can be written as
+\begin{equation*}
+  v=
+\begin{pmatrix}
+\frac{\partial \psi_1}{\partial x_1}(a) & \cdots &\frac{\partial \psi_1}{\partial x_n}(a) \\
+  \vdots & \ddots & \vdots \\
+\frac{\partial \psi_N}{\partial x_1}(a) & \cdots &\frac{\partial \psi_N}{\partial x_n}(a)
+\end{pmatrix}
+\begin{pmatrix}
+  v_1 \\
+  \vdots \\
+  v_n
+\end{pmatrix},
+\end{equation*}
+where the $\psi_i$ are the components of $\psi$ and $(v_1,\dots,v_n)\in \RR^n$. That is, the vectors
+\begin{equation*}
+\frac{\partial \psi}{\partial x_i}(a) := \left( \frac{\partial \psi_1}{\partial x_i}(a) , \dots, \frac{\partial \psi_N}{\partial x_i}(a)  \right) \in \RR^N ,
+\end{equation*}
+for $i=1,\dots, n$, form a basis of the tangent space $T_xM$ and we can write $v=\sum_{i=1}^n v_i \frac{\partial \psi}{\partial x_i}(a)$.
+
+In the cases where the embedded manifold is given by the implicit function theorem, there is a ``dual'' way to obtain the tangent space. Let us consider an open subset $U\subset \RR^p$ and a smooth map $F:\RR^p\rightarrow \RR^q$. Given a point $a\in U$ where $d_aF$ is surjective, there is a diffeomorphism $h:B\rightarrow \RR^p$, for some open neighbourhood $B \subset U$ of $a$, mapping the set
+\begin{equation*}
+M=\left\{ x \in B: F(x)=F(a) \right\}
+\end{equation*}
+to $\left\{ F(a) \right\}\times \RR^{p-q}$. Moreover, we can write $d_a h = (d_aF, g)$, for the linear map $g:\RR^p\rightarrow \RR^{p-q}$ defined in \todo{REF}. Thus, we have
+\begin{equation*}
+T^e_x M = (d_{h(a)} h^{-1})(\RR^{p-q}) = (d_ah)^{-1}(\left\{ 0 \right\} \times \RR^{p-q}) = \ker d_a F.
+\end{equation*}
+
+\begin{ex}
+  Recall that we can define the $n$-sphere $\bbS^n$ as the set $\left\{ x\in \RR^{n+1}: F(x)=1 \right\}$, for $F(x)=x_1^2 + \cdots + x_{n+1}^2$, and that the differential of $F$ at a point $a\in \bbS^n$ is given by the formula $d_a F(v) = 2 \langle a, v \rangle$. Therefore, we can identify
+  \begin{equation*}
+T^e_a \bbS^n = \ker d_a F = \left\{ v \in \RR^{n+1}: \langle a, v\rangle =0 \right\}.
+  \end{equation*}
+In other words, the vectors which are tangent to $\bbS^n$ at a point $a$ are precisely those which are perpendicular to the vector joining the origin with $a$.
+\end{ex}
+
+We can finally define the differential of a smooth map $f:M_1\rightarrow M_2$ between two regular submanifolds $M_1\subset \RR^{N_1}$ and $M_2\subset \RR^{N_2}$. By definition, $f$ is smooth if and only if there are two open neighbourhoods $U_1\subset \RR^{N_1}$ and $U_2\subset \RR^{N_2}$ of $M_1$ and $M_2$, respectively, and a smooth map $\hat{f}:U_1\rightarrow U_2$ with $\hat{f}|_{M_1}=f$. If we choose $U_1$ and $U_2$ such that there are charts $(U_1\cap M_1,V_1,\varphi_1)$ and $(U_2\cap M_2,V_2,\varphi_2)$ we can consider the localization $\tilde{f}=\varphi_2 \circ f \circ \varphi_1^{-1}$. Note that $\hat{f}\circ \varphi_1^{-1}=\varphi_2^{-1}\circ \tilde{f}$ so, by the chain rule, for any $x\in M_1$,
+\begin{equation*}
+d_x \hat{f} \circ (d_{x}\varphi_1)^{-1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f}.
+\end{equation*}
+Now, $(d_x\varphi_1)^{-1}(\RR^{\dim M_1}) = T^e_x M_1$ and $(d_{f(x)}\varphi_2)^{-1}(\RR^{\dim M_2})=T^e_{f(x)}M_2$, so
+\begin{equation*}
+d_x \hat{f}(T^e_x M_1) \subset T^e_{f(x)}M_2.
+\end{equation*}
+Moreover,
+\begin{equation*}
+d_x \hat{f}|_{T^e_x M_1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f} \circ d_{x}\varphi_1,
+\end{equation*}
+which does not depend on the extension $\hat{f}$.
+
+\begin{defn}
+The linear map $d_x^e f:=d_x \hat{f}|_{T^e_x M_1}: T^e_x M_1 \rightarrow T^e_{f(x)}M_2$ is called the \emph{(embedded) differential of $f$ at $x$}.
+\end{defn}
+
+
+\subsection{Derivations and abstract tangent space}
+\begin{defn}
+  Let $M$ be a topological space and $\mathscr{F}$ a presheaf on $M$. For any point $x\in M$, we define the \emph{stalk of $\mathscr{F}$ at $x$} as the direct limit
+\begin{equation*}
+\mathscr{F}_x = \lim_{U\ni x} \mathscr{F}(U)
+\end{equation*}
+of the sets $\mathscr{F}(U)$, where the limit runs over the directed set of open neighbourhoods of $x$, with respect to the inclusion of open subsets $U\subset V$ and restriction maps $\mathscr{F}(V)\rightarrow \mathscr{F}(U)$.
+\end{defn}
+In other words, an element of $\mathscr{F}_x$ is represented by a pair $(U,f)$, where $U$ is an open neighbourhood of $x$ and $f\in \mathscr{F}(U)$. Two pairs $(U,f)$ and $(V,g)$ determine the same element of $\mathscr{F}_x$ if $f|_{U\cap V}=g|_{U \cap V}$.
+
+\begin{defn}
+Let $M$ be a smooth manifold. For any point $x\in M$, we define the \emph{ring of germs of smooth functions at $x$} as the stalk
+\begin{equation*}
+C^\infty_x = \lim_{U\ni x} C^\infty(U).
+\end{equation*}
+\end{defn}
+
+An element of $C^\infty_x$ is called a \emph{germ of smooth function at $x$}, and it is an equivalence class $[U,f]$ of pairs formed by an open neighbourhood $U\subset M$ of $x\in U$ and a smooth function $f:U\rightarrow \RR$. Note that $C^\infty_x$ is an $\RR$-algebra.
+
+\begin{defn}
+  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $X:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
+  \begin{equation*}
+X(fg)= f(x) X(g) + g(x) X(f),
+  \end{equation*}
+  for any two elements $[U,f], [V,g]\in C^\infty_x$. One checks easily that derivations form a vector space. This vector space is denoted by $T_xM$ and called the \emph{tangent space to $M$ at $x$}.
+
+\end{defn}
+
+We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $X\in T_xM$, we have $X(f)=0$. Indeed, since $X$ is assumed to be linear, we have that $X(f)=cX(1)$, and the Leibniz rule implies that $X(1)=X(1\cdot 1)=2X(1)$, so $X(1)=0$.
+
+In a previous section, we have already defined the tangent space $T_xU$ of a Cartesian space $U\subset \RR^n$ at a point $x\in U$ to be simply the real vector space $\RR^n$. This definition is justified by the following.
+
+\begin{prop}
+  Consider a point $a=(a_1,\dots,a_n)\in \RR^n$. The maps
+  \begin{equation*}
+\partial_i|_a:C^\infty_a \rightarrow \RR, f\mapsto \frac{\partial f}{\partial x_i} (a),
+  \end{equation*}
+  with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
+  More precisely, if we let $\pr_i:\RR^n \rightarrow \RR$ denote the projection to the $i$-th component and, for any $X\in T_a \RR^n$, denote $X_i=X(\pr_i)$, then we can write
+  \begin{equation*}
+X=\sum_{i=1}^n X_i \partial_i|_a.
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  The Leibniz rule is the product rule for derivatives, so the maps $\partial_i|_a$ are obviously derivations. To show that they form a basis, first we have to prove that they are linearly independent; that is, that if $\sum_{i=1}^n v_i \partial_i|_a=0$ for some $v=(v_1,\dots,v_n) \in \RR^n$, then $v=0$. Indeed, note that
+  \begin{equation*}
+0 = \sum_{i=1}^n v_i \partial_i|_a (\pr_j) = \sum_{i=1}^n v_i \frac{\partial x_j}{\partial x_i}(a) = v_j,
+  \end{equation*}
+so $v_j=0$ for each $j=1,\dots,n$, and thus $v=0$. It remains to show that the $\partial_i|_a$ generate $T_a\RR^n$. If $f:U\rightarrow \RR$ is a smooth function defined on some neighbourhood $U$ of $a$, by Taylor's theorem we can find a smaller neighbourhood $U'\subset U$ of $a$ and smooth functions $h_i:U' \rightarrow \RR$, for $i=1,\dots,n$, with $\lim_{x\rightarrow a}h_i(x)=0$ and such that, for every $x\in U'$,
+\begin{equation*}
+f(x) = f(a) + \sum_{i=1}^n (x_i-a_i) \frac{\partial f}{\partial x_i}(a) + \sum_{i=1}^n h_i(x)(x_i-a_i).
+\end{equation*}
+Thus, for any derivation $X\in T_a\RR^n$, we have
+\begin{align*}
+X(f) =& X(f(a)) + \sum_{i=1}^n X(x_i-a_i) \frac{\partial f}{\partial x_i}(a) \\ & + \sum_{i=1}^n (x_i-a_i)|_{x=a} X \left( \frac{\partial f}{\partial x_i} \right) + X \left( \sum_{i=1}^n h_i(x)(x_i-a_i) \right).
+\end{align*}
+Now, $(x_i-a_i)|_{x=a}=(a_i-a_i)=0$. Moreover, we can apply linearity and the Leibniz rule again and write
+\begin{equation*}
+X(h_i(x)(x_i-a_i)) = h_i(a) X(x_i-a_i) + X(h_i) (x_i-a_i)|_{x=a} = 0.
+\end{equation*}
+We conclude that
+\begin{equation*}
+X(f) = \sum_{i=1}^n X(x_i) \frac{\partial f}{\partial x_i} (a)
+\end{equation*}
+for any choice of $f$, so we can write
+\begin{equation*}
+X = \sum_{i=1}^n X_i \partial_i|_a,
+\end{equation*}
+as we wanted to show.
+\end{proof}
+
+
+\begin{prop}
+  Let $M$ be a smooth manifold and let $(U,V,\varphi) \in \bar{\mathcal{A}}_M$ be a smooth chart on $M$. For every $x\in U$, the map $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)} V$ defined by the relation
+  \begin{equation*}
+(\varphi_{*,x} D)(f) = D(f\circ \varphi),
+  \end{equation*}
+  for $f\in C^\infty_{\varphi(x)}$ and $D \in T_xM$, is a linear isomorphism. In particular, $\dim T_xM = \dim_x M$.
+\end{prop}
+\begin{proof}
+  Since $(U,V,\varphi)$ is a chart in the maximal atlas of $M$, the map
+  \begin{equation*}
+\varphi^*: C^\infty(V) \rightarrow C^\infty(U), f \mapsto f\circ \varphi
+  \end{equation*}
+  is an isomorphism of $\RR$-algebras, which induces an isomorphism at the level of the stalks $\varphi^*_x:C^\infty_x \rightarrow C^\infty_{\varphi(x)}$, and, in turn, the isomorphism $\varphi_{*,x}$.
+\end{proof}
+
+\subsection{Differential of a smooth map}
+We explain now how to define the notion of differential for a smooth map between two abstract smooth manifolds.
+
+Let us first consider the case of an $n$-dimensional embedded manifold $M\subset \RR^N$ and a smooth function $f:M\rightarrow \RR$. In that case, the differential of $f$ at a point $x\in M$ is simply
+\begin{equation*}
+d_xf=d_{\varphi(x)} \tilde{f} \circ d_x \varphi: T_xM \rightarrow \RR,
+\end{equation*}
+for some chart $(U,V,\varphi)$ with $x\in U$ and $\tilde{f}=f\circ \varphi^{-1}$. Now, a vector $v \in T^e_xM$ can be written as $v=d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n)$. Thus, if $(x_1,\dots,x_n)$ are coordinates in $U$, we have
+\begin{equation*}
+d_xf (v)= d_{\varphi(x)} \tilde{f} \circ d_x\varphi \circ d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n) = d_{\varphi(x)}\tilde{f}(v_1,\dots,v_n) = \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i}(\varphi(x)) v_i.
+\end{equation*}
+
+We can imitate this construction on an abstract manifold $M$. In that case, we consider a chart $(U,V,\varphi)$, a point $x\in U$, a function $f\in C^\infty(U)$, and the localization $\tilde{f}=f\circ \varphi^{-1}$. We denote $a=\varphi(x)$. For any derivation $X\in T_x M$, the element $\varphi_{*,x}X \in T_a V$ is a derivation at $a$, which can be written as $\varphi_{x,*}X=\sum_{i=1}^n X_i \partial_i|_a$, and we can define, analogously to the case of embedded manifolds
+\begin{equation*}
+d_xf(X) := \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i} (a) X_i = \sum_{i=1}^n X_i \partial_i|_a (f\circ \varphi^{-1}) = \varphi_{*,x}X(f\circ \varphi^{-1})=X(f).
+\end{equation*}
+
+In general, recall that a smooth map $f:M\rightarrow N$ determines, for each open subset $U\subset N$, a map
+\begin{equation*}
+f_U^*: C^\infty(U) \rightarrow C^\infty(f^{-1}(U)), s \mapsto s \circ f.
+\end{equation*}
+This map induces a map at the level of stalks, which in turn determines a linear map $f_{*,x}:T_xM \rightarrow T_{f(x)}N$ so that, if $s\in C^\infty_{f(x)}$ and $X\in T_xM$,
+\begin{equation*}
+(f_{*,x}X)(s) = X(s\circ f).
+\end{equation*}
+
+\begin{defn}
+  We define the \emph{differential of $f$ at $x$} as the linear map
+  \begin{equation*}
+d_xf:= f_{*,x}: T_xM \longrightarrow T_{f(x)}N.
+  \end{equation*}
+\end{defn}
+
+If $M\subset \RR^p$ is an embedded manifold, the map $\varphi_{*,x}(\partial_i|_{\varphi(x)})\mapsto \frac{\partial \varphi^{-1}}{\partial x_i}$ determines a linear isomorphism between the abstract tangent space $T_xM$ and the embedded tangent space $T^e_xM$. Moreover, for any smooth map $f:M\subset \RR^p\rightarrow N\subset \RR^q$ between embedded manifolds, we have a commutative square
+\begin{center}
+  \begin{tikzcd}
+   T^e_xM \ar{r}{d_x^e f} \ar{d} & T^e_{f(x)}N \ar{d} \\
+   T_xM \ar{r}{d_x f} & T_{f(x)}N,
+  \end{tikzcd}
+\end{center}
+where the vertical maps are the isomorphisms we just defined.
+
+One checks immediately that the chain rule holds for abstract smooth maps, that is
+\begin{equation*}
+d_x(g\circ f) = d_{f(x)} g \circ d_x f.
+\end{equation*}
+This allows us to define the tangent functor. We consider the category $\mathbf{SmoothMan}_*$ of \emph{based} smooth manifolds, whose objects are pairs $(M,x)$ with $M$ a smooth manifold and $x\in M$ and with morphisms $(M,x)\rightarrow (N,y)$ being smooth maps $f:M\rightarrow N$ with $f(x)=y$.
+
+\begin{defn}
+  The \emph{tangent functor} is the functor
+  \begin{equation*}
+\mathbf{SmoothMan}_* \rightarrow \mathbf{Vect}_{\RR}
+  \end{equation*}
+sending each pair $(M,x)$ to the vector space $T_xM$ and each map $f:(M,x)\rightarrow (N,y)$ to the linear map $d_xf:T_xM\rightarrow T_y N$.
+\end{defn}
+
+\subsection{The cotangent space}
+\begin{defn}
+  Let $M$ be a smooth manifold and $x\in M$ a point. The \emph{cotangent space $T^*_XM$ to $M$ at $x$} is the dual $\RR$-vector space of $T_xM$, that is
+  \begin{equation*}
+T_x^*M := (T_xM)^* = \mathrm{Hom}(T_xM,\RR).
+  \end{equation*}
+\end{defn}
+
+Recall that if $V$ is a vector space and $\left\{ e_1,\dots,e_n \right\}$ is a basis of $V$, then we can define the \emph{dual basis} $\left\{ \epsilon_1,\dots,\epsilon_n \right\}$ by the condition $\epsilon_i(e_j)=\delta_{ij}$. This dual basis is a basis of the dual vector space $V^*$. Moreover, duality is functorial, in the sense that for any linear map $f:V\rightarrow W$, we can define its transpose $f^*:W^* \rightarrow V^*$, $\alpha \mapsto \alpha \circ f$.
+
+Consider then the tangent space $T_a \RR^n$ at some point $a \in \RR^n$ and its dual $T^*_a \RR^n$. The dual basis of the basis $\left\{ \partial_1|_a,\dots,\partial_n|_a \right\}$ is denoted as $\left\{ dx_1|_a,\dots,dx_n|_a \right\}$, so a form $\alpha \in T^*_a \RR^n$ can be written as
+\begin{equation*}
+\alpha = \sum_{i=1}^n \alpha_i(a) dx_i|_a,
+\end{equation*}
+with $\alpha_i(a) = \alpha(\partial_i|_a)$.
+
+Now, if $M$ is an $n$-dimensional smooth manifold and we consider a chart $(U,V,\varphi)$ and a point $x\in U$, the transpose map of the isomorphism $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)}\RR^n$ determines an isomorphism $\varphi^*_x: T_{\varphi(x)}^* \RR^n\rightarrow T_x^*M$. Therefore, every linear form $\alpha \in T^*_xM$ can be written as
+\begin{equation*}
+\alpha = \varphi^*_x\left(\sum_{i=1}^n \alpha_i(\varphi(x))dx_i|_{\varphi(x)}\right) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \circ \varphi_{*,x}.
+\end{equation*}
+Moreover, for any derivation $X\in T_xM$ with $\varphi_{*,x}X=\sum_{i=1}^n X_i \partial_i|_{\varphi(x)}$, we have
+\begin{equation*}
+\alpha(X) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \left( \sum_{j=1}^n X_j \partial_j|_{\varphi(x)} \right) = \sum_{i=1}^n X_i \alpha_i(\varphi(x)).
+\end{equation*}
+
+\subsection{Embeddings}
+
+\subsubsection{Subbundles}
+\begin{defn}
+A \emph{subbundle} $F\subset E$ of a $\bbK$-vector bundle $E$ is a collection $\left\{ F_x \subset E_x : x\in M\right\}$ of $\bbK$-vector subspaces of the fibres $E_x$ of $E$ such that $F=\coprod_{x\in M} F_x$ is a submanifold of $E$. The restriction of the projection $\pi:E\rightarrow M$ to $F$ endows $F$ with the structure of a vector bundle.
+\end{defn}
+
+If $F\subset E$ is a subbundle of rank $s<r$, for every $x\in M$ there exists a neighbourhood $U\subset M$ of $x$ and a trivialization $\varphi_U:E|_U\rightarrow U \times \bbK^r$ such that $\varphi_U(F|_U)= U\times \bbK^s$. The transition functions $g_{UV}$ relative to these trivializations will then look like
+\begin{equation*}
+  g_{UV}(x) =
+  \begin{pmatrix}
+    h_{UV}(x) & k_{UV}(x) \\
+    0 & j_{UV}(x)
+\end{pmatrix}.
+\end{equation*}
+The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ determine the \emph{quotient bundle} $E/F$, with fibres $(E/F)_x=E_x/F_x$.
+
+\subsubsection{Embedding theorem}
+
+\subsection{The tangent bundle}
+
+\section{Tensor calculus. Fields and forms}
+\subsection{Multilinear algebra}
+\subsection{Tensor fields}
+\subsection{The exterior differential}
+
+\chapter{Some geometric structures}
+\section{Riemannian metrics}
+\section{Symplectic structures}
+\section{Almost complex structures}
+\section{Hermitian metrics. Kähler structures}
+
+\chapter{Dynamics on smooth manifolds}
+\section{Integrating the flow of a vector field}
+\section{Hamiltonian mechanics on symplectic manifolds}
+\section{Geodesic flow on Riemannian manifolds}
+\section{Lie groups and exponential map}
+\section{Distributions and integrability}
+\section{The Frobenius theorem}
+
+\chapter{Cohomology and integration}
+\section{Chains and singular (co)homology}
+\section{Integration on chains and the Stokes theorem}
+\section{de Rham cohomology}
+\section{The Poincaré lemma}
+\section{The de Rham theorem}
+\section{Mapping degree theory}
+\section{Dolbeault cohomology}
+
+\chapter{Connections on vector bundles}
+\section{The Levi-Civita connection}
+\section{Characteristic classes}
+\section{Holonomy}
+
+\chapter{Connections on principal bundles}
+
+\chapter{Elliptic operators on compact manifolds}
+\section{The Hodge star operator and the Laplacian}
+\section{The Hodge theorem}
+\section{Poincaré duality and Kodaira-Serre duality}
+\section{The index theorem}
+\section{Hirzebruch-Riemann-Roch}
+
+\chapter{Compact Kähler manifolds}
+
+%\nocite{*}
+%\printbibliography
+\end{document}
