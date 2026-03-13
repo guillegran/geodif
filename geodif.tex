@@ -513,7 +513,27 @@ It turns out that a vector bundle can be reconstructed from its transition funct
 \end{prop}
 
 \begin{proof}
-\todo{}
+  We start by defining the topology on $E$. We declare a subset $W\subset E$ to be open if and only if, for every $U\in \mathfrak{U}$, the image $\varphi_U(W\cap \pi^{-1}(U))$ is an open subset of the product topological space $U\times \bbK^r$. This definition is consistent on intersections. Indeed, if $W$ satisfies the condition for $U$, then for any $V$, the set
+  \[
+  \varphi_V(W \cap \pi^{-1}(V \cap U)) = (\varphi_V \circ \varphi_U^{-1}) \left( \varphi_U(W \cap \pi^{-1}(U \cap V)) \right)
+  \]
+  is open in $(U \cap V) \times \bbK^r$ because $\varphi_V \circ \varphi_U^{-1}$ is a homeomorphism.
+
+  With this topology, the maps $\varphi_U$ become homeomorphisms between the open sets $\pi^{-1}(U)$ and $U\times \bbK^r$. Since $M$ is Hausdorff and second countable, and $\bbK^r$ is as well, one can verify that $E$ is also Hausdorff and second countable. Thus, $E$ is a topological manifold.
+
+  To define the smooth structure, we construct an atlas on $E$. Let $\mathcal{A}_M$ be a smooth atlas for $M$. By refining $\mathfrak{U}$ if necessary, we can assume that each $U \in \mathfrak{U}$ is the domain of a chart $(U, V, \psi_U) \in \mathcal{A}_M$, where $\psi_U: U \to V \subset \RR^n$ is a diffeomorphism. We define charts on $E$ by considering the compositions:
+  \[
+  \Phi_U: \pi^{-1}(U) \xrightarrow{\varphi_U} U \times \bbK^r \xrightarrow{\psi_U \times \mathrm{id}} V \times \bbK^r \cong V \times \RR^{rk},
+  \]
+  where $k=1$ if $\bbK=\RR$ and $k=2$ if $\bbK=\C$.
+
+  The collection $\{( \pi^{-1}(U), V \times \bbK^r, \Phi_U )\}_{U \in \mathfrak{U}}$ forms a smooth atlas on $E$. Indeed, the coordinate change maps on overlaps $\pi^{-1}(U) \cap \pi^{-1}(V) = \pi^{-1}(U \cap V)$ are given by:
+  \[
+  \Phi_U \circ \Phi_V^{-1} (y, v) = (\psi_U \circ \psi_V^{-1}(y), g_{UV}(\psi_V^{-1}(y)) v).
+  \]
+  Since $\psi_U \circ \psi_V^{-1}$ is smooth (as $M$ is smooth) and $g_{UV}$ is smooth by hypothesis, the transition maps are smooth.
+
+  This smooth structure makes $\pi: E \to M$  smooth, and the local trivializations $\varphi_U$ become diffeomorphisms. The uniqueness follows from the fact that any other smooth structure compatible with the local trivializations must admit these $\Phi_U$ as charts.
 \end{proof}
 
 \subsection{Sections}
@@ -716,8 +736,85 @@ as we wanted to show.
 \end{proof}
 
 \subsection{Differential of a smooth map}
+We explain now how to define the notion of differential for a smooth map between two abstract smooth manifolds.
+
+Let us first consider the case of an $n$-dimensional embedded manifold $M\subset \RR^N$ and a smooth function $f:M\rightarrow \RR$. In that case, the differential of $f$ at a point $x\in M$ is simply
+\begin{equation*}
+d_xf=d_{\varphi(x)} \tilde{f} \circ d_x \varphi: T_xM \rightarrow \RR,
+\end{equation*}
+for some chart $(U,V,\varphi)$ with $x\in U$ and $\tilde{f}=f\circ \varphi^{-1}$. Now, a vector $v \in T^e_xM$ can be written as $v=d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n)$. Thus, if $(x_1,\dots,x_n)$ are coordinates in $U$, we have
+\begin{equation*}
+d_xf (v)= d_{\varphi(x)} \tilde{f} \circ d_x\varphi \circ d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n) = d_{\varphi(x)}\tilde{f}(v_1,\dots,v_n) = \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i}(\varphi(x)) v_i.
+\end{equation*}
+
+We can imitate this construction on an abstract manifold $M$. In that case, we consider a chart $(U,V,\varphi)$, a point $x\in U$, a function $f\in C^\infty(U)$, and the localization $\tilde{f}=f\circ \varphi^{-1}$. We denote $a=\varphi(x)$. For any derivation $X\in T_x M$, the element $\varphi_{*,x}X \in T_a V$ is a derivation at $a$, which can be written as $\varphi_{x,*}X=\sum_{i=1}^n X_i \partial_i|_a$, and we can define, analogously to the case of embedded manifolds
+\begin{equation*}
+d_xf(X) := \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i} (a) X_i = \sum_{i=1}^n X_i \partial_i|_a (f\circ \varphi^{-1}) = \varphi_{*,x}X(f\circ \varphi^{-1})=X(f).
+\end{equation*}
+
+In general, recall that a smooth map $f:M\rightarrow N$ determines, for each open subset $U\subset N$, a map
+\begin{equation*}
+f_U^*: C^\infty(U) \rightarrow C^\infty(f^{-1}(U)), s \mapsto s \circ f.
+\end{equation*}
+This map induces a map at the level of stalks, which in turn determines a linear map $f_{*,x}:T_xM \rightarrow T_{f(x)}N$ so that, if $s\in C^\infty_{f(x)}$ and $X\in T_xM$,
+\begin{equation*}
+(f_{*,x}X)(s) = X(s\circ f).
+\end{equation*}
+
+\begin{defn}
+  We define the \emph{differential of $f$ at $x$} as the linear map
+  \begin{equation*}
+d_xf:= f_{*,x}: T_xM \longrightarrow T_{f(x)}N.
+  \end{equation*}
+\end{defn}
+
+If $M\subset \RR^p$ is an embedded manifold, the map $\varphi_{*,x}(\partial_i|_{\varphi(x)})\mapsto \frac{\partial \varphi^{-1}}{\partial x_i}$ determines a linear isomorphism between the abstract tangent space $T_xM$ and the embedded tangent space $T^e_xM$. Moreover, for any smooth map $f:M\subset \RR^p\rightarrow N\subset \RR^q$ between embedded manifolds, we have a commutative square
+\begin{center}
+  \begin{tikzcd}
+   T^e_xM \ar{r}{d_x^e f} \ar{d} & T^e_{f(x)}N \ar{d} \\
+   T_xM \ar{r}{d_x f} & T_{f(x)}N,
+  \end{tikzcd}
+\end{center}
+where the vertical maps are the isomorphisms we just defined.
+
+One checks immediately that the chain rule holds for abstract smooth maps, that is
+\begin{equation*}
+d_x(g\circ f) = d_{f(x)} g \circ d_x f.
+\end{equation*}
+This allows us to define the tangent functor. We consider the category $\mathbf{SmoothMan}_*$ of \emph{based} smooth manifolds, whose objects are pairs $(M,x)$ with $M$ a smooth manifold and $x\in M$ and with morphisms $(M,x)\rightarrow (N,y)$ being smooth maps $f:M\rightarrow N$ with $f(x)=y$.
+
+\begin{defn}
+  The \emph{tangent functor} is the functor
+  \begin{equation*}
+\mathbf{SmoothMan}_* \rightarrow \mathbf{Vect}_{\RR}
+  \end{equation*}
+sending each pair $(M,x)$ to the vector space $T_xM$ and each map $f:(M,x)\rightarrow (N,y)$ to the linear map $d_xf:T_xM\rightarrow T_y N$.
+\end{defn}
 
 \subsection{The cotangent space}
+\begin{defn}
+  Let $M$ be a smooth manifold and $x\in M$ a point. The \emph{cotangent space $T^*_XM$ to $M$ at $x$} is the dual $\RR$-vector space of $T_xM$, that is
+  \begin{equation*}
+T_x^*M := (T_xM)^* = \mathrm{Hom}(T_xM,\RR).
+  \end{equation*}
+\end{defn}
+
+Recall that if $V$ is a vector space and $\left\{ e_1,\dots,e_n \right\}$ is a basis of $V$, then we can define the \emph{dual basis} $\left\{ \epsilon_1,\dots,\epsilon_n \right\}$ by the condition $\epsilon_i(e_j)=\delta_{ij}$. This dual basis is a basis of the dual vector space $V^*$. Moreover, duality is functorial, in the sense that for any linear map $f:V\rightarrow W$, we can define its transpose $f^*:W^* \rightarrow V^*$, $\alpha \mapsto \alpha \circ f$.
+
+Consider then the tangent space $T_a \RR^n$ at some point $a \in \RR^n$ and its dual $T^*_a \RR^n$. The dual basis of the basis $\left\{ \partial_1|_a,\dots,\partial_n|_a \right\}$ is denoted as $\left\{ dx_1|_a,\dots,dx_n|_a \right\}$, so a form $\alpha \in T^*_a \RR^n$ can be written as
+\begin{equation*}
+\alpha = \sum_{i=1}^n \alpha_i(a) dx_i|_a,
+\end{equation*}
+with $\alpha_i(a) = \alpha(\partial_i|_a)$.
+
+Now, if $M$ is an $n$-dimensional smooth manifold and we consider a chart $(U,V,\varphi)$ and a point $x\in U$, the transpose map of the isomorphism $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)}\RR^n$ determines an isomorphism $\varphi^*_x: T_{\varphi(x)}^* \RR^n\rightarrow T_x^*M$. Therefore, every linear form $\alpha \in T^*_xM$ can be written as
+\begin{equation*}
+\alpha = \varphi^*_x\left(\sum_{i=1}^n \alpha_i(\varphi(x))dx_i|_{\varphi(x)}\right) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \circ \varphi_{*,x}.
+\end{equation*}
+Moreover, for any derivation $X\in T_xM$ with $\varphi_{*,x}X=\sum_{i=1}^n X_i \partial_i|_{\varphi(x)}$, we have
+\begin{equation*}
+\alpha(X) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \left( \sum_{j=1}^n X_j \partial_j|_{\varphi(x)} \right) = \sum_{i=1}^n X_i \alpha_i(\varphi(x)).
+\end{equation*}
 
 \subsection{Embeddings}
 
