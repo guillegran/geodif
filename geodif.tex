@@ -2,6 +2,8 @@
 \usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
 \usepackage[onehalfspacing]{setspace}
 
+\usepackage{fourier}
+
 \usepackage{amsmath, amssymb, amsthm}
 
 \usepackage{hyperref}
@@ -11,7 +13,7 @@
 
 \usepackage{bm}
 
-\usepackage[scr=boondox]{mathalfa}
+\usepackage[cal=euler,scr=boondox]{mathalfa}
 
 %\usepackage[backend=biber]{biblatex}
 %\addbibresource{biblio_guillermo.bib}
@@ -139,7 +141,7 @@ Note that this number does not depend on the choice of chart, since, for any oth
 \begin{equation*}
 \dim: M \rightarrow \mathbb{N}, x \mapsto \dim_x M.
 \end{equation*}
-Moreover, note that, since, for every chart $(U,V,\varphi)\in \mathcal{A}$ and for every point $x\in U$, the open subset $U\subset M$ is contained in the preimage $\dim^{-1}(\dim_x M)$, the map $\dim$ is continuous if we endow $\mathbb{N}$ with the discrete topology. Thus the dimension is constant on connected components and it makes sense to talk about the \emph{dimension} $\dim M$ of a connected smooth manifold $M$.
+Moreover, since, for every chart $(U,V,\varphi)\in \mathcal{A}$ and for every point $x\in U$, the open subset $U\subset M$ is contained in the preimage $\dim^{-1}(\dim_x M)$, the map $\dim$ is continuous if we endow $\mathbb{N}$ with the discrete topology. Thus the dimension is constant on connected components and it makes sense to talk about the \emph{dimension} $\dim M$ of a connected smooth manifold $M$.
 
 A connected smooth manifold of dimension $n$ is called a (smooth) \emph{$n$-manifold} or \emph{$n$-fold}. A $1$-fold is also called a (smooth) \emph{curve}. A $2$-fold is called a (smooth) \emph{surface}.
 
@@ -166,7 +168,7 @@ A \emph{smooth function} on a smooth manifold $M$ is a smooth map $f:M\rightarro
 \end{defn}
 
 \subsection{Some examples}
-\subsubsection{Cartesian spaces} A Cartesian space $U$ is trivially a smooth manifold if we simply endow it with the atlas $\mathcal{A}=\left\{ (U,U,\mathrm{id}_{U}) \right\}$. By construction, maps between Cartesian spaces are smooth if and only if they are smooth as maps between smooth manifolds. Therefore we have a functor $\mathbf{CartSp}\rightarrow \mathbf{SmoothMan}$, which is clearly fully faithful.
+\subsubsection{Cartesian spaces} A Cartesian space $U$ is trivially a smooth manifold if we simply endow it with the atlas $\mathcal{A}=\left\{ (U,U,\mathrm{id}_{U}) \right\}$. By construction, maps between Cartesian spaces are smooth if and only if they are smooth as maps between smooth manifolds. Therefore we have a functor \[\mathbf{CartSp}\hookrightarrow \mathbf{SmoothMan},\] which is clearly fully faithful.
 
 More generally, the reader can easily check that an open subset $U\subset M$ of a smooth manifold inherits a smooth structure.
 
@@ -226,7 +228,7 @@ Let $M$ be a topological space. We denote by $\mathbf{Op}(M)$ the category whose
 \begin{defn}
   A \emph{presheaf} on $M$ is a functor
   \begin{equation*}
-    \mathscr{F}: \mathbf{Op}(M)\rightarrow \mathbf{Set}.
+    \mathscr{F}: \mathbf{Op}(M)^{\mathrm{op}}\rightarrow \mathbf{Set}.
   \end{equation*}
 
 \end{defn}
@@ -250,7 +252,7 @@ This map is called the \emph{restriction} of $s$ from $V$ to $U$ and, given $s\i
 \begin{ej}
 Check that the functor
   \begin{equation*}
-    C^0_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^0(U)=\left\{ U\rightarrow \RR \text{ continuous } \right\}
+    C^0_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^0(U)=\left\{ U\rightarrow \RR \text{ continuous} \right\}
   \end{equation*}
   is a sheaf.
 \end{ej}
@@ -258,7 +260,7 @@ Check that the functor
 \begin{defn}
 If $M$ is a smooth manifold, we define its \emph{structure sheaf} $C^\infty_M$ as the functor
   \begin{equation*}
-    C^\infty_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^\infty(U) .
+    C^\infty_M: \mathbf{Op}(M)\rightarrow \mathbf{Set}, U\mapsto C^\infty(U)= \left\{ U\rightarrow \RR \text{ smooth} \right\}.
   \end{equation*}
 \end{defn}
 
@@ -294,7 +296,7 @@ We leave as an exercise for the reader to check that the atlas determined by the
   \end{itemize}
 \end{defn}
 
-The existence of smooth bump functions in $\mathbb{R}^n$ implies the existence of bump functions, Uryshon separating functions and smooth partitions of unity for any smooth manifold. This is one of the most important features of differential geometry. Notably, there are no counterparts to these notions in analytic or algebraic geometry. Partitions of unity are a crucial tool in differential geometry, since they allow one to construct global objects from objects which are only locally defined. The clearest example is the following.
+The existence of smooth bump functions in $\mathbb{R}^n$ (which the reader is invited to construct, as an exercise) implies the existence of bump functions, Uryshon separating functions and smooth partitions of unity for any smooth manifold. This is one of the most important features of differential geometry. Notably, there are no counterparts to these notions in analytic or algebraic geometry. Partitions of unity are a crucial tool in differential geometry, since they allow one to construct global objects from objects which are only locally defined. The clearest example is the following.
 
 \begin{prop}[Tietze's extension theorem]
 Let $M$ be a smooth manifold, $A\subset M$ a closed subset, $U$ an open neighbourhood of $A$ and $f:U\rightarrow \mathbb{R}$ a smooth function. Then there exists a smooth function $F:M\rightarrow \mathbb{R}$ such that $F|_A = f$.
@@ -667,15 +669,15 @@ C^\infty_x = \lim_{U\ni x} C^\infty(U).
 An element of $C^\infty_x$ is called a \emph{germ of smooth function at $x$}, and it is an equivalence class $[U,f]$ of pairs formed by an open neighbourhood $U\subset M$ of $x\in U$ and a smooth function $f:U\rightarrow \RR$. Note that $C^\infty_x$ is an $\RR$-algebra.
 
 \begin{defn}
-  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $X:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
+  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $X_x:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
   \begin{equation*}
-X(fg)= f(x) X(g) + g(x) X(f),
+X_x(fg)= f(x) X_x(g) + g(x) X_x(f),
   \end{equation*}
   for any two elements $[U,f], [V,g]\in C^\infty_x$. One checks easily that derivations form a vector space. This vector space is denoted by $T_xM$ and called the \emph{tangent space to $M$ at $x$}.
 
 \end{defn}
 
-We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $X\in T_xM$, we have $X(f)=0$. Indeed, since $X$ is assumed to be linear, we have that $X(f)=cX(1)$, and the Leibniz rule implies that $X(1)=X(1\cdot 1)=2X(1)$, so $X(1)=0$.
+We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $X_x\in T_xM$, we have $X_x(f)=0$. Indeed, since $X_x$ is assumed to be linear, we have that $X_x(f)=cX_x(1)$, and the Leibniz rule implies that $X_x(1)=X_x(1\cdot 1)=2X_x(1)$, so $X_x(1)=0$.
 
 In a previous section, we have already defined the tangent space $T_xU$ of a Cartesian space $U\subset \RR^n$ at a point $x\in U$ to be simply the real vector space $\RR^n$. This definition is justified by the following.
 
@@ -685,9 +687,9 @@ In a previous section, we have already defined the tangent space $T_xU$ of a Car
 \partial_i|_a:C^\infty_a \rightarrow \RR, f\mapsto \frac{\partial f}{\partial x_i} (a),
   \end{equation*}
   with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
-  More precisely, if we let $\pr_i:\RR^n \rightarrow \RR$ denote the projection to the $i$-th component and, for any $X\in T_a \RR^n$, denote $X_i=X(\pr_i)$, then we can write
+  More precisely, if we let $\pr_i:\RR^n \rightarrow \RR$ denote the projection to the $i$-th component and, for any $X_a\in T_a \RR^n$, denote $X_i=X_a(\pr_i)$, then we can write
   \begin{equation*}
-X=\sum_{i=1}^n X_i \partial_i|_a.
+X_a=\sum_{i=1}^n X_i \partial_i|_a.
   \end{equation*}
 \end{prop}
 
@@ -700,21 +702,21 @@ so $v_j=0$ for each $j=1,\dots,n$, and thus $v=0$. It remains to show that the $
 \begin{equation*}
 f(x) = f(a) + \sum_{i=1}^n (x_i-a_i) \frac{\partial f}{\partial x_i}(a) + \sum_{i=1}^n h_i(x)(x_i-a_i).
 \end{equation*}
-Thus, for any derivation $X\in T_a\RR^n$, we have
+Thus, for any derivation $X_a\in T_a\RR^n$, we have
 \begin{align*}
-X(f) =& X(f(a)) + \sum_{i=1}^n X(x_i-a_i) \frac{\partial f}{\partial x_i}(a) \\ & + \sum_{i=1}^n (x_i-a_i)|_{x=a} X \left( \frac{\partial f}{\partial x_i} \right) + X \left( \sum_{i=1}^n h_i(x)(x_i-a_i) \right).
+X_a(f) =& X_a(f(a)) + \sum_{i=1}^n X_a(x_i-a_i) \frac{\partial f}{\partial x_i}(a) \\ & + \sum_{i=1}^n (x_i-a_i)|_{x=a} X_a \left( \frac{\partial f}{\partial x_i} \right) + X_a \left( \sum_{i=1}^n h_i(x)(x_i-a_i) \right).
 \end{align*}
 Now, $(x_i-a_i)|_{x=a}=(a_i-a_i)=0$. Moreover, we can apply linearity and the Leibniz rule again and write
 \begin{equation*}
-X(h_i(x)(x_i-a_i)) = h_i(a) X(x_i-a_i) + X(h_i) (x_i-a_i)|_{x=a} = 0.
+X_a(h_i(x)(x_i-a_i)) = h_i(a) X_a(x_i-a_i) + X_a(h_i) (x_i-a_i)|_{x=a} = 0.
 \end{equation*}
 We conclude that
 \begin{equation*}
-X(f) = \sum_{i=1}^n X(x_i) \frac{\partial f}{\partial x_i} (a)
+X_a(f) = \sum_{i=1}^n X_a(x_i) \frac{\partial f}{\partial x_i} (a)
 \end{equation*}
 for any choice of $f$, so we can write
 \begin{equation*}
-X = \sum_{i=1}^n X_i \partial_i|_a,
+X_a = \sum_{i=1}^n X_i \partial_i|_a,
 \end{equation*}
 as we wanted to show.
 \end{proof}
@@ -735,6 +737,12 @@ as we wanted to show.
   is an isomorphism of $\RR$-algebras, which induces an isomorphism at the level of the stalks $\varphi^*_x:C^\infty_x \rightarrow C^\infty_{\varphi(x)}$, and, in turn, the isomorphism $\varphi_{*,x}$.
 \end{proof}
 
+The above motivates the following notation: if $M$ is an $n$-dimensional smooth manifold and $(U,V,\varphi) \in \bar{A}_M$ is a smooth chart on $M$, for every $x\in U$ we denote
+\begin{equation*}
+\partial_{i}|_x = \partial_{i}^{\varphi}|_x := \varphi_{*,x}^{-1} \partial_i|_{a},
+\end{equation*}
+for $a=\varphi(x)$ and $i=1,\dots,n$. Note that the definition of the $\partial_i|_x$ does depend on the choice of $\varphi$, but when it is clear from the context we drop it from the notation. Since the $\partial_i|_{a}$ form a basis of $T_a V$, the $\partial_i|_x$ form a basis of $T_x M$.
+
 \subsection{Differential of a smooth map}
 We explain now how to define the notion of differential for a smooth map between two abstract smooth manifolds.
 
@@ -747,18 +755,18 @@ for some chart $(U,V,\varphi)$ with $x\in U$ and $\tilde{f}=f\circ \varphi^{-1}$
 d_xf (v)= d_{\varphi(x)} \tilde{f} \circ d_x\varphi \circ d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n) = d_{\varphi(x)}\tilde{f}(v_1,\dots,v_n) = \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i}(\varphi(x)) v_i.
 \end{equation*}
 
-We can imitate this construction on an abstract manifold $M$. In that case, we consider a chart $(U,V,\varphi)$, a point $x\in U$, a function $f\in C^\infty(U)$, and the localization $\tilde{f}=f\circ \varphi^{-1}$. We denote $a=\varphi(x)$. For any derivation $X\in T_x M$, the element $\varphi_{*,x}X \in T_a V$ is a derivation at $a$, which can be written as $\varphi_{x,*}X=\sum_{i=1}^n X_i \partial_i|_a$, and we can define, analogously to the case of embedded manifolds
+We can imitate this construction on an abstract manifold $M$. In that case, we consider a chart $(U,V,\varphi)$, a point $x\in U$, a function $f\in C^\infty(U)$, and the localization $\tilde{f}=f\circ \varphi^{-1}$. We denote $a=\varphi(x)$. For any derivation $X_x\in T_x M$, the element $\varphi_{*,x}X_x \in T_a V$ is a derivation at $a$, which can be written as $\varphi_{x,*}X_x=\sum_{i=1}^n X_i \partial_i|_a$, and we can define, analogously to the case of embedded manifolds
 \begin{equation*}
-d_xf(X) := \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i} (a) X_i = \sum_{i=1}^n X_i \partial_i|_a (f\circ \varphi^{-1}) = \varphi_{*,x}X(f\circ \varphi^{-1})=X(f).
+d_xf(X_x) := \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i} (a) X_i = \sum_{i=1}^n X_i \partial_i|_a (f\circ \varphi^{-1}) = \varphi_{*,x}X_x(f\circ \varphi^{-1})=X_x(f).
 \end{equation*}
 
 In general, recall that a smooth map $f:M\rightarrow N$ determines, for each open subset $U\subset N$, a map
 \begin{equation*}
 f_U^*: C^\infty(U) \rightarrow C^\infty(f^{-1}(U)), s \mapsto s \circ f.
 \end{equation*}
-This map induces a map at the level of stalks, which in turn determines a linear map $f_{*,x}:T_xM \rightarrow T_{f(x)}N$ so that, if $s\in C^\infty_{f(x)}$ and $X\in T_xM$,
+This map induces a map at the level of stalks, which in turn determines a linear map $f_{*,x}:T_xM \rightarrow T_{f(x)}N$ so that, if $s\in C^\infty_{f(x)}$ and $X_x\in T_xM$,
 \begin{equation*}
-(f_{*,x}X)(s) = X(s\circ f).
+(f_{*,x}X_x)(s) = X_x(s\circ f).
 \end{equation*}
 
 \begin{defn}
@@ -790,6 +798,22 @@ This allows us to define the tangent functor. We consider the category $\mathbf{
   \end{equation*}
 sending each pair $(M,x)$ to the vector space $T_xM$ and each map $f:(M,x)\rightarrow (N,y)$ to the linear map $d_xf:T_xM\rightarrow T_y N$.
 \end{defn}
+
+\begin{rmk}
+  Let $M$ be a smooth manifold and consider a smooth map $\gamma:I\rightarrow M$, where $I$ is some interval containing $0$, and let us denote $x=\gamma(0)$. The \emph{velocity} of $\gamma$ at $0$ is defined as the tangent vector $\gamma'(0):= d_0\gamma(1) \in T_x M$. By the chain rule, for any smooth function $f:M\rightarrow \RR$, we have
+  \begin{equation*}
+(f \circ \gamma)'(0) = d_x f (\gamma'(0)).
+  \end{equation*}
+Note that every tangent vector $X_x \in T_xM$ can be obtained in this way. Indeed, choose a chart $(U,V,\varphi)\in \bar{\cA}_M$, with $x\in U$ and $0=\varphi(x)$, and write $X_x=\sum_{i=1}^n X_i \partial_i|_x$. We can then consider the map
+\begin{equation*}
+\gamma:I \longrightarrow M, t \longmapsto  \varphi^{-1}(tX_1,\dots,tX_n),
+\end{equation*}
+which has velocity $\gamma'(0)=X_x$. This can be used to give an alternative definition of the tangent space $T_xM$, as the set of equivalence classes of maps $\gamma:I\rightarrow M$ with $\gamma(0)=x$, with respect to the equivalence relation
+\begin{equation*}
+\gamma_1 \sim \gamma_2 \text{ if and only if } (f\circ \gamma_1)'(0) = (f \circ \gamma_2)'(0) \text{ for every smooth function } f:M\rightarrow \RR.
+\end{equation*}
+The map $[\gamma]\mapsto \gamma'(0)$ clearly determines an isomorphism with $T_xM$ as defined in terms of derivations.
+\end{rmk}
 
 \subsection{The cotangent space}
 \begin{defn}
