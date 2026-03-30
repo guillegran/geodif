@@ -18,7 +18,7 @@
 %\usepackage[backend=biber]{biblatex}
 %\addbibresource{biblio_guillermo.bib}
 
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{prop}[thm]{Proposition}
@@ -395,11 +395,276 @@ F: \RR^{n+1}\rightarrow \RR, (x_1,\dots,x_n,x_{n+1}) \mapsto x_1^2 + \cdots + x_
 is a regular submanifold of $\RR^{n+1}$ of dimension $n$.
 \end{ex}
 
-\subsection{Quotients and products}
-\todo{(also add fibered products, maybe coverings, etc)}
-
 \subsection{Manifolds with boundary}
 \todo{}
+
+\section{The tangent functor}
+\subsection{Tangent space to an embedded manifold}
+Let $M\subset \RR^N$ be an $n$-dimensonal regular submanifold, $x\in M$ a point, and $(U,V\subset \RR^n,\varphi)$ a chart with $x\in U$. The map $\psi=\varphi^{-1}:V\rightarrow U$ is called a \emph{local parametrization} of $M$. This $\psi$ is a smooth map, so, by definition, it extends to a Cartesian space $\tilde{U}\subset \RR^N$ with $U=\tilde{U}\cap M$. Therefore, we can consider the differential $d_a\psi:\RR^n \rightarrow \RR^N$, for $a=\varphi(x)$. The image of this map does not depend on the choice of chart. Indeed, if $(U',V',\varphi')$ is a different chart with $a'=\varphi'(x)$, and denoting $\psi'=(\varphi')^{-1}$, we have, by the chain rule,
+\begin{equation*}
+d_a \psi = (d_{a' } \psi'  ) \circ d_a((\psi')^{-1}\circ \psi).
+\end{equation*}
+Thus, since $d_a((\psi')^{-1}\circ \psi):\RR^n \rightarrow \RR^n$ is a linear isomorphism, we have that \[d_a \psi(\RR^n)=d_{a' }\psi' (\RR^n).\]
+Since $\psi$ is a diffeomorphism, the dimension of this image is $n$.
+
+\begin{defn}
+The vector space $T^e_xM:=d_a \psi(\RR^n)\subset \RR^N$ is called the \emph{(embedded) tangent vector space to $M$ at $x$}. An element $v \in T^e_xM$ is called a \emph{tangent vector to $M$ at $x$}.
+\end{defn}
+
+A vector $v \in T_x M=d_a\psi (\RR^n)\subset \RR^N$ can be written as
+\begin{equation*}
+  v=
+\begin{pmatrix}
+\frac{\partial \psi_1}{\partial x_1}(a) & \cdots &\frac{\partial \psi_1}{\partial x_n}(a) \\
+  \vdots & \ddots & \vdots \\
+\frac{\partial \psi_N}{\partial x_1}(a) & \cdots &\frac{\partial \psi_N}{\partial x_n}(a)
+\end{pmatrix}
+\begin{pmatrix}
+  v_1 \\
+  \vdots \\
+  v_n
+\end{pmatrix},
+\end{equation*}
+where the $\psi_i$ are the components of $\psi$ and $(v_1,\dots,v_n)\in \RR^n$. That is, the vectors
+\begin{equation*}
+\frac{\partial \psi}{\partial x_i}(a) := \left( \frac{\partial \psi_1}{\partial x_i}(a) , \dots, \frac{\partial \psi_N}{\partial x_i}(a)  \right) \in \RR^N ,
+\end{equation*}
+for $i=1,\dots, n$, form a basis of the tangent space $T_xM$ and we can write $v=\sum_{i=1}^n v_i \frac{\partial \psi}{\partial x_i}(a)$.
+
+In the cases where the embedded manifold is given by the implicit function theorem, there is a ``dual'' way to obtain the tangent space. Let us consider an open subset $U\subset \RR^p$ and a smooth map $F:\RR^p\rightarrow \RR^q$. Given a point $a\in U$ where $d_aF$ is surjective, there is a diffeomorphism $h:B\rightarrow \RR^p$, for some open neighbourhood $B \subset U$ of $a$, mapping the set
+\begin{equation*}
+M=\left\{ x \in B: F(x)=F(a) \right\}
+\end{equation*}
+to $\left\{ F(a) \right\}\times \RR^{p-q}$. Moreover, we can write $d_a h = (d_aF, g)$, for the linear map $g:\RR^p\rightarrow \RR^{p-q}$ defined in \todo{REF}. Thus, we have
+\begin{equation*}
+T^e_x M = (d_{h(a)} h^{-1})(\RR^{p-q}) = (d_ah)^{-1}(\left\{ 0 \right\} \times \RR^{p-q}) = \ker d_a F.
+\end{equation*}
+
+\begin{ex}
+  Recall that we can define the $n$-sphere $\bbS^n$ as the set $\left\{ x\in \RR^{n+1}: F(x)=1 \right\}$, for $F(x)=x_1^2 + \cdots + x_{n+1}^2$, and that the differential of $F$ at a point $a\in \bbS^n$ is given by the formula $d_a F(v) = 2 \langle a, v \rangle$. Therefore, we can identify
+  \begin{equation*}
+T^e_a \bbS^n = \ker d_a F = \left\{ v \in \RR^{n+1}: \langle a, v\rangle =0 \right\}.
+  \end{equation*}
+In other words, the vectors which are tangent to $\bbS^n$ at a point $a$ are precisely those which are perpendicular to the vector joining the origin with $a$.
+\end{ex}
+
+We can finally define the differential of a smooth map $f:M_1\rightarrow M_2$ between two regular submanifolds $M_1\subset \RR^{N_1}$ and $M_2\subset \RR^{N_2}$. By definition, $f$ is smooth if and only if there are two open neighbourhoods $U_1\subset \RR^{N_1}$ and $U_2\subset \RR^{N_2}$ of $M_1$ and $M_2$, respectively, and a smooth map $\hat{f}:U_1\rightarrow U_2$ with $\hat{f}|_{M_1}=f$. If we choose $U_1$ and $U_2$ such that there are charts $(U_1\cap M_1,V_1,\varphi_1)$ and $(U_2\cap M_2,V_2,\varphi_2)$ we can consider the localization $\tilde{f}=\varphi_2 \circ f \circ \varphi_1^{-1}$. Note that $\hat{f}\circ \varphi_1^{-1}=\varphi_2^{-1}\circ \tilde{f}$ so, by the chain rule, for any $x\in M_1$,
+\begin{equation*}
+d_x \hat{f} \circ (d_{x}\varphi_1)^{-1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f}.
+\end{equation*}
+Now, $(d_x\varphi_1)^{-1}(\RR^{\dim M_1}) = T^e_x M_1$ and $(d_{f(x)}\varphi_2)^{-1}(\RR^{\dim M_2})=T^e_{f(x)}M_2$, so
+\begin{equation*}
+d_x \hat{f}(T^e_x M_1) \subset T^e_{f(x)}M_2.
+\end{equation*}
+Moreover,
+\begin{equation*}
+d_x \hat{f}|_{T^e_x M_1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f} \circ d_{x}\varphi_1,
+\end{equation*}
+which does not depend on the extension $\hat{f}$.
+
+\begin{defn}
+The linear map $d_x^e f:=d_x \hat{f}|_{T^e_x M_1}: T^e_x M_1 \rightarrow T^e_{f(x)}M_2$ is called the \emph{(embedded) differential of $f$ at $x$}.
+\end{defn}
+
+
+\subsection{Derivations and abstract tangent space}
+\begin{defn}
+  Let $M$ be a topological space and $\mathscr{F}$ a presheaf on $M$. For any point $x\in M$, we define the \emph{stalk of $\mathscr{F}$ at $x$} as the direct limit
+\begin{equation*}
+\mathscr{F}_x = \lim_{U\ni x} \mathscr{F}(U)
+\end{equation*}
+of the sets $\mathscr{F}(U)$, where the limit runs over the directed set of open neighbourhoods of $x$, with respect to the inclusion of open subsets $U\subset V$ and restriction maps $\mathscr{F}(V)\rightarrow \mathscr{F}(U)$.
+\end{defn}
+In other words, an element of $\mathscr{F}_x$ is represented by a pair $(U,f)$, where $U$ is an open neighbourhood of $x$ and $f\in \mathscr{F}(U)$. Two pairs $(U,f)$ and $(V,g)$ determine the same element of $\mathscr{F}_x$ if $f|_{U\cap V}=g|_{U \cap V}$.
+
+\begin{defn}
+Let $M$ be a smooth manifold. For any point $x\in M$, we define the \emph{ring of germs of smooth functions at $x$} as the stalk
+\begin{equation*}
+C^\infty_x = \lim_{U\ni x} C^\infty(U).
+\end{equation*}
+\end{defn}
+
+An element of $C^\infty_x$ is called a \emph{germ of smooth function at $x$}, and it is an equivalence class $[U,f]$ of pairs formed by an open neighbourhood $U\subset M$ of $x\in U$ and a smooth function $f:U\rightarrow \RR$. Note that $C^\infty_x$ is an $\RR$-algebra.
+
+\begin{defn}
+  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $X_x:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
+  \begin{equation*}
+X_x(fg)= f(x) X_x(g) + g(x) X_x(f),
+  \end{equation*}
+  for any two elements $[U,f], [V,g]\in C^\infty_x$. One checks easily that derivations form a vector space. This vector space is denoted by $T_xM$ and called the \emph{tangent space to $M$ at $x$}.
+
+\end{defn}
+
+We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $X_x\in T_xM$, we have $X_x(f)=0$. Indeed, since $X_x$ is assumed to be linear, we have that $X_x(f)=cX_x(1)$, and the Leibniz rule implies that $X_x(1)=X_x(1\cdot 1)=2X_x(1)$, so $X_x(1)=0$.
+
+In a previous section, we have already defined the tangent space $T_xU$ of a Cartesian space $U\subset \RR^n$ at a point $x\in U$ to be simply the real vector space $\RR^n$. This definition is justified by the following.
+
+\begin{prop}
+  Consider a point $a=(a_1,\dots,a_n)\in \RR^n$. The maps
+  \begin{equation*}
+\partial_i|_a:C^\infty_a \rightarrow \RR, f\mapsto \frac{\partial f}{\partial x_i} (a),
+  \end{equation*}
+  with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
+  More precisely, if we let $\pr_i:\RR^n \rightarrow \RR$ denote the projection to the $i$-th component and, for any $X_a\in T_a \RR^n$, denote $X_i(a)=X_a(\pr_i)$, then we can write
+  \begin{equation*}
+X_a=\sum_{i=1}^n X_i(a) \partial_i|_a.
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  The Leibniz rule is the product rule for derivatives, so the maps $\partial_i|_a$ are obviously derivations. To show that they form a basis, first we have to prove that they are linearly independent; that is, that if $\sum_{i=1}^n v_i \partial_i|_a=0$ for some $v=(v_1,\dots,v_n) \in \RR^n$, then $v=0$. Indeed, note that
+  \begin{equation*}
+0 = \sum_{i=1}^n v_i \partial_i|_a (\pr_j) = \sum_{i=1}^n v_i \frac{\partial x_j}{\partial x_i}(a) = v_j,
+  \end{equation*}
+so $v_j=0$ for each $j=1,\dots,n$, and thus $v=0$. It remains to show that the $\partial_i|_a$ generate $T_a\RR^n$. If $f:U\rightarrow \RR$ is a smooth function defined on some neighbourhood $U$ of $a$, by Taylor's theorem we can find a smaller neighbourhood $U'\subset U$ of $a$ and smooth functions $h_i:U' \rightarrow \RR$, for $i=1,\dots,n$, with $\lim_{x\rightarrow a}h_i(x)=0$ and such that, for every $x\in U'$,
+\begin{equation*}
+f(x) = f(a) + \sum_{i=1}^n (x_i-a_i) \frac{\partial f}{\partial x_i}(a) + \sum_{i=1}^n h_i(x)(x_i-a_i).
+\end{equation*}
+Thus, for any derivation $X_a\in T_a\RR^n$, we have
+\begin{align*}
+X_a(f) =& X_a(f(a)) + \sum_{i=1}^n X_a(x_i-a_i) \frac{\partial f}{\partial x_i}(a) \\ & + \sum_{i=1}^n (x_i-a_i)|_{x=a} X_a \left( \frac{\partial f}{\partial x_i} \right) + X_a \left( \sum_{i=1}^n h_i(x)(x_i-a_i) \right).
+\end{align*}
+Now, $(x_i-a_i)|_{x=a}=(a_i-a_i)=0$. Moreover, we can apply linearity and the Leibniz rule again and write
+\begin{equation*}
+X_a(h_i(x)(x_i-a_i)) = h_i(a) X_a(x_i-a_i) + X_a(h_i) (x_i-a_i)|_{x=a} = 0.
+\end{equation*}
+We conclude that
+\begin{equation*}
+X_a(f) = \sum_{i=1}^n X_a(x_i) \frac{\partial f}{\partial x_i} (a)
+\end{equation*}
+for any choice of $f$, so we can write
+\begin{equation*}
+X_a = \sum_{i=1}^n X_i(a) \partial_i|_a,
+\end{equation*}
+as we wanted to show.
+\end{proof}
+
+
+\begin{prop}
+  Let $M$ be a smooth manifold and let $(U,V,\varphi) \in \bar{\mathcal{A}}_M$ be a smooth chart on $M$. For every $x\in U$, the map $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)} V$ defined by the relation
+  \begin{equation*}
+(\varphi_{*,x} D)(f) = D(f\circ \varphi),
+  \end{equation*}
+  for $f\in C^\infty_{\varphi(x)}$ and $D \in T_xM$, is a linear isomorphism. In particular, $\dim T_xM = \dim_x M$.
+\end{prop}
+\begin{proof}
+  Since $(U,V,\varphi)$ is a chart in the maximal atlas of $M$, the map
+  \begin{equation*}
+\varphi^*: C^\infty(V) \rightarrow C^\infty(U), f \mapsto f\circ \varphi
+  \end{equation*}
+  is an isomorphism of $\RR$-algebras, which induces an isomorphism at the level of the stalks $\varphi^*_x:C^\infty_x \rightarrow C^\infty_{\varphi(x)}$, and, in turn, the isomorphism $\varphi_{*,x}$.
+\end{proof}
+
+The above motivates the following notation: if $M$ is an $n$-dimensional smooth manifold and $(U,V,\varphi) \in \bar{A}_M$ is a smooth chart on $M$, for every $x\in U$ we denote
+\begin{equation*}
+\partial_{i}|_x = \partial_{i}^{\varphi}|_x := \varphi_{*,x}^{-1} \partial_i|_{a},
+\end{equation*}
+for $a=\varphi(x)$ and $i=1,\dots,n$. Note that the definition of the $\partial_i|_x$ does depend on the choice of $\varphi$, but when it is clear from the context we drop it from the notation. Since the $\partial_i|_{a}$ form a basis of $T_a V$, the $\partial_i|_x$ form a basis of $T_x M$.
+
+\subsection{Differential of a smooth map}
+We explain now how to define the notion of differential for a smooth map between two abstract smooth manifolds.
+
+Let us first consider the case of an $n$-dimensional embedded manifold $M\subset \RR^N$ and a smooth function $f:M\rightarrow \RR$. In that case, the differential of $f$ at a point $x\in M$ is simply
+\begin{equation*}
+d_xf=d_{\varphi(x)} \tilde{f} \circ d_x \varphi: T_xM \rightarrow \RR,
+\end{equation*}
+for some chart $(U,V,\varphi)$ with $x\in U$ and $\tilde{f}=f\circ \varphi^{-1}$. Now, a vector $v \in T^e_xM$ can be written as $v=d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n)$. Thus, if $(x_1,\dots,x_n)$ are coordinates in $U$, we have
+\begin{equation*}
+d_xf (v)= d_{\varphi(x)} \tilde{f} \circ d_x\varphi \circ d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n) = d_{\varphi(x)}\tilde{f}(v_1,\dots,v_n) = \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i}(\varphi(x)) v_i.
+\end{equation*}
+
+We can imitate this construction on an abstract manifold $M$. In that case, we consider a chart $(U,V,\varphi)$, a point $x\in U$, a function $f\in C^\infty(U)$, and the localization $\tilde{f}=f\circ \varphi^{-1}$. We denote $a=\varphi(x)$. For any derivation $X_x\in T_x M$, the element $\varphi_{*,x}X_x \in T_a V$ is a derivation at $a$, which can be written as $\varphi_{x,*}X_x=\sum_{i=1}^n X_i(a) \partial_i|_a$, and we can define, analogously to the case of embedded manifolds
+\begin{equation*}
+d_xf(X_x) := \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i} (a) X_i(a) = \sum_{i=1}^n X_i(a) \partial_i|_a (f\circ \varphi^{-1}) = \varphi_{*,x}X_x(f\circ \varphi^{-1})=X_x(f).
+\end{equation*}
+
+In general, recall that a smooth map $f:M\rightarrow N$ determines, for each open subset $U\subset N$, a map
+\begin{equation*}
+f_U^*: C^\infty(U) \rightarrow C^\infty(f^{-1}(U)), s \mapsto s \circ f.
+\end{equation*}
+This map induces a map at the level of stalks, which in turn determines a linear map $f_{*,x}:T_xM \rightarrow T_{f(x)}N$ so that, if $s\in C^\infty_{f(x)}$ and $X_x\in T_xM$,
+\begin{equation*}
+(f_{*,x}X_x)(s) = X_x(s\circ f).
+\end{equation*}
+
+\begin{defn}
+  We define the \emph{differential of $f$ at $x$} as the linear map
+  \begin{equation*}
+d_xf:= f_{*,x}: T_xM \longrightarrow T_{f(x)}N.
+  \end{equation*}
+\end{defn}
+
+If $M\subset \RR^p$ is an embedded manifold, the map $\varphi_{*,x}(\partial_i|_{\varphi(x)})\mapsto \frac{\partial \varphi^{-1}}{\partial x_i}$ determines a linear isomorphism between the abstract tangent space $T_xM$ and the embedded tangent space $T^e_xM$. Moreover, for any smooth map $f:M\subset \RR^p\rightarrow N\subset \RR^q$ between embedded manifolds, we have a commutative square
+\begin{center}
+  \begin{tikzcd}
+   T^e_xM \ar{r}{d_x^e f} \ar{d} & T^e_{f(x)}N \ar{d} \\
+   T_xM \ar{r}{d_x f} & T_{f(x)}N,
+  \end{tikzcd}
+\end{center}
+where the vertical maps are the isomorphisms we just defined.
+
+One checks immediately that the chain rule holds for abstract smooth maps, that is
+\begin{equation*}
+d_x(g\circ f) = d_{f(x)} g \circ d_x f.
+\end{equation*}
+This allows us to define the tangent functor. We consider the category $\mathbf{SmoothMan}_*$ of \emph{based} smooth manifolds, whose objects are pairs $(M,x)$ with $M$ a smooth manifold and $x\in M$ and with morphisms $(M,x)\rightarrow (N,y)$ being smooth maps $f:M\rightarrow N$ with $f(x)=y$.
+
+\begin{defn}
+  The \emph{tangent functor} is the functor
+  \begin{equation*}
+\mathbf{SmoothMan}_* \rightarrow \mathbf{Vect}_{\RR}
+  \end{equation*}
+sending each pair $(M,x)$ to the vector space $T_xM$ and each map $f:(M,x)\rightarrow (N,y)$ to the linear map $d_xf:T_xM\rightarrow T_y N$.
+\end{defn}
+
+\begin{rmk}
+  Let $M$ be a smooth manifold and consider a smooth map $\gamma:I\rightarrow M$, where $I$ is some interval containing $0$, and let us denote $x=\gamma(0)$. The \emph{velocity} of $\gamma$ at $0$ is defined as the tangent vector $\gamma'(0):= d_0\gamma(1) \in T_x M$. By the chain rule, for any smooth function $f:M\rightarrow \RR$, we have
+  \begin{equation*}
+(f \circ \gamma)'(0) = d_x f (\gamma'(0)).
+  \end{equation*}
+Note that every tangent vector $X_x \in T_xM$ can be obtained in this way. Indeed, choose a chart $(U,V,\varphi)\in \bar{\cA}_M$, with $x\in U$ and $0=\varphi(x)$, and write $X_x=\sum_{i=1}^n X_i(a) \partial_i|_x$. We can then consider the map
+\begin{equation*}
+\gamma:I \longrightarrow M, t \longmapsto  \varphi^{-1}(tX_1(a),\dots,tX_n(a)),
+\end{equation*}
+which has velocity $\gamma'(0)=X_x$. This can be used to give an alternative definition of the tangent space $T_xM$, as the set of equivalence classes of maps $\gamma:I\rightarrow M$ with $\gamma(0)=x$, with respect to the equivalence relation
+\begin{equation*}
+\gamma_1 \sim \gamma_2 \text{ if and only if } (f\circ \gamma_1)'(0) = (f \circ \gamma_2)'(0) \text{ for every smooth function } f:M\rightarrow \RR.
+\end{equation*}
+The map $[\gamma]\mapsto \gamma'(0)$ clearly determines an isomorphism with $T_xM$ as defined in terms of derivations.
+\end{rmk}
+
+\subsection{The cotangent space}
+\begin{defn}
+  Let $M$ be a smooth manifold and $x\in M$ a point. The \emph{cotangent space $T^*_xM$ to $M$ at $x$} is the dual $\RR$-vector space of $T_xM$, that is
+  \begin{equation*}
+T_x^*M := (T_xM)^* = \mathrm{Hom}(T_xM,\RR).
+  \end{equation*}
+\end{defn}
+
+Recall that if $V$ is a vector space and $\left\{ e_1,\dots,e_n \right\}$ is a basis of $V$, then we can define the \emph{dual basis} $\left\{ \epsilon_1,\dots,\epsilon_n \right\}$ by the condition $\epsilon_i(e_j)=\delta_{ij}$. This dual basis is a basis of the dual vector space $V^*$. Moreover, duality is functorial, in the sense that for any linear map $f:V\rightarrow W$, we can define its transpose $f^*:W^* \rightarrow V^*$, $\alpha \mapsto \alpha \circ f$.
+
+Consider then the tangent space $T_a \RR^n$ at some point $a \in \RR^n$ and its dual $T^*_a \RR^n$. The dual basis of the basis $\left\{ \partial_1|_a,\dots,\partial_n|_a \right\}$ is denoted as $\left\{ dx_1|_a,\dots,dx_n|_a \right\}$, so a form $\alpha_a \in T^*_a \RR^n$ can be written as
+\begin{equation*}
+\alpha_a = \sum_{i=1}^n \alpha_i(a) dx_i|_a,
+\end{equation*}
+with $\alpha_i(a) = \alpha(\partial_i|_a)$.
+
+Now, if $M$ is an $n$-dimensional smooth manifold and we consider a chart $(U,V,\varphi)$ and a point $x\in U$, the transpose map of the isomorphism $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)}\RR^n$ determines an isomorphism $\varphi^*_x: T_{\varphi(x)}^* \RR^n\rightarrow T_x^*M$. Therefore, every linear form $\alpha_x \in T^*_xM$ can be written as
+\begin{equation*}
+\alpha_x = \varphi^*_x\left(\sum_{i=1}^n \alpha_i(\varphi(x))dx_i|_{\varphi(x)}\right) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \circ \varphi_{*,x}.
+\end{equation*}
+Moreover, for any derivation $X_x\in T_xM$ with $\varphi_{*,x}X_x=\sum_{i=1}^n X_i(a) \partial_i|_{\varphi(x)}$, we have
+\begin{equation*}
+\alpha_x(X_x) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \left( \sum_{j=1}^n X_j(a) \partial_j|_{\varphi(x)} \right) = \sum_{i=1}^n X_i(a) \alpha_i(\varphi(x)).
+\end{equation*}
+\section{Maps of constant rank}
+
+\subsection{Embeddings}
+
+\subsubsection{Embedding theorem}
+
+\subsection{Quotients and products}
+\todo{(also add fibered products, maybe coverings, etc)}
 
 \section{Lie groups}
 \todo{}
@@ -580,269 +845,9 @@ Let $\pi:E\rightarrow M$ be a $\bbK$-vector bundle, $A\subset M$ a closed subset
   which has as fibres $(f^*E)_x = E_{f(x)}$.
 \end{defn}
 
-\section{The tangent functor}
-\subsection{Tangent space to an embedded manifold}
-Let $M\subset \RR^N$ be an $n$-dimensonal regular submanifold, $x\in M$ a point, and $(U,V\subset \RR^n,\varphi)$ a chart with $x\in U$. The map $\psi=\varphi^{-1}:V\rightarrow U$ is called a \emph{local parametrization} of $M$. This $\psi$ is a smooth map, so, by definition, it extends to a Cartesian space $\tilde{U}\subset \RR^N$ with $U=\tilde{U}\cap M$. Therefore, we can consider the differential $d_a\psi:\RR^n \rightarrow \RR^N$, for $a=\varphi(x)$. The image of this map does not depend on the choice of chart. Indeed, if $(U',V',\varphi')$ is a different chart with $a'=\varphi'(x)$, and denoting $\psi'=(\varphi')^{-1}$, we have, by the chain rule,
-\begin{equation*}
-d_a \psi = (d_{a' } \psi'  ) \circ d_a((\psi')^{-1}\circ \psi).
-\end{equation*}
-Thus, since $d_a((\psi')^{-1}\circ \psi):\RR^n \rightarrow \RR^n$ is a linear isomorphism, we have that \[d_a \psi(\RR^n)=d_{a' }\psi' (\RR^n).\]
-Since $\psi$ is a diffeomorphism, the dimension of this image is $n$.
+\subsection{The tangent bundle}
 
-\begin{defn}
-The vector space $T^e_xM:=d_a \psi(\RR^n)\subset \RR^N$ is called the \emph{(embedded) tangent vector space to $M$ at $x$}. An element $v \in T^e_xM$ is called a \emph{tangent vector to $M$ at $x$}.
-\end{defn}
-
-A vector $v \in T_x M=d_a\psi (\RR^n)\subset \RR^N$ can be written as
-\begin{equation*}
-  v=
-\begin{pmatrix}
-\frac{\partial \psi_1}{\partial x_1}(a) & \cdots &\frac{\partial \psi_1}{\partial x_n}(a) \\
-  \vdots & \ddots & \vdots \\
-\frac{\partial \psi_N}{\partial x_1}(a) & \cdots &\frac{\partial \psi_N}{\partial x_n}(a)
-\end{pmatrix}
-\begin{pmatrix}
-  v_1 \\
-  \vdots \\
-  v_n
-\end{pmatrix},
-\end{equation*}
-where the $\psi_i$ are the components of $\psi$ and $(v_1,\dots,v_n)\in \RR^n$. That is, the vectors
-\begin{equation*}
-\frac{\partial \psi}{\partial x_i}(a) := \left( \frac{\partial \psi_1}{\partial x_i}(a) , \dots, \frac{\partial \psi_N}{\partial x_i}(a)  \right) \in \RR^N ,
-\end{equation*}
-for $i=1,\dots, n$, form a basis of the tangent space $T_xM$ and we can write $v=\sum_{i=1}^n v_i \frac{\partial \psi}{\partial x_i}(a)$.
-
-In the cases where the embedded manifold is given by the implicit function theorem, there is a ``dual'' way to obtain the tangent space. Let us consider an open subset $U\subset \RR^p$ and a smooth map $F:\RR^p\rightarrow \RR^q$. Given a point $a\in U$ where $d_aF$ is surjective, there is a diffeomorphism $h:B\rightarrow \RR^p$, for some open neighbourhood $B \subset U$ of $a$, mapping the set
-\begin{equation*}
-M=\left\{ x \in B: F(x)=F(a) \right\}
-\end{equation*}
-to $\left\{ F(a) \right\}\times \RR^{p-q}$. Moreover, we can write $d_a h = (d_aF, g)$, for the linear map $g:\RR^p\rightarrow \RR^{p-q}$ defined in \todo{REF}. Thus, we have
-\begin{equation*}
-T^e_x M = (d_{h(a)} h^{-1})(\RR^{p-q}) = (d_ah)^{-1}(\left\{ 0 \right\} \times \RR^{p-q}) = \ker d_a F.
-\end{equation*}
-
-\begin{ex}
-  Recall that we can define the $n$-sphere $\bbS^n$ as the set $\left\{ x\in \RR^{n+1}: F(x)=1 \right\}$, for $F(x)=x_1^2 + \cdots + x_{n+1}^2$, and that the differential of $F$ at a point $a\in \bbS^n$ is given by the formula $d_a F(v) = 2 \langle a, v \rangle$. Therefore, we can identify
-  \begin{equation*}
-T^e_a \bbS^n = \ker d_a F = \left\{ v \in \RR^{n+1}: \langle a, v\rangle =0 \right\}.
-  \end{equation*}
-In other words, the vectors which are tangent to $\bbS^n$ at a point $a$ are precisely those which are perpendicular to the vector joining the origin with $a$.
-\end{ex}
-
-We can finally define the differential of a smooth map $f:M_1\rightarrow M_2$ between two regular submanifolds $M_1\subset \RR^{N_1}$ and $M_2\subset \RR^{N_2}$. By definition, $f$ is smooth if and only if there are two open neighbourhoods $U_1\subset \RR^{N_1}$ and $U_2\subset \RR^{N_2}$ of $M_1$ and $M_2$, respectively, and a smooth map $\hat{f}:U_1\rightarrow U_2$ with $\hat{f}|_{M_1}=f$. If we choose $U_1$ and $U_2$ such that there are charts $(U_1\cap M_1,V_1,\varphi_1)$ and $(U_2\cap M_2,V_2,\varphi_2)$ we can consider the localization $\tilde{f}=\varphi_2 \circ f \circ \varphi_1^{-1}$. Note that $\hat{f}\circ \varphi_1^{-1}=\varphi_2^{-1}\circ \tilde{f}$ so, by the chain rule, for any $x\in M_1$,
-\begin{equation*}
-d_x \hat{f} \circ (d_{x}\varphi_1)^{-1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f}.
-\end{equation*}
-Now, $(d_x\varphi_1)^{-1}(\RR^{\dim M_1}) = T^e_x M_1$ and $(d_{f(x)}\varphi_2)^{-1}(\RR^{\dim M_2})=T^e_{f(x)}M_2$, so
-\begin{equation*}
-d_x \hat{f}(T^e_x M_1) \subset T^e_{f(x)}M_2.
-\end{equation*}
-Moreover,
-\begin{equation*}
-d_x \hat{f}|_{T^e_x M_1} = (d_{f(x)}\varphi_2)^{-1} \circ d_{\varphi_1(x)} \tilde{f} \circ d_{x}\varphi_1,
-\end{equation*}
-which does not depend on the extension $\hat{f}$.
-
-\begin{defn}
-The linear map $d_x^e f:=d_x \hat{f}|_{T^e_x M_1}: T^e_x M_1 \rightarrow T^e_{f(x)}M_2$ is called the \emph{(embedded) differential of $f$ at $x$}.
-\end{defn}
-
-
-\subsection{Derivations and abstract tangent space}
-\begin{defn}
-  Let $M$ be a topological space and $\mathscr{F}$ a presheaf on $M$. For any point $x\in M$, we define the \emph{stalk of $\mathscr{F}$ at $x$} as the direct limit
-\begin{equation*}
-\mathscr{F}_x = \lim_{U\ni x} \mathscr{F}(U)
-\end{equation*}
-of the sets $\mathscr{F}(U)$, where the limit runs over the directed set of open neighbourhoods of $x$, with respect to the inclusion of open subsets $U\subset V$ and restriction maps $\mathscr{F}(V)\rightarrow \mathscr{F}(U)$.
-\end{defn}
-In other words, an element of $\mathscr{F}_x$ is represented by a pair $(U,f)$, where $U$ is an open neighbourhood of $x$ and $f\in \mathscr{F}(U)$. Two pairs $(U,f)$ and $(V,g)$ determine the same element of $\mathscr{F}_x$ if $f|_{U\cap V}=g|_{U \cap V}$.
-
-\begin{defn}
-Let $M$ be a smooth manifold. For any point $x\in M$, we define the \emph{ring of germs of smooth functions at $x$} as the stalk
-\begin{equation*}
-C^\infty_x = \lim_{U\ni x} C^\infty(U).
-\end{equation*}
-\end{defn}
-
-An element of $C^\infty_x$ is called a \emph{germ of smooth function at $x$}, and it is an equivalence class $[U,f]$ of pairs formed by an open neighbourhood $U\subset M$ of $x\in U$ and a smooth function $f:U\rightarrow \RR$. Note that $C^\infty_x$ is an $\RR$-algebra.
-
-\begin{defn}
-  A \emph{derivation} or \emph{tangent vector} at $x\in M$ is an $\RR$-linear map $X_x:C^\infty_x\rightarrow \RR$ satisfying the \emph{Leibniz rule}
-  \begin{equation*}
-X_x(fg)= f(x) X_x(g) + g(x) X_x(f),
-  \end{equation*}
-  for any two elements $[U,f], [V,g]\in C^\infty_x$. One checks easily that derivations form a vector space. This vector space is denoted by $T_xM$ and called the \emph{tangent space to $M$ at $x$}.
-
-\end{defn}
-
-We remark that if $f\in C^\infty_x$ is represented by some pair $(U,f)$, with $f\equiv c$ a constant function, with $c\in \RR$, then, for any derivation $X_x\in T_xM$, we have $X_x(f)=0$. Indeed, since $X_x$ is assumed to be linear, we have that $X_x(f)=cX_x(1)$, and the Leibniz rule implies that $X_x(1)=X_x(1\cdot 1)=2X_x(1)$, so $X_x(1)=0$.
-
-In a previous section, we have already defined the tangent space $T_xU$ of a Cartesian space $U\subset \RR^n$ at a point $x\in U$ to be simply the real vector space $\RR^n$. This definition is justified by the following.
-
-\begin{prop}
-  Consider a point $a=(a_1,\dots,a_n)\in \RR^n$. The maps
-  \begin{equation*}
-\partial_i|_a:C^\infty_a \rightarrow \RR, f\mapsto \frac{\partial f}{\partial x_i} (a),
-  \end{equation*}
-  with $i=1,\dots,n$, are derivations at $a$ and form a basis of $T_a \RR^n$. There is a canonical isomorphism $T_a \RR^n \cong \RR^n$.
-  More precisely, if we let $\pr_i:\RR^n \rightarrow \RR$ denote the projection to the $i$-th component and, for any $X_a\in T_a \RR^n$, denote $X_i=X_a(\pr_i)$, then we can write
-  \begin{equation*}
-X_a=\sum_{i=1}^n X_i \partial_i|_a.
-  \end{equation*}
-\end{prop}
-
-\begin{proof}
-  The Leibniz rule is the product rule for derivatives, so the maps $\partial_i|_a$ are obviously derivations. To show that they form a basis, first we have to prove that they are linearly independent; that is, that if $\sum_{i=1}^n v_i \partial_i|_a=0$ for some $v=(v_1,\dots,v_n) \in \RR^n$, then $v=0$. Indeed, note that
-  \begin{equation*}
-0 = \sum_{i=1}^n v_i \partial_i|_a (\pr_j) = \sum_{i=1}^n v_i \frac{\partial x_j}{\partial x_i}(a) = v_j,
-  \end{equation*}
-so $v_j=0$ for each $j=1,\dots,n$, and thus $v=0$. It remains to show that the $\partial_i|_a$ generate $T_a\RR^n$. If $f:U\rightarrow \RR$ is a smooth function defined on some neighbourhood $U$ of $a$, by Taylor's theorem we can find a smaller neighbourhood $U'\subset U$ of $a$ and smooth functions $h_i:U' \rightarrow \RR$, for $i=1,\dots,n$, with $\lim_{x\rightarrow a}h_i(x)=0$ and such that, for every $x\in U'$,
-\begin{equation*}
-f(x) = f(a) + \sum_{i=1}^n (x_i-a_i) \frac{\partial f}{\partial x_i}(a) + \sum_{i=1}^n h_i(x)(x_i-a_i).
-\end{equation*}
-Thus, for any derivation $X_a\in T_a\RR^n$, we have
-\begin{align*}
-X_a(f) =& X_a(f(a)) + \sum_{i=1}^n X_a(x_i-a_i) \frac{\partial f}{\partial x_i}(a) \\ & + \sum_{i=1}^n (x_i-a_i)|_{x=a} X_a \left( \frac{\partial f}{\partial x_i} \right) + X_a \left( \sum_{i=1}^n h_i(x)(x_i-a_i) \right).
-\end{align*}
-Now, $(x_i-a_i)|_{x=a}=(a_i-a_i)=0$. Moreover, we can apply linearity and the Leibniz rule again and write
-\begin{equation*}
-X_a(h_i(x)(x_i-a_i)) = h_i(a) X_a(x_i-a_i) + X_a(h_i) (x_i-a_i)|_{x=a} = 0.
-\end{equation*}
-We conclude that
-\begin{equation*}
-X_a(f) = \sum_{i=1}^n X_a(x_i) \frac{\partial f}{\partial x_i} (a)
-\end{equation*}
-for any choice of $f$, so we can write
-\begin{equation*}
-X_a = \sum_{i=1}^n X_i \partial_i|_a,
-\end{equation*}
-as we wanted to show.
-\end{proof}
-
-
-\begin{prop}
-  Let $M$ be a smooth manifold and let $(U,V,\varphi) \in \bar{\mathcal{A}}_M$ be a smooth chart on $M$. For every $x\in U$, the map $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)} V$ defined by the relation
-  \begin{equation*}
-(\varphi_{*,x} D)(f) = D(f\circ \varphi),
-  \end{equation*}
-  for $f\in C^\infty_{\varphi(x)}$ and $D \in T_xM$, is a linear isomorphism. In particular, $\dim T_xM = \dim_x M$.
-\end{prop}
-\begin{proof}
-  Since $(U,V,\varphi)$ is a chart in the maximal atlas of $M$, the map
-  \begin{equation*}
-\varphi^*: C^\infty(V) \rightarrow C^\infty(U), f \mapsto f\circ \varphi
-  \end{equation*}
-  is an isomorphism of $\RR$-algebras, which induces an isomorphism at the level of the stalks $\varphi^*_x:C^\infty_x \rightarrow C^\infty_{\varphi(x)}$, and, in turn, the isomorphism $\varphi_{*,x}$.
-\end{proof}
-
-The above motivates the following notation: if $M$ is an $n$-dimensional smooth manifold and $(U,V,\varphi) \in \bar{A}_M$ is a smooth chart on $M$, for every $x\in U$ we denote
-\begin{equation*}
-\partial_{i}|_x = \partial_{i}^{\varphi}|_x := \varphi_{*,x}^{-1} \partial_i|_{a},
-\end{equation*}
-for $a=\varphi(x)$ and $i=1,\dots,n$. Note that the definition of the $\partial_i|_x$ does depend on the choice of $\varphi$, but when it is clear from the context we drop it from the notation. Since the $\partial_i|_{a}$ form a basis of $T_a V$, the $\partial_i|_x$ form a basis of $T_x M$.
-
-\subsection{Differential of a smooth map}
-We explain now how to define the notion of differential for a smooth map between two abstract smooth manifolds.
-
-Let us first consider the case of an $n$-dimensional embedded manifold $M\subset \RR^N$ and a smooth function $f:M\rightarrow \RR$. In that case, the differential of $f$ at a point $x\in M$ is simply
-\begin{equation*}
-d_xf=d_{\varphi(x)} \tilde{f} \circ d_x \varphi: T_xM \rightarrow \RR,
-\end{equation*}
-for some chart $(U,V,\varphi)$ with $x\in U$ and $\tilde{f}=f\circ \varphi^{-1}$. Now, a vector $v \in T^e_xM$ can be written as $v=d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n)$. Thus, if $(x_1,\dots,x_n)$ are coordinates in $U$, we have
-\begin{equation*}
-d_xf (v)= d_{\varphi(x)} \tilde{f} \circ d_x\varphi \circ d_{\varphi(x)}\varphi^{-1}(v_1,\dots,v_n) = d_{\varphi(x)}\tilde{f}(v_1,\dots,v_n) = \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i}(\varphi(x)) v_i.
-\end{equation*}
-
-We can imitate this construction on an abstract manifold $M$. In that case, we consider a chart $(U,V,\varphi)$, a point $x\in U$, a function $f\in C^\infty(U)$, and the localization $\tilde{f}=f\circ \varphi^{-1}$. We denote $a=\varphi(x)$. For any derivation $X_x\in T_x M$, the element $\varphi_{*,x}X_x \in T_a V$ is a derivation at $a$, which can be written as $\varphi_{x,*}X_x=\sum_{i=1}^n X_i \partial_i|_a$, and we can define, analogously to the case of embedded manifolds
-\begin{equation*}
-d_xf(X_x) := \sum_{i=1}^n \frac{\partial \tilde{f}}{\partial x_i} (a) X_i = \sum_{i=1}^n X_i \partial_i|_a (f\circ \varphi^{-1}) = \varphi_{*,x}X_x(f\circ \varphi^{-1})=X_x(f).
-\end{equation*}
-
-In general, recall that a smooth map $f:M\rightarrow N$ determines, for each open subset $U\subset N$, a map
-\begin{equation*}
-f_U^*: C^\infty(U) \rightarrow C^\infty(f^{-1}(U)), s \mapsto s \circ f.
-\end{equation*}
-This map induces a map at the level of stalks, which in turn determines a linear map $f_{*,x}:T_xM \rightarrow T_{f(x)}N$ so that, if $s\in C^\infty_{f(x)}$ and $X_x\in T_xM$,
-\begin{equation*}
-(f_{*,x}X_x)(s) = X_x(s\circ f).
-\end{equation*}
-
-\begin{defn}
-  We define the \emph{differential of $f$ at $x$} as the linear map
-  \begin{equation*}
-d_xf:= f_{*,x}: T_xM \longrightarrow T_{f(x)}N.
-  \end{equation*}
-\end{defn}
-
-If $M\subset \RR^p$ is an embedded manifold, the map $\varphi_{*,x}(\partial_i|_{\varphi(x)})\mapsto \frac{\partial \varphi^{-1}}{\partial x_i}$ determines a linear isomorphism between the abstract tangent space $T_xM$ and the embedded tangent space $T^e_xM$. Moreover, for any smooth map $f:M\subset \RR^p\rightarrow N\subset \RR^q$ between embedded manifolds, we have a commutative square
-\begin{center}
-  \begin{tikzcd}
-   T^e_xM \ar{r}{d_x^e f} \ar{d} & T^e_{f(x)}N \ar{d} \\
-   T_xM \ar{r}{d_x f} & T_{f(x)}N,
-  \end{tikzcd}
-\end{center}
-where the vertical maps are the isomorphisms we just defined.
-
-One checks immediately that the chain rule holds for abstract smooth maps, that is
-\begin{equation*}
-d_x(g\circ f) = d_{f(x)} g \circ d_x f.
-\end{equation*}
-This allows us to define the tangent functor. We consider the category $\mathbf{SmoothMan}_*$ of \emph{based} smooth manifolds, whose objects are pairs $(M,x)$ with $M$ a smooth manifold and $x\in M$ and with morphisms $(M,x)\rightarrow (N,y)$ being smooth maps $f:M\rightarrow N$ with $f(x)=y$.
-
-\begin{defn}
-  The \emph{tangent functor} is the functor
-  \begin{equation*}
-\mathbf{SmoothMan}_* \rightarrow \mathbf{Vect}_{\RR}
-  \end{equation*}
-sending each pair $(M,x)$ to the vector space $T_xM$ and each map $f:(M,x)\rightarrow (N,y)$ to the linear map $d_xf:T_xM\rightarrow T_y N$.
-\end{defn}
-
-\begin{rmk}
-  Let $M$ be a smooth manifold and consider a smooth map $\gamma:I\rightarrow M$, where $I$ is some interval containing $0$, and let us denote $x=\gamma(0)$. The \emph{velocity} of $\gamma$ at $0$ is defined as the tangent vector $\gamma'(0):= d_0\gamma(1) \in T_x M$. By the chain rule, for any smooth function $f:M\rightarrow \RR$, we have
-  \begin{equation*}
-(f \circ \gamma)'(0) = d_x f (\gamma'(0)).
-  \end{equation*}
-Note that every tangent vector $X_x \in T_xM$ can be obtained in this way. Indeed, choose a chart $(U,V,\varphi)\in \bar{\cA}_M$, with $x\in U$ and $0=\varphi(x)$, and write $X_x=\sum_{i=1}^n X_i \partial_i|_x$. We can then consider the map
-\begin{equation*}
-\gamma:I \longrightarrow M, t \longmapsto  \varphi^{-1}(tX_1,\dots,tX_n),
-\end{equation*}
-which has velocity $\gamma'(0)=X_x$. This can be used to give an alternative definition of the tangent space $T_xM$, as the set of equivalence classes of maps $\gamma:I\rightarrow M$ with $\gamma(0)=x$, with respect to the equivalence relation
-\begin{equation*}
-\gamma_1 \sim \gamma_2 \text{ if and only if } (f\circ \gamma_1)'(0) = (f \circ \gamma_2)'(0) \text{ for every smooth function } f:M\rightarrow \RR.
-\end{equation*}
-The map $[\gamma]\mapsto \gamma'(0)$ clearly determines an isomorphism with $T_xM$ as defined in terms of derivations.
-\end{rmk}
-
-\subsection{The cotangent space}
-\begin{defn}
-  Let $M$ be a smooth manifold and $x\in M$ a point. The \emph{cotangent space $T^*_XM$ to $M$ at $x$} is the dual $\RR$-vector space of $T_xM$, that is
-  \begin{equation*}
-T_x^*M := (T_xM)^* = \mathrm{Hom}(T_xM,\RR).
-  \end{equation*}
-\end{defn}
-
-Recall that if $V$ is a vector space and $\left\{ e_1,\dots,e_n \right\}$ is a basis of $V$, then we can define the \emph{dual basis} $\left\{ \epsilon_1,\dots,\epsilon_n \right\}$ by the condition $\epsilon_i(e_j)=\delta_{ij}$. This dual basis is a basis of the dual vector space $V^*$. Moreover, duality is functorial, in the sense that for any linear map $f:V\rightarrow W$, we can define its transpose $f^*:W^* \rightarrow V^*$, $\alpha \mapsto \alpha \circ f$.
-
-Consider then the tangent space $T_a \RR^n$ at some point $a \in \RR^n$ and its dual $T^*_a \RR^n$. The dual basis of the basis $\left\{ \partial_1|_a,\dots,\partial_n|_a \right\}$ is denoted as $\left\{ dx_1|_a,\dots,dx_n|_a \right\}$, so a form $\alpha \in T^*_a \RR^n$ can be written as
-\begin{equation*}
-\alpha = \sum_{i=1}^n \alpha_i(a) dx_i|_a,
-\end{equation*}
-with $\alpha_i(a) = \alpha(\partial_i|_a)$.
-
-Now, if $M$ is an $n$-dimensional smooth manifold and we consider a chart $(U,V,\varphi)$ and a point $x\in U$, the transpose map of the isomorphism $\varphi_{*,x}:T_xM\rightarrow T_{\varphi(x)}\RR^n$ determines an isomorphism $\varphi^*_x: T_{\varphi(x)}^* \RR^n\rightarrow T_x^*M$. Therefore, every linear form $\alpha \in T^*_xM$ can be written as
-\begin{equation*}
-\alpha = \varphi^*_x\left(\sum_{i=1}^n \alpha_i(\varphi(x))dx_i|_{\varphi(x)}\right) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \circ \varphi_{*,x}.
-\end{equation*}
-Moreover, for any derivation $X\in T_xM$ with $\varphi_{*,x}X=\sum_{i=1}^n X_i \partial_i|_{\varphi(x)}$, we have
-\begin{equation*}
-\alpha(X) = \sum_{i=1}^n \alpha_i(\varphi(x)) dx_i|_{\varphi(x)} \left( \sum_{j=1}^n X_j \partial_j|_{\varphi(x)} \right) = \sum_{i=1}^n X_i \alpha_i(\varphi(x)).
-\end{equation*}
-
-\subsection{Embeddings}
-
-\subsubsection{Subbundles}
+\subsection{Subbundles}
 \begin{defn}
 A \emph{subbundle} $F\subset E$ of a $\bbK$-vector bundle $E$ is a collection $\left\{ F_x \subset E_x : x\in M\right\}$ of $\bbK$-vector subspaces of the fibres $E_x$ of $E$ such that $F=\coprod_{x\in M} F_x$ is a submanifold of $E$. The restriction of the projection $\pi:E\rightarrow M$ to $F$ endows $F$ with the structure of a vector bundle.
 \end{defn}
@@ -856,10 +861,6 @@ If $F\subset E$ is a subbundle of rank $s<r$, for every $x\in M$ there exists a 
 \end{pmatrix}.
 \end{equation*}
 The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ determine the \emph{quotient bundle} $E/F$, with fibres $(E/F)_x=E_x/F_x$.
-
-\subsubsection{Embedding theorem}
-
-\subsection{The tangent bundle}
 
 \section{Tensor calculus. Fields and forms}
 \subsection{Multilinear algebra}
@@ -884,26 +885,31 @@ The bundle $F$ has then transition functions $h_{UV}$ and the maps $j_{UV}$ dete
 \section{Chains and singular (co)homology}
 \section{Integration on chains and the Stokes theorem}
 \section{de Rham cohomology}
+Normal and with compact support
 \section{The Poincaré lemma}
-\section{The de Rham theorem}
+(both)
 \section{Mapping degree theory}
+\section{Sheaf cohomology}
+\section{The de Rham theorem}
+\section{Poincaré duality}
 \section{Dolbeault cohomology}
 
 \chapter{Connections on vector bundles}
-\section{The Levi-Civita connection}
+\section{Affine connections}
 \section{Characteristic classes}
 \section{Holonomy}
 
 \chapter{Connections on principal bundles}
 
-\chapter{Elliptic operators on compact manifolds}
+\chapter{Hodge theory}
 \section{The Hodge star operator and the Laplacian}
 \section{The Hodge theorem}
-\section{Poincaré duality and Kodaira-Serre duality}
-\section{The index theorem}
-\section{Hirzebruch-Riemann-Roch}
+\section{Kodaira-Serre duality}
+\section{Compact Kähler manifolds}
 
-\chapter{Compact Kähler manifolds}
+%\section{The index theorem}
+%\section{Hirzebruch-Riemann-Roch}
+%
 
 %\nocite{*}
 %\printbibliography
