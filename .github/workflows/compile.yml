@@ -12,12 +12,12 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: geodif.tex
+          root_file: geodif_notas.tex
 
       - name: Deploy PDF to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-          publish_files: geodif.pdf # This sends the PDF to the "website" branch
+          publish_files: geodif_notas.pdf # This sends the PDF to the "website" branch
           force_orphan: true
