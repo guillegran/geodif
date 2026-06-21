@@ -1,0 +1,1442 @@
+\documentclass[11pt,a4paper]{amsart}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[spanish]{babel}
+
+\usepackage{amsmath, amssymb, amsthm}
+
+\usepackage{hyperref}
+\urlstyle{same}
+
+\usepackage{tikz,tikz-cd}
+
+\usepackage{bm}
+
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{biblio_guillermo.bib}
+
+\DeclareEmphSequence{\bfseries\itshape}
+
+\newtheorem{thm}[subsection]{Teorema}
+\newtheorem{prop}[subsection]{Proposición}
+\newtheorem{conj}[subsection]{Conjetura}
+\newtheorem{lemma}[subsection]{Lema}
+\newtheorem{corol}[subsection]{Corolario}
+\theoremstyle{remark} \newtheorem{rmk}[subsection]{Observación}
+\theoremstyle{definition} \newtheorem{defn}[subsection]{Definición}
+\theoremstyle{definition} \newtheorem{ex}[subsection]{Ejemplo}
+\theoremstyle{definition} \newtheorem{ej}[subsection]{Ejercicio}
+
+\setcounter{tocdepth}{1}
+
+\input{commands.tex}
+\title{Lecciones de Geometría Diferencial}
+\author{Guillermo Gallego (Universidad Autónoma de Madrid)}
+
+\begin{document}
+\maketitle
+
+{\tiny \tableofcontents}
+
+\part{Fundamentos de variedades diferenciables}
+
+\section{Definiciones de variedad diferenciable}
+a
+
+Ejemplo: Grupos de Lie
+
+\section{Definiciones del espacio tangente}
+a
+
+\section{Fibrado tangente y fibrados vectoriales}
+a
+
+\section{Cálculo tensorial}
+
+Añadir: notación del producto simétrico $dx^i dx^j$. Convenio de índices repetidos. Cuidado con convenio al hacer antisimétricos. Pullback, covariancia y contravariancia, etc.
+
+diferencial exterior conmuta con pullback
+
+\section{Campos vectoriales, flujos y derivada de Lie}
+a
+
+Fórmula pushforward y flujos
+
+Campos $\psi$-relacionados
+
+\section{Teorema de Frobenius}
+a
+
+\section{Integración de formas y teorema de Stokes}
+a
+
+Introducir orientaciones
+
+\section{Cohomología de de Rham}
+a
+
+\subsection{Teoría del grado}
+a
+
+
+\section{Álgebras de Lie}
+\begin{defn}
+  Un \emph{álgebra de Lie} (real) es un espacio vectorial real $\fg$ equipado de un \emph{corchete de Lie}: una forma bilineal antisimétrica
+  \begin{equation*}
+[-,-]: \fg \times \fg \rightarrow \fg, \ (x,y)\mapsto [x,y]
+  \end{equation*}
+(es decir, con $[x,y]=-[y,x]$) y que satisface la \emph{identidad de Jacobi}
+\begin{equation*}
+[[x,y],z] + [[y,z],x] + [[z,x], y] = 0.
+\end{equation*}
+\end{defn}
+
+\begin{prop}
+Dada una variedad diferenciable $M$, el espacio $\fX(M)$ de campos vectoriales en $M$, equipado con el corchete de Lie, forma un álgebra de Lie (de dimensión infinita).
+\end{prop}
+
+\subsection{} Supongamos que $\fg$ es un álgebra de Lie de dimensión finita y que $x_1,\dots,x_n$ es una base de $\fg$. En ese caso, deben existir unas constantes $C^i_{jk}\in \RR$ tales que
+\begin{equation*}
+[x_j,x_k] = C^i_{jk} x_i.
+\end{equation*}
+Dichas constantes se denominan las \emph{constantes de estructura} de $\fg$ con respecto a la base $x_1,\dots,x_n$. De la antisimetría del corchete, se deduce que $C^i_{jk}=-C^i_{kj}$, mientras que de la identidad de Jacobi se deduce que
+\begin{equation*}
+C_{ib}^a C_{jk}^b + C_{jb}^a C_{ki}^b + C_{kb}^aC_{ij}^b = 0.
+\end{equation*}
+
+\begin{ej}
+  El ejemplo más simple de álgebra de Lie es el álgebra $\mathfrak{gl}_n(\RR)$ formado por las matrices $n\times n$ reales, donde el corchete de Lie está dado por el conmutador
+  \begin{equation*}
+[A,B] = AB - BA.
+  \end{equation*}
+  Una base de $\mathfrak{gl}_n(\RR)$ está dada por las matrices elementales $E_{ij}$, que tienen un $1$ en la entrada $(i,j)$ y un $0$ en el resto de entradas de modo que $\mathfrak{gl}_n(\RR)$ tiene dimensión $n^2$. Si multiplicamos dos de estas matrices, tenemos
+  \begin{equation*}
+E_{ij}E_{kl} = \delta_{jk} E_{il},
+  \end{equation*}
+  de modo que
+  \begin{equation*}
+[E_{ij},E_{kl}] = \delta_{jk} E_{il} - \delta_{li}E_{kj}.
+  \end{equation*}
+  Si escribimos
+  \begin{equation*}
+[E_{ij},E_{kl}] = \sum_{a,b} C^{ab}_{ij,kl} E_{ab},
+  \end{equation*}
+  tenemos que las constantes de estructura son
+  \begin{equation*}
+c^{ab}_{ij,kl} = \delta_{jk} \delta^a_{i} \delta^b_{l}- \delta_{li}\delta^a_k \delta^b_j.
+  \end{equation*}
+  Explícitamente
+  \begin{equation*}
+    [E_{ij},E_{kl}] =
+    \begin{cases}
+E_{il} & \text{ si } j=k, l\neq i,\\
+      -E_{kj} & \text{ si } l=i, j\neq k, \\
+      E_{ii}-E_{jj} & \text{ si } j=k, l=i, \\
+      0 & \text{ en otro caso. }
+\end{cases}
+  \end{equation*}
+\end{ej}
+
+
+\begin{ej}
+  Un ejemplo típico de álgebra de Lie es el álgebra $\mathfrak{so}_3(\RR)\subset \mathfrak{gl}_3(\RR)$, cuyos objetos son las matrices $3\times 3$ reales antisimétricas, y donde el corchete de Lie está de nuevo dado por el conmutador. Esta álgebra tiene dimensión $3$, y una base suya está dada por las matrices
+  \begin{equation*}
+    L_1 =
+    \begin{pmatrix}
+      0 & 0 & 0 \\
+      0 & 0 & -1 \\
+      0 & 1 & 0
+    \end{pmatrix},\
+    L_2 =
+    \begin{pmatrix}
+      0 & 0 & 1 \\
+      0 & 0 & 0 \\
+      -1 & 0 & 0
+    \end{pmatrix}, \text{ y }
+    L_3 =
+    \begin{pmatrix}
+      0 & -1 & 0 \\
+      1 & 0 & 0 \\
+      0 & 0 & 0
+    \end{pmatrix}.
+  \end{equation*}
+  Notamos entonces que
+  \begin{equation*}
+[L_i,L_j] = \epsilon_{ij}^k L_k,
+  \end{equation*}
+donde $\epsilon_{ij}^k$ es el símbolo de Levi-Civita, que asocia a cada permutación $(i,j,k)$ de $(1,2,3)$, el signo de la permutación. Tenemos entonces que las constantes de estructura de $\mathfrak{so}_3(\RR)$ con respecto a esta base son $C_{ij}^k = \epsilon_{ij}^k$.
+\end{ej}
+
+\subsection{} Dada un álgebra de Lie $\fg$, podemos definir una aplicación $d:\fg^* \rightarrow \Lambda^2\fg^*$, tomando
+\begin{align*}
+  d\alpha: \fg \times \fg & \longrightarrow \RR \\
+  (x,y)  & \longmapsto -\alpha([x,y]).
+\end{align*}
+Claramente, $d\alpha$ es antisimétrica, y por tanto un elemento de $\Lambda^2 \fg^*$. Esta construcción se puede iterar, lo que determina un complejo
+\begin{center}
+  \begin{tikzcd}
+0 \rar & \fg^* \rar{d} & \Lambda^2 \fg^* \rar{d} & \Lambda^3 \fg^* \rar{d} & \cdots.
+  \end{tikzcd}
+\end{center}
+Los grupos de cohomología de este complejo se denotan por $H^i(\fg)$ y se denominan los grupos de \emph{cohomología de Chevalley--Eilenberg}. El álgebra graduada
+\begin{equation*}
+\Lambda^\bullet \fg^* = \bigoplus_{k} \Lambda^k \fg^*
+\end{equation*}
+se denomina el \emph{álgebra de Chevalley--Eilenberg}.
+
+\begin{prop}
+ Supongamos que $x_1,\dots,x_n$ es una base del álgebra de Lie $\fg$ y que $\theta^1,\dots,\theta^n \in \fg^*$ es su base dual. Si $C^i_{jk}$ son las constantes de estructura correspondientes a esta base, entonces tenemos
+\begin{equation*}
+d \theta^i + \frac{1}{2} C^i_{jk} \theta^j\wedge \theta^k = 0.
+\end{equation*}
+\end{prop}
+
+\begin{proof}
+El convenio de índices repetidos asume que sumamos sobre todos los $(j,k)$. Si queremos sumar sólo sobre los $(j,k)$ con $j< k$, entonces podemos reescribir la fórmula que queremos probar como
+\begin{equation*}
+d\theta^i = - \sum_{j < k} \frac{1}{2} (C^i_{jk}-C^i_{kj}) \theta^j\wedge \theta^k = - \sum_{j<k} C^i_{jk} \theta^j\wedge \theta^k,
+\end{equation*}
+donde usamos que $C^i_{kj} = -C^i_{jk}$.
+Por otra parte, como los $\theta^j\wedge \theta^k$ forman una base de $\Lambda^2 \fg^*$, podemos escribir
+\begin{equation*}
+d\theta^i = \sum_{j< k} A^i_{jk} \theta^j \wedge \theta^k.
+\end{equation*}
+Se trata entonces de probar que $A^i_{jk}=-C^i_{jk}$.
+Ahora,
+\begin{equation*}
+d\theta^i (x_j,x_k) = \sum_{a< b} A^i_{ab} \theta^a\wedge \theta^b(x_j,x_k) = A^{i}_{jk},
+\end{equation*}
+y también
+\begin{equation*}
+d\theta^i(x_j,x_k) = -\theta^i([x_j,x_k]) = -\theta^i(C_{jk}^i x_i) = -C_{jk}^i,
+\end{equation*}
+de modo que $A^i_{jk}=-C^i_{jk}$, como queríamos probar.
+\end{proof}
+
+\section{Grupos de Lie}
+\begin{defn}
+Un \emph{grupo de Lie} es una variedad diferenciable $G$ equipada con sendas aplicaciones diferenciables
+\begin{equation*}
+m: G\times G \rightarrow G,\ (g_1,g_2) \mapsto g_1g_2,
+\end{equation*}
+denominada la \emph{multiplicación}, e
+\begin{equation*}
+i: G \rightarrow G,\ g\mapsto g^{-1},
+\end{equation*}
+denominada la \emph{inversión}, de modo que $(G,m)$ determina una estructura de grupo, con inversa dada por $i$.
+
+[Otra forma de decir lo mismo es decir que $G$ es un grupo en la categoría de las variedades diferenciables.]
+\end{defn}
+
+\begin{ej}
+Veamos algunos ejemplos típicos de grupos de Lie.
+\begin{itemize}
+\item Si $V$ es un espacio vectorial de dimensión finita, entonces $(V,+)$ es un grupo de Lie (conmutativo).
+  \item El \emph{grupo general lineal}  $\GL(V)=\mathrm{Aut}(V)$ de automorfismos de $V$ es un grupo de Lie, no conmutativo si $\dim V > 1$. Cuando $V=\RR^n$, tenemos que $\GL_n(\RR):=\GL(\RR^n)$ es el grupo de las matrices invertibles $n\times n$. Como variedad, es simplemente el subconjunto abierto del espacio de las matrices $n\times n$, que es isomorfo a $\RR^{n^2}$, determinado por la condición $\det \neq 0$. La multiplicación y la inversión son polinomiales, y por tanto diferenciables. También podemos considerar el \emph{grupo especial lineal} $\mathrm{SL}(V)\subset \GL(V)$ formado por los automorfismos con $\det = 1$. Como subvariedad, es un subespacio cerrado de $\GL(V)$, determinado por la condición $\det = 1$, que se puede comprobar que determina una subvariedad regular.
+
+  \item Si $V$ está equipado con un producto escalar, podemos considerar el \emph{grupo ortogonal} $\mathrm{O}(V)$ de automorfismos de $V$ que preservan el producto escalar, y su subgrupo $\mathrm{SO}(V)\subset \mathrm{O}(V)$ formado por aquellos automorfismos con determinante $1$, denominado el \emph{grupo ortogonal especial}. Cuando $V=\RR^n$ con el producto escalar estándar, entonces $\mathrm{O}_n(\RR)=\mathrm{O}(\RR^n)$ es el grupo de las matrices $n\times n$ que cumplen la condición
+        \begin{equation*}
+A^T A = \mathbb{I}_n.
+        \end{equation*}
+
+  \item Si $V$ tiene dimensión par y está equipado con una forma bilineal antisimétrica $\omega$, podemos considerar el correspondiente \emph{grupo simpléctico} $\mathrm{Sp}(V)$ de automorfismos de $V$ que preservan $\omega$. Cuando $V=\RR^{2n}$ está equipado con la forma bilineal anisimétrica estándar
+        \begin{equation*}
+\omega((x_1,\dots,x_n,y_1,\dots,y_n),(x_1',\dots,x_n',y_1',\dots,y_n')) = \sum_{i=1}^n x_iy_i' - y_i x_i',
+        \end{equation*}
+        entonces $\mathrm{Sp}_n(\RR):=\mathrm{Sp}(\RR^{2n})$ es el grupo de las matrices $2n \times 2n$ que cumplen la condición
+        \begin{equation*}
+A^T J A = J,
+        \end{equation*}
+        donde $J$ es la matriz $2n \times 2n$ definida como
+        \begin{equation*}
+          J=
+          \begin{pmatrix}
+            0 & \mathbb{I}_n \\
+            -\mathbb{I}_n & 0
+          \end{pmatrix}.
+        \end{equation*}
+
+        Estos grupos $\GL_n$, $\mathrm{SL}_n$, $\mathrm{O}_n$, $\mathrm{SO}_n$, $\mathrm{Sp}_n$ forman la clase de los \emph{grupos clásicos}. Nótese además que todos estos grupos pueden definirse de forma análoga sobre cualquier cuerpo o incluso sobre $\mathbb{Z}$. De hecho, es fácil ver que todas las condiciones que determinan estos grupos son polinomiales, de modo que éstos son ejemplos de \emph{grupos algebraicos}. El hecho de que se puedan definir sobre $\mathbb{Z}$ y que para cualquiera de estos grupos $G$ y para cualquier otro anillo $R$ se pueda recuperar el grupo sobre $R$ cambiando de base el grupo sobre $\mathbb{Z}$, de modo que $G(R) = G_{R}(R)$, significa que estos son \emph{grupos escindidos}.
+\end{itemize}
+\end{ej}
+
+\subsection{} Para todo $g\in G$, podemos definir los difeomorfismos
+\begin{equation*}
+L_g: G\rightarrow G,\ h \mapsto gh \text{ y } R_g:G\rightarrow G,\ h \mapsto hg,
+\end{equation*}
+dados por la multiplicación por la izquierda y por la derecha. También podemos definir el difeomorfismo de conjugación
+\begin{equation*}
+\mathrm{Ad}_g = L_g \circ R_{g^{-1}} = R_{g^{-1}} \circ L_g: G\rightarrow G,\ h\mapsto ghg^{-1}
+\end{equation*}
+
+\subsection{}
+Un campo vectorial $X\in \fX(G)$ es \emph{invariante por la izquierda} is $(L_g)_* X = X$ para todo $g\in G$; en otras palabras, si $X_g = d_1L_g(X_1)$ para todo $g\in G$. El corchete de Lie de dos campos invariantes por la izquierda es invariante por la izquierda; en efecto, si $X$ e $Y$ son invariantes por la izquierda entonces están $L_g$-relacionados consigo mismos, para todo $g$, y por tanto $[X,Y]$ está $L_g$-relacionado consigo mismo para todo $g$, de modo que $[X,Y]$ es $L_g$-invariante. Por tanto, el subespacio $\fX(G)^G\subset \fX(G)$ de los campos invariantes por la izquierda forma una subálgebra de Lie de $\fX(G)$. Nótese que un campo vectorial invariante por la izquierda está determinado por su valor en la identidad $1\in G$, de modo que tenemos un isomorfismo de espacios vectoriales
+\begin{equation*}
+\fX(G)^G \rightarrow T_1 G, \ X\mapsto X_1.
+\end{equation*}
+
+\begin{defn}
+El álgebra de Lie $\fg=\mathrm{Lie}(G):=(\fX(G)^G,[-,-])$ se denomina el \emph{álgebra de Lie de $G$}.
+\end{defn}
+
+\begin{defn}
+  Se denomina la \emph{aplicación exponencial} $\exp:\fg \rightarrow G$ a la aplicación que envía cada campo invariante por la izquierda $X\in \fg$ al elemento $\exp(X)=\varphi_X(1,1)\in G$, donde
+  \begin{equation*}
+\varphi_X: \RR \times G \rightarrow G
+  \end{equation*}
+es el flujo generado por el campo $X$.
+\end{defn}
+
+\subsection{} Nótese que, con esta definición, podemos escribir el flujo $\varphi_X:\RR \times G \rightarrow G$ generado por un campo $X\in \fg$ como
+\begin{equation*}
+\varphi_X(t,g) = g \exp(tX).
+\end{equation*}
+En efecto,
+\begin{equation*}
+\varphi_X(t,g) = \varphi_X(t,L_g(1)) = L_g \circ \varphi_{(L_g^{-1})_* X} (t,1) = L_g \circ \varphi_X(t,1) = g \exp(tX).
+\end{equation*}
+
+\subsection{} La aplicación de conjugación $\Ad_g:G\rightarrow G$ preserva la identidad, y por tanto su diferencial determina un endomorfismo $\ad_g=(\Ad_g)_*:\fg \rightarrow \fg$. Explícitamente
+\begin{equation*}
+\ad_g X = \left. \frac{d}{dt}\right|_{t=0} (g \exp(tX) g^{-1}).
+\end{equation*}
+Este endomorfismo preserva el corchete de Lie y es invertible, de modo que es un automorfismo de álgebras de Lie del álgebra de Lie $\fg$. Es decir, tenemos un homomorfismo de grupos
+\begin{equation*}
+\ad: G \rightarrow \Aut(\fg)
+\end{equation*}
+denominado la \emph{representación adjunta} de $G$. La diferencial de este homomorfismo en la identidad es la aplicación lineal
+\begin{equation*}
+d_1\ad: \fg \rightarrow \mathrm{End}(\fg),\ X \mapsto [X,-].
+\end{equation*}
+
+Veamos un par de ejemplos.
+
+\begin{prop}
+El álgebra de Lie de $\GL_n(\RR)$ es $\mathfrak{gl}_n(\RR)$ y la aplicación exponencial $\exp:\mathfrak{gl}_n(\RR)\rightarrow \GL_n(\RR)$ es la exponencial de matrices
+\begin{equation*}
+\exp(A) = e^A = \sum_{k=0}^\infty \frac{A^k}{k!}.
+\end{equation*}
+
+\end{prop}
+\begin{proof}
+Ya sabemos que $\mathrm{Lie}(\GL_n(\RR))$ es isomorfo a su espacio tangente en la identidad $\mathbb{I}_n \in \GL_n(\RR)$, pero como $\GL_n(\RR)\subset \mathfrak{gl}_n(\RR)$ es un subconjunto abierto, tenemos que el espacio tangente $T_{\mathbb{I}_n} \GL_n(\RR)$ es naturalmente isomorfo a $\mathfrak{gl}_n(\RR)$, al menos como espacio vectorial. Tenemos que ver entonces que el isomorfismo natural
+\begin{equation*}
+\fX(\GL_n(\RR))^{\GL_n(\RR)} \rightarrow \mathfrak{gl}_n(\RR), \ X\mapsto X_1
+\end{equation*}
+envía el corchete de Lie de campos al conmutador de matrices. Ahora bien, la inversa de este isomorfismo es la aplicación
+\begin{equation*}
+\gl_n(\RR)\rightarrow \fX(\GL_n(\RR))^{\GL_n(\RR)}, \ A \mapsto X_A,
+\end{equation*}
+con
+\begin{equation*}
+(X_A)_g = d_1 L_g (A) = gA,
+\end{equation*}
+ya que la multiplicación de matrices es lineal.
+Por tanto
+\begin{equation*}
+[X_A,X_B] = X_A\circ X_B - X_B\circ X_A,
+\end{equation*}
+donde
+\begin{equation*}
+(X_A \circ X_B)_g = \left. \frac{d}{dt} \right|_{t=0} (g\exp(tA) B) = gAB,
+\end{equation*}
+\begin{equation*}
+(X_B \circ X_A)_g = \left. \frac{d}{dt} \right|_{t=0} (g\exp(tB) A) = gBA.
+\end{equation*}
+Concluimos que
+\begin{equation*}
+[X_A,X_B]_g = g [A,B] = (X_{[A,B]})_g .
+\end{equation*}
+
+Ahora, por definición, la función $g:\RR \rightarrow \GL_n(\RR)$, $t \mapsto \exp(tA)$ es una solución de la ecuación diferencial
+\begin{equation*}
+\frac{dg}{dt} = g A
+\end{equation*}
+con condición inicial $g(0)=\mathbb{I}_n$. Pero la solución de este problema de valores iniciales es precisamente
+\begin{equation*}
+g(t)=g(0) e^{tA} = e^{tA}.
+\end{equation*}
+Por tanto, $\exp(tA)=e^{tA}$, para todo $t\in \RR$ y, en particular, para $t=1$ tenemos $\exp(A)=e^A$.
+\end{proof}
+
+\begin{prop}
+El álgebra de Lie del grupo ortogonal $\OO_n(\RR)$ es el álgebra de Lie $\so_n(\RR)$ formada por las matrices $n\times n$ antisimétricas, con el corchete de Lie dado por el conmutador de matrices.
+\end{prop}
+
+\begin{proof}
+  Recordemos que $\OO_n(\RR)$ es la subvariedad regular de $\GL_n(\RR)$ determinada por la ecuación
+  \begin{equation*}
+A^T A = \mathbb{I}_n.
+  \end{equation*}
+  Para calcular la condición lineal que determina $\so_n(\RR)\subset \gl_n(\RR)$ basta considerar una curva $t\mapsto A(t) \in \OO_n(\RR)$, con $A(0)=\mathbb{I}_n$, y derivar
+  \begin{equation*}
+0= \left. \frac{d}{dt} \right|_{t=0} (A(t)^T A(t)) = [A'(t)^T A(t) + A(t)^T A'(t)]_{t=0} = A'(0)^T + A'(0)  ,
+  \end{equation*}
+  de modo que la condición que determina $\so_n(\RR)$ es $A'=-(A')^T$, que es precisamente la condición de ser una matriz antisimétrica.
+\end{proof}
+
+\subsection{} El dual del álgebra de Lie $\fg$ de un grupo de Lie $G$ es el espacio $\Omega^1(G)^G$ de las $1$-formas invariantes por la izquierda. En general, se dice que una $k$-forma $\omega\in \Omega^k(G)$ es \emph{invariante por la izquierda} si $(L_g)^* \omega = \omega$, para todo $g\in G$. Nótese que, para todo $g\in G$,
+\begin{equation*}
+(L_g)^*d\omega = d (L_g)^* \omega = d\omega.
+\end{equation*}
+De modo que el álgebra
+\begin{equation*}
+\Omega^\bullet(G)^G = \bigoplus_{k} \Omega^k(G)^G
+\end{equation*}
+de las formas diferenciales invariantes por la izquierda es cerrada por la acción de la diferencial exterior $d$. En particular, el complejo de de Rham restringe a un complejo
+\begin{center}
+  \begin{tikzcd}
+0 \rar & \Omega^1(G)^G \rar{d} & \Omega^2(G)^G \rar{d} & \Omega^3(G)^G \rar{d} & \cdots
+  \end{tikzcd}
+\end{center}
+Ahora, la evaluación en la identidad determina un isomorfismo
+\begin{equation*}
+\Omega^\bullet(G)^G \longrightarrow \Lambda^\bullet T^*_eG = \Lambda^\bullet \fg^*,
+\end{equation*}
+de modo que el álgebra $\Omega^\bullet(G)^G$ se identifica con el álgebra de Chevalley--Eilenberg.
+
+\part{Geometría riemanniana}
+\section{Métricas riemannianas}
+\subsection{} Recordemos que un \emph{espacio afín} sobre un espacio vectorial real $V$ es un conjunto $A$ junto con una acción libre y transitiva por la derecha de $V$. (Decimos que $A$ es un $V$-torsor). Un \emph{espacio euclidiano} es un espacio afín $A$ sobre $V$ equipado con un producto escalar
+\begin{align*}
+  \langle-,-\rangle: V\times V & \longrightarrow \mathbb{R} ,
+\end{align*}
+que recordamos que es una forma bilineal simétrica y definida positiva. Recordemos también que una base $\left\{ e_1,\dots,e_n \right\}$ de $V$ se denomina \emph{ortonormal} si $\langle e_i, e_j \rangle = \delta_{ij}$. El algoritmo de Gram--Schmidt permite producir una base ortonormal a partir de una base cualquiera.
+
+\begin{defn}
+  Una \emph{métrica riemanniana} (o, simplemente, una \emph{métrica}) en una variedad diferenciable $M$ es una elección de producto escalar $\langle-,-\rangle_x:T_xM \times T_xM \rightarrow \RR$ en cada espacio tangente, que depende del punto $x$ de forma diferenciable. Equivalentemente, una métrica riemanniana es un tensor simétrico de tipo $(0,2)$, es decir $g\in \mathcal{S}^0_2(M)$.
+
+  Un par $(M,g)$ formado por una variedad diferenciable con una métrica riemanniana en ella, se denomina una \emph{variedad riemanniana}. Una \emph{isometría} entre dos variedades Riemannianas $(M_1,g_1)$ y $(M_2,g_2)$ es una aplicación diferenciable  $f:M\rightarrow N$ tal que $f^*g_2 = g_1$.
+\end{defn}
+
+\subsection{Existencia} La existencia de métricas Riemannianas en cualquier variedad diferenciable es clara. Basta tomar, para cada sistema de coordenadas local $\bm{x}:U\rightarrow \RR^n$, el pullback del producto escalar estándar en $\RR^n$. Es decir, tomamos la métrica Riemanniana $g_U$ en $U$ tal que la base $\left\{ \partial_i:i=1,\dots,n \right\}$ es ortonormal. Para recuperar una métrica definida globalmente, basta tomar una partición diferenciable de la unidad $\rho_U$ subordinada a la familia de abiertos $U$ y definir
+\begin{equation*}
+g = \sum_{U} \rho_U g_U.
+\end{equation*}
+
+\subsection{} Tomando coordenadas locales $x^1,\dots,x^n$ en $U\subset M$, podemos escribir una métrica como
+\begin{equation*}
+g = g_{ij} dx^i dx^j,
+\end{equation*}
+donde $g_{ij}:U\rightarrow \RR$ cumple
+\begin{equation*}
+g_{ij}(x) = \langle \partial_i|_x, \partial_j|_x \rangle_x.
+\end{equation*}
+
+\subsection{} Nótese que una métrica riemanniana $g$ en una $n$-variedad orientada $M$ tiene asociada de forma natural una forma de volumen $d \mathrm{vol}_g \in \Omega^n(M)$ definida como sigue. Para cada $p\in M$, se toma una base ortonormal positiva $e_1,\dots,e_n$ del espacio tangente $TM$, con base dual $\theta^1,\dots,\theta^n$, y se toma $d\mathrm{vol}_g=\theta^1\wedge \cdots \wedge \theta^n$. Esta forma está bien definida ya que, si se toma otra base ortonormal positiva $e_1',\dots,e_n'$, ésta difiere de $e_1,\dots,e_n$ por una matriz $A \in \mathrm{SO}_n(\RR)$, de modo que \[(\theta')^1\wedge \cdots \wedge (\theta')^n=\det(A) \theta^1\wedge \cdots \wedge \theta^n = \theta^1\wedge \cdots \wedge \theta^n.\]
+
+Si $x^1,\dots,x^n$ son coordenadas locales, entonces podemos escribir
+\begin{equation*}
+d \mathrm{vol}_g = \sqrt{\det(g_{ij})} dx^1\wedge \cdots \wedge dx^n.
+\end{equation*}
+
+
+\subsection{} Si consideramos el espacio euclidiano $\mathbb{R}^n$ con su producto escalar estándar, cualquier subvariedad $M\subset \mathbb{R}^n$ hereda una métrica al restringir el producto escalar a cada espacio tangente. Este es el tipo de variedades riemannianas que se estudiaron en la geometría diferencial clásica. En particular, se estudiaron las $1$-variedades en $\RR^2$ y en $\RR^3$ (las \emph{curvas planas} y las \emph{curvas en el espacio}, respectivamente) y las $2$-variedades en $\RR^3$ (las \emph{superficies en el espacio}).
+
+\subsection{} Supongamos que $x^1,\dots,x^n$ e $y^1,\dots,y^n$ son dos sistemas de coordenadas locales en una variedad $M$, y supongamos que una métrica $g$ se puede escribir en estas coordenadas como
+\begin{equation*}
+g= g_{ij} dx^idx^j = h_{ab} dy^a dy^b.
+\end{equation*}
+Entonces,
+\begin{equation*}
+g_{ij} = h_{ab} \frac{\partial y^a}{\partial x^i} \frac{\partial y^b}{\partial x^j}.
+\end{equation*}
+
+\subsection{Subir y bajar índices} Un producto escalar $\langle-,-\rangle: V\times V \rightarrow \RR$, al ser definido positivo, determina un isomorfismo $V\rightarrow V^*$, que envía cada $v\in V$ a la forma lineal $\langle v,-\rangle: V\rightarrow \RR$. A su vez, precomponiendo con este isomorfismo, se obtiene un producto escalar en $V^*$.
+
+De igual manera, una métrica Riemanniana en una variedad $M$ determina el denominado \emph{isomorfismo musical} $TM \rightarrow T^*M$, que envía cada campo vectorial $X \in \fX(M)$ a la $1$-forma $X^\sharp=g(X,-) \in \Omega^1(M)$. Componiendo con este isomorfismo, se obtiene un tensor simétrico $g^\sharp$ de tipo $(2,0)$, es decir $g^\sharp \in \mathcal{S}^2_0(M)$, denominado el \emph{tensor métrico inverso}. En coordenadas, denotamos
+\begin{equation*}
+g^\sharp = g^{ij} \partial_i \partial_j.
+\end{equation*}
+Además, se cumple la identidad
+\begin{equation*}
+g^{ik} g_{kj} = \delta^i_j.
+\end{equation*}
+Para cambiar de coordenadas, tenemos la fórmula
+\begin{equation*}
+h^{ab} = g^{ij} \frac{\partial y^a}{\partial x^i} \frac{\partial y^b}{\partial x^j}.
+\end{equation*}
+
+En más generalidad, permite intercambiar partes covariantes y partes contravariantes de cualquier tensor, definiendo, para $T\in \mathcal{T}^k_{l}(M)$,
+\begin{equation*}
+ T^{\dots i}_{\dots} := g^{ij} T^{\dots}_{\dots j \dots} \in \mathcal{T}^{k+1}_{l-1}(M).
+\end{equation*}
+
+\subsection{Gradiente, divergencia y laplaciano} \todo{Completar}
+
+\section{Simetrías y estructuras geométricas}
+
+\subsection{El programa de Erlangen}
+Con motivo de su ingreso en la Universidad de Erlangen (Alemania), Felix Klein publicó su famoso ``\textit{Erlanger Programm}'', uno de los trabajos más influyentes en la geometría de todos los tiempos. La idea fundamental que propuso Klein es que entender una estructura geométrica esencialmente corresponde a entender su \emph{grupo de transformaciones}. Esta idea ha trascendido hasta nuestros tiempos, y vamos a explicar cómo se manifiesta en las geometrías que ya hemos explorado: la geometría lineal, la geometría afín, la geometría euclidiana y la geometría riemanniana.
+
+\subsection{Geometría lineal} El grupo de automorfismos de un espacio vectorial $V$ es el grupo general lineal \[\mathrm{GL}(V)=\mathrm{Aut}(V) = \left\{ f:V\rightarrow V \text{ lineal e invertible} \right\}.\]
+Si $V=\RR^n$, entonces $\mathrm{GL}(V)=\mathrm{GL}_n(\RR)$ es el grupo general lineal formado por las matrices $n\times n$ invertibles. En particular, $\mathrm{GL}_1(\RR)=\RR^\times$.
+
+Si $V$ tiene dimensión $n$, el conjunto $\cB(V)$ de sus bases se identifica con
+\begin{equation*}
+\cB(V) = \left\{b: \RR^n \overset{\sim}{\rightarrow} V \text{ isomorfismo lineal}\right\}.
+\end{equation*}
+Si $V=\RR^n$, entonces simplemente $\cB(\RR^n)=\GL_n(\RR)$, pero en general $\cB(V)$ es un torsor para el grupo $\GL_n(\RR)$. Es decir, existe una acción libre y transitiva por la derecha de $\GL_n(\RR)$ en $\cB(V)$. Esta acción es la acción de ``cambio de base'': dada $g:\RR^n\rightarrow \RR^n$ lineal e invertible, definimos
+\begin{equation*}
+b\cdot g = b\circ g.
+\end{equation*}
+
+\subsection{Geometría afín} Un espacio afín $A$ sobre un espacio vectorial $V$ es un $V$-torsor, de modo que dados dos puntos $a,b \in A$, podemos definir el ``vector que los une'' $a-b \in V$. Una aplicación afín $f:A\rightarrow A$ de un espacio afín en sí mismo es una aplicación tal que existe una aplicación lineal $g:V\rightarrow V$ que cumple
+\begin{equation*}
+f(a)-f(b) = g(a-b),
+\end{equation*}
+para cualesquiera dos puntos $a,b\in A$. Denotamos por $\mathrm{Aff}(A)$ el grupo de las aplicaciones afines invertibles. La asignación $f\mapsto g$ define una aplicación $\mathrm{Aff}(A)\rightarrow \mathrm{GL}(V)$ que exhibe $\mathrm{Aff}(A)$ como una extensión
+\begin{center}
+  \begin{tikzcd}
+0 \rar & V \rar & \mathrm{Aff}(A) \rar & \mathrm{GL}(V) \rar & 1,
+  \end{tikzcd}
+\end{center}
+donde la aplicación $V\rightarrow \mathrm{Aff}(A)$ está determinada por la acción de traslación de $V$ en $A$. Esta extensión escinde al elegir un punto base $a_0$ de $A$. En ese caso, podemos escribir todo punto $a$ de $A$ como $a=a_0+v$ para un único vector $v\in V$ y, para toda aplicación lineal $g:V\rightarrow V$, la aplicación $f(a+v)=a+g(v)$ es una aplicación afín.
+
+Una referencia afín está dada por un par $(a,b)$, donde $a\in A$ es un punto y $b:\RR^n\rightarrow V$ es una base; equivalentemente, una referencia está dada por un isomorfismo de espacios afines $\mathbb{A}^n \rightarrow A$, donde $\mathbb{A}^n$ es el espacio afín estándar. De igual forma, el conjunto $\cB(A)$ de las referencias afines de $A$ es un torsor para el grupo $\mathrm{Aff}_n(\RR)=\mathrm{Aff}(\mathbb{A}^n)$ de automorfismos afines del espacio afín estándar.
+
+\subsection{Geometría euclidiana} Si $(V,\langle-,-\rangle)$ es un espacio vectorial con un producto escalar, se define el correspondiente grupo ortogonal $\mathrm{O}(V,\langle-,-\rangle)\subset \mathrm{GL}(V)$ como el subgrupo de los automorfismos lineales de $V$ que preservan el producto escalar. Es decir,
+\begin{equation*}
+\mathrm{O}(V,\langle-,-\rangle) = \left\{ f:V\rightarrow V: \langle fv,fw\rangle = \langle v,w \rangle, \  \forall v,w \in V \right\}.
+\end{equation*}
+Si $(V,\langle-,-\rangle)$ es $\RR^n$ con el producto escalar estándar, entonces su grupo ortogonal es el subgrupo $\mathrm{O}_n(\RR)\subset \mathrm{GL}_n(\RR)$ de las matrices ortogonales, que son aquellas $A$ que satisfacen
+\begin{equation*}
+A A^T = \mathbb{I}.
+\end{equation*}
+
+Nótese que $\mathrm{O}_1(\RR)$ se identifica con el grupo de dos elementos $\left\{ \pm 1 \right\}$, mientras que $\mathrm{O}_n(\RR)$ tiene en general dos componentes conexas. La componente conexa neutra, denotada por $\mathrm{SO}_n(\RR)$, contiene a las matrices ortogonales con determinante $1$, que son precisamente aquellas que determinan las \emph{rotaciones} del espacio $n$-dimensional. La otra componente conexa contiene a las composiciones de las rotaciones con las \emph{reflexiones}, que tienen determinante $-1$.
+
+Más generalmente, los automorfismos $\mathrm{Euc}(E)$ de un espacio euclidiano $E$ son aquellos automorfismos afines que preservan el producto escalar en cada punto. De igual manera, tenemos una extensión
+\begin{center}
+  \begin{tikzcd}
+0 \rar & V \rar & \mathrm{Euc}(E) \rar & \mathrm{O}(V,\langle-,-\rangle) \rar & 1.
+  \end{tikzcd}
+\end{center}
+El grupo $\mathrm{Euc}_n(\RR)=\mathrm{Euc}(\RR^n)$ del espacio euclidiano estándar se denomina el grupo euclidiano.
+
+\subsection{Geometría riemanniana} Sea $M$ una variedad diferenciable. El papel del torsor de bases lo juega ahora el llamado \emph{fibrado de referencias}
+\begin{equation*}
+\cB(M) = \left\{ (x,b): x\in M, b:\RR^n \overset{\sim}{\rightarrow} T_x M \text{ isomorfismo lineal} \right\},
+\end{equation*}
+que está dotado de una acción de $\mathrm{GL}_n(\RR)$ por cambio de base y de una proyección natural $\pi:\cB(M)\rightarrow M$, $(x,b)\mapsto x$. Esta proyección determina un espacio fibrado sobre $M$ cuyas fibras son torsores para el grupo $\mathrm{GL}_n(\RR)$. Este es el primer ejemplo de un \emph{fibrado principal}. Un sistema de coordenadas $\bm{x}:U\rightarrow \RR^n$ determina una sección $U\rightarrow \cB(M)$ dada por
+\begin{equation*}
+(x^1,\dots,x^n) \mapsto \left( (x^1,\dots,x^n), (\partial_1,\dots,\partial_n) \right).
+\end{equation*}
+
+Si además $M$ está equipada con una métrica riemanniana, podemos considerar el \emph{fibrado de referencias ortonormales}
+\begin{equation*}
+\cB_{\mathrm{O}}(M) = \left\{ (x,b): x\in M, b:\RR^n \overset{\sim}{\rightarrow} T_x M \text{ isometría} \right\}.
+\end{equation*}
+De nuevo, la proyección natural a $M$ determina un fibrado cuyas fibras son torsores para $\mathrm{O}_n(\RR)$. Sin embargo, no cabe esperar a priori que unas coordenadas locales vayan a determinar una sección de este fibrado, ya que, como veremos, no toda variedad riemanniana es localmente isométrica al espacio euclidiano estándar. Veremos que, de hecho, existe una obstrucción natural a la existencia de esta isometría: la curvatura.
+
+\section{Curvatura intrínseca}
+
+\begin{prop}[Parametrización por el arco]
+Todas las $1$-variedades Riemannianas son localmente isométricas. Concretamente: si $(C,g)$ es una $1$-variedad Riemanniana difeomorfa a $\RR$, entonces $C$ es isométrica al espacio euclidiano $\RR$ con su producto escalar estándar.
+\end{prop}
+
+\begin{proof}
+  En efecto, la prueba consiste en parametrizar por el arco. Un difeomorfismo $C\rightarrow \RR$ define una coordenada global $x$ en $C$. Definimos $g(x)=\langle \partial_x,\partial_x\rangle_x$ y buscamos una nueva coordenada $y$ tal que $h(y)=\langle \partial_y,\partial_y\rangle_y=1$. Por tanto, tenemos
+  \begin{equation*}
+g = h \frac{\partial y}{\partial x} \frac{\partial y}{\partial x} = \left( \frac{\partial y}{\partial x} \right)^2.
+  \end{equation*}
+  Por tanto, podemos fijar un punto $x_0 \in C$ y definir
+  \begin{equation*}
+y(x) = \int_{x_0}^x \sqrt{g(t)} dt,
+  \end{equation*}
+que satisface la ecuación anterior y por tanto es una isometría.
+\end{proof}
+
+\subsection{} Una pregunta natural es si el resultado anterior generaliza a dimensión superior. Veremos que esto no es cierto, ya que existe un invariante local, llamado la \emph{curvatura}, que debe ser preservado por isometrías, y que no siempre ha de anularse.
+
+En efecto, para generalizar el resultado anterior, queremos hallar un sistema de coordenadas $\bm{y}$, con $h_{ab}=\langle \partial_{y^a},\partial_{y^b} \rangle = \delta_{ab}$ tal que
+\begin{equation*}
+g_{ij} = h_{ab} \frac{\partial y^a}{\partial x^i} \frac{\partial y^b}{\partial x^j} = \sum_a \frac{\partial y^a}{\partial x^i} \frac{\partial y^a}{\partial x^j}.
+\end{equation*}
+Nos encontramos ahora con un sistema de ecuaciones en derivadas parciales, y nos preguntamos por la existencia de soluciones. Veremos que existe una obstrucción a esta existencia.
+
+Comenzamos derivando
+\begin{equation*}
+\frac{\partial g_{ij}}{\partial x^k} = \sum_a \frac{\partial^2 y^a}{\partial x^k \partial x^i} \frac{\partial y^a}{\partial x^j} +  \frac{\partial y^a}{\partial x^i}\frac{\partial^2 y^a}{\partial x^k \partial x^j}.
+\end{equation*}
+Permutando índices, obtenemos
+\begin{equation*}
+\frac{\partial g_{ik}}{\partial x^j} = \sum_a \frac{\partial^2 y^a}{\partial x^j \partial x^i} \frac{\partial y^a}{\partial x^k} +  \frac{\partial y^a}{\partial x^i}\frac{\partial^2 y^a}{\partial x^j \partial x^k},
+\end{equation*}
+\begin{equation*}
+\frac{\partial g_{jk}}{\partial x^i} = \sum_a \frac{\partial^2 y^a}{\partial x^i \partial x^j} \frac{\partial y^a}{\partial x^k} +  \frac{\partial y^a}{\partial x^j}\frac{\partial^2 y^a}{\partial x^i \partial x^k}.
+\end{equation*}
+Sumamos las dos primeras y restamos la tercera para obtener
+\begin{equation*}
+\frac{1}{2} \left( \frac{\partial g_{ij}}{\partial x^k} + \frac{\partial g_{ik}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^i} \right) = \sum_a \frac{\partial y^a}{\partial x^i}\frac{\partial^2 y^a}{\partial x^j \partial x^k}.
+\end{equation*}
+Multiplicamos ahora por $\frac{\partial y^b}{\partial x^l} g^{li}$ y concluimos
+\begin{equation*}
+\frac{\partial y^b}{\partial x^l} \left[ \frac{g^{li}}{2} \left( \frac{\partial g_{ij}}{\partial x^k} + \frac{\partial g_{ik}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^i} \right)  \right] = \sum_a \frac{\partial^2 y^a}{\partial x^j \partial x^k}g^{li}\frac{\partial y^a}{\partial x^i}\frac{\partial y^b}{\partial x^l} =\frac{\partial^2 y^b}{\partial x^j \partial x^k} ,
+\end{equation*}
+donde hemos usado que $g^{li} \frac{\partial y^a}{\partial x^i}\frac{\partial y^b}{\partial x^l} = h^{ab} = \delta^{ab}$.
+
+Definimos ahora los \emph{símbolos de Christoffel} como
+\begin{equation*}
+\Gamma^{l}_{jk} = \frac{g^{li}}{2} \left( \frac{\partial g_{ij}}{\partial x^k} + \frac{\partial g_{ik}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^i} \right)
+\end{equation*}
+y concluimos que
+\begin{equation*}
+\frac{\partial^2 y^a}{\partial x^j \partial x^k} = \Gamma^i_{jk}\frac{\partial y^a}{\partial x^i}.
+\end{equation*}
+
+Si volvemos a derivar con respecto a $x^l$, obtenemos
+\begin{equation*}
+\frac{\partial^3 y^a}{\partial x^l \partial x^j \partial x^k} = \frac{\partial \Gamma^i_{jk}}{\partial x^l} \frac{\partial y^a}{\partial x^i} + \Gamma^i_{jk} \frac{\partial^2 y^a}{\partial x^l \partial x^i} = \left( \frac{\partial \Gamma^i_{jk}}{\partial x^l} + \Gamma^m_{jk} \Gamma^i_{ml} \right) \frac{\partial y^a}{\partial x^i}.
+\end{equation*}
+Como las derivadas mixtas parciales conmutan, tenemos que, para cada $a$, el siguiente término se tiene que anular
+\begin{equation*}
+R^i_{jkl} \frac{\partial y^a}{\partial x^i} =\frac{\partial^3 y^a}{\partial x^k \partial x^j \partial x^l} - \frac{\partial^3 y^a}{\partial x^l \partial x^j \partial x^k} =\left( \frac{\partial \Gamma^i_{jl}}{\partial x^k} - \frac{\partial \Gamma^i_{jk}}{\partial x^l} +\Gamma^{m}_{jl} \Gamma^i_{mk} - \Gamma^m_{jk}\Gamma^i_{ml}  \right) \frac{\partial y^a}{\partial x^i} .
+\end{equation*}
+El término
+\begin{equation*}
+R^{i}_{jkl} = \frac{\partial \Gamma^i_{jl}}{\partial x^k} - \frac{\partial \Gamma^i_{jk}}{\partial x^l} +\Gamma^{m}_{jl} \Gamma^i_{mk} - \Gamma^m_{jk}\Gamma^i_{ml}
+\end{equation*}
+define un tensor de tipo $(1,3)$, $R\in \mathcal{T}^1_3(M)$, denominado el \emph{tensor de curvatura de Riemann}.
+
+Hemos demostrado lo siguiente:
+
+\begin{prop}
+  Si una variedad Riemanniana es localmente isomorfa al espacio euclidiano $\RR^n$ con su producto escalar estándar, entonces se tiene
+  \begin{equation*}
+R=0.
+  \end{equation*}
+\end{prop}
+
+En lo que sigue, veremos numerosos ejemplos de variedades para las cuales $R\neq0$.
+
+\section{Curvatura extrínseca: Curvas planas}
+
+\subsection{} Sea $E$ un plano euclidiano. Una \emph{curva no singular} en $E$ es una subvariedad regular $C\subset E$ de dimensión 1 equipada con una orientación de la dirección normal a $C$. El producto escalar en $E$ induce una métrica riemanniana en $C$. La elección de la orientación normal prescribe una elección de \emph{vector normal unitario} $\bm{n}$ que se define como el vector unitario (con respecto al producto escalar en $E$) en dirección normal a $C$ y en el sentido prescrito por la orientación. Existen dos elecciones posibles para el \emph{vector tangente unitario}
+$\bm{t}$
+que es un vector unitario perpendicular a $\bm{n}$.
+
+\subsection{} Una \emph{parametrización por el arco} de $C$ en un abierto $U\subset C$ es una isometría $\gamma:\RR\rightarrow U$. Si $\gamma$ es una parametrización por el arco, con coordenada $s$, entonces
+\begin{equation*}
+\bm{t} = \frac{\partial}{\partial s}
+\end{equation*}
+determina una elección del vector tangente unitario. Nótese que, para $s\in \RR$, tenemos
+\begin{equation*}
+\bm{t}(s):= \bm{t}|_{x(s)} = \left. \frac{\partial}{\partial s} \right|_{x(s)} = \frac{d\gamma}{ds}.
+\end{equation*}
+
+\subsection{Curvatura de una curva}
+Por la simetría del producto escalar y por regla de Leibniz, tenemos que
+\begin{equation*}
+2\left \langle \frac{d\bm{t}}{ds}, \bm{t} \right \rangle = \frac{d}{ds} \langle \bm{t},\bm{t}\rangle = 0.
+\end{equation*}
+Por tanto, podemos escribir
+\begin{equation*}
+\frac{d\bm{t}}{ds}(s) = \kappa(x(s)) \bm{n}|_{x(s)},
+\end{equation*}
+donde $\kappa:C\rightarrow \RR$ es una función denominada la \emph{curvatura} de $C\subset E$.
+
+\subsection{} Podemos dar un argumento equivalente utilizando formas diferenciales con coeficientes en el espacio vectorial $V$ subyacente a $E$. Estos espacios $\Omega^k(C;V)$ de formas diferenciales $V$-valoradas se definen como los espacios de secciones de los fibrados $\Lambda^k T^*M \otimes_{\RR} V$. La diferencial exterior y demás operaciones extienden a $\Omega^k(C;V)$ de forma natural. Podemos ver los vectores tangente y normal unitarios $\bm{t}$ y $\bm{n}$ como funciones $C\rightarrow V$. Es decir, $\bm{t},\bm{n}\in \Omega^0(C;V)$. Por la regla de Leibniz, tenemos que
+\begin{equation*}
+\langle d \bm{t},\bm{n}\rangle + \langle\bm{t},d\bm{n} \rangle = 0,
+\end{equation*}
+de modo que existe una $1$-forma $\alpha \in \Omega^1(C)$ tal que
+\begin{equation*}
+d\bm{t} = \alpha \bm{n} \text{ y } d\bm{n} = -\alpha \bm{t}.
+\end{equation*}
+
+Denotamos por $\theta^1,\theta^2 :C\rightarrow V^*$ la base dual a $\bm{t},\bm{n}$. Tenemos que, si denotamos por $i:C\hookrightarrow E$  la inclusión, entonces $i^* \theta^1 \in \Omega^1(C)$ es una $1$-forma en $C$, y podemos escribir
+\begin{equation*}
+\alpha = \kappa i^* \theta^1,
+\end{equation*}
+para una cierta función $\kappa:C\rightarrow \RR$. De nuevo, esta función es la curvatura de $C\subset E$.
+
+\begin{ej}
+  Sea $C$ la circunferencia de radio $R$ en el plano eucliano estándar $\RR^2$. Esta curva admite una parametrización local $\gamma:\RR\rightarrow C$, $\phi\mapsto (R\cos \phi, R\sin \phi)$. Si tomamos la orientación dada por la dirección normal apuntando hacia dentro de la circunferencia, tenemos
+  \begin{equation*}
+\bm{n} = -\cos \phi \frac{\partial}{\partial x} - \sin \phi \frac{\partial}{\partial y}.
+  \end{equation*}
+Tomamos como vector tangente el que apunta en sentido antihorario a lo largo del círculo
+\begin{equation*}
+\bm{t} = - \sin \phi \frac{\partial}{\partial x} + \cos \phi \frac{\partial}{\partial y}.
+\end{equation*}
+La base dual es
+\begin{equation*}
+\theta^1 = -\sin \phi\ d x + \cos \phi\ dy
+\end{equation*}
+\begin{equation*}
+\theta^2 = -\cos \phi\ dx - \sin \phi\ dy.
+\end{equation*}
+De modo que
+\begin{equation*}
+i^* \theta^1  = -\sin{\phi}\ d(R\cos{\phi}) + \cos{\phi}\ d(R\sin{\phi}) = R \sin^2{\phi}\ d\phi + R \cos^2{\phi}\ d\phi = Rd\phi.
+\end{equation*}
+Por otra parte,
+\begin{equation*}
+d\bm{t} = -\cos \phi\ d\phi \frac{\partial}{\partial x} - \sin \phi\ d\phi \frac{\partial}{\partial y} = (d\phi) \bm{n}.
+\end{equation*}
+Por tanto,
+\begin{equation*}
+\alpha = d\phi = \frac{1}{R} i^* \theta^1,
+\end{equation*}
+de modo que la curvatura de la circunferencia de radio $R$ es
+\begin{equation*}
+\kappa = \frac{1}{R}.
+\end{equation*}
+\end{ej}
+
+\subsection{Aplicación de Weingarten} Otra forma de obtener la curvatura de una curva es mediante la aplicación de Weingarten. En primer lugar, observamos que como el vector normal unitario es unitario (por construcción), éste determina una aplicación \[\bm{n}:C\rightarrow S(V),\] donde $S(V)\subset V$ es la circunferencia unidad, es decir
+\begin{equation*}
+S(V) = \left\{ v\in V: \langle v,v\rangle = 1 \right\}.
+\end{equation*}
+Esta aplicación es diferenciable, por construcción, y su diferencial en un punto $p\in C$ es la llamada \emph{aplicación de Weingarten}
+\begin{align*}
+S_p=- d_p\bm{n} : T_pC  \rightarrow T_{\bm{n}(p)} S(V).
+\end{align*}
+El espacio tangente $T_{\bm{n}(p)}S(V)$ está generado por el vector tangente unitario $\bm{t}_p$, de modo que podemos escribir
+\begin{equation*}
+S_p(\bm{t}_p) = \lambda \bm{t}_p,
+\end{equation*}
+para un cierto número $\lambda \in \RR$, pero resulta que este número es precisamente $\kappa(p)$. En efecto,
+\begin{equation*}
+\lambda \bm{t}_p =-d_p\bm{n}(\bm{t}_p) =- (d\bm{n})_p(\bm{t}_p) = \alpha_p(\bm{t}_p) \bm{t}_p = \kappa (i^*\theta^1)_p(\bm{t}_p) \bm{t}_p = \kappa \bm{t}_p.
+\end{equation*}
+
+\subsection{Prescribir la curvatura} Consideramos ahora el siguiente problema:
+
+Dada una $1$-variedad $C$ y una función $\kappa:C\rightarrow \RR$, construir una inmersión $i:C\rightarrow E$, junto con una orientación de la dirección normal a $i(C)$, de modo que $\kappa$ es la curvatura de $i(C)$.
+
+La forma natural de atacar este problema es considerar el fibrado de referencias ortonormales $\cB_{\mathrm{O}}(E)\rightarrow E$. Un punto de este fibrado es una terna $(p;e_1,e_2)$, donde $p\in E$ es un punto y $(e_1,e_2)$ es una base ortonormal de $V$. En particular, en este caso el fibrado de referencias escinde de forma natural como un producto $\cB_{\mathrm{O}}(E)=E\times \cB_{\mathrm{O}}(V)$.
+Lo que queremos construir es una inmersión $i:C\rightarrow E$ junto con una elevación $\tilde{i}:C\rightarrow \cB_{\mathrm{O}}(E)$ de modo que el siguiente diagrama conmute
+\begin{center}
+  \begin{tikzcd}
+    & \cB_{\mathrm{O}}(E) \ar{d}{\pi} \\
+    C \ar{ru}{\tilde{i}} \ar{r}{i} & E.
+  \end{tikzcd}
+\end{center}
+La elevación $\tilde{i}$ puede escribirse como una terna $\tilde{i}=(i,e_1,e_2)$. Fijemos una parametrización local $\RR \rightarrow C$, con coordenada $s$, y denotemos por $\gamma,\bm{t},\bm{n}:\RR\rightarrow E$ las composiciones de $i$, $e_1$ y $e_2$, respectivamente, con la parametrización. La terna $(\gamma,\bm{t},\bm{n})$ ha de ser una solución de la ecuación diferencial
+\begin{equation*}
+d\begin{pmatrix}
+\gamma & \bm{t} & \bm{n}
+\end{pmatrix} = \begin{pmatrix}
+\gamma & \bm{t} & \bm{n}
+\end{pmatrix}
+\begin{pmatrix}
+  0 & 0 & 0 \\
+  ds & 0 & -\kappa ds \\
+  0 & \kappa ds & 0
+\end{pmatrix}.
+\end{equation*}
+
+Denotamos
+\begin{equation*}
+  A(s)=
+\begin{pmatrix}
+  0 & 0 & 0 \\
+  ds & 0 & -\kappa(s) \\
+  0 & \kappa(s) & 0
+\end{pmatrix}.
+\end{equation*}
+Esta matriz $A(s)$ ha de interpretarse como un campo vectorial dependiente del parámetro $s$ en la variedad $\cB_{\mathrm{O}}(E)$. En efecto, si $P(s)$ es una curva en $\mathrm{O}_2(\RR)$ con $P(0)=\mathbb{I}$, entonces $P^T P =\mathbb{I}$. Tenemos entonces
+\begin{equation*}
+0=\left. \frac{d}{ds} \right|_{s=0} (P^T P) = [P'(s)^T P(s) + P(s)^T P'(s)]_{s=0} = P'(0)^T + P'(0).
+\end{equation*}
+De modo que $T_{\mathbb{I}} O_2(\RR)$ es la recta de las matrices $2\times 2$ antisimétricas sobre $\RR$. En particular, la matriz
+\begin{equation*}
+\begin{pmatrix}
+  0 & - \kappa \\
+  \kappa & 0
+\end{pmatrix}
+\end{equation*}
+es una de estas matrices, de modo que $A(s)$ puede verse como un campo en $\cB_{\mathrm{O}}(E)$ dependiente de $s$.
+
+El teorema de existencia y unicidad de soluciones para sistemas de ecuaciones diferenciales de orden $1$ implica que, dados un punto inicial $p\in C$ y unos vectores unitarios perpendiculares $\bm{t}_0,\bm{n}_0 \in E$, existen un $\varepsilon > 0$ y unas únicas aplicaciones diferenciables $\gamma,\bm{t},\bm{n}:(-\varepsilon,\varepsilon)\rightarrow E$ con $\gamma(0)=p$, $\bm{t}(0)=\bm{t}_0$ y $\bm{n}(0)=\bm{n}_0$ y tales que
+\begin{equation*}
+\frac{d}{ds}\begin{pmatrix}
+\gamma(s) & \bm{t}(s) & \bm{n}(s)
+\end{pmatrix} = \begin{pmatrix}
+\gamma(s) & \bm{t}(s) & \bm{n}(s)
+\end{pmatrix} A(s).
+\end{equation*}
+Además, esta solución se puede prolongar a un intervalo maximal $I \subset \RR$.
+
+\section{Superficies en el espacio}
+
+\subsection{} Sea $E$ un espacio euclidiano $3$-dimensional. Una \emph{superficie no singular} en $E$ es una subvariedad regular $S\subset E$ de dimensión $2$ equipada con una orientación de la dirección normal a $S$. El producto escalar en $E$ induce una métrica riemanniana $g$ en $S$; clásicamente, a esta métrica riemanniana se le llama la \emph{primera forma fundamental}, y se denota por $g_p=I_p$. Igual que en curvas, la orientación normal determina un vector normal unitario $\bm{n}$. La correspondiente aplicación
+\begin{equation*}
+\bm{n}: S \rightarrow S(E),
+\end{equation*}
+donde $S(E)\subset E$ es la esfera unidad en $E$, se denomina la \emph{aplicación de Gauss}.
+De nuevo, podemos considerar la \emph{aplicación de Weingarten}, para cada $p\in S$
+\begin{equation*}
+S_p = -d_p \bm{n}: T_pS \rightarrow T_p S(E).
+\end{equation*}
+De nuevo, la elección de $\bm{n}$ induce un isomorfismo
+\begin{equation*}
+T_pS \cong \ker \langle\bm{n},-\rangle \cong T_p S(E),
+\end{equation*}
+de modo que podemos ver la aplicación de Weingarten como un operador
+\begin{equation*}
+S_p:T_pS\rightarrow T_pS.
+\end{equation*}
+
+\subsection{Curvatura, operador de forma y segunda forma fundamental} Una forma de introducir una noción de curvatura para $S$ es considerar, para cada $p\in S$, la aplicación
+\begin{equation*}
+\kappa_p: \mathbb{P}(T_p S) \rightarrow \RR,
+\end{equation*}
+que asigna a cada recta $L\subset T_pS$ la curvatura de la curva $S\cap \Pi(L)$, obtenida como la intersección de $S$ con el plano $\Pi(L)\subset E$ que contiene a $L$ y pasa por $p$.
+
+Por el teorema de la función inversa, podemos ver localmente la superficie $S$ como la gráfica de una función $F:T_pS\rightarrow \RR$ con $F(0)=0$ y $d_0 F=0$. Se denomina la \emph{segunda forma fundamental} al hessiano
+\begin{equation*}
+II_p:=\mathrm{Hess}_p F: T_pS \times T_p S \rightarrow \RR.
+\end{equation*}
+La función $\kappa_p$ mide la segunda derivada de $F$, en el sentido de que se tiene, para cada recta $L\subset T_pS$, y para cada vector unitario $v\in L$,
+\begin{equation*}
+II_p(v,v) = \kappa_p(L).
+\end{equation*}
+
+Como la primera forma fundamental $I_p=g_p$ es no degenerada, ha de existir un operador $S_p:T_pS \rightarrow T_pS$, llamado el \emph{operador de forma}, de modo que
+\begin{equation*}
+II_p(v,w) = I_p(v,S_p(w)).
+\end{equation*}
+
+\begin{lemma}
+El operador de forma $S_p$ coincide con la aplicación de Weingarten.
+\end{lemma}
+
+\begin{proof}
+  Tomamos ``coordenadas euclidianas'' $x$ y $y$ en el espacio afín tangente $p+T_p S \subset E$ y definimos $F=F(x,y)$ de modo que en un entorno de $p$, tenemos que $S$ es la gráfica de $F$. Entonces
+  \begin{equation*}
+\bm{n}(x,y) = \frac{(\frac{\partial F}{\partial x}, \frac{\partial F}{\partial y}, 1)}{\lVert (\frac{\partial F}{\partial x}, \frac{\partial F}{\partial y}, 1)\rVert},
+  \end{equation*}
+  cuya matriz jacobiana es
+  \begin{equation*}
+    J_{(x,y)} \bm{n}=
+-\left. \begin{pmatrix}
+\partial_{xx} F & \partial_{xy} F \\
+\partial_{yx} F & \partial_{yy} F \\
+\end{pmatrix} \right|_p = - \mathrm{Hess}_p F,
+  \end{equation*}
+  que es la matriz asociada a $II_p$ en estas coordenadas euclidianas.
+\end{proof}
+
+\subsection{} Como la segunda forma fundamental es simétrica, el operador de forma $S_p$ es autoadjunto, por lo que es diagonalizable y tiene autovalores reales $\lambda_1,\lambda_2 \in \RR$. Distinguimos dos casos:
+\begin{enumerate}
+\item Si $\lambda_1=\lambda_2=\lambda$, entonces $S_p = \lambda \mathrm{id}_{T_p S}$. Decimos entonces que $p$ es un \emph{punto umbilical}.
+  \item Si $\lambda_1\neq \lambda_2$ (supongamos, sin pérdida de generalidad que $\lambda_1>\lambda_2$), entonces el espacio $T_pS$ descompone ortogonalmente como $T_pS=L_1\oplus L_2$, donde los $L_i$ son los autoespacios, llamados \emph{líneas principales}, con autovalores $\lambda_i$, llamados \emph{curvaturas principales}. Se tiene que $\lambda_1$ es el máximo de la función $\kappa_p$, que se alcanza en $L_1$, mientras que $\lambda_2$ es su mínimo, que se alcanza en $L_2$.
+\end{enumerate}
+
+Al cambiar la orientación normal, se intercambian $\kappa_p \mapsto -\kappa_p$ y $\lambda_i\mapsto -\lambda_i$. Se denomina \emph{curvatura media} a la función
+\begin{equation*}
+H(p) := \frac{\lambda_1 + \lambda_2}{2} = \frac{1}{2} \mathrm{tr}(S_p).
+\end{equation*}
+Al cambiar la orientación normal, tenemos $H\mapsto -H$. Por otra parte, tenemos la \emph{curvatura de Gauss}
+\begin{equation*}
+K(p) := \lambda_1 \lambda_2 = \det(S_p),
+\end{equation*}
+que permanece invariante al cambiar la orientación normal.
+
+\begin{thm}[Gauss--Bonnet]
+  Sea $S\subset E$ una superficie no singular con métrica riemanniana inducida $g$ y curvatura de Gauss $K:S\rightarrow \RR$. Se tiene que
+  \begin{equation*}
+\int_S K d\mathrm{vol}_g = 2\pi \chi(S),
+  \end{equation*}
+  donde $\chi(S)$ es la característica de Euler de $S$.
+\end{thm}
+
+\subsection{} Recordemos que la característica de Euler de una superficie $S$ se definía como \[\chi(S)=C-A+V,\] donde $C$, $A$ y $V$ son el número de caras, aristas y vértices, respectivamente, de cualquier triangulación o, más generalmente, de cualquier descomposición en celdas de $S$. También coincide con $2-2g(S)$, donde $g(S)=\frac{1}{2}\dim H^1(S,\RR)$ es el género de $S$.
+
+\begin{ej}
+  Supongamos que $S\subset E$ es una esfera de radio $R$. Todos los puntos de la esfera son umbilicales, con curvatura de Gauss igual a $1/R^2$. Por otra parte, el área de la esfera de radio $R$ es $4\pi R^2$. Por tanto,
+  \begin{equation*}
+\int_S K d\mathrm{vol}_g = 4\pi R^2 \frac{1}{R^2} = 4\pi = 2\cdot 2\pi.
+  \end{equation*}
+En efecto, la característica de Euler de la esfera es $2$.
+\end{ej}
+
+\begin{proof}[Demostración del teorema de Gauss--Bonnet]
+  Recordemos que, si $M$ y $N$ son variedades compactas y orientadas de dimensión $n$, podíamos definir el grado de una aplicación diferenciable $\nu:N\rightarrow M$ por la fórmula
+  \begin{equation*}
+\int_N \nu^* \omega = \deg \nu \int_M \omega,
+  \end{equation*}
+  para cualquier $\omega \in \Omega^n(M)$. En nuestro caso, podemos tomar $\nu=\bm{n}:S\rightarrow S(V)$, y tenemos que
+  \begin{equation*}
+\bm{n}^* d\mathrm{vol}_{S(V)} = \det(d\bm{n}) d\mathrm{vol}_g = \det(-S) d\mathrm{vol}_g = -Kd\mathrm{vol}_g.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+\int_S K d\mathrm{vol}_g =- \int_S \bm{n}^* d\mathrm{vol}_{S(V)} = -\deg \bm{n} \int_S d\mathrm{vol}_{S(V)}=-4\pi \deg \bm{n}.
+  \end{equation*}
+Basta ver entonces que $\deg \bm{n} = -\chi(S)/2$.
+
+Recordemos ahora que el grado $\deg \bm{n}$ puede computarse como
+\begin{equation*}
+\deg \bm{n} = \sum_{p \in \bm{n}^{-1}(q)} \mathrm{sgn} \det(d_p \bm{n}),
+\end{equation*}
+donde $q\in S(V)$ es cualquier valor regular. Ahora, recordemos que
+\begin{equation*}
+d_p \bm{n} = - \mathrm{Hess}_p F,
+\end{equation*}
+donde $F$ es cualquier función $F:T_pS\rightarrow \RR$ con $F(0)=0$ y $d_0F=0$ tal que $S$ es localmente su gráfica.
+
+El siguiente paso es considerar una función de altura $H:E\rightarrow \RR$. Para ello, consideramos un punto base $p_0\in E$, de modo que podemos identificar $E$ y $V$, y fijamos un vector unitario $u\in S(V)$. Definimos
+\begin{equation*}
+H(v) = \langle u,v\rangle.
+\end{equation*}
+Para cada número real $a\in \RR$, podemos considerar el conjunto de nivel
+\begin{equation*}
+S_a = H^{-1}(a) \cap S = \left\{ p \in S: H(p)=a \right\},
+\end{equation*}
+que es posiblemente vacío. De hecho, como $S$ es compacta, existe un $M>0$ tal que para $S_a=\varnothing$ para $a<-M$ y para $a>M$.
+Los puntos críticos de $H$ son aquellos $p\in S$ para los que
+\begin{equation*}
+\grad H (p) = 0.
+\end{equation*}
+Dado un punto crítico $p$ podemos tener uno de los siguientes casos
+\begin{itemize}
+\item $p$ es un mínimo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
+  \item $p$ es un máximo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
+    \item $p$ es un punto de silla de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = -1$.
+\end{itemize}
+Sea $\varphi:\RR \times S \rightarrow S$ el flujo generado por el campo $-\grad H$.
+Utilizando $\varphi$, podemos construir una descomposición en celdas de $S$ de la siguiente forma:
+\begin{itemize}
+  \item para cada mínimo $p$ de $H$, tenemos una $2$-celda
+        \begin{equation*}
+\Delta_{p} = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) =p  \right\},
+        \end{equation*}
+  \item los vértices (las $0$-celdas) son los máximos de $H$,
+\item a cada punto de silla $p$ le corresponde una $1$-celda
+        \begin{equation*}
+A_p = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) = p \right\}.
+        \end{equation*}
+\end{itemize}
+Por tanto, concluimos que
+\begin{equation*}
+\chi(S) = \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H).
+\end{equation*}
+
+A priori, habría que tener un poco más de cuidado en la elección de $H$, ya que podría pasar que tuviera infinitos puntos críticos, o que las $1$-celdas así definidas unan puntos de silla con puntos de silla, y no puntos de silla con máximos, como deseamos. Con argumentos típicos de topología diferencial se puede modificar ligeramente la función $H$ para evitar que se de esa situación patológica. En términos técnicos, lo que se busca es que $\grad H$ sea un \textit{campo de Morse--Smale}.
+
+Por otra parte, tenemos que $\nabla H = u$, de modo que los puntos críticos $p$ de $H$ son aquellos para los cuales
+\begin{equation*}
+\langle u, v \rangle = 0
+\end{equation*}
+para todo $v\in T_pS$ o, lo que es lo mismo
+\begin{equation*}
+\mathrm{Crit}(H) = \bm{n}^{-1}(u) \cup \bm{n}^{-1}(-u).
+\end{equation*}
+Además, si tomamos coordenadas locales en torno a un punto crítico $p$ con $p=0$, $v=(0,0,1)$ y $S$ dada por $z=F(x,y)$, entonces
+\begin{equation*}
+F = H|_S,
+\end{equation*}
+de modo que $\mathrm{Hess}_p(H) = \mathrm{Hess}_p(F)$. Concluimos que
+\begin{align*}
+\chi(S) &= \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H) \\ &= \sum_{p \in \bm{n}^{-1}(u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) + \sum_{p \in \bm{n}^{-1}(-u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) = -2\deg(\bm{n}),
+\end{align*}
+como queríamos probar
+\end{proof}
+
+\section{Geometría riemanniana intrínseca}
+\subsection{} Vamos a concluir nuestro estudio de las superficies viendo qué aspectos de la geometría de superficies en el espacio $S\subset E$ son intrínsecos a la superficie $S$, con su estructura riemanniana (dada por la primera forma fundamental) y no dependen del espacio ambiente. En primer lugar, veremos que el tensor de curvatura de Riemann en superficies se reduce simplemente a la curvatura de Gauss. Por tanto, la curvatura de Gauss es intrínseca. Este es el contenido del \emph{teorema egregio de Gauss}. Seguidamente, estudiaremos la \emph{derivada covariante}, que nos proporcionará una interpretación geométrica de los símbolos de Christoffel.
+
+\begin{thm}[Teorema egregio de Gauss]
+  Dada una superficie $S\subset E$ y un punto $p\in S$, se tiene
+  \begin{equation*}
+K(p) = R^1_{212}(p),
+  \end{equation*}
+donde $K$ es la curvatura de Gauss y $R^1_{212}$ es el tensor de curvatura de Riemann. Por tanto $K$ es intrínseca a la superficie.
+\end{thm}
+
+\begin{proof}
+  En un entorno de $p$ podemos ver la superficie $S$ como la gráfica de una función $(x^1,x^2)\mapsto (x^1,x^2,F(x^1,x^2))$, de modo que tenemos
+  \begin{equation*}
+\partial_1|_{(x^1,x^2)} = (1,0,\partial_1 F) \text{ y } \partial_2|_{(x^1,x^2)} = (1,0,\partial_2 F).
+  \end{equation*}
+  La métrica riemanniana se escribe entonces como
+  \begin{equation*}
+g_{11} = 1 + (\partial_1F)^2, \ g_{12}= \partial_1 F \partial_2 F, \ g_{22}=1 + (\partial_2F)^2.
+  \end{equation*}
+  Si denotamos $\Delta = 1 + (\partial_1F)^2 + (\partial_2F)^2$, tenemos
+  \begin{equation*}
+g^{11} = (1 + (\partial_2F)^2)/\Delta, \ g^{12}= -\partial_1 F \partial_2 F/\Delta, \ g^{22}=(1 + (\partial_1F)^2)/\Delta.
+  \end{equation*}
+ Calculamos también
+  \begin{equation*}
+A_{ijk} := \partial_k g_{lj} + \partial_j g_{lk} -\partial_l g_{jk} = 2 \partial_i F \partial_{jk} F.
+  \end{equation*}
+  Recordemos ahora que, por construcción, $F$ y sus derivadas parciales se anulan en $(0,0)$, de modo que los $A_{ijk}(0)=0$ y, por tanto $\Gamma^i_{jk}(0) = 0$. En efecto, recordemos que los símbolos de Christoffel vienen dados por la fórmula
+  \begin{equation*}
+\Gamma^i_{jk} = \frac{1}{2} g^{il} A_{ljk}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+R^1_{212}(0,0) = \partial_1 \Gamma^1_{22}(0,0) - \partial_2\Gamma^1_{21}(0,0).
+  \end{equation*}
+  Ahora,
+  \begin{equation*}
+\Gamma^1_{22} = \frac{1}{2} g^{11} A_{122} + \frac{1}{2} g^{12} A_{222} = \frac{1}{\Delta}((1+\partial_2 F) \partial_1F \partial_{22} F - \partial_1 F (\partial_2 F)^2 \partial_{22}F) = \frac{1}{\Delta} \partial_1F \partial_{22}F.
+  \end{equation*}
+  Similarmente, vemos que
+  \begin{equation*}
+\Gamma^1_{21} = \frac{1}{\Delta} \partial_1 F \partial_{21} F.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+R^1_{212}(0,0) = (\partial_{11}F \partial_{22}F - \partial_{12}F\partial_{21}F)|_{(0,0)} = \det \mathrm{Hess}_{(0,0)} F = K(p),
+  \end{equation*}
+como queríamos probar.
+\end{proof}
+
+\subsection{} Procedemos ahora a dar una interpretación geométrica de los símbolos de Christoffel. Comenzamos estudiando la noción de \emph{paralelismo}. En un espacio euclidiano $E$, dado un campo vectorial $X:E\rightarrow V$, podemos calcular sus derivadas direccionales a lo largo de una dirección $v_p \in T_pE$, definiendo
+\begin{equation*}
+D_{v_p} X : = \lim_{t\rightarrow 0} \frac{X(p+tv_p)-X(p)}{t}.
+\end{equation*}
+Si $\gamma:(-\varepsilon,\varepsilon)\rightarrow E$ es una curva con $\gamma(0)=p$ y $\gamma'(0)=v_p$, entonces
+\begin{equation*}
+D_{v_p} X = \left. \frac{d}{dt}\right|_{t=0} X(\gamma(t)).
+\end{equation*}
+Sin embargo, cuando consideramos una superficie $S\subset E$, tomar la derivada direccional de un campo vectorial en general nos puede dar algo que ``se salga'' de la superficie. Una forma de remediarlo es proyectar esta derivada direccional a $TS$.
+
+\begin{defn}
+La \emph{derivada covariante} $\nabla_{v_p}X$ de un campo vectorial $X\in \fX(S)$ a lo largo de una dirección $v_p\in T_pS$ es la proyección de $D_{v_p}X \in V$ a $T_pS$.
+\end{defn}
+
+\begin{defn}
+Sea $\gamma:(a,b)\rightarrow S$ una curva en la superficie $S$ y $X$ un campo vectorial a lo largo de $\gamma$. Es decir, $X$ es una sección del fibrado imagen recíproca $\gamma^* TS \rightarrow (a,b)$, con fibras $(\gamma^* TS)_t = T_{\gamma(t)} S$ para $t\in (a,b)$. Se dice que $X$ es un campo \emph{paralelo} a lo largo de $\gamma$ si $\nabla_{\gamma'} X = 0$. Si $\nabla_{\gamma'} \gamma' = 0$, es decir, si $\gamma'$ es paralelo a lo largo de $\gamma$, se dice que $\gamma$ es una \emph{geodésica}.
+\end{defn}
+
+\subsection{} Las geodésicas son las curvas que no tienen aceleración a lo largo de ellas mismas, de modo que la única aceleración que aparece es la aceleración normal a la superficie, que es la aceleración necesaria para mantenerse en la superficie. Por ejemplo, las geodésicas de la esfera son las circunferencias maximales.
+
+Las siguientes propiedades se siguen fácilmente de las definiciones.
+
+\begin{lemma}
+\begin{enumerate}
+\item La aplicación $\nabla X: T_pS \rightarrow T_pS$, $v_p \mapsto \nabla_{v_p}X$ es lineal.
+\item La aplicación $\nabla_{v_p}: \fX(S) \rightarrow T_pS$, $X \mapsto \nabla_{v_p}X$ satisface la regla de Leibniz
+        \begin{equation*}
+\nabla_{v_p}(fX) = (v_p\cdot f) X + f \nabla_{v_p}X.
+        \end{equation*}
+\item $\nabla_{v_p}(X+X')=\nabla_{v_p}(X) + \nabla_{v_p}(X')$.
+\item $v_p \cdot \langle X, X' \rangle = \langle \nabla_{v_p}X,X'\rangle + \langle X, \nabla_{v_p}X'\rangle$.
+\end{enumerate}
+\end{lemma}
+
+\begin{thm} [Teorema fundamental de la geometría riemanniana. Caso de superficies]
+  La derivada covariante es intrínseca a la superficie $S$ y está determinada únicamente por la métrica riemanniana $g$. Por tanto, la derivada covariante determina un operador
+  \begin{align*}
+    \nabla: \Omega^0(S;TS) & \longrightarrow \Omega^1(S;TS) \\
+      X & \longmapsto (v\mapsto \nabla_v X),
+  \end{align*}
+  denominado la \emph{conexión de Levi-Civita}.
+\end{thm}
+
+\begin{proof}
+  Tomamos coordenadas $(x^1,x^2,F(x^1,x^2))$ igual que antes, y escribimos $X=X^i\partial_i$, de modo que $X=(X^1,X^2,X^i\partial_i F)$. Por la regla de Leibniz
+  \begin{equation*}
+D X = (dX^1, dX^2, \partial_i F dX^i + X^i d(\partial_iF)).
+  \end{equation*}
+  Por tanto, $\nabla X = (dX^1,dX^2,0)$ o, lo que es lo mismo
+  \begin{equation*}
+\nabla X = dX^i \partial_i,
+  \end{equation*}
+  de modo que $\nabla \partial_i = 0$ en $p$.
+
+  Tomemos ahora unas coordenadas arbitrarias $y^1, y^2$. Podemos escribir $\partial_{y^a}=\frac{\partial x^i}{\partial y^a} \partial_{x^i}$, de modo que, en $p$,
+  \begin{equation*}
+\nabla \partial_{y^a} = \frac{\partial^2 x^i}{\partial y^b \partial y^a} dy^b \partial_{x^i} = \frac{\partial^2 x^i}{\partial y^b \partial y^a} \frac{\partial y^c}{\partial x_i}dy^b \partial_{y^c}.
+  \end{equation*}
+  Denotamos
+  \begin{equation*}
+Q^c_{ab} = \frac{\partial^2 x^i}{\partial y^b \partial y^a} \frac{\partial y^c}{\partial x_i},
+  \end{equation*}
+  de modo que
+  \begin{equation*}
+\nabla \partial_{y^a} = Q^c_{ab} dy^b \partial_{y^c}.
+  \end{equation*}
+Basta entonces probar que $Q^c_{ab}=\Gamma^c_{ab}$. Como los símbolos de Christoffel son intrínsecos a la métrica, también lo será $Q^c_{ab}$, lo que probará que $\nabla$ es intrínseca.
+
+En $p$, tenemos que
+\begin{equation*}
+g_{ab} = \langle \partial_{y^a},\partial_{y^b} \rangle = \frac{\partial x^i}{\partial y^a}\frac{\partial x^j}{\partial y^b} g_{ij} = \sum_i \frac{\partial x^i}{\partial y^a}\frac{\partial x^i}{\partial y^b},
+\end{equation*}
+de modo que
+\begin{equation*}
+\frac{\partial g_{ab}}{\partial y^c} = \sum_i \frac{\partial^2 x^i}{\partial y^c \partial y^a}\frac{\partial x^i}{\partial y^b} + \frac{\partial x^i}{\partial y^a}\frac{\partial^2 x^i}{\partial y^c \partial y^b}.
+\end{equation*}
+Tenemos entonces que
+\begin{equation*}
+A_{dab} = 2 \sum_i \frac{\partial^2 x^i}{\partial y^a \partial y^b} \frac{\partial x^i}{\partial y^d},
+\end{equation*}
+mientras que
+\begin{equation*}
+g^{cd} = \sum_j \frac{\partial y^c}{\partial x^j} \frac{\partial y^d}{\partial x^j}.
+\end{equation*}
+Por tanto,
+\begin{align*}
+\Gamma^c_{ab} &= \frac{1}{2} g^{cd} A_{dab} = \sum_{ij} \frac{\partial y^c}{\partial x^j} \frac{\partial y^d}{\partial x^j}\frac{\partial x^i}{\partial y^d}\frac{\partial^2 x^i}{\partial y^a \partial y^b} \\ &= \sum_{ij} \delta^i_j \frac{\partial y^c}{\partial x^j}\frac{\partial^2 x^i}{\partial y^a \partial y^b} = \frac{\partial y^c}{\partial x^i}\frac{\partial^2 x^i}{\partial y^a \partial y^b}=Q^c_{ab},
+\end{align*}
+como queríamos probar.
+\end{proof}
+
+\begin{defn}
+Sea $M$ una variedad diferenciable y $E\rightarrow M$ un fibrado vectorial (real). Una \emph{conexión} en $E$ es una aplicación $\RR$-lineal
+\begin{equation*}
+\nabla: \Omega^0(M;E) \rightarrow \Omega^1(M;E)
+\end{equation*}
+que satisface la regla de Leibniz
+\begin{equation*}
+\nabla(fs) = df \otimes s + f \nabla s,
+\end{equation*}
+para cualesquiera $f \in C^\infty(M)$ y $s\in \Omega^0(M;E)$. El operador $\nabla$ extiende de forma natural a todas las potencias tensoriales de $E$, y determina conexiones en todas ellas, que también denotamos por $\nabla$.
+
+Cuando $E=TM$ es el fibrado tangente de $M$, una conexión en $E$ se denomina una \emph{conexión afín}. En ese caso, podemos escribir $\nabla$ equivalentemente como
+\begin{equation*}
+\nabla: \fX(M) \times \fX(M) \rightarrow \fX(M),\ (X,Y) \mapsto \nabla_XY.
+\end{equation*}
+  Se define la \emph{torsión} de una conexión afín $\nabla$ en $M$ como el operador $T:\fX(M)\times \fX(M)\rightarrow \fX(M)$ definido como
+  \begin{equation*}
+T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y].
+  \end{equation*}
+  Si $T=0$, entonces se dice que la conexión $\nabla$ es \emph{libre de torsión}.
+\end{defn}
+
+\begin{thm}[Teorema fundamental de la geometría riemanniana]
+Dada una variedad riemanniana $(M,g)$, existe una única conexión afín y libre de torsión $\nabla$ en $M$ tal que
+\begin{equation*}
+\nabla g = 0.
+\end{equation*}
+Es decir, tal que $\nabla$ preserva la métrica $g$. Dicha conexión se denomina la \emph{conexión de Levi-Civita}.
+\end{thm}
+
+\section{La conexión de Levi-Civita}
+\subsection{Expresión de una conexión en coordenadas} Sea $M$ una variedad diferenciable y $E\rightarrow M$ un fibrado vectorial. Denotamos por $\cB(E)\rightarrow M$ el correspondiente fibrado de referencias, cuya fibra en un punto $x\in M$ es el conjunto $\cB(E)_x=\cB(E_x)$ de las bases de $E_x$. Cada fibra $\cB(E)_x$ es un torsor bajo el grupo $\GL_r(\RR)$, donde $r$ es el rango de $E$. Una \emph{referencia local} de $E$ en un abierto $U\subset M$ es una sección local $\bm{e}: U \rightarrow \cB(E)$ o, lo que es lo mismo, una tupla $\bm{e}=(e_1,\dots,e_r)$ de secciones $e_i:U\rightarrow E$ que determina una base de $E_x$ en cada punto $x\in U$. Cualquier otra sección $s$ de $E$ en $U$ se escribe como
+\begin{equation*}
+s = s^i e_i.
+\end{equation*}
+
+Supongamos ahora que $\nabla: \Omega^0(M;E) \rightarrow \Omega^1(M;E)$ es una conexión en $E$. En la referencia $\bm{e}$ la conexión está determinada por unas $1$-formas $A^i_{j} \in \Omega^1(M)$ definidas como
+\begin{equation*}
+\nabla(e_i) =A^j_i  e_j.
+\end{equation*}
+Agrupando las $A^i_j$, obtenemos una $1$-forma $A\in \Omega^1(U;\End E)$ que cumple
+\begin{equation*}
+\nabla(\bm{e}) = A \bm{e}.
+\end{equation*}
+A su vez, tenemos
+\begin{equation*}
+\nabla(s^i e_i) = d(s^i) e_i + s^jA^i_je_i =(\partial_k s^i dx^k+ s^jA^i_{j}) e_i .
+\end{equation*}
+La $1$-forma $A$ descompone como
+\begin{equation*}
+A = A_i dx^i,
+\end{equation*}
+y en particular cada $1$-forma $A^i_j$ descompone como
+\begin{equation*}
+A^i_j=A^i_{kj} dx^k,
+\end{equation*}
+de modo que
+\begin{equation*}
+\nabla(s^i) =(\partial_k s^i + s^jA^i_{kj}) dx^k .
+\end{equation*}
+
+Si se toma una referencia distinta $\bm{e}'$, relacionada con $\bm{e}$ por una aplicación diferenciable $h:U\rightarrow \GL_r(\RR)$, de modo que $\bm{e}'=\bm{e} h$, entonces podemos escribir
+\begin{equation*}
+\nabla(\bm{e}') = \bm{e}' A',
+\end{equation*}
+para una nueva $1$-forma $A'$. Para ver cómo se relaciona esta $1$-forma con la anterior, calculamos
+\begin{align*}
+\bm{e} h A' &= \bm{e}' A' = \nabla(\bm{e'}) = \nabla(\bm{e} h) = \nabla(\bm{e}) h + \bm{e} dh = \bm{e} (A h + dh).
+\end{align*}
+De modo que
+\begin{equation*}
+A' = h^{-1} A h + h^{-1} dh.
+\end{equation*}
+Si escribimos las entradas de $h$ explícitamente, $h=(h^i_j)$, de modo que $e'_i=e_jh^j_i$, entonces los coeficientes $A^i_{jk}$ cambian como
+\begin{equation*}
+(A')^i_{jk} = (h^{-1})^i_c (\partial_j h_k^c + h_j^a h_k^b A_{ab}^c)
+\end{equation*}
+
+En particular, si $E=TM$ y por tanto $\nabla$ es una conexión afín, podemos tomar la referencia $\bm{e}=\partial_{\bm{x}}$ determinada por un sistema de coordenadas $\bm{x}:U\rightarrow \RR^n$. Los coeficientes $A^i_j$ están dados por
+\begin{equation*}
+\nabla(\partial_i) = A^j_i \partial_j,
+\end{equation*}
+que a su vez descomponen como
+\begin{equation*}
+A^i_j=A^i_{kj} dx^k.
+\end{equation*}
+Por tanto, tenemos
+\begin{equation*}
+\nabla_{\partial_i} \partial_j = A^k_j(\partial_i) \partial_k = A^k_{lj} dx^l(\partial_i) \partial_k = A^k_{ij} \partial_k.
+\end{equation*}
+En este caso, también podemos expresar la torsión en coordenadas locales
+\begin{equation*}
+T(\partial_i,\partial_j) = (A_{ij}^k - A_{ji}^k) \partial_k.
+\end{equation*}
+Cambiar a unas nuevas coordenadas $\bm{y}:U\rightarrow \RR^n$ corresponde a cambiar la referencia $\partial_{\bm{x}}$ por la referencia $\partial_{\bm{y}}=\partial_{\bm{x}}\frac{\partial \bm{x}}{\partial \bm{y}}$, de modo que $h=\frac{\partial \bm{x}}{\partial \bm{y}}$ es la matriz jacobiana del cambio de coordenadas, con entradas $h^i_j = \frac{\partial x^i}{\partial y^j}$. Por tanto, los coeficientes $A^i_{jk}$ de una conexión afín cambian como
+\begin{equation*}
+(A')^i_{jk} = \frac{\partial y^i}{\partial x^c} \left( \frac{\partial^2 x^c}{\partial y^j \partial y^k} + \frac{\partial x^a}{\partial y^j} \frac{\partial x^b}{\partial y^k} A_{ab}^c \right).
+\end{equation*}
+
+
+\subsection{Conexión de Levi-Civita} Pasamos a construir la conexión de Levi-Civita en una variedad riemanniana $(M,g)$. Para ello, tomamos unas coordenadas locales $\bm{x}:U\rightarrow \RR^n$ y consideramos los correspondientes símbolos de Christoffel
+\begin{equation*}
+\Gamma^{l}_{jk} = \frac{g^{li}}{2} \left( \frac{\partial g_{ij}}{\partial x^k} + \frac{\partial g_{ik}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^i} \right).
+\end{equation*}
+Si tomamos otras coordenadas $\bm{y}:U\rightarrow \RR^n$, en las que la métrica se escribe como $g'_{ab}=\partial_{y^a}x^i \partial_{y^b} x^j g_{ij}$, entonces se comprueba directamente que los símbolos de Christoffel en las nuevas coordenadas se escriben precisamente como
+\begin{equation*}
+(\Gamma')^i_{jk} = \frac{\partial y^i}{\partial x^c} \left( \frac{\partial^2 x^c}{\partial y^j \partial y^k} + \frac{\partial x^a}{\partial y^j} \frac{\partial x^b}{\partial y^k} \Gamma_{ab}^c \right).
+\end{equation*}
+Por tanto, los símbolos de Christoffel determinan los coeficientes de una conexión afín en $M$. Además, esta conexión es libre de torsión ya que $\Gamma_{ij}^k=\Gamma_{ji}^k$. La conexión así definida se denomina la \emph{conexión de Levi-Civita}. Podemos probar entonces el teorema fundamental.
+
+\begin{thm}[Teorema fundamental de la geometría riemanniana]
+La única conexión afín $\nabla$ en $M$ libre de torsión y con $\nabla g  = 0$ es la conexión de Levi-Civita.
+\end{thm}
+
+\begin{proof}
+  En efecto, si $\nabla$ es una conexión con $\nabla g=0$, tenemos
+  \begin{equation*}
+0 = \nabla_{\partial_k} g = \nabla_{\partial_k} g_{ij} dx_idx_j = \left( \partial_k g_{ij} - g_{tj}A^t_{ki}- g_{it}A^t_{kj} \right) dx_i dx_j.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+\partial_k g_{ij} = A_{kij} - A_{kji}.
+  \end{equation*}
+  Ahora, si $\nabla$ es libre de torsión, tenemos que $A_{kij}=A_{ikj}$, de modo que
+  \begin{equation*}
+\partial_j g_{ik} + \partial_i g_{kj} - \partial_k g_{ij} = A_{jik} + A_{jki} + A_{ikj} + A_{ijk} - A_{kij} - A_{kji} = 2A_{ijk},
+  \end{equation*}
+  luego
+  \begin{equation*}
+A^k_{ij} = \frac{g^{kl}}{2} (\partial_j g_{il} + \partial_i g_{lj} - \partial_l g_{ij}) = \Gamma^k_{ij}.
+  \end{equation*}
+Esto prueba que $\nabla$ es la conexión de Levi-Civita.
+\end{proof}
+
+
+\section{Geodésicas y aplicación exponencial}
+a
+
+añadir principio variacional y teorema de Hopf--Rinow
+
+isometría local desde completo extiende a cover
+
+\section{El tensor de curvatura}
+a
+
+\subsection{Curvatura de Ricci y curvatura seccional}
+a
+
+\part{Fibrados principales}
+\section{Forma de Maurer--Cartan}
+a
+
+\begin{thm}
+  Sea $\omega \in \Omega^1(M;\fg)$ una $1$-forma $\fg$-valorada en una variedad diferenciable $M$ que satisface la \emph{ecuación de estructura}
+  \begin{equation*}
+d \omega + \frac{1}{2}[\omega \wedge \omega] =0.
+  \end{equation*}
+Entonces, para cada punto $p\in M$, existe un entorno $U$ de $p$ y una aplicación diferenciable $f:U\rightarrow G$ tal que $\omega = f^* \theta$.
+\end{thm}
+
+\section{Fibrados principales}
+a
+\section{Conexiones y curvatura}
+a
+
+\section{Clases características}
+a
+
+\part{Holonomía y curvatura constante}
+\section{Holonomía}
+a
+
+\section{Geometría a la Cartan}
+Ha llegado la hora de revisitar el programa de Erlangen, a la manera que lo hizo Élie Cartan.
+
+\begin{defn}
+  Una \emph{geometría de Klein} es un par $(G,H)$, donde $G$ es un grupo de Lie y $H\subset G$ es un subgrupo cerrado tal que el espacio cociente $G/H$ es conexo.
+
+  Una \emph{geometría de Cartan} modelada en una geometría de Klein $(G,H)$ en una variedad diferenciable $M$ es un par $(P,\omega)$, donde $P\rightarrow M$ es un $H$-fibrado principal y $\omega \in \Omega^1(P;\fg)$ es una $1$-forma $\fg$-valorada que satisface las siguientes condiciones
+  \begin{enumerate}
+    \item para cada punto $p\in P$, la aplicación lineal $\omega_p:T_p P \rightarrow \fg$ es un isomorfismo,
+    \item $(R_h)^*\omega = \Ad_{h^{-1}} \omega$, para todo $h\in H$,
+    \item $\omega(X^+)=X$, para todo $X\in \fh$.
+  \end{enumerate}
+
+  Dada una geometría de Cartan $(P,\omega)$ modelada en una geometría de Klein $(G,H)$, se define su \emph{curvatura} como la $2$-forma $\fg$-valorada
+  \begin{equation*}
+\Omega = d\omega + \tfrac{1}{2}[\omega \wedge \omega].
+  \end{equation*}
+  La \emph{torsión} de $(P,\omega)$ es la imagen $\rho(\Omega)$ por la proyección natural $\rho:\fg \rightarrow \fg/\fh$. Cuando $\Omega \in \Omega^2(P;\fh)$, decimos que la geometría $(P,\omega)$ es \emph{libre de torsión}. Si $\Omega=0$, entonces decimos que la geometría $(P,\omega)$ es \emph{plana}.
+\end{defn}
+
+\subsection{} Toda geometría de Klein $(G,H)$ define una geometría de Cartan en $M=G/H$ modelada sobre ella misma, la \emph{geometría de Cartan trivial}, tomando $P=G\rightarrow M=G/H$ la proyección natural y $\omega=\theta \in \Omega^1(G;\fg)$ la $1$-forma de Maurer-Cartan. Por otra parte, una geometría de Cartan plana es localmente isomorfa a la geometría trivial.
+
+\begin{prop}
+Si $(P,\omega)$ es una geometría de Cartan plana en una variedad $M$, entonces, para todo punto $x_0\in M$ existe un entorno $U\subset M$ de $x$ y difeomorfismos locales $\varphi:U \rightarrow G/H$ y $\psi:P|_U \rightarrow G$ de modo que el siguiente diagrama conmuta
+\begin{center}
+  \begin{tikzcd}
+   P|_U \ar{r}{\psi} \ar{d} & G \ar{d} \\
+   U \ar{r}{\varphi} & G/H,
+  \end{tikzcd}
+\end{center}
+y tales que $\omega=\psi^*\theta$.
+\end{prop}
+
+\begin{proof}
+  Sea $p\in P_{x_0}$ un punto cualquiera. Como $\omega_p$ es un isomorfismo, por el teorema de la función inversa extiende localmente a un difeomorfismo $\psi:V\rightarrow G$, en un cierto entorno  $V\subset P$ de $p$. Tomamos $U=\pi(V)$, donde $\pi:P\rightarrow M$ es la proyección natural, y una sección cualquiera $s:U\rightarrow P|_U$ con $s(x_0)=p$. Ahora, como $(P,\omega)$ es plana, la $1$-forma $\omega$ satisface la ecuación de estructura
+  \begin{equation*}
+d\omega + [\omega \wedge \omega ] =0,
+  \end{equation*}
+  y también la satisface la $1$-forma $s^* \omega \in \Omega^1(U;\fg)$. Por tanto, reduciendo $U$ si es necesario, existe una única aplicación diferenciable $f:U\rightarrow G$ con $f(x_0)=1$ y tal que $f^*\theta=s^* \omega$. Tomamos ahora una nueva sección $s'=s f$, y definimos
+  \begin{equation*}
+\varphi: U \rightarrow G/H, \ x \mapsto \rho(\psi(s'(x))),
+  \end{equation*}
+  donde $\rho:G\rightarrow G/H$ es la proyección natural. Por construcción, el diagrama
+\begin{center}
+  \begin{tikzcd}
+   V \ar{r}{\psi} \ar{d}{\pi} & G \ar{d}{\rho} \\
+   U \ar{r}{\varphi} & G/H,
+  \end{tikzcd}
+\end{center}
+conmuta, $\omega=\psi^*\theta$, y la aplicación $\varphi$ es un difeomorfismo local ya que $d\varphi = d\rho\circ (s')^*\omega$.
+\end{proof}
+
+\subsection{Geometría euclidiana a la Klein} Recordemos el grupo euclidiano $\mathrm{Euc}_n(\RR)$, definido como el grupo de automorfismos afines del espacio euclidiano estándar que preservan el producto escalar. Dado un punto $p$ del espacio euclidiano, se tiene una inclusión $\OO_n(\RR)\rightarrow \mathrm{Euc}_n(\RR)$ como el grupo de transformaciones que preservan el punto y el producto escalar con respecto a ese punto. Podemos identificar entonces el espacio cociente $\mathrm{Euc}_n(\RR)/\OO_n(\RR)$ con el espacio vectorial $\RR^n$. El par $(\mathrm{Euc}_n(\RR),\OO_n(\RR))$ determina una geometría de Klein, denominada la \emph{geometría euclidiana}.
+
+\subsection{Geometría riemanniana a la Cartan} Ahora, a una variedad riemanniana $(M,g)$ se le puede asociar el fibrado de referencias ortonormales $\pi:\cB_{\OO}(M)\rightarrow M$. Este fibrado está equipado con la conexión pricipal inducida por la conexión de Levi-Civita, cuya $1$-forma de conexión denotamos por $A \in \Omega^1(\cB_{\OO}(M),\so_n)$. Además, al tratarse de una conexión afín, el fibrado de referencias está equipado también con la \emph{$1$-forma de soldadura} $\theta=(\theta^1,\dots,\theta^n)\in \Omega^1(\cB_{\OO}(M),\RR^n)$, definida como sigue. Si $\bm{e} \in \cB_{\OO}(M)$ es una referencia ortogonal $\bm{e}:\RR^n\rightarrow T_xM$ en el punto $x=\pi(\bm{e})$ y $X\in T_{\bm{e}}\cB_{\OO}(M)$ es un vector tangente, definimos
+\begin{equation*}
+\theta_{\bm{e}}(X) = \bm{e}^{-1}(d_{\bm{e}}\pi(X)) \in \RR^n.
+\end{equation*}
+Nótese que la $2$-forma
+\begin{equation*}
+T_A = d\theta + \frac{1}{2}[A\wedge \theta]
+\end{equation*}
+determina precisamente la torsión de la conexión. Como $A$ es la conexión de Levi-Civita, tenemos que $T_A=0$.
+La suma $\omega:= A + \theta \in \Omega^1(\cB_{\OO}(M),\mathfrak{euc}_n(\RR))$ determina una $1$-forma en $\cB_{\OO}(M)$ con valores en $\mathfrak{euc}_n(\RR)=\so_n(\RR) \oplus \RR^n$ y por tanto el par $(\cB_{\OO}(M),\omega)$ es una geometría de Cartan modelada sobre la geometría euclidiana $(\mathrm{Euc}_n(\RR),\OO_n(\RR))$. La curvatura de esta geometría es igual a
+\begin{equation*}
+\Omega = d\omega + \frac{1}{2}[\omega \wedge \omega] = dA + \frac{1}{2}[A\wedge A] + d\theta + \frac{1}{2}[A\wedge \alpha] = F_A + T_A = F_A.
+\end{equation*}
+En coordenadas
+\begin{equation*}
+\Omega^i_j = dA^i_j + A^i_k \wedge A^k_j.
+\end{equation*}
+A su vez, la curvatura puede expresarse en términos de la $1$-forma $\theta$ como
+\begin{equation*}
+  \Omega^i_j= \frac{1}{2} R^i_{jkl} \theta^k\wedge \theta^l,
+\end{equation*}
+es decir
+\begin{equation*}
+\Omega = K (\theta\wedge \theta),
+\end{equation*}
+donde $K$ es la curvatura seccional. En conclusión, tenemos la ecuación
+\begin{equation*}
+d\omega + \frac{1}{2}[\omega \wedge \omega] = K(\theta \wedge \theta).
+\end{equation*}
+
+ Concluir que curvatura seccional constante $k$ implica isometría local a $G_k/\SO(n)$. Argumentar por completitud.
+
+\section{Formas espaciales}
+\subsection{} Supongamos que $(M,g)$ es una $n$-variedad riemanniana con curvatura seccional constante $K\in \RR$. Definimos el álgebra de Lie $\fg_K$ con espacio subyacente $\so_n(\RR)\oplus \RR^n$ y equipado con el corchete
+\begin{equation*}
+[(A,a),(B,b)]_{\fg_K} =([A,B] - K (a\wedge b), A b - Ba).
+\end{equation*}
+La ecuación de estructura
+\begin{equation*}
+d\omega + \frac{1}{2}[\omega \wedge \omega] = K(\theta \wedge \theta)
+\end{equation*}
+puede entonces reescribirse como
+\begin{equation*}
+d\omega + \frac{1}{2}[\omega \wedge \omega]_{\fg_K} = 0.
+\end{equation*}
+De modo que $\omega$ puede verse como una $1$-forma valorada en $\fg_K$, y $(P,\omega)$ determina una geometría de Cartan plana modelada sobre $(G_K,\SO_n(\RR))$, donde $G_K$ es un grupo de Lie con álgebra de Lie $\fg_K$.
+
+\subsection{Geometrías de curvatura constante} Describamos ahora el espacio cociente $G_K/\SO_n(\RR)$.
+\subsubsection{Curvatura nula} Si $K=0$, entonces $\fg_K$ es isomorfo al álgebra $\mathfrak{euc}_n(\RR) = \so_n(\RR)\oplus \RR^n$, de modo que $G_K$ es el grupo euclidiano $\mathrm{Euc}_n(\RR)$ y $G_K/\SO_n(\RR)$ es el espacio euclidiano estándar $n$-dimensional, que denotamos por $\mathbb{E}^n$.
+
+\subsubsection{Curvatura positiva o negativa}
+Comenzamos definiendo una aplicación inyectiva
+\begin{equation*}
+i:\fg_K \hookrightarrow \gl_{n+1}(\RR)
+\end{equation*}
+que envía cada par $(A,a) \in \so_n(\RR) \oplus \RR^n$ a la matriz
+\begin{equation*}
+  i(A,a)=
+\begin{pmatrix}
+  0 & a^T \\
+  -K a & A
+\end{pmatrix}.
+\end{equation*}
+De modo que
+\begin{align*}
+i(A,a) i(B,b) - i(B,b) i (A,a) &=
+\begin{pmatrix}
+  -K(a^Tb - b^Ta) & a^T B - b^T A \\
+  -K (Ab - Ba) & [A,B] -K(ab^T - ba^T)
+\end{pmatrix} \\
+  & = i([(A,a),(B,b)]_{\fg_K}).
+\end{align*}
+Luego $i$ preserva el corchete de Lie. La imagen $i(\fg)\subset \gl_{n+1}(\RR)$ se identifica entonces con el espacio de las matrices $M$ tales que
+\begin{equation*}
+MD = -D M^T,
+\end{equation*}
+donde $D$ es la matriz
+\begin{equation*}
+  D=
+\begin{pmatrix}
+  1/K & 0\\
+   0 & \mathbb{I}_n
+\end{pmatrix}.
+\end{equation*}
+Por tanto, el correspondiente grupo $G_K\subset \GL_{n+1}(\RR)$ es el subgrupo de las matrices $A$ tales que
+\begin{equation*}
+A D A^{-1} = D.
+\end{equation*}
+
+\subsubsection{Curvatura positiva} Si $K>0$, el grupo $G_K$ es isomorfo a $\SO_{n+1}(\RR)$, y el cociente $G_K/\SO_{n}(\RR)$ se identifica con la esfera $n$-dimensional de radio $R$, definida como
+\begin{equation*}
+\mathbb{S}^n_R = \left\{ (x^1,\dots,x^n,t): (x^1)^2 + \cdots + (x^n)^2 + t^2 = R^2 \right\}
+\end{equation*}
+y equipada con la métrica obtenida al restringir  la forma
+\begin{equation*}
+  (dx^1)^2 + \cdots + (dx^n)^2 + (dt)^2 .
+\end{equation*}
+
+\subsubsection{Curvatura negativa} Si $K<0$, el grupo $G_K$ es isomorfo al grupo $\SO(1,n)$, y el cociente $G_K/\SO_n(\RR)$ se identifica con el espacio hiperbólico $n$-dimensional de radio $R$ definido como la hoja superior de la superficie
+\begin{equation*}
+\mathbb{H}^n_R \cup (\mathbb{H}^n_R)'=  \left\{ (x^1,\dots,x^n,t): (x^1)^2 + \cdots + (x^n)^2 - t^2 = -R^2 \right\}
+\end{equation*}
+y equipado con la métrica obtenida al restringir la forma
+\begin{equation*}
+  (dx^1)^2 + \cdots + (dx^n)^2 - (dt)^2 .
+\end{equation*}
+
+Concluimos lo siguiente.
+
+\begin{prop}
+Una $n$-variedad riemanniana con curvatura seccional constante $K\in \RR$ es localmente isométrica al espacio $G_K/\SO_n(\RR)$.
+\end{prop}
+
+\begin{defn}
+Una \emph{forma espacial} es una variedad riemanniana $(M,g)$ completa y de curvatura seccional constante $K$.
+\end{defn}
+
+\begin{thm}
+  Toda forma espacial $n$-dimensional con curvatura seccional $K$, conexa y simplemente conexa es isométrica a la \emph{forma espacial $n$-dimensional estándar} $E_K$, definida como
+  \begin{enumerate}
+    \item $E_K=\mathbb{E}^n$, si $K=0$,
+          \item $E_K=\mathbb{S}^n_{1/\sqrt{K}}$, si $K>0$, y
+          \item $E_K=\mathbb{H}^n_{-1/\sqrt{-K}}$, si $K<0$.
+  \end{enumerate}
+\end{thm}
+
+
+\part{Análisis global}
+\section{Estrella de Hodge y laplaciano}
+\section{La ecuación de Poisson en superficies}
+\section{Superficies de Riemann compactas}
+
+%\nocite{*}
+%\printbibliography
+\end{document}
