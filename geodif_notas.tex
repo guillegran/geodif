@@ -355,15 +355,15 @@ H^i(A^\bullet) = \ker d_i / \im d_{i-1}.
 \cdots \rar{\delta_{i-1}} & H^i(A^\bullet) \rar & H^i(B^\bullet) \rar & H^i(C^\bullet) \rar{\delta_{i}} & H^{i+1}(A^\bullet) \rar & \cdots.
             \end{tikzcd}
           \end{center}
-    \item Sólo necesitaremos considerar complejos $A^\bullet$ que sean \emph{inferiormente acotados}: esto quiere decir que existe un $n \in \mathbb{Z}$ tal que $A^i=0$ para todo $i<n$. Esto nos determina una subcategoría abeliana $\Ch^+(\sfA)$ de complejos de cocadenas inferiormente acotados.
+    \item Sólo necesitaremos considerar complejos $A^\bullet$ que sean \emph{acotados}: esto quiere decir que existe un $N \in \mathbb{N}$ tal que $H^n(A)=0$ para todo $n>N$ y para todo $n<-N$. Esto nos determina una subcategoría abeliana $\Ch^b(\sfA)$ de complejos de cocadenas acotados.
   \end{enumerate}
 \end{rmk}
 
 \begin{defn}
-  Un morfismo de complejos de cocadenas $f:A^\bullet \rightarrow B^\bullet$ es un \emph{cuasi-isomorfismo} si el morfismo inducido $f_*:H^i(A^\bullet)\rightarrow H^i(B^\bullet)$ es un isomorfismo para todo $i$. Se define la \emph{categoría derivada (inferiormente acotada) de $\sfA$} como la categoría $\DD^+(\sfA)$ con la siguiente propiedad universal: existe un único functor $\cI:\Ch^+(\sfA) \rightarrow \DD^+(\sfA)$ tal que
+  Un morfismo de complejos de cocadenas $f:A^\bullet \rightarrow B^\bullet$ es un \emph{cuasi-isomorfismo} si el morfismo inducido $f_*:H^i(A^\bullet)\rightarrow H^i(B^\bullet)$ es un isomorfismo para todo $i$. Se define la \emph{categoría derivada (acotada) de $\sfA$} como la categoría $\DD^b(\sfA)$ con la siguiente propiedad universal: existe un único funtor $\cR:\Ch^b(\sfA) \rightarrow \DD^b(\sfA)$ tal que
   \begin{enumerate}
-    \item $\cI$ envía cuasi-isomorfismos en isomorfismos,
-    \item para cualquier otra categoría $\sfC$ y cualquier otro funtor $F:\Ch^+(\sfA)\rightarrow \sfC$ que envíe cuasi-isomorfismos en isomorfismos, se tiene que $F$ factoriza por $\cI$.
+    \item $\cR$ envía cuasi-isomorfismos en isomorfismos,
+    \item para cualquier otra categoría $\sfC$ y cualquier otro funtor $F:\Ch^b(\sfA)\rightarrow \sfC$ que envíe cuasi-isomorfismos en isomorfismos, se tiene que $F$ factoriza por $\cR$.
   \end{enumerate}
 \end{defn}
 
@@ -376,14 +376,14 @@ h_{i+1} \circ d_A + d_B \circ h_i = f_i-g_i.
   \end{equation*}
 \end{defn}
 
-\subsection{} La homotopía determina una relación en los morfismos de $\Ch^+(\sfA)$. Esto nos permite cocientar por esta relación, y definir la categoría $\KK^+(\sfA)$ cuyos objetos son los mismos que los de $\Ch^+(\sfA)$, pero ahora
+\subsection{} La homotopía determina una relación en los morfismos de $\Ch^b(\sfA)$. Esto nos permite cocientar por esta relación, y definir la categoría $\KK^b(\sfA)$ cuyos objetos son los mismos que los de $\Ch^b(\sfA)$, pero ahora
 \begin{equation*}
-\Hom_{\KK^+(\sfA)}(A^\bullet,B^\bullet) = \Hom_{\Ch^+(\sfA)}(A^\bullet,B^\bullet)\ /\text{ homotopía}.
+\Hom_{\KK^b(\sfA)}(A^\bullet,B^\bullet) = \Hom_{\Ch^b(\sfA)}(A^\bullet,B^\bullet)\ /\text{ homotopía}.
 \end{equation*}
-Se ve inmediatamente de la definición de homotopía que dos morfismos homotópicos definen el mismo morfismo en las cohomologías, de modo que los funtores $H^i:\Ch_+(\sfA)\rightarrow \sfA$ descienden a funtores $H^i:\KK_+(\sfA)\rightarrow \sfA$.
-Una \emph{equivalencia de homotopía} es un morfismo en $\Ch^+(\sfA)$ que determina un isomorfismo en $\KK^+(\sfA)$. Decimos que dos complejos de cocadenas son \emph{homotópicamente equivalentes} si son isomorfos en $\KK^+(\sfA)$.
+Se ve inmediatamente de la definición de homotopía que dos morfismos homotópicos definen el mismo morfismo en las cohomologías, de modo que los funtores $H^i:\Ch^b(\sfA)\rightarrow \sfA$ descienden a funtores $H^i:\KK^b(\sfA)\rightarrow \sfA$.
+Una \emph{equivalencia de homotopía} es un morfismo en $\Ch^b(\sfA)$ que determina un isomorfismo en $\KK^b(\sfA)$. Decimos que dos complejos de cocadenas son \emph{homotópicamente equivalentes} si son isomorfos en $\KK^b(\sfA)$. Es claro entonces que dos complejos homotópicamente equivalentes son cuasi-isomorfos; por tanto, el funtor $\cR:\Ch^b(\sfA)\rightarrow \DD^b(\sfA)$ desciende a un funtor $\KK^b(\sfA)\rightarrow \DD^b(\sfA)$.
 
-\subsection{} Un complejo de cadenas $A^\bullet$ se dice \emph{contractible} si existe una homotopía entre la identidad $\id_{A^\bullet}$  y $0$. En otras palabras, $A^\bullet$ es contractible si existe un morfismo de complejos $h:A^\bullet \rightarrow A^{\bullet-1}$ tal que
+\subsection{} Un complejo de cocadenas $A^\bullet$ se dice \emph{contractible} si existe una homotopía entre la identidad $\id_{A^\bullet}$  y $0$. En otras palabras, $A^\bullet$ es contractible si existe un morfismo de complejos $h:A^\bullet \rightarrow A^{\bullet-1}$ tal que
 \begin{equation*}
 h \circ d + d \circ h = \id_{A^\bullet}.
 \end{equation*}
@@ -437,17 +437,22 @@ Por tanto, $g$ es la inversa de $f$ en $\KK^+(\sfA)$.
 \end{proof}
 
 
-\subsection{} Nótese que a priori puede haber complejos que no homotópicamente equivalentes, pero que sí sean cuasi-isomorfos, de modo que la categoría derivada no los distingue. Si queremos hallar unos representantes adecuados, debemos buscar complejos que sean isomorfos en $\KK^+(\sfA)$ si y sólo si son cuasi-isomorfos. Para ello introducimos los objetos inyectivos.
+\subsection{} Nótese que a priori puede haber complejos que no homotópicamente equivalentes, pero que sí sean cuasi-isomorfos, de modo que la categoría derivada no los distingue. Si queremos hallar unos representantes adecuados, debemos buscar complejos que sean isomorfos en $\KK^b(\sfA)$ si y sólo si son cuasi-isomorfos. Para ello introducimos los objetos inyectivos.
 
 \begin{defn}
-Un objeto $I$ en una categoría es \emph{inyectivo} si, para todo monomorfismo $i:X\rightarrow Y$ y para todo morfismo $f:X\rightarrow I$, existe un morfismo $g:Y \rightarrow I$ tal que $g\circ i = f$.
+Un objeto $I$ en una categoría es \emph{inyectivo} si, para todo monomorfismo $i:X\rightarrow Y$ y para todo morfismo $f:X\rightarrow I$, existe un morfismo $g:Y \rightarrow I$ tal que $g\circ i = f$. Llamamos \emph{complejo inyectivo} a un complejo cuyos objetos son inyectivos.
+
+Dualmente, un objeto $P$ en una categoría es \emph{proyectivo} si, para todo epimorfismo $p:X\rightarrow Y$ y para todo morfismo $f:P\rightarrow Y$, existe un morfismo $g:P\rightarrow X$ tal que $p\circ g = f$. Llamamos \emph{complejo proyectivo} a un complejo cuyos objetos son proyectivos.
 \end{defn}
 
 \begin{prop}
-Sea $I^\bullet$ es un complejo de cocadenas acotado inferiormente de objetos inyectivos. Si $I^\bullet$ es cuasi-isomorfo a $0$, entonces es contractible.
+Sea $I^\bullet$ es un complejo de cocadenas inyectivo acotado. Si $I^\bullet$ es cuasi-isomorfo a $0$, entonces es contractible.
+
+Dualmente, si $P^\bullet$ es un complejo de cocadenas proyectivo acotado, entonces si $P^\bullet$ es cuasi-isomorfo a $0$ es contractible.
 \end{prop}
 
 \begin{proof}
+  Hacemos la demostración para inyectivos, y la demostración para proyectivos es completamente análoga.
   Como $I^\bullet$ está acotado inferiormente, existe un $N$ tal que $I^n=0$ para todo $n<N$. Podemos suponer, sin pérdida de generalidad, que $N=0$. Tenemos entonces que $I^0=\ker(d:I^1\rightarrow I^2)$. Definimos $K^1=I^1/I^0=\ker(d:I^2 \rightarrow I^3)$ y obtenemos una sucesión exacta corta
   \begin{center}
     \begin{tikzcd}
@@ -487,17 +492,106 @@ y tenemos que $dh + hd = \id_{I^\bullet}$.
 
 \begin{prop}
 Sean $I^\bullet$ y $J^\bullet$ complejos de cocadenas de objetos inyectivos. Todo cuasi-isomorfismo $f:I^\bullet\rightarrow J^\bullet$ es una equivalencia de homotopía.
+
+Dualmente, si $P^\bullet$ y $Q^\bullet$ son complejos de cocadenas de objetos proyectivos, entonces todo cuasi-isomorfismo $f:P^\bullet\rightarrow Q^\bullet$ es una equivalencia de homotopía.
 \end{prop}
 
 \begin{proof}
 Basta ver que, si $f$ es un cuasi-isomorfismo, entonces $\Cono(f)^\bullet$ es contractible. Pero, como $\Cono(f)^\bullet$ es cuasi-isomorfo a $0$ y sus términos son inyectivos (ya que son suma directa de inyectivos), lo que se quiere probar se sigue de lo anterior.
 \end{proof}
 
+\subsection{} Hemos visto entonces que dos complejos inyectivos (o proyectivos) son cuasi-isomorfos si y sólo si son homotópicamente equivalentes o, lo que es lo mismo, que son isomorfos en $\KK^b(\sfA)$ si y sólo si lo son en $\DD^b(\sfA)$. Resulta que es posible demostrar algo aún más fuerte: la restricción del funtor $\cR:\Ch^b(\sfA)\rightarrow \DD^b(\sfA)$ a la subcategoría $\Ch^b(\mathrm{Inj}\ \sfA)$ formada por los complejos inyectivos acotados desciende a un funtor plenamente fiel
+\begin{equation*}
+\KK^b(\mathrm{Inj}\ \sfA) \longrightarrow \DD^b(\sfA).
+\end{equation*}
+Dualmente, la restricción a la categoría $\Ch^b(\mathrm{Proj}\ \sfA)$ de los complejos proyectivos acotados desciende a un funtor plenamente fiel
+\begin{equation*}
+\KK^b(\mathrm{Proj}\ \sfA) \longrightarrow \DD^b(\sfA).
+\end{equation*}
+La pregunta natural entonces es si estos funtores son esencialmente sobreyectivos.
+
+\begin{defn}
+Se dice que una categoría abeliana $\sfA$ \emph{tiene suficientes inyectivos} si, para todo objeto $A$ de $\sfA$ existe un monomorfismo $A\hookrightarrow I$, con $I$ un objeto inyectivo.
+
+Se dice que una categoría abeliana $\sfA$ \emph{tiene suficientes proyectivos} si, para todo objeto $A$ de $\sfA$ existe un epimorfismo $P\rightarrow A$, con $P$ un objeto proyectivo.
+\end{defn}
+
+\begin{prop}
+Si $\sfA$ es una categoría con suficientes inyectivos, entonces todo complejo de cocadenas acotado en $\sfA$ es cuasi-isomorfo a un complejo inyectivo. En tal caso, el funtor
+$\KK^b(\mathrm{Inj}\ \sfA) \longrightarrow \DD^b(\sfA)$ es una equivalencia de categorías.
+
+Dualmente, si $\sfA$ es una categoría con suficientes proyectivos, entonces todo complejo de cocadenas acotado en $\sfA$ es cuasi-isomorfo a un complejo proyectivo. En tal caso, el funtor
+$\KK^b(\mathrm{Proj}\ \sfA) \longrightarrow \DD^b(\sfA)$ es una equivalencia de categorías.
+\end{prop}
+
+\begin{rmk}
+  Dado un complejo $A^\bullet$ acotado, se denomina una \emph{resolución inyectiva} a un complejo inyectivo $I^\bullet$ junto con un cuasi-isomorfismo $\eta:A^\bullet \rightarrow I^\bullet$. Si existe tal resolución, entonces es única salvo homotopía. En tal caso, podemos identificar la imagen $\cR(A^\bullet)=\cR(I^\bullet) \in \DD^b(\sfA)$ simplemente como la clase de homotopía del complejo inyectivo $I^\bullet$, a través de la equivalencia de categorías anterior. Análogamente, podemos definir la noción de \emph{resolución proyectiva} $P^\bullet\rightarrow A^\bullet$ e identificar $\cR(A^\bullet)=\cR(P^\bullet)\in \DD^b(\sfA)$ como la clase de homotopía de una resolución proyectiva $P^\bullet$.
+\end{rmk}
+
+
+\begin{proof}
+Hacemos la demostración en el caso inyectivo (el proyectivo es análogo) y para un complejo concentrado en grado $0$; la prueba general es tediosa, pero rutinaria. Dado un objeto $A$ de $\sfA$, se trata de construir una resolución inyectiva de $A$. Comenzamos por considerar un objeto inyectivo $I^0$ con un monomorfismo $A\hookrightarrow I^0$, y tomamos el cociente $A/I^0$. Tomamos entonces otro objeto inyectivo $I^1$ junto con un monomorfismo $A/I^0\hookrightarrow I^1$. Tenemos una sucesión exacta $0\rightarrow A \rightarrow I^0 \rightarrow I^1$. Procediendo inductivamente, obtenemos una sucesión exacta $0\rightarrow A \rightarrow I^0 \rightarrow I^1\rightarrow I^2 \rightarrow \dots$, y en consecuencia un cuasi-isomorfismo $A\rightarrow I^\bullet$.
+\end{proof}
+
+Falta ver que, en efecto, las resoluciones son funtoriales.
+
+%\begin{prop}
+%  Sea $f:A\rightarrow B$ un morfismo en una categoría abeliana $\sfA$. Si $A\rightarrow I^\bullet_A$ y $B\rightarrow I^\bullet_B$ son resoluciones inyectivas, entonces existe un único (salvo homotopía) morfismo de complejos $f^\bullet:I^\bullet_A\rightarrow I^\bullet_B$ tal que el siguiente diagrama conmuta
+%  \begin{center}
+%    \begin{tikzcd}
+%     A \ar{r} \ar{d}{f} & I^\bullet_A \ar{d}{f^\bullet} \\
+%     B \ar{r} & I^\bullet_B.
+%    \end{tikzcd}
+%  \end{center}
+%Dualmente, si $P_A^\bullet\rightarrow A$ y $P^\bullet_B\rightarrow B$ son resoluciones proyectivas, entonces existe un único (salvo homotopía) morfismo de complejos $f^\bullet:P^\bullet_A\rightarrow P^\bullet_B$ tal que el siguiente diagrama conmuta
+%  \begin{center}
+%    \begin{tikzcd}
+%     P^\bullet_A \ar{r} \ar{d}{f^\bullet} & A \ar{d}{f} \\
+%     P^\bullet_B \ar{r} & B.
+%    \end{tikzcd}
+%  \end{center}
+%\end{prop}
+
+\begin{defn}
+Sean $\sfA$ y $\sfB$ dos categorías abelianas y $F:\sfA\rightarrow \sfB$ un funtor. Decimos que $F$ es \emph{aditivo} si induce homomorfismos de grupos entre los grupos $\Hom$.
+Además, si $F$ es aditivo, decimos que es:
+  \begin{itemize}
+    \item \emph{exacto por la izquierda}, si para toda sucesión exacta corta $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ en $\sfA$, la sucesión
+          \begin{center}
+            \begin{tikzcd}
+0 \rar & F(A) \rar & F(B) \rar & F(C)
+            \end{tikzcd}
+          \end{center}
+          es exacta;
+    \item \emph{exacto por la derecha}, si para toda sucesión exacta corta $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ en $\sfA$, la sucesión
+          \begin{center}
+            \begin{tikzcd}
+F(A) \rar & F(B) \rar & F(C) \rar & 0
+            \end{tikzcd}
+          \end{center}
+          es exacta;
+    \item \emph{exacto} si es exacto por la izquierda y por la derecha.
+
+  \end{itemize}
+\end{defn}
+
+\begin{defn}
+Sea $F:\sfA\rightarrow \sfB$ un funtor aditivo exacto por la izquierda y supongamos que $\sfA$ tiene suficientes inyectivos. Definimos el \emph{funtor derivado por la derecha} de $F$ como el funtor
+\begin{equation*}
+RF: \DD^b(\sfA)\simeq K^b(\mathrm{Inj}\ \sfA) \rightarrow \DD(\sfB):\ [I^\bullet] \mapsto \cR(F(I^\bullet)).
+\end{equation*}
+
+Sea $F:\sfA\rightarrow \sfB$ un funtor aditivo exacto por la derecha y supongamos que $\sfA$ tiene suficientes proyectivos. Definimos el \emph{funtor derivado por la izquierda} de $F$ como el funtor
+\begin{equation*}
+LF: \DD^b(\sfA)\simeq K^b(\mathrm{Proj}\ \sfA) \rightarrow \DD(\sfB):\ [P^\bullet] \mapsto \cR(F(P^\bullet)).
+\end{equation*}
+\end{defn}
+
 \section{Teoría de haces}
 a
 
 
-\section{Cohomología de variedades}
+\section{Cohomología en variedades}
 a
 \subsection{Cohomología de de Rham}
 a
