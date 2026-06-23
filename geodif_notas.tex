@@ -31,8 +31,17 @@
 \theoremstyle{definition} \newtheorem{ej}[subsection]{Ejercicio}
 
 \makeatletter
+\hypersetup{
+	colorlinks,
+	linkcolor=[rgb]{0.2,0.2,0.6},
+	citecolor=[rgb]{0.2,0.6,0.2},
+	urlcolor=[rgb]{0.6,0.2,0.2}}
+\makeatother
+
+\makeatletter
 \@removefromreset{section}{chapter}
 \makeatother
+
 
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\arabic{section}}
@@ -51,14 +60,15 @@
 \setcounter{page}{1}
 \thispagestyle{empty}
 \begin{center}
-\Large \bfseries Lecciones de Geometría Diferencial \par\vspace{2em}
-\large  Guillermo Gallego \par\bigskip
+{\Large \bfseries LECCIONES DE GEOMETRÍA DIFERENCIAL} \par\vspace{2em}
+{\large \textsc{Guillermo Gallego}} \par\bigskip
 \end{center}
 
 \vfill
 
 \begin{center}
 \includegraphics[width=\textwidth]{imagen_portada.png}
+De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
 \end{center}
 
 \vfill
@@ -124,10 +134,18 @@ que cumple la propiedad asociativa y tal que, para cada objeto $A$ de $\sfC$, ex
 Si, para cada par de objetos $(A,B)$ de $\sfC$, la clase $\Hom(A,B)$ es un conjunto, entonces decimos que $\sfC$ es una categoría \emph{localmente pequeña}. Si, además, la clase $\mathrm{Obj}(\sfC)$ es un conjunto, decimos que $\sfC$ es una categoría \emph{pequeña}.
 \end{defn}
 
-\todo{Monomorfismo epimorfismo}
 \begin{defn}
-Un \emph{isomorfismo} en una categoría $\sfC$ es un morfismo $f:A\rightarrow B$ tal que existe otro morfismo $f^{-1}:B\rightarrow A$ de modo que $f^{-1}\circ f = \id_A$ y $f\circ f^{-1}= \id_B$.
+  Sea $f:A\rightarrow B$ un morfismo en una categoría $\sfC$. Decimos que $f$ es
+  \begin{itemize}
+  \item  un \emph{monomorfismo} si, para cualquier otro objeto $C$ de $\sfC$ y cualesquiera dos morfismos $g_1,g_2:C\rightarrow A$, se tiene que si $f\circ g_1 = f\circ g_2$, entonces $g_1=g_2$;
+  \item un \emph{epimorfismo} si, para cualquier otro objeto $C$ de $\sfC$ y cualesquiera dos morfismos $g_1,g_2:B\rightarrow C$, se tiene que si $g_1 \circ f=g_2 \circ f$, entonces $g_1=g_2$;
+ \item un \emph{isomorfismo} si existe otro morfismo $f^{-1}:B\rightarrow A$ de modo que $f^{-1}\circ f = \id_A$ y $f\circ f^{-1}= \id_B$.
+  \end{itemize}
 \end{defn}
+
+\begin{rmk}
+Nótese que un isomorfismo no siempre es lo mismo que un morfismo que es un monomorfismo y un epimorfismo. Por ejemplo, una aplicación biyectiva y continua no es necesariamente un homeomorfismo.
+\end{rmk}
 
 \begin{defn}
 Un \emph{funtor} (o \emph{funtor covariante}) $F:\sfC\rightarrow \sfD$ entre dos categorías $\sfC$ y $\sfD$, asigna, a cada objeto $A$ de $\sfC$, un objeto $F(A)$ de $\sfD$ y, a cada morfismo $f:A\rightarrow B$ en $\sfC$, un morfismo $F(f):F(A)\rightarrow F(B)$, de forma que $F(f\circ g) = F(f) \circ F(g)$.
@@ -216,12 +234,264 @@ El funtor $y: \sfC \rightarrow \PSh(\sfC)$, $X \mapsto \underline{X}$ se denomin
 La inmersión de Yoneda $y:\sfC \rightarrow \PSh(\sfC)$ es plenamente fiel.
 \end{thm}
 
-\todo{limits}
+\begin{defn}
+  Sean $J$ y $\sfC$ dos categorías, con $J$ pequeña, y sea $D:J\rightarrow \sfC$ un funtor.
+
+  Se define un \emph{cono} sobre $D$ como un par $(N,\psi)$ formado por un objeto $N$ de $\sfC$ y una familia de morfismos $\psi=\left\{ \psi_i:N \rightarrow D(i), i\in \mathrm{Obj}(J) \right\}$, de modo que, para cada morfismo $a:i\rightarrow j$ en $J$, tenemos $D(a)\circ \psi_i = \psi_j$. Se define un \emph{límite} de $D$ como un cono $(L,\phi)$ tal que, para cada cono $(N,\psi)$ sobre $D$ existe un único morfismo $u:N\rightarrow L$ tal que $\phi_i \circ u = \psi_i$ para todo $i\in J$.
+
+  Dualmente, se define un \emph{co-cono} sobre $D$ como un par $(N,\psi)$ formado por un objeto $N$ de $\sfC$ y una familia de morfismos $\psi=\left\{ \psi_i:D(i) \rightarrow N, i\in \mathrm{Obj}(J) \right\}$, de modo que, para cada morfismo $a:i\rightarrow j$ en $J$, tenemos $\psi_j \circ D(a) = \psi_i$. Se define un \emph{colímite} de $D$ como un co-cono $(L,\phi)$ tal que, para cada co-cono $(N,\psi)$ sobre $D$ existe un único morfismo $u:L\rightarrow N$ tal que $u \circ \phi_i = \psi_i$ para todo $i\in J$.
+\end{defn}
+
+\begin{rmk}
+  Se sigue de las propiedades universales en las definiciones los límites y los colímites, si existen, entonces son únicos. En tal caso, denotamos el límite de un funtor $D$ como $\lim D$, y su colímite como $\colim D$.
+\end{rmk}
+
+\begin{rmk}
+  La idea de los conos y los co-conos es pensar que $J$ es una categoría cuyos objetos indexan objetos de $\sfC$, y que el funtor $D$ determina un diagrama conmutativo de morfismos en $\sfC$. Un cono es un objeto con una serie de flechas a cada uno de los puntos del diagrama, y el límite es el cono ``más cercano'' al diagrama que podemos poner.
+\end{rmk}
+
+\begin{ej}
+  Veamos algunos ejemplos de límites y colímites:
+  \begin{itemize}
+  \item Si $J$ es la categoría vacía (sin objetos y sin morfismos), entonces sólo existe un fuctor de $J$ a cualquier categoría, el funtor vacío. El límite de este funtor, si existe, es simplemente el objeto $L$ tal que, para cualquier otro objeto $N$ de $\sfC$, existe un único morfismo $u:N\rightarrow L$. Se dice que $L$ es un \emph{objeto terminal}. Dualmente, el colímite de este funtor, si existe, es el \emph{objeto final}.
+
+  \item Si $J$ es una categoría que tiene por morfismos únicamente a la identidad de cada objeto, entonces un funtor $D:J\rightarrow \sfC$ es simplemente un conjunto de objetos de $\sfC$ indexado por $\mathrm{Obj}(J)$. El correspondiente límite $\lm D$, si existe, se denomina el \emph{producto} de $D$, y se denota como
+          \begin{equation*}
+\lm D = \prod_{i\in J} D(i).
+          \end{equation*}
+          Los morfismos $\phi_i=\pr_i:\lm D\rightarrow D(i)$ son las \emph{proyecciones}. El colímite $\colim D$, si existe, se denomina el \emph{coproducto} de $D$, y se denota como
+          \begin{equation*}
+\colim D = \coprod_{i\in J} D(i).
+          \end{equation*}
+          Los morfismos $\phi'_j=i_j:D(j)\rightarrow \colim D$ son las \emph{inclusiones}.
+\item Si $J$ es una categoría con dos objetos $\mathrm{Obj}(J)=\left\{ 0,1 \right\}$ y que tiene por únicos morfismos entre ellos dos morfismos $a,b:0\rightarrow 1$, entonces un funtor $D:J\rightarrow \sfC$ es un par de objetos $X$ y $Y$ de $\sfC$ con dos morfismos $f,g:X\rightarrow Y$. El correspondiente límite, si existe, se denomina el \emph{ecualizador} de $f$ y $g$. Dualmente, si existe el colímite de un funtor $D:J^{\op}\rightarrow \sfC$, se denomina el \emph{coecualizador} de $f$ y $g$.
+
+\item Supongamos que $J$ es una categoría con tres objetos $\mathrm{Obj}(J)=\left\{ 0,1,2 \right\}$ y que tiene por únicos morfismos entre ellos dos morfismos $a:0\rightarrow 2$ y $b:1\rightarrow 2$. Un funtor $D:J\rightarrow \sfC$ es una terna de objetos $X$, $Y$ y $Z$ de $\sfC$ con dos morfismos $f:X\rightarrow Z$ y $g:Y\rightarrow Z$. El correspondiente límite, si existe, se denomina el \emph{producto fibrado} o ``\emph{pullback}'', y se denota por
+          \begin{equation*}
+\lm D = X \times_Z Y = X\times_{(Z,f,g)} Y.
+          \end{equation*}
+          Un funtor $D:J^{\op}\rightarrow \sfC$ es una terna de objetos $X$, $Y$ y $Z$ de $\sfC$ con dos morfismos $f:Z\rightarrow X$ y $g:Z\rightarrow Y$. El correspondiente colímite, si existe, se denomina el \emph{coproducto fibrado}, \emph{suma amalgamada} o ``\emph{pushout}'', y se denota por
+          \begin{equation*}
+\colim D = X \sqcup_Z Y = X\sqcup_{(Z,f,g)} Y.
+          \end{equation*}
+
+\item Un conjunto dirigido $J$ puede convertirse en una categoría pequeña si añadimos un morfismo $i\rightarrow j$ para cada par de elementos $i,j\in J$ con $i\leq j$. Un funtor $D:J^{\op}\rightarrow \sfC$ se denomina un \emph{sistema inverso} y el límite de $D$ es el correspondiente \emph{límite inverso} (también llamado \emph{límite proyectivo}), que se denota por
+          \begin{equation*}
+\lm D= \varprojlim_{i \in J} D(i).
+          \end{equation*}
+          Un funtor $D:J\rightarrow \sfC$ se denomina un \emph{sistema directo} y el límite de $D$ es el correspondiente \emph{límite directo} (también llamado \emph{límite inyectivo}), que se denota por
+          \begin{equation*}
+\lm D= \varinjlim_{i \in J} D(i).
+          \end{equation*}
+  \end{itemize}
+\end{ej}
+
 
 \section{Álgebra homológica}
+\begin{defn}
+  Una \emph{categoría aditiva} $\sfA$ es una categoría con las siguientes propiedades:
+  \begin{enumerate}
+\item Para cualesquiera dos objetos $A$ y $B$ de $\sfA$, la clase $\Hom(A,B)$ es un grupo abeliano y, para cualesquiera tres objetos $A$, $B$ y $C$, la aplicación de composición $\circ: \Hom(A,B)\times \Hom(B,C)\rightarrow \Hom(A,C)$ es un homomorfismo de grupos.
+\item Existe un objeto $0$ de $\sfA$ cuya identidad es el elemento neutro, es decir, tal que $\id_0=0\in \Hom(0,0)$.
+\item Para cualesquiera dos objetos $A$ y $B$ de $\sfA$, existe su producto, que se denota por $A\oplus B$ y se denomina la \emph{suma directa} de $A$ y $B$.
+  \end{enumerate}
+\end{defn}
 
-representabilidad aquí
+\begin{rmk} Algunos comentarios:
+\begin{enumerate}
+  \item El objeto $0$ es único y además es un objeto inicial y un objeto final de $\sfA$.
+  \item Al existir el producto $A\oplus B = A\times B$, también existe el coproducto $A\sqcup B$, que además es isomorfo a $A\oplus B$.
+\end{enumerate}
+\end{rmk}
 
+\begin{defn}
+  Si $f:A\rightarrow B$ es un morfismo en una categoría aditiva $\sfA$, definimos su \emph{núcleo} $\ker f \rightarrow A$ como el ecualizador de $f$ y el morfismo $0:A\rightarrow B$. Dualmente, definimos su \emph{conúcleo} $B\rightarrow \coker f$ como el coecualizador de $f$ y $0:A\rightarrow B$.
+  Se define la \emph{coimagen} $\coim$ de $f$ como el conúcleo del morfismo $\ker f \rightarrow A$, y la \emph{imagen} $\im$ de $f$ como el núcleo del morfismo $B\rightarrow \coker f$.
+\end{defn}
+
+Nótese que si un morfismo $f$ tiene núcleo, conúcleo, imagen y coimagen, entonces factoriza de manera única como $A\rightarrow \coim f \rightarrow \im f \rightarrow B$.
+
+\begin{defn}
+  Una \emph{categoría abeliana} $\sfA$ es una categoría con las siguientes propiedades:
+  \begin{enumerate}
+    \item $\sfA$ es aditiva.
+    \item Existe el núcleo y el conúcleo de todos los morfismos de $\sfA$ y,
+    \item (\emph{Teorema de isomorfía}) Para todo morfismo $f$ de $\sfA$, el morfismo natural $\coim f \rightarrow \im f$ es un isomorfismo.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk} Comentemos algunas propiedades de las categorías abelianas.
+  \begin{enumerate}
+\item En una categoría abeliana, un morfismo es un monomorfismo si y sólo si su núcleo es $0$ y un epimorfismo si y sólo si su conúcleo es $0$.
+\item Hay una noción de cociente: dado un monomorfismo $i:A\rightarrow B$, se define el \emph{cociente} $B\rightarrow B/A$ como el conúcleo $B\rightarrow B/A=\coker i$.
+    \item En cualquier categoría abeliana se puede definir la noción de complejo de cocadenas: una sucesión de morfismos
+          \begin{center}
+            \begin{tikzcd}
+A^\bullet:\  \cdots \rar{d^{i-2}} & A^{i-1} \rar{d^{i-1}} & A^i \rar{d^i} & A^{i+1} \rar{d^{i+1}} & \cdots
+            \end{tikzcd}
+          \end{center}
+          es un \emph{complejo de cocadenas} si $d_i\circ d_{i-1} =0$ para todo $i$. En un complejo de cadenas, el morfismo $d_{i-1}$ factoriza por un monomorfismo $\im d_{i-1} \hookrightarrow \ker d_{i}$. Decimos que $A^\bullet$ es \emph{exacto} en $A^i$ si este monomorfismo es un isomorfismo.
+    \item Un complejo de cocadenas que es exacto en todos sus puntos se denomina una \emph{sucesión exacta}. Una \emph{sucesión exacta corta} es una sucesión exacta de la forma
+          \begin{center}
+            \begin{tikzcd}
+0 \rar & A \rar & B \rar & C \rar & 0.
+            \end{tikzcd}
+          \end{center}
+          En este caso, nótese que $A=\ker(B\rightarrow C)$ y $C=B/A$.
+    \item El ``fallo de la exactitud'' se puede medir con la \emph{cohomología}: para cada $i$, se define el $i$-ésimo objeto de cohomología de $A^\bullet$ como el cociente
+          \begin{equation*}
+H^i(A^\bullet) = \ker d_i / \im d_{i-1}.
+          \end{equation*}
+          Hay una noción natural de morfismo entre complejos de cocadenas, lo que permite definir una categoría $\Ch(\sfA)$ de complejos de cocadenas. Resulta que esta categoría también es abeliana. La asignación $A^\bullet \mapsto H^{i}(A^\bullet)$ que manda cada complejo de cocadenas a su $i$-ésimo objeto de cohomología es de hecho un funtor \[H^i: \Ch(\sfA)\rightarrow \sfA.\]
+    \item En cualquier categoría abeliana se puede probar el \emph{lema de la serpiente} y, equivalentemente, la existencia de \emph{sucesión exacta larga en cohomología}. Esto es, dada una sucesión exacta corta
+          \begin{center}
+            \begin{tikzcd}
+0 \rar & A^\bullet \rar & B^\bullet \rar & C^\bullet \rar & 0
+            \end{tikzcd}
+          \end{center}
+          de complejos de cocadenas, existe un morfismo $\delta_i:H^i(C^\bullet)\rightarrow H^{i+1}(A^\bullet)$ y una sucesión exacta
+          \begin{center}
+            \begin{tikzcd}
+\cdots \rar{\delta_{i-1}} & H^i(A^\bullet) \rar & H^i(B^\bullet) \rar & H^i(C^\bullet) \rar{\delta_{i}} & H^{i+1}(A^\bullet) \rar & \cdots.
+            \end{tikzcd}
+          \end{center}
+    \item Sólo necesitaremos considerar complejos $A^\bullet$ que sean \emph{inferiormente acotados}: esto quiere decir que existe un $n \in \mathbb{Z}$ tal que $A^i=0$ para todo $i<n$. Esto nos determina una subcategoría abeliana $\Ch^+(\sfA)$ de complejos de cocadenas inferiormente acotados.
+  \end{enumerate}
+\end{rmk}
+
+\begin{defn}
+  Un morfismo de complejos de cocadenas $f:A^\bullet \rightarrow B^\bullet$ es un \emph{cuasi-isomorfismo} si el morfismo inducido $f_*:H^i(A^\bullet)\rightarrow H^i(B^\bullet)$ es un isomorfismo para todo $i$. Se define la \emph{categoría derivada (inferiormente acotada) de $\sfA$} como la categoría $\DD^+(\sfA)$ con la siguiente propiedad universal: existe un único functor $\cI:\Ch^+(\sfA) \rightarrow \DD^+(\sfA)$ tal que
+  \begin{enumerate}
+    \item $\cI$ envía cuasi-isomorfismos en isomorfismos,
+    \item para cualquier otra categoría $\sfC$ y cualquier otro funtor $F:\Ch^+(\sfA)\rightarrow \sfC$ que envíe cuasi-isomorfismos en isomorfismos, se tiene que $F$ factoriza por $\cI$.
+  \end{enumerate}
+\end{defn}
+
+La construcción de la categoría derivada se hace por un procedimiento estándar llamado ``localización'', pero que no vamos a explicar aquí. En cualquier caso, nos aproximaremos a dar una descripción de la categoría derivada. El primer paso es introducir la noción de homotopía.
+
+\begin{defn}
+  Sean $f,g:A^\bullet \rightarrow B^\bullet$ dos morfismos de complejos de cocadenas. Una \emph{homotopía} $h$ entre $f$ y $g$ es una sucesión de morfismos $h_i:A^{i}\rightarrow B^{i-1}$ de forma que
+  \begin{equation*}
+h_{i+1} \circ d_A + d_B \circ h_i = f_i-g_i.
+  \end{equation*}
+\end{defn}
+
+\subsection{} La homotopía determina una relación en los morfismos de $\Ch^+(\sfA)$. Esto nos permite cocientar por esta relación, y definir la categoría $\KK^+(\sfA)$ cuyos objetos son los mismos que los de $\Ch^+(\sfA)$, pero ahora
+\begin{equation*}
+\Hom_{\KK^+(\sfA)}(A^\bullet,B^\bullet) = \Hom_{\Ch^+(\sfA)}(A^\bullet,B^\bullet)\ /\text{ homotopía}.
+\end{equation*}
+Se ve inmediatamente de la definición de homotopía que dos morfismos homotópicos definen el mismo morfismo en las cohomologías, de modo que los funtores $H^i:\Ch_+(\sfA)\rightarrow \sfA$ descienden a funtores $H^i:\KK_+(\sfA)\rightarrow \sfA$.
+Una \emph{equivalencia de homotopía} es un morfismo en $\Ch^+(\sfA)$ que determina un isomorfismo en $\KK^+(\sfA)$. Decimos que dos complejos de cocadenas son \emph{homotópicamente equivalentes} si son isomorfos en $\KK^+(\sfA)$.
+
+\subsection{} Un complejo de cadenas $A^\bullet$ se dice \emph{contractible} si existe una homotopía entre la identidad $\id_{A^\bullet}$  y $0$. En otras palabras, $A^\bullet$ es contractible si existe un morfismo de complejos $h:A^\bullet \rightarrow A^{\bullet-1}$ tal que
+\begin{equation*}
+h \circ d + d \circ h = \id_{A^\bullet}.
+\end{equation*}
+
+\subsection{} Dado un morfismo $f:A^\bullet\rightarrow B^\bullet$ de complejos de cadenas, se define su \emph{cono} como el complejo $\Cono(f)^\bullet$ con
+\begin{equation*}
+\Cono(f)^i = B^i \oplus A^{i+1}
+\end{equation*}
+y donde el morfismo $d^i:\Cono(f)^i\rightarrow \Cono(f)^{i+1}$ está dado por la matriz
+\begin{equation*}
+  d^i=
+\begin{pmatrix}
+  d_B^i & f \\
+  0 & -d_A^{i+1}
+\end{pmatrix}.
+\end{equation*}
+
+Nótese que hay una sucesión exacta corta de complejos
+\begin{center}
+  \begin{tikzcd}
+0 \rar & B^\bullet \rar & \Cono(f)^\bullet \rar & A^{\bullet + 1} \rar & 0
+  \end{tikzcd}
+\end{center}
+que induce una sucesión exacta larga en cohomología
+          \begin{center}
+            \begin{tikzcd}
+\cdots \rar{\delta_{i-1}} & H^i(B^\bullet) \rar & H^i(\Cono(f)^\bullet) \rar & H^{i+1}(A^\bullet) \rar{\delta_{i}} & H^{i+1}(B^\bullet) \rar & \cdots.
+            \end{tikzcd}
+          \end{center}
+          Por tanto, si $f$ es un cuasi-isomorfismo, entonces $\Cono(f)^\bullet$ es cuasi-isomorfo a $0$.
+
+\begin{prop}
+Si $\Cono(f)^\bullet$ es contractible, entonces $f$ es una equivalencia de homotopía.
+\end{prop}
+
+\begin{proof}
+  Sea $h:\Cono(f)^\bullet \rightarrow \Cono(f)^{\bullet-1}$ una homotopía entre $\id_{\Cono(f)^\bullet}$ y $0$, que podemos escribir como una matriz
+  \begin{equation*}
+    h =
+    \begin{pmatrix}
+      u & w \\
+      g & v
+\end{pmatrix},
+  \end{equation*}
+  con $u:B^\bullet\rightarrow B^{\bullet-1}$, $w:A^{\bullet+1}\rightarrow B^{\bullet-1}$, $g:B^\bullet\rightarrow A^\bullet$, $v=A^{\bullet+1}\rightarrow A^\bullet$. Tomando las componentes diagonales de la ecuación $h  d + d h = \id_{\Cono(f)^\bullet}$ obtenemos
+  \begin{align*}
+ud_B + d_B u &= \id_B - fg \\
+(-v) d_A + d_A (-v) &= \id_A - gf.
+  \end{align*}
+Por tanto, $g$ es la inversa de $f$ en $\KK^+(\sfA)$.
+\end{proof}
+
+
+\subsection{} Nótese que a priori puede haber complejos que no homotópicamente equivalentes, pero que sí sean cuasi-isomorfos, de modo que la categoría derivada no los distingue. Si queremos hallar unos representantes adecuados, debemos buscar complejos que sean isomorfos en $\KK^+(\sfA)$ si y sólo si son cuasi-isomorfos. Para ello introducimos los objetos inyectivos.
+
+\begin{defn}
+Un objeto $I$ en una categoría es \emph{inyectivo} si, para todo monomorfismo $i:X\rightarrow Y$ y para todo morfismo $f:X\rightarrow I$, existe un morfismo $g:Y \rightarrow I$ tal que $g\circ i = f$.
+\end{defn}
+
+\begin{prop}
+Sea $I^\bullet$ es un complejo de cocadenas acotado inferiormente de objetos inyectivos. Si $I^\bullet$ es cuasi-isomorfo a $0$, entonces es contractible.
+\end{prop}
+
+\begin{proof}
+  Como $I^\bullet$ está acotado inferiormente, existe un $N$ tal que $I^n=0$ para todo $n<N$. Podemos suponer, sin pérdida de generalidad, que $N=0$. Tenemos entonces que $I^0=\ker(d:I^1\rightarrow I^2)$. Definimos $K^1=I^1/I^0=\ker(d:I^2 \rightarrow I^3)$ y obtenemos una sucesión exacta corta
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & I^0 \rar & I^1 \rar & K^1 \rar & 0.
+    \end{tikzcd}
+  \end{center}
+  Ahora, como $I^0$ es inyectivo, aplicando la condición al monomorfismo $I^0\rightarrow I^1$ y a la identidad $\id_{I^0}$, tenemos un morfismo $I^1\rightarrow I^0$ que escinde la sucesión exacta corta, y da un isomorfismo $I^1=I^0\oplus K^1$. Esto implica que $K^1$ también es inyectivo.
+Tomamos ahora $K^2=I^2/K^1=\ker(d:I^3\rightarrow I^4)$, y obtenemos una sucesión exacta corta
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & K^1 \rar & I^2 \rar & K^2 \rar & 0.
+    \end{tikzcd}
+  \end{center}
+  Iterando este proceso, obtenemos sucesiones exactas cortas
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & K^{i-1} \rar & I^i \rar & K^i \rar & 0,
+    \end{tikzcd}
+  \end{center}
+  para cada $i>0$, cada una de las cuales escinde como $I^i=K^{i-1}\oplus K^i$, ya que todos los $K^i$ son inyectivos. Así visto, el morfismo $d_i:I^i\rightarrow I^{i+1}$ puede escribirse como la matriz
+  \begin{equation*}
+d_i=\begin{pmatrix}
+  0 & \id_{K^i} \\
+  0 & 0
+\end{pmatrix}.
+  \end{equation*}
+  Por tanto basta considerar la familia de morfismos $h_i:I^{i}\rightarrow I^{i-1}$ dados por las matrices
+  \begin{equation*}
+h_i=\begin{pmatrix}
+  0 & 0 \\
+  \id_{K_{i-1}} & 0
+\end{pmatrix}
+\end{equation*}
+y tenemos que $dh + hd = \id_{I^\bullet}$.
+\end{proof}
+
+
+\begin{prop}
+Sean $I^\bullet$ y $J^\bullet$ complejos de cocadenas de objetos inyectivos. Todo cuasi-isomorfismo $f:I^\bullet\rightarrow J^\bullet$ es una equivalencia de homotopía.
+\end{prop}
+
+\begin{proof}
+Basta ver que, si $f$ es un cuasi-isomorfismo, entonces $\Cono(f)^\bullet$ es contractible. Pero, como $\Cono(f)^\bullet$ es cuasi-isomorfo a $0$ y sus términos son inyectivos (ya que son suma directa de inyectivos), lo que se quiere probar se sigue de lo anterior.
+\end{proof}
 
 \section{Teoría de haces}
 a
