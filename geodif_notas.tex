@@ -12,9 +12,12 @@
 
 \usepackage{bm}
 
+\usepackage{adjustbox}
 \usepackage{pdfpages}
 \usepackage{graphicx}
 \usepackage{epigraph}
+
+\usepackage[scr=boondox]{mathalfa}
 
 %\usepackage[backend=biber]{biblatex}
 %\addbibresource{biblio_guillermo.bib}
@@ -204,7 +207,7 @@ Si $(F,G)$ determina una equivalencia de categorías, entonces los funtores $F$ 
 Otra forma de definir equivalencias de categorías es en términos de adjunciones.
 
 \begin{defn}
-  Una \emph{adjunción} entre dos categorías $\sfC$ y $\sfD$ es un par de funtores $F:\sfC\rightarrow \sfD$ y $G:\sfD \rightarrow \sfC$ junto con dos transformaciones naturales $\eta:\id_{\sfC} \rightarrow G\circ F$ y $\varepsilon:F\circ G \rightarrow \id_{\sfD}$, llamadas la \emph{unidad} y la \emph{counidad}, respectivamente, de modo que los siguientes diagramas conmutan
+  Una \emph{adjunción} $G\dashv F$ entre dos categorías $\sfC$ y $\sfD$ es un par de funtores $F:\sfC\rightarrow \sfD$ y $G:\sfD \rightarrow \sfC$ junto con dos transformaciones naturales $\eta:\id_{\sfC} \rightarrow G\circ F$ y $\varepsilon:F\circ G \rightarrow \id_{\sfD}$, llamadas la \emph{unidad} y la \emph{counidad}, respectivamente, de modo que los siguientes diagramas conmutan
   \begin{center}
     \begin{tikzcd}
       G \ar{rd}{\id_G} \rar{\eta \circ G} & G\circ F \circ G \dar{G \circ \varepsilon} \\
@@ -216,6 +219,7 @@ Otra forma de definir equivalencias de categorías es en términos de adjuncione
       & F.
     \end{tikzcd}
   \end{center}
+  Decimos que $G$ es el \emph{funtor adjunto por la izquierda de $F$} y que $F$ es el \emph{funtor adjunto por la derecha de $G$}.
 \end{defn}
 
 \subsection{} Nótese que una equivalencia de categorías es una adjunción en la que la unidad y la counidad son isomorfismos. Por otra parte, dada una adjunción $(F,G)$ podemos definir, para cada par de objetos $A$ en $\sfC$ y $X$ en $\sfD$, una biyección
@@ -726,33 +730,371 @@ Ahora, como $\Cono(f)^\bullet$ es $F$-acíclico y cuasi-isomorfo a $0$, entonces
 
 \todo{Teorema de representabilidad}
 
-\section{Teoría de haces}
-a
+\section{Teoría de haces en variedades}
+\subsection{} Para definir la teoría de haces en variedades, vamos a definirla en una clase de espacios ligeramente más general, que incluye también a subespacios cerrados de variedades diferenciables que podrían no ser subvariedades regulares. Denotamos entonces por $\mathsf{Var}$ la subcategoría de la categoría de espacios topológicos cuyos objetos son espacios topológicos homeomorfos a algún subespacio topológico de algún $\RR^n$. Esta categoría incluye a todas las variedades diferenciables, pero también a todos sus subespacios cerrados.
 
-
-\section{Cohomología en variedades}
 \begin{defn}
-  Sea $M$ una variedad diferenciable. Para cada $k\in \Z$, se define el \emph{$k$-ésimo grupo de cohomología de $M$} (con coeficientes en $\RR$) como el grupo de cohomología de haces
-  \begin{equation*}
-H^k(M,\RR) := H^k(M,\underline{\RR}_M),
-  \end{equation*}
-donde $\underline{\RR}_M$ es el haz constante $\RR$ en $M$.
+  Un haz $\sF$ en $X$ es \emph{fino} si para cualquier recubrimiento localmente finito $X=\bigcup_i U_i$ de $X$ existe una familia de morfismos de haces $\left\{ \rho_i:\sF\rightarrow \sF \right\}$ (llamados \emph{particiones de la unidad}) tal que
+  \begin{enumerate}
+    \item $\sum_i \rho_i = 1$,
+          \item $\rho_i(\sF_x)=0$ para todo $x$ en algún entorno del complemento de $U_i$.
+  \end{enumerate}
 \end{defn}
 
-\subsection{Cohomología de de Rham}
+\todo{Ejemplo: PDUs}
+
+\begin{prop}
+Todo haz fino es $\Gamma$-acíclico.
+\end{prop}
+
+\begin{proof}
+  En primer lugar, veamos que si $\sF$ es un haz fino, entonces se tiene que $H^1(X,\sF)=0$. En efecto, si
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & \sF \rar{\alpha} & \sG \rar{\beta} &\sH \rar & 0
+    \end{tikzcd}
+  \end{center}
+  es una sucesión exacta corta y $h\in \sH(X)$ es una sección, podemos tomar un recubriimento localmente finito $X=\bigcup_i U_i$ de forma que las restricciones $h|_{U_i}$ levantan a secciones $g_i\in \sG(U_i)$ y, para $i, j$ con $U_i\cap U_j \neq \varnothing$, tenemos secciones $f_{ij}\in \sF(U_i\cap U_j)$ con $g_i-g_j=\alpha(f_{ij})$. Podemos tomar entonces una partición de la unidad $\rho_i$ y definir $f_i=\sum_j \rho_j(f_{ij})$, de modo que las secciones locales $g_i'=g_i-\alpha(f_i)$ cumplen
+  \begin{equation*}
+g_i' - g_j' = g_i-g_j - \alpha \left( \sum_k\rho_k(f_{ik}-f_{jk}) \right) = g_i - g_j - \alpha(f_{ij}) =0
+  \end{equation*}
+  y por tanto pegan a una sección global $g' \in \sG(X)$ con $\beta(g')=h$.
+
+  Consideremos ahora el haz de Godement $\cG(\sF)$, y tomemos el cociente $\sK^1:=\cG(\sF)/\sF$. Los morfismos $\rho_i$ levantan naturalmente a morfismos $\tilde{\rho}_i:\cG(\sF)\rightarrow \cG(\sF)$, que a su vez descienden a morfismos $\bar{\rho}_i:\sK^1\rightarrow \sK^1$. Por construcción, estos $\bar{\rho}_i$ son particiones de la unidad. Por tanto $\sK^1$ también es un haz fino. Iterando este proceso, podemos descomponer la resolución inyectiva $\sF\rightarrow \cG(\sK^\bullet)$ en sucesiones exactas cortas
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & \sK^i \rar & \cG(\sK^i) \rar & \sK^{i+1} \rar & 0.
+    \end{tikzcd}
+  \end{center}
+  Como cada uno de los $\sK^i$ son finos, el funtor $\Gamma$ preserva estas sucesiones exactas y obtenemos que el complejo $\Gamma(\cG(\sK^\bullet))$ es exacto. Por tanto, sus grupos de cohomología son nulos, lo que quiere decir que $R\Gamma(\sF)=\cR(\Gamma(\cG(\sK^\bullet)))=0$.
+\end{proof}
+
+\section{Cohomología en variedades}
+
+\begin{defn}
+  Sea $X$ una objeto de $\mathsf{Var}$. Para cada $k\in \Z$, se define el \emph{$k$-ésimo grupo de cohomología de $X$} (con coeficientes en $\RR$) como el grupo de cohomología de haces
+  \begin{equation*}
+H^k(X,\RR) := H^k(X,\underline{\RR}_X),
+  \end{equation*}
+donde $\underline{\RR}_X$ es el haz constante $\RR$ en $X$.
+
+Más generalmente, si $(X,A)$ es un par formado por un objeto $X$ de $\mathsf{Var}$ y un subespacio $A\subset X$, entonces se define el \emph{$k$-ésimo grupo de cohomología relativa de $(X,A)$} (con coeficientes en $\RR$) como el grupo de cohomología de haces
+\begin{equation*}
+H^k(X,A;\RR) := H^k(X,j_! \underline{\RR}_U),
+\end{equation*}
+donde $j:U\rightarrow X$ es la inclusión del complemento $U=X\setminus A$.
+\end{defn}
+
+\begin{rmk}
+Nótese que $H^k(X,\RR)=H^k(X,\varnothing;\RR)$.
+\end{rmk}
+
+\subsection{Axiomas de Eilenberg--Steenrod} Los grupos de cohomología se pueden definir de manera axiomática como una colección de funtores contravariantes $H^k$, para $k\in \Z$, de la categoría de pares $(X,A)$ a la categoría de grupos abelianos que cumplen las propiedades que enunciamos a continuación. De ahora en adelante, si $f$ es una aplicación continua entre pares, denotamos $f^*=H^k(f)$ para cualquier $k$.
+
+\subsubsection{Axioma de escisión} Dado un par $(X,A)$ y un subconjunto $Z\subset A$ cuya adherencia está totalmente contenida en el interior de $A$, entonces la inclusión $i:(X\setminus Z, A\setminus Z) \rightarrow (X,A)$ determina un isomorfismo
+\begin{equation*}
+i^*: H^k(X,A;\RR) \longrightarrow H^k(X\setminus Z,A\setminus Z;\RR)
+\end{equation*}
+para cada $k\in \Z$.
+
+\subsubsection{Axioma de dimensión} $H^0(*)=\RR$ y $H^k(*)=0$ para todo $k\neq 0$.
+
+\subsubsection{Axioma de aditividad} Si $X=\coprod_i X_i$ es una unión disjunta, entonces $H^k(X,\RR)=\bigoplus_i H^k(X_i,\RR)$.
+
+\subsubsection{Axioma de exactitud} Todo par $(X,A)$ determina una sucesión exacta larga en cohomología
+\begin{center}
+  \begin{tikzcd}[column sep=1em]
+\cdots \rar & H^{k}(X,A;\RR) \rar{j^*} & H^k(X,\RR) \rar{i^*} & H^k(A,\RR) \rar & H^{k+1}(X,A;\RR) \rar & \cdots,
+  \end{tikzcd}
+\end{center}
+donde $i:A\rightarrow X$ y $j:(X,\varnothing)\rightarrow (X,A)$ son las inclusiones naturales.
+
+\subsubsection{Axioma de homotopía} Si $f,g:(X,A)\rightarrow (Y,B)$ son dos aplicaciones relativamente homotópicas, entonces $f^*=g^*$.
+
+\begin{thm}
+Los grupos de cohomología que hemos definido cumplen los axiomas de Eilenberg--Steenrod.
+\end{thm}
+
+\begin{proof}
+  El axioma de dimensión es inmediato, mientras que el de aditividad se sigue de el hecho de que $\underline{\RR}_X$ es un haz. Para ver la propiedad de escisión, observamos que si $Z\subset A$ es un subconjunto cuya adherencia está contenida en el interior de $A$, entonces $U=X\setminus A = (X\setminus Z)\setminus (A\setminus Z)$, por lo que tenemos un triángulo de inclusiones
+  \begin{center}
+    \begin{tikzcd}
+      U \ar{rd}{j} \rar{j'} & X\setminus Z \dar{i} \\
+       & X.
+    \end{tikzcd}
+  \end{center}
+  Por funtorialidad, tenemos $j_!\underline{\RR}_U=(i_! \circ (j')_!)(\underline{\RR}_U)$, mientras que por la adjunción $i_!\dashv i^*$ tenemos un isomorfismo
+\begin{equation*}
+i^*:R\Gamma(X,j_!\underline{\RR}_U) \longrightarrow R\Gamma(X\setminus Z, (j')_! \underline{\RR}_U).
+\end{equation*}
+El axioma de exactitud se sigue de la sucesión exacta de haces
+\begin{center}
+  \begin{tikzcd}
+0 \rar & j_! \underline{\RR}_U \rar & \underline{\RR}_X \rar & i_*\underline{\RR}_A \rar &0,
+  \end{tikzcd}
+\end{center}
+donde $i:A\rightarrow X$ es la inclusión. Para demostrar el axioma de homotopía, necesitaremos comparar la cohomología de haces con otra teoría de cohomología que lo satisfaga de forma natural. Esto lo haremos a continuación.
+\end{proof}
+
+\begin{defn}
+  Se define el \emph{complejo de de Rham} $\Omega^\bullet(M)$ asociado a una variedad diferenciable $M$ como el complejo de cadenas
+  \begin{center}
+    \begin{tikzcd}
+\Omega^0(M) \rar{d} & \Omega^1(M)\rar{d} & \cdots \rar{d} & \Omega^k(M) \rar{d} & \Omega^{k+1}(M) \rar{d} & \dots.
+    \end{tikzcd}
+  \end{center}
+  Dado $k\in \Z$, se define el \emph{$k$-ésimo grupo de cohomología de de Rham} de $M$ como el grupo de cohomología
+  \begin{equation*}
+H^k_{\mathrm{dR}}(M) = H^k(\Omega^\bullet(M)) = \frac{\ker(d:\Omega^k(M)\rightarrow \Omega^{k+1}(M))}{d(\Omega^{k-1}(M))}.
+  \end{equation*}
+\end{defn}
+
+\subsection{} Nótese la funtorialidad de las construcciones. Para cada aplicación diferenciable $f:M\rightarrow N$ tenemos una aplicación inducida $f^*:\Omega^\bullet(N)\rightarrow \Omega^\bullet(M)$ que envía cada forma diferenciable a su pull-back. Veamos que, además, la cohomología de de Rham es invariante por homotopía. Puesto que toda aplicación continua se puede aproximar por aplicaciones diferenciables, bastará considerar homotopías diferenciables entre aplicaciones diferenciables.
+
+\begin{prop}
+  Sean $M$ y $N$ dos variedades diferenciables, $f_0,f_1:M\rightarrow N$ dos aplicaciones diferenciables y $f:M\times [0,1] \rightarrow N$ una homotopía diferenciable entre $f_0$ y $f_1$. Entonces existe una homotopía $h$ entre los morfismos de complejos $f_0^*,f_1^*:\Omega^\bullet(N)\rightarrow \Omega^\bullet(M)$.
+\end{prop}
+
+\begin{proof}
+  Basta demostrar que existe una homotopía $h_0$ entre los morfismos de complejos $i_0^*,i_1^*:\Omega^\bullet(M\times [0,1])\rightarrow \Omega^\bullet(M)$, donde $i_0,i_1:M\rightarrow M\times[0,1]$ son las inclusiones $i_0(x)=(x,0)$ e $i_1(x)=(x,1)$. En efecto, como $f_0=f\circ i_0$ y $f_1=f\circ i_1$, si tomamos $h=h_0 \circ f^*$ tenemos que, para toda forma diferencial $\alpha$,
+  \begin{equation*}
+h(d\alpha) + d(h\alpha) = h_0(f^* d\alpha) + d(h_0 f^*\alpha) = (h_0d+dh_0)(f^*\alpha)=(i_1^*-i_0^*)(f^*\alpha) = (g^*-f^*)(\alpha).
+  \end{equation*}
+  Finalmente, la homotopía $h_0$ puede construirse como la colección de aplicaciones
+  \begin{align*}
+    h_0: \Omega^k(M\times[0,1]) & \longrightarrow \Omega^{k-1}(M) \\
+    \alpha  & \longmapsto \int_0^1 i_{\partial_t}\omega dt,
+  \end{align*}
+  donde $t$ es la coordenada en $[0,1]$. En efecto, para ver que $h_0d+dh_0=i_1^*-i_0^*$ basta calcular en coordenadas locales $x^1,\dots,x^n$. Por la linealidad de $h_0$, basta probarlo en los casos
+  \begin{enumerate}
+  \item  $\alpha=\alpha(x,t)dt\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}}$
+  \item $\alpha=\alpha(x,t)dx^{i_1}\wedge\cdots\wedge dx^{i_k}$.
+  \end{enumerate}
+  Para el caso $1$
+  \begin{align*}
+  d(h_0\alpha) &= d \left[ \left( \int_0^1 \alpha(t,x) dt \right) dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}} \right] \\
+  &=   \partial_j\left( \int_0^1 \alpha(t,x) dt \right) dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}} \\
+  &=  \left( \int_0^1 \partial_j \alpha(t,x) dt \right) dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}},
+  \end{align*}
+  \begin{align*}
+    h_0(d\alpha) &= h \left( \partial_j \alpha(t,x) dt\wedge dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}} \right) \\
+    &= \int_0^1 \partial_j \alpha(t,x) i_{\partial_t}(dt\wedge dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}}) dt \\
+  &= - \left( \int_0^1 \partial_j \alpha(t,x) dt \right) dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}}.
+  \end{align*}
+  Luego $dh_0(\alpha)-h_0d(\alpha)=0$. Por otra parte,
+  \begin{align*}
+(i_0^* dt)_{(x,t)} &= d(t \circ i_0)_{(x,t)} = d(0) = 0 \\
+(i_1^* dt)_{(x,t)} &= d(t \circ i_1)_{(x,t)} = d(1) = 0 .
+  \end{align*}
+  Ahora, para el caso $2$ tenemos que $i_{\partial_t}\alpha = 0$, luego $dh_0\alpha=0$, mientras que
+  \begin{equation*}
+h_0(d\alpha) = \left(\int_0^1 \partial_t\alpha(t,x) dt\right) dx^{i_1} \wedge \cdots \wedge dx^{i_p} =(\alpha(1,x)-\alpha(0,x))  dx^{i_1} \wedge \cdots \wedge dx^{i_p} = i_1^*\alpha - i_0^* \alpha.
+  \end{equation*}
+En ambos casos, concluimos que $h_0$ da una homotopía entre $i_0^*$ e $i_1^*$.
+\end{proof}
+
+\begin{corol}[Lema de Poincaré]
+  Los grupos de cohomología de de Rham de $\RR^n$ son
+  \begin{equation*}
+    H^k_{\mathrm{dR}}(\RR^n) =
+    \begin{cases}
+\RR & \text{ si } n= 0,\\
+0 & \text{ si } n\neq 0.
+\end{cases}
+  \end{equation*}
+\end{corol}
+
+\begin{proof}
+Basta tomar una equivalencia homotópica entre $\RR^n$ y un punto.
+\end{proof}
+
+Veamos ahora que la cohomología que hemos definido de hecho coincide con la de de Rham.
+
+\begin{thm}
+  Sea $M$ una variedad diferenciable. Para cada $k\in \Z$ existe un isomorfismo
+  \begin{equation*}
+H^k(M,\RR) \rightarrow H^k_{\mathrm{dR}}(M).
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+Una función $f:M\rightarrow \RR$ cumple que $df=0$ si y sólamente si es localmente constante. Por tanto, $\underline{\RR}_M$ es el núcleo del homomorfismo de haces $d:\Omega^0_M\rightarrow \Omega^1_M$, y por tanto tenemos un cuasi-isomorfismo $\underline{\RR}_M\rightarrow \Omega^\bullet_M$. De hecho, este cuasi-isomorfismo es una resolución $\Gamma$-acíclica, ya que el complejo $\underline{\RR}_M\rightarrow \Omega^\bullet_M$ es exacto y cada uno de los $\Omega^\bullet_M$ es un haz $\Gamma$-acíclico. En efecto, para cada punto $x\in M$ podemos tomar un entorno contractible $U$ de $x$ y, por la invariancia homotópica de la cohomología de de Rham, tenemos que el complejo $\underline{\RR}_M(U)\rightarrow \Omega^\bullet(U)$ es exacto. Por otra parte, la existencia de particiones diferenciables de la unidad garantiza que los haces $\Omega^\bullet_M$ son finos, y por tanto, $\Gamma$-acíclicos. Concluimos aplicando el teorema de de Rham abstracto.
+\end{proof}
+
+\begin{corol}
+Los grupos $H^k(-,\RR)$ son invariantes por homotopía.
+\end{corol}
+
+\subsection{Cohomología singular}
+Otra teoría de cohomología que es equivalente a $H^k(-,\RR)$ es la cohomología singular. Para definirla se consideran las cadenas singulares: recordemos que una \emph{$k$-cadena singular} en $X$ es una aplicación continua $\sigma:[0,1]^k\rightarrow X$. Para cada $k$, se define el grupo $C_k(X)$ como el grupo abeliano libre generado por las $k$-cadenas singulares, y se define el operador de \emph{borde}
+\begin{align*}
+  \partial_{k}:C_{k+1}(X)  \longrightarrow C_{k}(X)
+\end{align*}
+como
+\begin{equation*}
+\partial\sigma(t^1,\dots,t^{k}) = \sum_{i=1}^k(-1)^{i-1} [\sigma(t^1,\dots,t^{i-1},1,t^i,\dots,t^{k}) -  \sigma(t^1,\dots,t^{i-1},0,t^i,\dots,t^{k})].
+\end{equation*}
+Se define el grupo de las $k$-cocadenas singulares ($\RR$-valoradas) como $C^k(X,\RR)=\Hom(C_k(X),\RR)$.
+Esto determina un complejo de cocadenas $C^\bullet(X,\RR)$, con $d_k=\partial^*_{k}$. Los grupos de cohomología
+\begin{equation*}
+H^i_{\mathrm{sing}}(X,\RR):= H^{i}(C^\bullet(X,\RR))
+\end{equation*}
+se denominan los \emph{grupos de homología singular}.
+
+Si $\sigma$ es una $k$-cadena singular en una variedad $M$ y $\alpha \in \Omega^k(M)$ es una $k$-forma, se puede definir el número
+\begin{equation*}
+\int_\sigma \alpha \in\RR
+\end{equation*}
+Por el teorema de Stokes, si $d\alpha = 0$, entonces el número anterior no depende de la clase de $\sigma$, de modo que obtenemos un homomorfismo en las cohomologías
+\begin{align*}
+ I_{\mathrm{dR}} : H^k_{\mathrm{dR}}(M)  \longrightarrow H^k_{\mathrm{sing}}(M,\RR), \ [\alpha] \mapsto \int_- \alpha.
+\end{align*}
+
+\begin{thm}[de Rham]
+Para todo $k\in \Z$, el homomorfismo $I_{\mathrm{dR}}:H^k_{\mathrm{dR}}(M)\rightarrow H^k_{\mathrm{sing}}(M,\RR)$ es un isomorfismo.
+\end{thm}
+
+\begin{proof}
+  Comenzamos por ver que se tiene una resolución $\Gamma$-acíclica $\underline{\RR}_M\rightarrow C^\bullet(-,\RR)$, donde cada $C^i(-,\RR)$ es el haz que asocia a cada abierto $U\subset M$ su grupo de $k$-cocadenas singulares $\RR$-valoradas. Esto es cierto por los siguientes motivos:
+  \begin{enumerate}
+    \item $H^0_{\mathrm{sing}}(X,\RR)=\RR^{|\pi_0(X)|}$, para todo $X$, luego tenemos exactitud en $\underline{\RR}_M\rightarrow C^0(-,\RR)$,
+    \item los grupos de cohomología singular son invariantes por homotopía cumplen el axioma de la dimensión, luego tenemos exactitud en el resto de términos,
+    \item los haces $C^k(-,\RR)$ son finos (por la existencia de particiones de la unidad), y por tanto $\Gamma$-acíclicos.
+  \end{enumerate}
+La aplicación $I_{\mathrm{dR}}$ viene de un emparejamiento entre complejos
+  \begin{equation*}
+I^\bullet_{\mathrm{dR}}:\Omega^\bullet(M) \times C^\bullet(M,\RR) \rightarrow \RR, \ (\alpha,\sigma) \mapsto \int_\sigma \alpha,
+  \end{equation*}
+  de modo que se tiene un diagrama de complejos
+  \begin{center}
+    \begin{tikzcd}
+      \RR \rar \dar{\id} & \Omega^\bullet(M) \dar{I^\bullet_{\mathrm{dR}}} \rar{\text{ci}} & R\Gamma(\underline{\RR}_M)\\
+      \RR \rar & C^\bullet(M,\RR) \ar{ru}{\text{ci}},
+    \end{tikzcd}
+  \end{center}
+  donde las flechas marcadas con ``ci'' son cuasi-isomorfismos porque las resoluciones acíclicas computan los funtores derivados. Por tanto, $I^\bullet_{dR}$ también es un cuasi-isomorfismo, que es justamente lo que queríamos probar.
+\end{proof}
+
+\subsection{Cohomología celular}
+La forma más efectiva en la práctica de calcular grupos de cohomología es utilizar una descomposición en celdas. Dada una variedad diferenciable $M$ de dimensión $n$, una \emph{descomposición en celdas} de $M$ es una sucesión de espacios topológicos
+\begin{equation*}
+\varnothing = M_{-1} \subset M_0 \subset M_1 \subset \cdots \subset M_k \subset M_{k+1} \subset \dots \subset M_{n-1} \subset M_n=M,
+\end{equation*}
+donde cada pieza $M_k$, llamada el \emph{$k$-esqueleto} de la descomposición, se obtiene de la anterior $M_{k-1}$ pegando una cantidad finita $\left\{ e_1,\dots,e_{c_k} \right\}$ de espacios, denominados $k$-celdas, todos ellos homeomorfos a la bola cerrada unidad en $\RR^k$, a lo largo de su frontera. El número
+\begin{equation*}
+\chi(M) = \sum_k (-1)^k c_k
+\end{equation*}
+se denomina la \emph{característica de Euler} de $M$.
+
+Se tiene entonces un isomorfismo
+\begin{equation*}
+H^k(M_{k},M_{k-1};\RR) \cong \RR^{c_k},
+\end{equation*}
+para cada $k\in \Z$.
+Estos grupos encajan en el siguiente diagrama
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+  \begin{tikzcd}
+& & & H^k(M_{k+1},\RR) \cong H^k(M,\RR) \ar[hook]{rd} & & H^k(M_{k+1},\RR) = 0 & \\
+& & & & H^k(M_k,\RR) \ar{rd} \ar{ru}& & \\
+\cdots \rar & H^{k-1}(M_{k-1},M_{k-2};\RR) \ar{rd} \ar{rr} && H^k(M_k,M_{k-1};\RR) \ar{rr} \ar{ru} && H^{k+1}(M_{k+1},M_k;\RR) \ar{rd} \rar & \cdots \\
+& &H^{k-1}(M_{k-1},\RR) \ar[hook]{ru} & && & H^{k+1}(M_{k+1},\RR).
+  \end{tikzcd}
+  \end{adjustbox}
+\end{center}
+Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bullet(M)$ con $CH^k(M)=H^k(M_k,M_{k-1};\RR)\cong \RR^{c_k}$ y que sus grupos de cohomología coinciden con los grupos $H^\bullet(M,\RR)$. Concluimos que
+\begin{equation*}
+\chi(M) = \chi(R\Gamma(\underline{\RR}_M)) = \sum_{k} (-1)^k \dim H^k(M,\RR).
+\end{equation*}
+
+
+\subsection{Estructura de anillo}
 a
+
+\subsection{Cálculo del dualizante}
+
 
 Dualidad de Poincaré
 
-\subsection{Cohomología singular}
-a
-
-Teorema de de Rham
-
-Axiomas de Eilenberg--Steenrod
 
 \section{Teoría de Morse y teoría del grado}
-Teorema de Poincaré--Hopf
+\subsection{Funciones de Morse} Otra forma de estudiar la topología de las variedades diferenciables es por medio de las funciones de Morse. Si $M$ es una variedad diferenciable de dimensión $n$ y $f:M\rightarrow \RR$ es una función, se denomina un \emph{punto crítico} de $f$ a un punto $x\in M$ tal que $(df)_x =0$. Se denota por $\Crit(f)\subset M$ el conjunto de los puntos críticos de $f$. La imagen $\VC(f)\subset \RR$ de este conjunto es el conjunto de los \emph{valores críticos}. El \emph{hessiano} de $f$ en un punto crítico $x\in \Crit(f)$ es la forma bilineal $\Hess_x(f):T_xM\times T_xM \rightarrow \RR$ definida por
+\begin{equation*}
+\Hess_x(f)(X_x,Y_x) = X_x\circ Y_x(f) = Y_x\circ X_x(f).
+\end{equation*}
+Nótese que, como $x$ es un punto crítico, tenemos que $[X,Y](f)_x=df([X,Y])_x=0$.
+Se dice que $x$ es un punto crítico \emph{no degenerado} si la forma bilineal $\Hess_x(f)$ es no degenerada. La signatura de esta forma bilineal es en tal caso
+\begin{equation*}
+(n-\lambda_x(f),\lambda_x(f)),
+\end{equation*}
+donde $\lambda_x(f)$ es un número denominado el \emph{índice de $f$ en $x$}. Se dice que la función $f$ es una \emph{función de Morse} si todos sus puntos críticos son no degenerados. El resultado fundamental es el siguiente.
+
+\begin{thm}[Lema de Morse]
+  Si $x$ es un punto crítico no degenerado de $f$ de índice $\lambda$, entonces existe un sistema de coordenadas local $\bm{x}$ en torno a $x$ en el cual la función $f$ puede escribirse como
+  \begin{equation*}
+f = f(x) - \sum_{i=1}^\lambda(x^i)^2 + \sum_{i=\lambda + 1}^n (x^i)^2.
+  \end{equation*}
+\end{thm}
+
+\subsection{Característica de Euler via teoría de Morse} Lo interesante ahora es que el índice de una función de Morse tiene información topológica. Consideramos entonces una variedad diferenciable compacta $M$ y una función de Morse $f:M\rightarrow \RR$. Tomamos ahora unos valores $a_0< \dots <a_N \in \RR\setminus \VC(f)$ de forma que $a_0< \min f$, que $a_N> \max f$ y que cada intervalo $(a_{k-1},a_k)$ contiene un único valor crítico $c_k$.
+
+Para cada $a\in \RR$, denotamos $M_a=f^{-1}(a)$. Si $a$ no es un valor crítico, entonces, por el teorema de la función implícita, el subconjunto $M_a\subset M$ es de hecho una subvariedad regular. Más generalmente, para cada $k=0,1,\dots,N$, definimos $M_k=f^{-1}((-\infty,a_k])$. Esto proporciona una descomposición
+\begin{equation*}
+\varnothing = M_0 \subset M_1 \subset \cdots \subset M_k \subset M_{k+1} \subset \cdots \subset M_{N-1} \subset M_N = M.
+\end{equation*}
+Ahora, para cada $k$ tenemos una sucesión exacta de haces
+\begin{center}
+  \begin{tikzcd}
+0 \rar & j_! \underline{\RR}_{U_k} \rar & \underline{\RR}_{M_{k+1}} \rar & i_*\underline{\RR}_{M_k} \rar &0,
+  \end{tikzcd}
+\end{center}
+donde $U_k=M_{k+1}\setminus M_k$ y donde $j:U_k\hookrightarrow M_{k+1}$ e $i:M_{k}\hookrightarrow M_{k+1}$ denotan las inclusiones. Por tanto,
+\begin{equation*}
+\chi(M_{k+1})- \chi(M_k)  = \chi(j_!\underline{\RR}_{U_k}) = \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR).
+\end{equation*}
+Sumando en $k$, obtenemos
+\begin{equation*}
+\chi(M) = \chi(M_N) =\sum_{k=0}^N (\chi(M_{k+1})- \chi(M_k)) = \sum_{k=0}^N \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR).
+\end{equation*}
+
+Basta entonces calcular las cohomologías relativas $H^i(M_{k+1},M_k;\RR)$. Como $f$ es una función de Morse y $M$ es compacta, hay una cantidad finita de puntos críticos en la preimagen $f^{-1}(c_k)=\left\{ x_1,\dots,x_m \right\}$. En torno a cada uno de estos puntos $x_j\in f^{-1}(c_k)$, podemos tomar unas coordenadas en las que $f$ se escribe como
+  \begin{equation*}
+f = c_k - \sum_{i=1}^{\lambda_j}(x^i)^2 + \sum_{i=\lambda_j + 1}^n (x^i)^2,
+  \end{equation*}
+donde $\lambda_j = \lambda_{x_j}(f)$. Podemos escribir entonces, para algún $\varepsilon>0$,
+\begin{equation*}
+f^{-1}(c_k-\varepsilon) = \coprod_{j=1}^m \left\{ \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 = - \varepsilon \right\} =: \coprod_{j=1}^m C_j^-
+\end{equation*}
+y
+\begin{equation*}
+f^{-1}(c_k+\varepsilon) = \coprod_{j=1}^m \left\{ \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 = + \varepsilon \right\} =: \coprod_{j=1}^m C_j^+.
+\end{equation*}
+Cada una de las piezas $C_j^-$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $C_j^+$ es homeomorfa al producto $D^{\lambda_j}\times S^{n-\lambda_j-1}$. Tenemos entonces que el par $(M_{k+1},M_k)$ es homotópicamente equivalente al par
+\begin{equation*}
+\coprod_{j=1}^m (D^{\lambda_j} \times D^{n-\lambda_j}, S^{\lambda_j-1},D^{n-\lambda_j}),
+\end{equation*}
+que a su vez es homotópicamente equivalente al par
+\begin{equation*}
+\coprod_{j=1}^m (D^{\lambda_j} , S^{\lambda_j-1}).
+\end{equation*}
+Ahora, la cohomología relativa $H^i(D^{\lambda_j},S^{\lambda_j-1};\RR)$ es isomorfa a $\RR$ si $\lambda_j=i$ y nula en caso contrario. Por tanto,
+\begin{equation*}
+\dim H^i(M_{k+1},M_k;\RR) = \sum_{j=1}^m \delta_{i \lambda_j}.
+\end{equation*}
+Concluimos entonces que
+\begin{equation*}
+\chi(M) = \sum_{k=0}^N \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR) = \sum_{k=0}^N \sum_i (-1)^i \sum_{j=1}^m \delta_{i \lambda_j} = \sum_{x\in \Crit(f)} (-1)^{\lambda_x(f)}.
+\end{equation*}
+
+Hemos demostrado lo siguiente.
+
+\begin{thm}
+  Si $f:M\rightarrow \RR$ es una función de Morse, entonces
+  \begin{equation*}
+\chi(M) = \sum_{x\in \Crit(f)} (-1)^{\lambda_x(f)}.
+  \end{equation*}
+
+\end{thm}
 
 \chapter{Geometría riemanniana}
 \section{Métricas riemannianas}
@@ -1927,6 +2269,8 @@ a
 a
 
 \section{Clases de Euler}
+
+Aquí Poincaré--Hopf
 a
 
 \chapter{Holonomía y curvatura constante}
