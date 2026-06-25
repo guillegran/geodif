@@ -14,6 +14,7 @@
 
 \usepackage{pdfpages}
 \usepackage{graphicx}
+\usepackage{epigraph}
 
 %\usepackage[backend=biber]{biblatex}
 %\addbibresource{biblio_guillermo.bib}
@@ -80,6 +81,15 @@ De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
 \end{center}
 \end{titlepage}
 
+\thispagestyle{empty}
+
+\vspace*{\fill}
+
+\epigraph{%
+  Los encantos de esta ciencia sublime tan sólo se revelan en toda su belleza a aquellos con el valor para profundizar en ella.
+}{Gauss}
+
+\vspace*{\fill}
 {\tiny \tableofcontents}
 
 \mainmatter
@@ -287,7 +297,7 @@ La inmersión de Yoneda $y:\sfC \rightarrow \PSh(\sfC)$ es plenamente fiel.
 \end{ej}
 
 
-\section{Álgebra homológica}
+\section{Álgebra homológica 1: Categorías abelianas}
 \begin{defn}
   Una \emph{categoría aditiva} $\sfA$ es una categoría con las siguientes propiedades:
   \begin{enumerate}
@@ -359,6 +369,37 @@ H^i(A^\bullet) = \ker d_i / \im d_{i-1}.
   \end{enumerate}
 \end{rmk}
 
+\begin{defn}
+Sean $\sfA$ y $\sfB$ dos categorías abelianas y $F:\sfA\rightarrow \sfB$ un funtor. Decimos que $F$ es \emph{aditivo} si induce homomorfismos de grupos entre los grupos $\Hom$.
+Además, si $F$ es aditivo, decimos que es:
+  \begin{itemize}
+    \item \emph{exacto por la izquierda}, si para toda sucesión exacta corta $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ en $\sfA$, la sucesión
+          \begin{center}
+            \begin{tikzcd}
+0 \rar & F(A) \rar & F(B) \rar & F(C)
+            \end{tikzcd}
+          \end{center}
+          es exacta;
+    \item \emph{exacto por la derecha}, si para toda sucesión exacta corta $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ en $\sfA$, la sucesión
+          \begin{center}
+            \begin{tikzcd}
+F(A) \rar & F(B) \rar & F(C) \rar & 0
+            \end{tikzcd}
+          \end{center}
+          es exacta;
+    \item \emph{exacto} si es exacto por la izquierda y por la derecha.
+
+  \end{itemize}
+\end{defn}
+
+\begin{rmk}
+Nótese que un funtor aditivo preserva sumas directas, es decir, $F(A\oplus B)=F(A)\oplus F(B)$.
+\end{rmk}
+
+
+\todo{Teorema de representabilidad}
+
+\section{Álgebra homológica 2: La categoría derivada}
 \begin{defn}
   Un morfismo de complejos de cocadenas $f:A^\bullet \rightarrow B^\bullet$ es un \emph{cuasi-isomorfismo} si el morfismo inducido $f_*:H^i(A^\bullet)\rightarrow H^i(B^\bullet)$ es un isomorfismo para todo $i$. Se define la \emph{categoría derivada (acotada) de $\sfA$} como la categoría $\DD^b(\sfA)$ con la siguiente propiedad universal: existe un único funtor $\cR:\Ch^b(\sfA) \rightarrow \DD^b(\sfA)$ tal que
   \begin{enumerate}
@@ -437,7 +478,7 @@ Por tanto, $g$ es la inversa de $f$ en $\KK^+(\sfA)$.
 \end{proof}
 
 
-\subsection{} Nótese que a priori puede haber complejos que no homotópicamente equivalentes, pero que sí sean cuasi-isomorfos, de modo que la categoría derivada no los distingue. Si queremos hallar unos representantes adecuados, debemos buscar complejos que sean isomorfos en $\KK^b(\sfA)$ si y sólo si son cuasi-isomorfos. Para ello introducimos los objetos inyectivos.
+\subsection{} Nótese que a priori puede haber complejos que no sean homotópicamente equivalentes, pero que sí sean cuasi-isomorfos, de modo que la categoría derivada no los distingue. Si queremos hallar unos representantes adecuados, debemos buscar complejos que sean isomorfos en $\KK^b(\sfA)$ si y sólo si son cuasi-isomorfos. Para ello introducimos los objetos inyectivos.
 
 \begin{defn}
 Un objeto $I$ en una categoría es \emph{inyectivo} si, para todo monomorfismo $i:X\rightarrow Y$ y para todo morfismo $f:X\rightarrow I$, existe un morfismo $g:Y \rightarrow I$ tal que $g\circ i = f$. Llamamos \emph{complejo inyectivo} a un complejo cuyos objetos son inyectivos.
@@ -446,7 +487,7 @@ Dualmente, un objeto $P$ en una categoría es \emph{proyectivo} si, para todo ep
 \end{defn}
 
 \begin{prop}
-Sea $I^\bullet$ es un complejo de cocadenas inyectivo acotado. Si $I^\bullet$ es cuasi-isomorfo a $0$, entonces es contractible.
+Sea $I^\bullet$ un complejo de cocadenas inyectivo acotado. Si $I^\bullet$ es cuasi-isomorfo a $0$, entonces es contractible.
 
 Dualmente, si $P^\bullet$ es un complejo de cocadenas proyectivo acotado, entonces si $P^\bullet$ es cuasi-isomorfo a $0$ es contractible.
 \end{prop}
@@ -533,66 +574,171 @@ $\KK^b(\mathrm{Proj}\ \sfA) \longrightarrow \DD^b(\sfA)$ es una equivalencia de 
 Hacemos la demostración en el caso inyectivo (el proyectivo es análogo) y para un complejo concentrado en grado $0$; la prueba general es tediosa, pero rutinaria. Dado un objeto $A$ de $\sfA$, se trata de construir una resolución inyectiva de $A$. Comenzamos por considerar un objeto inyectivo $I^0$ con un monomorfismo $A\hookrightarrow I^0$, y tomamos el cociente $A/I^0$. Tomamos entonces otro objeto inyectivo $I^1$ junto con un monomorfismo $A/I^0\hookrightarrow I^1$. Tenemos una sucesión exacta $0\rightarrow A \rightarrow I^0 \rightarrow I^1$. Procediendo inductivamente, obtenemos una sucesión exacta $0\rightarrow A \rightarrow I^0 \rightarrow I^1\rightarrow I^2 \rightarrow \dots$, y en consecuencia un cuasi-isomorfismo $A\rightarrow I^\bullet$.
 \end{proof}
 
-Falta ver que, en efecto, las resoluciones son funtoriales.
+Además, tomar resoluciones es funtorial.
 
-%\begin{prop}
-%  Sea $f:A\rightarrow B$ un morfismo en una categoría abeliana $\sfA$. Si $A\rightarrow I^\bullet_A$ y $B\rightarrow I^\bullet_B$ son resoluciones inyectivas, entonces existe un único (salvo homotopía) morfismo de complejos $f^\bullet:I^\bullet_A\rightarrow I^\bullet_B$ tal que el siguiente diagrama conmuta
-%  \begin{center}
-%    \begin{tikzcd}
-%     A \ar{r} \ar{d}{f} & I^\bullet_A \ar{d}{f^\bullet} \\
-%     B \ar{r} & I^\bullet_B.
-%    \end{tikzcd}
-%  \end{center}
-%Dualmente, si $P_A^\bullet\rightarrow A$ y $P^\bullet_B\rightarrow B$ son resoluciones proyectivas, entonces existe un único (salvo homotopía) morfismo de complejos $f^\bullet:P^\bullet_A\rightarrow P^\bullet_B$ tal que el siguiente diagrama conmuta
-%  \begin{center}
-%    \begin{tikzcd}
-%     P^\bullet_A \ar{r} \ar{d}{f^\bullet} & A \ar{d}{f} \\
-%     P^\bullet_B \ar{r} & B.
-%    \end{tikzcd}
-%  \end{center}
-%\end{prop}
+\begin{prop}
+  Sea $f:A\rightarrow B$ un morfismo en una categoría abeliana $\sfA$. Si $A\rightarrow I^\bullet_A$ es una resolución inyectiva y $B\rightarrow C^\bullet_B$ es un cuasi-isomorfismo, entonces existe un único (salvo homotopía) morfismo de complejos $f^\bullet:I^\bullet_A\rightarrow C^\bullet_B$ tal que el siguiente diagrama conmuta
+  \begin{center}
+    \begin{tikzcd}
+     A \ar{r} \ar{d}{f} & I^\bullet_A \ar{d}{f^\bullet} \\
+     B \ar{r} & C^\bullet_B.
+    \end{tikzcd}
+  \end{center}
+Dualmente, si $C_A^\bullet\rightarrow A$ es un cuasi-isomorfismo y $P^\bullet_B\rightarrow B$ es una resolución proyectiva, entonces existe un único (salvo homotopía) morfismo de complejos $f^\bullet:C^\bullet_A\rightarrow P^\bullet_B$ tal que el siguiente diagrama conmuta
+  \begin{center}
+    \begin{tikzcd}
+     C^\bullet_A \ar{r} \ar{d}{f^\bullet} & A \ar{d}{f} \\
+     P^\bullet_B \ar{r} & B.
+    \end{tikzcd}
+  \end{center}
+\end{prop}
 
-\begin{defn}
-Sean $\sfA$ y $\sfB$ dos categorías abelianas y $F:\sfA\rightarrow \sfB$ un funtor. Decimos que $F$ es \emph{aditivo} si induce homomorfismos de grupos entre los grupos $\Hom$.
-Además, si $F$ es aditivo, decimos que es:
-  \begin{itemize}
-    \item \emph{exacto por la izquierda}, si para toda sucesión exacta corta $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ en $\sfA$, la sucesión
-          \begin{center}
-            \begin{tikzcd}
-0 \rar & F(A) \rar & F(B) \rar & F(C)
-            \end{tikzcd}
-          \end{center}
-          es exacta;
-    \item \emph{exacto por la derecha}, si para toda sucesión exacta corta $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ en $\sfA$, la sucesión
-          \begin{center}
-            \begin{tikzcd}
-F(A) \rar & F(B) \rar & F(C) \rar & 0
-            \end{tikzcd}
-          \end{center}
-          es exacta;
-    \item \emph{exacto} si es exacto por la izquierda y por la derecha.
-
-  \end{itemize}
-\end{defn}
+\begin{proof}
+Se ve fácilmente componiendo y usando la propiedad de ser inyectivo/proyectivo para extender.
+\end{proof}
 
 \begin{defn}
 Sea $F:\sfA\rightarrow \sfB$ un funtor aditivo exacto por la izquierda y supongamos que $\sfA$ tiene suficientes inyectivos. Definimos el \emph{funtor derivado por la derecha} de $F$ como el funtor
 \begin{equation*}
 RF: \DD^b(\sfA)\simeq K^b(\mathrm{Inj}\ \sfA) \rightarrow \DD(\sfB):\ [I^\bullet] \mapsto \cR(F(I^\bullet)).
 \end{equation*}
+Además, para cada $i\in \Z$, definimos el \emph{$i$-ésimo funtor derivado por la derecha de $F$} como el funtor
+\begin{equation*}
+R^iF: \sfA \rightarrow \sfB:\ A \mapsto H^i(RF(A)),
+\end{equation*}
+donde vemos $A$ como un complejo concentrado en grado $0$.
 
 Sea $F:\sfA\rightarrow \sfB$ un funtor aditivo exacto por la derecha y supongamos que $\sfA$ tiene suficientes proyectivos. Definimos el \emph{funtor derivado por la izquierda} de $F$ como el funtor
 \begin{equation*}
 LF: \DD^b(\sfA)\simeq K^b(\mathrm{Proj}\ \sfA) \rightarrow \DD(\sfB):\ [P^\bullet] \mapsto \cR(F(P^\bullet)).
 \end{equation*}
+Además, para cada $i\in \Z$, definimos el \emph{$i$-ésimo funtor derivado por la izquierda de $F$} como el funtor
+\begin{equation*}
+L_iF: \sfA \rightarrow \sfB:\ A \mapsto H^{-i}(LF(A)),
+\end{equation*}
+donde vemos $A$ como un complejo concentrado en grado $0$.
 \end{defn}
+
+\begin{rmk}
+  Nótese que, si $F$ es un funtor exacto por la izquierda, entonces
+  \begin{equation*}
+R^i F(A) = H^i(F(I^\bullet)),
+  \end{equation*}
+donde $A\rightarrow I^\bullet$ es una resolución inyectiva. En particular, $R^0F(A)=F(A)$. Similarmente, para $F$ exacto por la derecha y una resolución proyectiva $P^\bullet\rightarrow A$.
+Los funtores derivados nos permiten ``continuar'' las sucesiones exactas por el lado por el cual el funtor original no es exacto.
+\end{rmk}
+
+\begin{prop}
+Si $F:\sfA\rightarrow \sfB$ es un funtor aditivo exacto por la izquierda y $\sfA$ tiene suficientes inyectivos entonces, dada una sucesión exacta corta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & A \rar & B \rar & C \rar & 0,
+  \end{tikzcd}
+\end{center}
+  se tiene una sucesión exacta
+\begin{center}
+  \begin{tikzcd}[column sep=1em]
+0 \rar & A \rar & B \rar & C \rar & R^1F(A) \rar & R^1F(B) \rar & R^1F(C) \rar & R^2F(A) \rar & \cdots.
+  \end{tikzcd}
+\end{center}
+
+Si $F:\sfA\rightarrow \sfB$ es un funtor aditivo exacto por la derecha y $\sfA$ tiene suficientes proyectivos entonces, dada una sucesión exacta corta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & A \rar & B \rar & C \rar & 0,
+  \end{tikzcd}
+\end{center}
+  se tiene una sucesión exacta
+\begin{center}
+  \begin{tikzcd}[column sep=1em]
+\cdots \rar & L_2F(C) \rar & L_1F(A) \rar & L_1F(B) \rar & L_1F(C) \rar & F(A) \rar & F(B) \rar & F(C) \rar & 0.
+  \end{tikzcd}
+\end{center}
+\end{prop}
+
+\begin{proof}
+Probamos el caso exacto por la izquierda y el otro se prueba igual. Tomemos resoluciones inyectivas $A\rightarrow I_A^\bullet$, $B\rightarrow I_B^\bullet$ y $C\rightarrow I_C^\bullet$. Por la funtorialidad de las resoluciones inyectivas, obtenemos una sucesión exacta de complejos
+\begin{center}
+  \begin{tikzcd}
+0 \rar & I^\bullet_A \rar & I^\bullet_B \rar & I^\bullet_C \rar & 0.
+  \end{tikzcd}
+\end{center}
+Pero además, como todos estos complejos son inyectivos, tenemos que $I^\bullet_B = I^\bullet_A \oplus I^\bullet_C$. Ahora, un funtor aditivo preserva sumas directas, de modo que
+\begin{equation*}
+F(I^\bullet_B) = F(I^\bullet_A) \oplus F(I^\bullet_C).
+\end{equation*}
+Por tanto, tenemos una sucesión exacta de complejos
+\begin{center}
+  \begin{tikzcd}
+0 \rar & F(I^\bullet_A) \rar & F(I^\bullet_B) \rar & F(I^\bullet_C) \rar & 0.
+  \end{tikzcd}
+\end{center}
+Tomando la sucesión exacta larga en cohomología, se tiene lo que se quería probar.
+\end{proof}
+
+\subsection{} Las resoluciones inyectivas (o proyectivas) a veces son complicadas de manejar o de describir explícitamente. En la práctica lo habitual es trabajar con resoluciones acíclicas, que aunque no sean inyectivas o proyectivas, bastan para calcular los funtores derivados.
+
+\begin{defn}
+Sea $F$ un funtor exacto por la izquierda (resp. exacto por la derecha). Un objeto $\Omega$ de $\sfA$ es \emph{$F$-acíclico} si $R^iF(\Omega)=0$ (resp. $L_iF(\Omega)=0$) para todo $i\neq 0$. Un \emph{complejo acíclico} $\Omega^\bullet$ es un complejo cuyos términos son todos acíclicos. Una {resolución $F$-acíclica} de un complejo $A^\bullet$ en $\sfA$ es un cuasi-isomorfismo $A^\bullet \rightarrow \Omega^\bullet$ (resp. $\Omega^\bullet \rightarrow A^\bullet$) con $\Omega^\bullet$ acíclico.
+\end{defn}
+
+\begin{prop}[Teorema de de Rham abstracto]
+  Sea $F$ un funtor exacto por la izquierda (resp. exacto por la derecha), $A^\bullet$ un complejo de cadenas en $\sfA$, y $A^\bullet \rightarrow \Omega^\bullet$ (resp. $\Omega^\bullet \rightarrow A^\bullet$) una resolución $F$-acíclica. Entonces existe un isomorfismo
+  \begin{equation*}
+RF(\mathcal{R}(A^\bullet)) \cong \mathcal{R}(F(\Omega^\bullet))
+  \end{equation*}
+(resp. $LF(\cR(A^\bullet))\cong \cR(F(\Omega^\bullet))$).  En particular, dado un objeto $A$ de $\sfA$,
+\begin{equation*}
+R^iF(A) \cong H^i(F(\Omega^\bullet))
+\end{equation*}
+(resp. $L_iF(A)\cong H^{-i}(F(\Omega^\bullet))$).
+\end{prop}
+
+\begin{proof}
+  Lo probamos para el caso exacto por la izquierda, y el otro es igual. Sea $A\rightarrow I^\bullet$ una resolución inyectiva y $f:I^\bullet \rightarrow \Omega^\bullet$ un morfismo de complejos tal que el siguiente diagrama conmuta
+  \begin{center}
+    \begin{tikzcd}
+     A \ar{r} \ar{d}{\id_A} & I^\bullet \ar{d}{f} \\
+     A \ar{r} & \Omega^\bullet
+    \end{tikzcd}
+  \end{center}
+(sabemos que este complejo existe por \todo{REF}). Tanto la identidad como las dos aplicaciones horizontales son cuasi-isomorfismos, y por tanto $f$ también lo es. Tenemos entonces que el complejo $\Cono(f)^\bullet$ es cuasi-isomorfo a $0$. Recordemos además que existe una sucesión exacta corta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & I^\bullet \rar & \Cono(f)^\bullet \rar & \Omega^{\bullet + 1} \rar & 0.
+  \end{tikzcd}
+\end{center}
+Ahora, como $\Omega^\bullet$ es acíclico, tenemos una sucesión exacta corta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & F(I^\bullet) \rar & F(\Cono(f)^\bullet) \rar & F(\Omega^{\bullet + 1}) \rar & 0.
+  \end{tikzcd}
+\end{center}
+Tomando la correspondiente sucesión exacta larga en cohomología, tenemos
+\begin{center}
+  \begin{tikzcd}[column sep=1em]
+\cdots \rar & H^{i}(F(\Omega^\bullet)) \rar & R^i F(A) \rar & H^i(F(\Cono(f)^\bullet)) \rar & H^{i+1}(F(\Omega^\bullet)) \rar & \cdots.
+  \end{tikzcd}
+\end{center}
+Ahora, como $\Cono(f)^\bullet$ es $F$-acíclico y cuasi-isomorfo a $0$, entonces $H^i(F(\Cono(f)^\bullet))=0$ para todo $i$, de modo que obtenemos isomorfismos $H^i(F(\Omega^\bullet)) \cong R^iF(A)$ para todo $i$.
+\end{proof}
+
+
+\todo{Teorema de representabilidad}
 
 \section{Teoría de haces}
 a
 
 
 \section{Cohomología en variedades}
-a
+\begin{defn}
+  Sea $M$ una variedad diferenciable. Para cada $k\in \Z$, se define el \emph{$k$-ésimo grupo de cohomología de $M$} (con coeficientes en $\RR$) como el grupo de cohomología de haces
+  \begin{equation*}
+H^k(M,\RR) := H^k(M,\underline{\RR}_M),
+  \end{equation*}
+donde $\underline{\RR}_M$ es el haz constante $\RR$ en $M$.
+\end{defn}
+
 \subsection{Cohomología de de Rham}
 a
 
@@ -605,11 +751,8 @@ Teorema de de Rham
 
 Axiomas de Eilenberg--Steenrod
 
-\subsection{Teoría del grado}
-a
-
-\section{Teorema de Poincaré--Hopf}
-a
+\section{Teoría de Morse y teoría del grado}
+Teorema de Poincaré--Hopf
 
 \chapter{Geometría riemanniana}
 \section{Métricas riemannianas}
