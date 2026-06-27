@@ -88,11 +88,21 @@ De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
 
 \vspace*{\fill}
 
+\newpage
+\null
+\thispagestyle{empty}
+
 \epigraph{%
   Los encantos de esta ciencia sublime tan sólo se revelan en toda su belleza a aquellos con el valor para profundizar en ella.
 }{Gauss}
 
 \vspace*{\fill}
+
+\newpage
+\null
+\thispagestyle{empty}
+\newpage
+
 {\tiny \tableofcontents}
 
 \mainmatter
@@ -727,11 +737,116 @@ Tomando la correspondiente sucesión exacta larga en cohomología, tenemos
 Ahora, como $\Cono(f)^\bullet$ es $F$-acíclico y cuasi-isomorfo a $0$, entonces $H^i(F(\Cono(f)^\bullet))=0$ para todo $i$, de modo que obtenemos isomorfismos $H^i(F(\Omega^\bullet)) \cong R^iF(A)$ para todo $i$.
 \end{proof}
 
-
+\subsection{Teorema de representabilidad}
 \todo{Teorema de representabilidad}
 
 \section{Teoría de haces en variedades}
-\subsection{} Para definir la teoría de haces en variedades, vamos a definirla en una clase de espacios ligeramente más general, que incluye también a subespacios cerrados de variedades diferenciables que podrían no ser subvariedades regulares. Denotamos entonces por $\mathsf{Var}$ la subcategoría de la categoría de espacios topológicos cuyos objetos son espacios topológicos homeomorfos a algún subespacio topológico de algún $\RR^n$. Esta categoría incluye a todas las variedades diferenciables, pero también a todos sus subespacios cerrados.
+\subsection{} Para definir la teoría de haces en variedades, vamos a definirla en una clase de espacios ligeramente más general, que incluye también a subespacios cerrados de variedades diferenciables que podrían no ser subvariedades regulares. Denotamos entonces por $\mathsf{Var}$ la subcategoría de la categoría de espacios topológicos cuyos objetos son espacios topológicos homeomorfos a algún subespacio topológico de algún $\RR^n$. Esta categoría incluye a todas las variedades diferenciables, pero también a todos sus subespacios cerrados. Se pueden definir haces de módulos sobre cualquier anillos, o sobre cualquier haz de anillos, más generalmente, pero nosotros sólamente vamos a trabajar con haces de espacios vectoriales reales. Denotamos por $\mathsf{Vect}_\RR$ la categoría de los $\RR$-espacios vectoriales.
+
+\begin{defn}
+  Sea $X$ un objeto de $\mathsf{Var}$ y denotemos por $\mathsf{Op}(X)$ la categoría cuyos objetos son los subconjuntos abiertos de $X$ y sus morfismos son las inclusiones entre ellos. Un \emph{haz (de $\RR$-espacios vectoriales)} sobre $X$ es un funtor
+  \begin{equation*}
+\sF: \mathsf{Op}(X)^{\op} \longrightarrow \mathsf{Vect}_\RR
+  \end{equation*}
+  que satisface la siguiente propiedad:
+  \begin{itemize}
+  \item Para todo subconjunto abierto $U\subset X$, para todo recubrimiento por abiertos $U=\bigcup_{i\in I} U_i$ de $U$ y para toda colección de elementos $\left\{ s_i\in \sF(U_i): i\in I \right\}$ de modo que, $\forall i,j \in I$
+          \begin{equation*}
+s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}
+          \end{equation*}
+          existe un único elemento $s\in \sF(U)$ de modo que $s_i=s|_{U_i}$ para todo $i\in I$.
+  \end{itemize}
+\end{defn}
+
+\begin{rmk}
+  Hacemos algunos comentarios:
+  \begin{enumerate}
+    \item De la definición se sigue directamente que $\sF(\varnothing)=\left\{ 0 \right\}$, ya que debe ser un conjunto final. También se sigue que, si $U,V\subset X$ son subconjuntos abiertos disjuntos, entonces
+          \begin{equation*}
+\sF(U\cap V) = \sF(U) \oplus \sF(V).
+          \end{equation*}
+
+\item Un ejemplo sencillo de haz en una variedad $M$ es el haz $C^\infty_M$ que envía cada abierto $U\subset M$ al espacio $C^\infty(U,\RR)$ de la aplicaciones diferenciables $U\rightarrow \RR$. Otro haz que será muy importante para nosotros es el \emph{haz constante} $\underline{\RR}_X$, que asigna a cada abierto el espacio $\underline{\RR}_X(U)$ de las aplicaciones localmente constantes $U\rightarrow \RR$.
+
+\item Un morfismo de haces será simplemente una transformación natural entre ellos (en tanto que son funtores). Así, podemos considerar una categoría $\mathsf{Sh}_{\RR}(X)$ cuyos objetos son los haces (de $\RR$-espacios vectoriales) en $X$.
+\item Dado un haz $\sF$ en $X$ y un punto $x\in X$ definimos su \emph{espiga} en $x$ como el colímite
+          \begin{equation*}
+\sF_x = \colim_{x\in U} \sF(U) = \left\{ (U,s): x\in U, s\in \sF(U) \right\} /\sim,
+          \end{equation*}
+donde $(U,s)\sim (U',s')$ si existe un abierto $U''\subset U \cap U'$ con $x\in U''$ y $s|_{U''}=s'|_{U''}$.
+  \end{enumerate}
+
+\item A partir de un prehaz $\sF:\mathsf{Op}(X)^{\op}\rightarrow \Vect_\RR$ se puede construir un haz $\sF^{\sharp}$ denominado su \emph{hacificación}, de modo que la hacificación de un haz es isomorfa al haz original.  Para cada abierto $U\subset X$, definimos
+\begin{equation*}
+\sF^\sharp(U) = \left\{ (s_u)\in \prod_{u\in U} \sF_u \text{ tales que (*) } \right\},
+\end{equation*}
+donde (*) es la propiedad
+\begin{itemize}
+\item[(*)] Para cada $u\in U$, existe un entorno abierto $V\subset U$ de $u$ y un elemento $\sigma \in \sF(V)$ tal que, para todo $v\in V$, tenemos $s_v=(V,\sigma)$ en $\sF_v$.
+\end{itemize}
+\end{rmk}
+
+
+\begin{defn}
+Una \emph{sucesión exacta de haces} es una sucesión de morfismos de haces
+\begin{center}
+  \begin{tikzcd}
+0 \rar & \sF \rar & \sG \rar & \sH \rar & 0,
+  \end{tikzcd}
+\end{center}
+tal que la sucesión inducida en las espigas
+\begin{center}
+  \begin{tikzcd}
+0 \rar & \sF_x \rar & \sG_x \rar & \sH_x \rar & 0,
+  \end{tikzcd}
+\end{center}
+es una sucesión exacta en $\mathsf{Vect}_\RR$.
+\end{defn}
+
+\begin{rmk}
+  Algunos comentarios:
+\begin{itemize}
+\item La definición de suma directa $\sF\oplus \sG$ de dos haces es obvia, y es fácil comprobar que los morfismos de haces forman un grupo abeliano (de hecho, un $\RR$-espacio vectorial), de modo que $\mathsf{Sh}_\RR(X)$ es una categoría aditiva. Además, con esta noción de sucesión exacta de haces, tenemos nociones de núcleo y de conúcleo y no es difícil comprobar que entonces la categoría $\mathsf{Sh}_\RR(X)$ es una categoría abeliana.
+\item El núcleo $\ker f$ de un morfismo de haces $f:\sF \rightarrow \sG$ cumple que
+        \begin{equation*}
+\ker f (U) = \ker(f(U): \sF(U)\rightarrow \sG(U)),
+        \end{equation*}
+        para todo $U\subset X$.
+        Sin embargo, no se da la misma situación con el haz $\coker f$, es decir, en general
+        \begin{equation*}
+\coker f (U) \neq \coker(f(U): \sF(U)\rightarrow \sG(U)).
+        \end{equation*}
+    Se pueden hallar muchas apariciones de este fenómeno: por ejemplo, el logaritmo de una función de variable compleja está bien definido localmente, pero no globalmente.
+\item Podemos considerar el \emph{funtor de secciones globales}
+        \begin{equation*}
+\Gamma: \Sh_\RR(X) \rightarrow \Vect_\RR, \ \sF \mapsto \sF(X).
+        \end{equation*}
+        De lo que acabamos de comentar, se sigue que $\Gamma$ es un funtor exacto por la izquierda, pero que no es exacto por la derecha. Su funtor derivado será precisamente el que da la \emph{cohomología de haces}.
+\end{itemize}
+\end{rmk}
+
+\subsection{El haz de Godement} Para poder construir los funtores derivados, vamos a ver que, en efecto, la categoría $\Sh_\RR(X)$ tiene suficientes inyectivos. Dado un haz $\sF$, se define el correspondiente \emph{haz de Godement} $\cG(\sF)$
+\begin{equation*}
+\cG(\sF): U \mapsto \left\{ s:U \rightarrow \prod_{x \in U} \sF_x: s(x)\in \sF_x \right\}.
+\end{equation*}
+Nótese que todo elemento de $\sF(U)$ es naturalmente un elemento de $\cG(\sF)(U)$, pero no necesariamente al revés. Por tanto, tenemos un monomorfismo $\sF\hookrightarrow \cG(\sF)$. Además, el haz $\cG(\sF)$ es claramente inyectivo, porque cualquier morfismo a él puede trivialmente extenderse por $0$.
+
+Como ya vimos, el hecho de que haya suficientes inyectivos implica la existencia de resoluciones inyectivas. Si aplicamos el mismo argumento aquí, pero en vez de tomar una resolución inyectiva arbitraria cada vez, tomamos la resolución de Godement, obtenemos una resolución inyectiva canónica asociada a todo haz $\sF$
+\begin{center}
+  \begin{tikzcd}
+0 \rar & \sF \rar &\cG^0(\sF)= \cG(\sF) \rar & \cG^1(\sF) \rar & \cdots,
+  \end{tikzcd}
+\end{center}
+denominada la \emph{resolución de Godement}.
+
+\begin{defn}
+  Dado un objeto $\sF$ de $\Sh_\RR(X)$ y un número entero $k\in \Z$, definimos el \emph{$k$-ésimo grupo de cohomología de haces de $\sF$} como el espacio vectorial
+  \begin{equation*}
+H^k(\sF) = R^k \Gamma(\sF).
+  \end{equation*}
+\end{defn}
+
+Trabajar directamente con el haz de Godement es complicado, y en la práctica los funtores derivados suelen calcularse empleando otras resoluciones acíclicas diferentes. Algunas de las más útiles son las resoluciones por haces finos, que son aquellos que admiten particiones de la unidad.
 
 \begin{defn}
   Un haz $\sF$ en $X$ es \emph{fino} si para cualquier recubrimiento localmente finito $X=\bigcup_i U_i$ de $X$ existe una familia de morfismos de haces $\left\{ \rho_i:\sF\rightarrow \sF \right\}$ (llamados \emph{particiones de la unidad}) tal que
@@ -768,6 +883,64 @@ g_i' - g_j' = g_i-g_j - \alpha \left( \sum_k\rho_k(f_{ik}-f_{jk}) \right) = g_i 
   \end{center}
   Como cada uno de los $\sK^i$ son finos, el funtor $\Gamma$ preserva estas sucesiones exactas y obtenemos que el complejo $\Gamma(\cG(\sK^\bullet))$ es exacto. Por tanto, sus grupos de cohomología son nulos, lo que quiere decir que $R\Gamma(\sF)=\cR(\Gamma(\cG(\sK^\bullet)))=0$.
 \end{proof}
+
+\subsection{Imágenes directas e inversas}
+Podemos introducir una versión relativa del funtor de secciones globales. Dados un haz $\sF$ en $X$ y una aplicación continua $f:X\rightarrow Y$, definimos el \emph{haz imagen directa de $\sF$ por $f$} como el haz sobre $Y$
+\begin{equation*}
+f_* \sF : U \mapsto \sF(f^{-1}(U)).
+\end{equation*}
+Esto determina un funtor
+\begin{equation*}
+f_*: \Sh_{\RR}(X) \rightarrow \Sh_{\RR}(Y),\ \sF \mapsto f_*\sF.
+\end{equation*}
+Nótese que el funtor de secciones $\Gamma$ en $X$ es igual al funtor $a_{X,*}$, donde $a_X:X\rightarrow \mathrm{pt}$ es el morfismo terminal al punto. El funtor $f_*$ es exacto por la izquierda, de forma que podemos definir su funtor derivado
+\begin{equation*}
+Rf_*: \DD^b(X) \rightarrow \DD^b(Y).
+\end{equation*}
+
+
+Resulta que el funtor $f_*$ tiene un adjunto por la izquierda, el \emph{funtor imagen inversa}
+\begin{equation*}
+f^{-1}: \Sh_{\RR}(Y) \rightarrow \Sh_{\RR}(X),\ \sF \mapsto f^{-1}\sF
+\end{equation*}
+definido como la hacificación $f^{-1}=(f^p)^\sharp$ del prehaz
+\begin{equation*}
+f^p\sF(U) = \colim_{f(U)\subset V} \sF(V).
+\end{equation*}
+Además, el funtor $f^{-1}$ es exacto, de modo que define directamente un funtor entre las categorías derivadas
+\begin{equation*}
+f^{-1}: \DD^b(Y) \rightarrow \DD^b(X),
+\end{equation*}
+que es el adjunto por la izquierda de $Rf_*$.
+
+\subsection{Soportes compactos}
+A parte del funtor de secciones $\Gamma$, también es interesante considerar el \emph{funtor de secciones con soporte compacto}
+\begin{equation*}
+\Gamma_c: \Sh_{\RR}(X)\rightarrow \Vect_\RR,\ \sF \mapsto \Gamma_c(\sF) = \left\{ s\in \sF(X): \mathrm{sop}(s) \text{ es compacto} \right\},
+\end{equation*}
+donde $\mathrm{sop}(s) = \left\{ x\in X: s(x)\neq 0 \right\}$. Este funtor también es exacto por la izquierda, y su funtor derivado da los \emph{grupos de cohomología con soporte compacto}
+\begin{equation*}
+H^k_c(\sF) = R^k \Gamma_c(\sF).
+\end{equation*}
+También es posible considerar una versión relativa: asociada a cada aplicación continua $f:X\rightarrow Y$ se define un funtor
+\begin{equation*}
+f_!: \Sh_\RR(X) \rightarrow \Sh_\RR(Y),
+\end{equation*}
+la imagen directa con soporte compacto, que asocia cada haz $\sF$ en $X$ al haz $f_! \sF$ con
+\begin{equation*}
+f_! \sF(U) = \left\{ s \in \sF(f^{-1}(U)): f|_{\mathrm{sop}(s)}:\mathrm{sop}(s) \rightarrow U \text{ es propia}  \right\}.
+\end{equation*}
+Nótese que hay una transformación natural $f_! \rightarrow f_*$, que es un isomorfismo cuando $f$ es propia. De nuevo, el funtor $f_!$ es exacto por la izquierda, de modo que podemos considerar su funtor derivado por la derecha
+\begin{equation*}
+Rf_!: \DD^b(X) \rightarrow \DD^b(Y).
+\end{equation*}
+
+\subsection{Dualidad de Verdier} Vimos que el funtor $f_*$ tiene un adjunto por la izquierda, el funtor imagen inversa $f^{-1}$. Una pregunta natural sería entonces si el funtor $f_!$ también tiene un adjunto. En el caso que $f$ es propia, entonces $f_*=f_!$, cuyo adjunto por la izquierda es $f^{-1}$. Por otra parte, el funtor $f_!$ en general no tiene un funtor adjunto por la derecha, pero, como se deduce directamente del teorema de representabilidad, el funtor $Rf_!$ sí que lo tiene: la \emph{imagen inversa excepcional}
+\begin{equation*}
+f^!: \DD^b(Y) \rightarrow \DD^b(X).
+\end{equation*}
+
+
 
 \section{Cohomología en variedades}
 
@@ -1007,9 +1180,7 @@ Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bu
 \chi(M) = \chi(R\Gamma(\underline{\RR}_M)) = \sum_{k} (-1)^k \dim H^k(M,\RR).
 \end{equation*}
 
-
-\subsection{Estructura de anillo}
-a
+\subsection{Cohomología con soportes compactos} a
 
 \subsection{Cálculo del dualizante}
 
@@ -1095,6 +1266,169 @@ Hemos demostrado lo siguiente.
   \end{equation*}
 
 \end{thm}
+
+\subsection{Teoría del grado} Una aplicación diferenciable propia $f:M\rightarrow N$ entre dos variedades de la misma dimensión $n$ induce una aplicación en las cohomologías con soporte compacto
+\begin{equation*}
+f^* : H^n_c(M,\RR)\longrightarrow H^n_c(N,\RR).
+\end{equation*}
+Si $M$ y $N$ son orientables, por la dualidad de Poincaré, tenemos isomorfismos $H^n_c(M,\RR)\cong H^n_c(N,\RR)\cong \RR$. Si además fijamos las orientaciones en $M$ y $N$, la aplicación $f^*$ determina una aplicación lineal
+\begin{equation*}
+f^*:\RR \rightarrow \RR,\ x \mapsto \deg f x,
+\end{equation*}
+donde $\deg f$ es un número real denominado el \emph{grado de Brouwer} de $f$. Más explícitamente, componiendo la dualidad de Poincaré con el teorema de de Rham, tenemos que, para cada $\omega \in \Omega^n_c(N)$, el grado se obtiene como
+\begin{equation*}
+\int_M f^* \omega = \deg f \int_N \omega.
+\end{equation*}
+
+\begin{prop}
+  Sea $y\in N$ un valor regular de $f$; es decir, $d_xf\neq 0$ para todo $x\in f^{-1}(y)$. El grado $\deg f$ puede calcularse como
+  \begin{equation*}
+\deg f = \sum_{x\in f^{-1}(y)} \epsilon(x),
+  \end{equation*}
+  donde
+  \begin{equation*}
+    \epsilon(x) =
+    \begin{cases}
++1 & \text{ si $d_xf$ preserva la orientación} \\
+-1 & \text{ si $d_xf$ invierte la orientación}.
+\end{cases}
+  \end{equation*}
+En particular, $\deg f \in \Z$.
+\end{prop}
+
+\begin{rmk}
+Nótese que, si $y$ es un valor crítico, $f$ es un difeomorfismo local en cada punto $x\in f^{-1}(y)$, de modo que $f^{-1}(y)$ es discreto y, como $f$ es propia, la preimagen $f^{-1}(y)$ es finita, de modo que la suma anterior está bien definida.
+\end{rmk}
+
+
+\begin{proof}
+  Podemos tomar un entorno conexo $V\subset N$ de $y$ cuya preimagen por $f$ es una unión disjunta
+  \begin{equation*}
+f^{-1}(V) = \coprod_{x\in f^{-1}(y)} U_x
+  \end{equation*}
+  de entornos $U_x$ de cada $x\in f^{-1}(y)$ y de modo que $f$ restringe a un difeomorfismo $f_x:=f|_{U_x}:U_x\rightarrow V$ para cada $x$. Tomemos entonces una $n$-forma $\omega \in \Omega_c^n(V)$.  Podemos descomponer
+  \begin{equation*}
+\deg f \int_N \omega=\int_M f^* \omega = \sum_{x\in f^{-1}(x)} \int_{U_x} f_x^* \omega  = \sum_{x\in f^{-1}(x)} \epsilon(x) \int_V \omega = \sum_{x\in f^{-1}(x)} \epsilon(x) ,
+  \end{equation*}
+  donde hemos usado que cada $f_x$ es un difeomorfismo.
+\end{proof}
+
+La teoría del grado tiene numerosas aplicaciones al estudio de la topología de las variedades diferenciables. Un ejemplo clásico es el teorema del punto fijo de Brouwer. Primero probamos algo más general.
+
+\begin{thm}
+Sea $N$ una variedad compacta, conexa y orientada de dimensión $n$ y sea $M$ una variedad compacta, conexa y orientada de dimensión $n+1$ y con borde conexo. Si $f:\partial M \rightarrow N$ es una aplicación continua tal que existe una extensión $F:M\rightarrow N$, con $F|_{\partial M} = f$, entonces $\deg f = 0$.
+\end{thm}
+
+\begin{proof}
+  Tomamos una forma $\omega \in \Omega^n(N)$ y aplicamos el teorema de Stokes
+  \begin{equation*}
+\int_{\partial M} f^* \omega = \int_{\partial M} F^* \omega = \int_M d(F^* \omega) = \int_M F^* d\omega = 0,
+  \end{equation*}
+  ya que $d\omega = 0$.
+\end{proof}
+
+\begin{corol}[Teorema del punto fijo de Brouwer]
+Toda aplicación continua del disco $n$-dimensional en sí mismo tiene algún punto fijo.
+\end{corol}
+
+\begin{proof}
+ Supongamos que existe una función $g:D^n\rightarrow D^n$ sin punto fijo. Podemos definir entonces la función
+  \begin{equation*}
+F: D^n \rightarrow S^{n-1}, \ x \mapsto \frac{x-f(x)}{\lVert x-f(x) \rVert},
+  \end{equation*}
+  que es una extensión de la función $f=F|_{S^{n-1}}:S^{n-1}\rightarrow S^{n-1}$. Por el teorema, $\deg f = 0$. Sin embargo, la función
+  \begin{equation*}
+h: S^{n-1} \times [0,1] \rightarrow S^{n-1}, \ x \mapsto h(x,t) = \frac{x-tf(x)}{\lVert x-tf(x) \rVert}
+  \end{equation*}
+  da una homotopía entre $f=h(-,1)$ y la identidad $\id_{S^{n-1}}=h(-,0)$. Por tanto, $\deg f = \deg \id_{S^{n-1}} = 1$ y llegamos a una contradicción.
+
+\end{proof}
+
+\subsection{El índice de un campo vectorial} Sea $M$ una variedad diferenciable de dimensión $n$ y $X$ un campo vectorial en $M$. Supongamos que $x\in M$ es un punto en el cual $X_x=0$, y que es un punto aislado en el conjunto de los puntos con tal propiedad; decimos que $x$ es un \emph{cero aislado} de $X$. En tal caso, podemos tomar una pequeña bola cerrada $D$ en torno a $x$ de forma que $X$ no se anula en ningún otro punto de $D$. Tomando unas coordenadas locales $\bm{x}$ en $D$, podemos definir la aplicación
+\begin{equation*}
+D \setminus \left\{ x \right\} \rightarrow S^{n-1}, \ \bm{x} \mapsto \frac{X(\bm{x})}{\lVert X(\bm{x}) \rVert},
+\end{equation*}
+que restringe a una aplicación $\bar{X}:\partial D \rightarrow S^{n-1}$. Se define el \emph{índice de $X$ en $x$} como el grado de esta aplicación
+\begin{equation*}
+\ind_xX = \deg \bar{X}.
+\end{equation*}
+Si $X$ es un campo que sólo tiene ceros aislados, se define el \emph{índice (global) de $X$} como la suma de sus índices locales
+\begin{equation*}
+\ind X = \sum_{x: X_x=0} \ind_xX.
+\end{equation*}
+Resulta que, como veremos a continuación, este índice global es un invariante topológico.
+
+\begin{rmk}
+Nótese que el índice global también puede definirse como el grado de una aplicación. En efecto, en torno a cada $x$ con $X_x=0$ tomamos una bola cerrada $D_x$ y una aplicación $\bar{X}_x:\partial D_x \rightarrow S^{n-1}$ como antes, y definimos
+\begin{equation*}
+\bar{X}: \coprod_{x: X_x=0} \partial D_x \rightarrow S^{n-1}
+\end{equation*}
+como $\bar{X}(y) = \bar{X}_x(y)$, si $y\in D_x$. Tenemos entonces que
+\begin{equation*}
+\ind X = \deg \bar{X}.
+\end{equation*}
+\end{rmk}
+
+
+\begin{prop}
+El índice $\ind X$ no depende del campo elegido.
+\end{prop}
+
+\begin{proof}
+Tomemos dos campos $X_0$ y $X_1$ con ceros aislados. Como los campos forman un espacio vectorial, podemos construir una familia de campos $X_t$ dependiente de $t$ que los interpola
+\begin{equation*}
+X_t = (1-t) X_0 + t X_1,\ t\in [0,1].
+\end{equation*}
+Los puntos $(t,x)$ tales que $X_{t,x} = 0$ forman una subvariedad $Z \subset [0,1] \times M$, y se puede construir otra subvariedad $N \subset [0,1] \times M$ que ``rodea'' a $Z$ y de forma que, para cada $t \in [0,1]$, la intersección $N_t=N \cap \left\{ t \right\} \times M$ es una unión disjunta de esferas $n-1$-dimensionales cada una de las cuáles contiene un único cero de $X_t$ en su interior. Podemos entonces definir una aplicación
+\begin{align*}
+  \bar{X}: N & \longrightarrow [0,1]\times S^{n-1} \\
+  (t,\bm{x})  & \longmapsto (t, X_t(\bm{x})/\lVert X_t(\bm{x})\rVert)
+\end{align*}
+y, para cada $t$, tenemos una aplicación $\bar{X}_t:N_t \rightarrow S^{n-1}$
+que cumple que
+\begin{equation*}
+\ind X_t = \deg \bar{X}_t.
+\end{equation*}
+Por tanto, si $\omega \in \Omega^{n-1}(S^{n-1})$ es una forma de grado máximo con $\int_{S^{n-1}}\omega = 1$, tenemos, por el teorema de Stokes,
+\begin{equation*}
+\ind X_1 - \ind X_0 = \deg \bar{X}_0 - \deg \bar{X}_1 = \int_{\partial N} \bar{X}^* \omega = \int_N \bar{X}^* (d\omega) = 0.
+\end{equation*}
+Por tanto $\ind X_0 = \ind X_1$.
+\end{proof}
+
+
+\begin{thm}[Poincaré--Hopf]
+  Para todo campo $X$ con ceros aislados en $M$, se tiene que
+  \begin{equation*}
+\ind X = \chi(M).
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+Supongamos que $f:M\rightarrow \RR$ es una función de Morse. Consideremos el campo gradiente $\nabla f$, que en coordenadas locales $\bm{x}$ se define como
+\begin{equation*}
+\nabla f(\bm{x}) = (\partial_1 f(\bm{x}),\dots,\partial_n f (\bm{x})).
+\end{equation*}
+Como el índice no depende del campo escogido, basta probar que $\ind \nabla f = \chi(M)$. Ahora bien, $\nabla f$ se anula en un punto $x\in M$ si y sólo si $f$ tiene un punto crítico en $x$. Por el lema de Morse, en un cierto sistema de coordenadas local $\bm{x}$, la función $f$ puede escribirse como
+\begin{equation*}
+f = f(x) - \sum_{i=1}^\lambda (x^i)^2 + \sum^n_{i=\lambda+1} (x^i)^2,
+\end{equation*}
+donde $\lambda$ es el índice de $f$ en $x$. Por tanto,
+\begin{equation*}
+\nabla f(\bm{x}) = (-2x^1,\dots,-2x^\lambda, 2x^{\lambda+1},\dots,2x^{n}).
+\end{equation*}
+La correspondiente aplicación $\overline{\nabla f}:S^{n-1}\rightarrow S^{n-1}$ está dada por la aplicación
+\begin{equation*}
+\overline{\nabla f} (\bm{x}) = (-x^1,\dots,-x^\lambda, x^{\lambda+1},\dots,x^n),
+\end{equation*}
+cuyo grado es igual a $(-1)^\lambda$. Por tanto, $\ind_x \nabla f = (-1)^\lambda$. Globalmente, obtenemos
+\begin{equation*}
+\ind X = \ind \nabla f = \sum_{x: (\nabla f)_x=0} (-1)^{\lambda_x(f)} = \chi(M),
+\end{equation*}
+como queríamos probar.
+\end{proof}
+
+
 
 \chapter{Geometría riemanniana}
 \section{Métricas riemannianas}
@@ -2360,8 +2694,6 @@ donde $K$ es la curvatura seccional. En conclusión, tenemos la ecuación
 \begin{equation*}
 d\omega + \frac{1}{2}[\omega \wedge \omega] = K(\theta \wedge \theta).
 \end{equation*}
-
- Concluir que curvatura seccional constante $k$ implica isometría local a $G_k/\SO(n)$. Argumentar por completitud.
 
 \section{Formas espaciales}
 \subsection{} Supongamos que $(M,g)$ es una $n$-variedad riemanniana con curvatura seccional constante $K\in \RR$. Definimos el álgebra de Lie $\fg_K$ con espacio subyacente $\so_n(\RR)\oplus \RR^n$ y equipado con el corchete
