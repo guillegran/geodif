@@ -303,12 +303,37 @@ La inmersión de Yoneda $y:\sfC \rightarrow \PSh(\sfC)$ es plenamente fiel.
           \begin{equation*}
 \lm D= \varprojlim_{i \in J} D(i).
           \end{equation*}
-          Un funtor $D:J\rightarrow \sfC$ se denomina un \emph{sistema directo} y el límite de $D$ es el correspondiente \emph{límite directo} (también llamado \emph{límite inyectivo}), que se denota por
+          Un funtor $D:J\rightarrow \sfC$ se denomina un \emph{sistema directo} y el colímite de $D$ es el correspondiente \emph{límite directo} (también llamado \emph{límite inductivo}), que se denota por
           \begin{equation*}
-\lm D= \varinjlim_{i \in J} D(i).
+\colim D= \varinjlim_{i \in J} D(i).
           \end{equation*}
   \end{itemize}
 \end{ej}
+
+\subsection{Representabilidad y densidad} Sea $\sfC$ una categoría y sea $F:\sfC^{\op} \rightarrow \Set$ un prehaz. Una pregunta natural es si existe algún objeto $X\in \sfC^{\op}$ tal que $F=\underline{X}= \Hom(-,X)$. En ese caso, decimos que $F$ es un \emph{funtor representable}. En general, no todo prehaz es un funtor representable, pero sí que se puede obtener como un colímite de funtores representables. Para ello, definimos la \emph{categoría de pares} $\int F$ cuyos objetos son los pares $(A,x)$ con $A$ un objeto de $\sfC$ y $x \in F(A)$, y tal que un morfismo entre dos pares $(A,x)\rightarrow (B,y)$ está dado por un morfismo $f:A\rightarrow B$ tal que $F(f)(y)=x$. Podemos entonces considerar el diagrama
+\begin{equation*}
+D_F: \int F \rightarrow \PSh(\sfC), \ (A,x) \mapsto \underline{A}.
+\end{equation*}
+
+\begin{thm}[Teorema de densidad]
+  \begin{equation*}
+F = \colim D_F.
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  Basta probar que existe, para todo prehaz $G:\sfC^{\op}\rightarrow \Set$, existe una biyección natural
+  \begin{equation*}
+\Hom_{\PSh(\sfC)}(F,G) \cong \Hom_{\mathrm{Fun}(\int F, \PSh(\sfC))}(D_F,C_G),
+  \end{equation*}
+donde $C_G: (A,x) \mapsto G$ es el funtor constante en $G$.
+
+Supongamos entonces que $\alpha: D_F\rightarrow C_G$ es un morfismo. Éste está dado por una colección de morfismos $\alpha_{A,x}:\underline{A} \rightarrow G$, para cada par $(A,x)$, de modo que para cada morfismo de pares $f:(A,x)\rightarrow (B,y)$, se tiene que $\alpha_{B,y} \circ f^* = \alpha_{A,x}$. El lema de Yoneda dice que hay una biyección natural $G(A)\cong \Hom(\underline{A},G)$. Por tanto, cada morfismo $\alpha_{A,x}$ corresponde a un elemento $g_{A,x} \in G(A)$ de modo que $(Gf)(g_{B,y})= g_{A,x}$. Definimos ahora las aplicaciones
+\begin{equation*}
+\theta_A: F(A) \rightarrow G(A), \ x \mapsto g_{A,x},
+\end{equation*}
+que determinan una transformación natural $\theta:F\rightarrow G$. Esta construcción es claramente reversible, y permite recuperar $\alpha:D_F \rightarrow C_G$ partiendo de $\theta$, por lo que tenemos la biyección que buscábamos.
+\end{proof}
 
 
 \section{Álgebra homológica 1: Categorías abelianas}
@@ -410,8 +435,66 @@ F(A) \rar & F(B) \rar & F(C) \rar & 0
 Nótese que un funtor aditivo preserva sumas directas, es decir, $F(A\oplus B)=F(A)\oplus F(B)$.
 \end{rmk}
 
+\subsection{Teorema de representabilidad}
+Sea $\Ab$ la categoría de los grupos abelianos, y sea $F:\sfA^{\op}\rightarrow \Ab$ un funtor exacto por la izquierda. Consideremos la correspondiente categoría de pares $\int F$, y recordemos que por el teorema de densidad $F$ puede recuperarse como un colímite $F=\colim (D_F:\int F \rightarrow \PSh(C))$. Una pregunta natural es si puede recuperarse como un límite directo. Para ello, introducimos la noción de par minimal.  Un par $(A,x)$ se dice que es \emph{minimal} si todo epimorfismo de pares $(A,x) \rightarrow (B,y)$ es un isomorfismo.
 
-\todo{Teorema de representabilidad}
+\begin{thm}[Teorema de representabilidad]
+Supongamos que para todo par $(A,x)$ existe un par minimal $(B,y)$ y un morfismo de pares $(A,x)\rightarrow (B,y)$. Entonces existe un conjunto dirigido $I$ y un sistema directo $I\rightarrow \sfA$, $i\mapsto A_i$ de modo que $F$ se obtiene como el siguiente límite directo de funtores representables
+\begin{equation*}
+F = \varinjlim_{i \in I}\underline{A_i}.
+\end{equation*}
+Además, si $F$ cumple que, para todo sistema directo $I'\rightarrow \sfA$,
+\begin{equation*}
+F(\varinjlim_{i \in I'} X_i) = \varprojlim_{i\in I'} F(X_i),
+\end{equation*}
+entonces $F$ es representable; es decir existe un objeto $A$ de $\sfA$ tal que
+\begin{equation*}
+F= \underline{A} = \Hom(-,A).
+\end{equation*}
+\end{thm}
+
+\begin{proof}
+Para un par minimal $(A,x)$ y cualesquiera dos morfismos de pares $f_1,f_2:(B,y)\rightarrow (A,x)$, se tiene que $f_1=f_2$. En efecto, tenemos una sucesión exacta en $\sfA$
+\begin{center}
+  \begin{tikzcd}
+B \rar{f_2-f_1} & A \rar{p} & \coker(f_2-f_1) \rar & 0.
+  \end{tikzcd}
+\end{center}
+Invirtiendo el sentido de las flechas y aplicando $F$, obtenemos una sucesión exacta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & F(\coker(f_2-f_1)) \rar{p^*} & F(A) \rar{(f_2-f_1)^*} & F(B).
+  \end{tikzcd}
+\end{center}
+Ahora,
+\begin{equation*}
+(f_2-f_1)^*(x) = f_2^* (x) - f_1^*(x) = y-y=0,
+\end{equation*}
+de modo que tenemos un epimorfismo de pares $p:(A,x) \rightarrow (\coker(f_2-f_1),x)$. Ahora, como $(A,x)$ es minimal, este morfismo es un isomorfismo, y por tanto $\coker(f_2-f_1)=A$, con lo cual $f_1=f_2$. Esto nos permite identificar la subcategoría de los pares minimales con un conjunto dirigido $I$. Como todo par admite un morfismo a un par minimal, para calcular el colímite de $D_F:\int F \rightarrow \PSh(C)$, basta hacerlo con los pares minimales, de modo que
+\begin{equation*}
+F = \colim D_F = \colim_{i \in I} D_F(A_i,x_i) = \colim_{i \in I} \underline{A_i} = \varinjlim_{i\in I} \underline{A_i}.
+\end{equation*}
+
+Finalmente, nótese que la familia $x=(x_i)_{i\in I}$ es un elemento de $\varprojlim_{i\in I} F(A_i)$. Definimos entonces
+\begin{equation*}
+A= \varinjlim_{i\in I} A_i.
+\end{equation*}
+ Si además $F$ envía límites inductivos a límites proyectivos, entonces
+\begin{equation*}
+F(A) = F(\varinjlim_{i\in I} A_i) = \varprojlim_{i\in I} F(A_i),
+\end{equation*}
+de modo que $x \in F(A)$. Tenemos entonces un par $(A,x)$. Como existe un morfismo $(A,x)\rightarrow (A',x')$ a un par minimal, entonces existe un morfismo de cualquier par al par $(A',x')$ y en particular ha de suceder que $(A',x')=(A,x)$. Concluimos que
+\begin{equation*}
+F = \underline{A'} = \underline{A},
+\end{equation*}
+de modo que $F$ es representable.
+\end{proof}
+
+
+
+
+
+
 
 \section{Álgebra homológica 2: La categoría derivada}
 \begin{defn}
@@ -737,9 +820,6 @@ Tomando la correspondiente sucesión exacta larga en cohomología, tenemos
 Ahora, como $\Cono(f)^\bullet$ es $F$-acíclico y cuasi-isomorfo a $0$, entonces $H^i(F(\Cono(f)^\bullet))=0$ para todo $i$, de modo que obtenemos isomorfismos $H^i(F(\Omega^\bullet)) \cong R^iF(A)$ para todo $i$.
 \end{proof}
 
-\subsection{Teorema de representabilidad}
-\todo{Teorema de representabilidad}
-
 \section{Teoría de haces en variedades}
 \subsection{} Para definir la teoría de haces en variedades, vamos a definirla en una clase de espacios ligeramente más general, que incluye también a subespacios cerrados de variedades diferenciables que podrían no ser subvariedades regulares. Denotamos entonces por $\mathsf{Var}$ la subcategoría de la categoría de espacios topológicos cuyos objetos son espacios topológicos homeomorfos a algún subespacio topológico de algún $\RR^n$. Esta categoría incluye a todas las variedades diferenciables, pero también a todos sus subespacios cerrados. Se pueden definir haces de módulos sobre cualquier anillos, o sobre cualquier haz de anillos, más generalmente, pero nosotros sólamente vamos a trabajar con haces de espacios vectoriales reales. Denotamos por $\mathsf{Vect}_\RR$ la categoría de los $\RR$-espacios vectoriales.
 
@@ -775,15 +855,15 @@ s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}
           \end{equation*}
 donde $(U,s)\sim (U',s')$ si existe un abierto $U''\subset U \cap U'$ con $x\in U''$ y $s|_{U''}=s'|_{U''}$.
   \end{enumerate}
-
-\item A partir de un prehaz $\sF:\mathsf{Op}(X)^{\op}\rightarrow \Vect_\RR$ se puede construir un haz $\sF^{\sharp}$ denominado su \emph{hacificación}, de modo que la hacificación de un haz es isomorfa al haz original.  Para cada abierto $U\subset X$, definimos
-\begin{equation*}
-\sF^\sharp(U) = \left\{ (s_u)\in \prod_{u\in U} \sF_u \text{ tales que (*) } \right\},
-\end{equation*}
-donde (*) es la propiedad
-\begin{itemize}
-\item[(*)] Para cada $u\in U$, existe un entorno abierto $V\subset U$ de $u$ y un elemento $\sigma \in \sF(V)$ tal que, para todo $v\in V$, tenemos $s_v=(V,\sigma)$ en $\sF_v$.
-\end{itemize}
+%
+%\item A partir de un prehaz $\sF:\mathsf{Op}(X)^{\op}\rightarrow \Vect_\RR$ se puede construir un haz $\sF^{\sharp}$ denominado su \emph{hacificación}, de modo que la hacificación de un haz es isomorfa al haz original.  Para cada abierto $U\subset X$, definimos
+%\begin{equation*}
+%\sF^\sharp(U) = \left\{ (s_u)\in \prod_{u\in U} \sF_u \text{ tales que (*) } \right\},
+%\end{equation*}
+%donde (*) es la propiedad
+%\begin{itemize}
+%\item[(*)] Para cada $u\in U$, existe un entorno abierto $V\subset U$ de $u$ y un elemento $\sigma \in \sF(V)$ tal que, para todo $v\in V$, tenemos $s_v=(V,\sigma)$ en $\sF_v$.
+%\end{itemize}
 \end{rmk}
 
 
@@ -883,8 +963,10 @@ g_i' - g_j' = g_i-g_j - \alpha \left( \sum_k\rho_k(f_{ik}-f_{jk}) \right) = g_i 
   \end{center}
   Como cada uno de los $\sK^i$ son finos, el funtor $\Gamma$ preserva estas sucesiones exactas y obtenemos que el complejo $\Gamma(\cG(\sK^\bullet))$ es exacto. Por tanto, sus grupos de cohomología son nulos, lo que quiere decir que $R\Gamma(\sF)=\cR(\Gamma(\cG(\sK^\bullet)))=0$.
 \end{proof}
-
-\subsection{Imágenes directas e inversas}
+%
+%\subsection{Hom y producto tensorial}
+%
+\subsection{Imágenes directas} % e inversas}
 Podemos introducir una versión relativa del funtor de secciones globales. Dados un haz $\sF$ en $X$ y una aplicación continua $f:X\rightarrow Y$, definimos el \emph{haz imagen directa de $\sF$ por $f$} como el haz sobre $Y$
 \begin{equation*}
 f_* \sF : U \mapsto \sF(f^{-1}(U)).
@@ -935,10 +1017,35 @@ Nótese que hay una transformación natural $f_! \rightarrow f_*$, que es un iso
 Rf_!: \DD^b(X) \rightarrow \DD^b(Y).
 \end{equation*}
 
-\subsection{Dualidad de Verdier} Vimos que el funtor $f_*$ tiene un adjunto por la izquierda, el funtor imagen inversa $f^{-1}$. Una pregunta natural sería entonces si el funtor $f_!$ también tiene un adjunto. En el caso que $f$ es propia, entonces $f_*=f_!$, cuyo adjunto por la izquierda es $f^{-1}$. Por otra parte, el funtor $f_!$ en general no tiene un funtor adjunto por la derecha, pero, como se deduce directamente del teorema de representabilidad, el funtor $Rf_!$ sí que lo tiene: la \emph{imagen inversa excepcional}
+Vimos que el funtor $f_*$ tiene un adjunto por la izquierda, el funtor imagen inversa $f^{-1}$. Una pregunta natural sería entonces si el funtor $f_!$ también tiene un adjunto. En el caso que $f$ es propia, entonces $f_*=f_!$, cuyo adjunto por la izquierda es $f^{-1}$. Por otra parte, el funtor $f_!$ en general no tiene un funtor adjunto por la derecha, pero el funtor $Rf_!$ sí que lo tiene: la \emph{imagen inversa excepcional}
 \begin{equation*}
 f^!: \DD^b(Y) \rightarrow \DD^b(X).
 \end{equation*}
+No probaremos la existencia de $f^!$ en total generalidad, pero podemos hacer el caso particular en que $f=a_M$ es el morfismo terminal $a_M:M\rightarrow *$.
+
+\begin{thm}[Dualidad de Verdier]
+  Para toda variedad diferenciable $M$, existe un objeto $\cD_M=a_M^!\RR$ de $\DD^b(M)$ que cumple que, para todo haz $\sF$ en $M$,
+  \begin{equation*}
+\Hom_{\DD^b(M)}(\sF, \cD_M) = \Hom_{\DD^b(\Vect_{\RR})}(R\Gamma_c(\sF), \RR).
+  \end{equation*}
+  Este objeto $\cD_M$ se denomina el \emph{complejo dualizante} de $M$.
+\end{thm}
+
+\begin{proof}
+  Comenzamos tomando la resolución de Godement $\sF \rightarrow \cG^\bullet(\sF)$. Si existe, el objeto $\cD_M$ está caracterizado por la propiedad de que
+  \begin{equation*}
+\Hom_{\DD^b(M)}(\sF, \cD_M) = \Hom_{\KK^b(\Vect_{\RR})}(\Gamma_c(\sG^\bullet(\sF)), \RR).
+  \end{equation*}
+  Si representamos $\cD_M$ por un complejo inyectivo $\cD_M^\bullet$, entonces, para cada $k\in \Z$, la $k$-ésima entrada de este complejo está caracterizada por la igualdad
+  \begin{equation*}
+\Hom_{\Sh_\RR(M)}(\sF,\cD_M^{-k}) = \Hom_{\Vect_\RR}(\Gamma_c(\sG^k(\sF)), \RR)= \Gamma_c(\sG^k(\sF))^*.
+  \end{equation*}
+  Finalmente, la existencia de $\cD_M^{-k}$ se sigue del teorema de representabilidad aplicado al funtor
+  \begin{equation*}
+F^k:\Sh_\RR(M)^{\op} \rightarrow \Vect_\RR, \ \sF \mapsto \Gamma_c(\sG^k(\sF))^*,
+  \end{equation*}
+  de modo que $F^k = \underline{\cD_M^{-k}}$.
+\end{proof}
 
 
 
@@ -996,7 +1103,7 @@ Los grupos de cohomología que hemos definido cumplen los axiomas de Eilenberg--
        & X.
     \end{tikzcd}
   \end{center}
-  Por funtorialidad, tenemos $j_!\underline{\RR}_U=(i_! \circ (j')_!)(\underline{\RR}_U)$, mientras que por la adjunción $i_!\dashv i^*$ tenemos un isomorfismo
+  Por funtorialidad, tenemos $j_!\underline{\RR}_U=(i_* \circ (j')_!)(\underline{\RR}_U)$, mientras que por la adjunción $i_*\dashv i^{-1}$ tenemos un isomorfismo
 \begin{equation*}
 i^*:R\Gamma(X,j_!\underline{\RR}_U) \longrightarrow R\Gamma(X\setminus Z, (j')_! \underline{\RR}_U).
 \end{equation*}
@@ -1179,6 +1286,10 @@ Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bu
 \begin{equation*}
 \chi(M) = \chi(R\Gamma(\underline{\RR}_M)) = \sum_{k} (-1)^k \dim H^k(M,\RR).
 \end{equation*}
+%
+%\subsection{Teorema de Künneth} a
+%
+%\subsection{Estructura de anillo} a
 
 \subsection{Cohomología con soportes compactos} a
 
