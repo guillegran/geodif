@@ -998,7 +998,7 @@ que es el adjunto por la izquierda de $Rf_*$.
 \subsection{Soportes compactos}
 A parte del funtor de secciones $\Gamma$, también es interesante considerar el \emph{funtor de secciones con soporte compacto}
 \begin{equation*}
-\Gamma_c: \Sh_{\RR}(X)\rightarrow \Vect_\RR,\ \sF \mapsto \Gamma_c(\sF) = \left\{ s\in \sF(X): \mathrm{sop}(s) \text{ es compacto} \right\},
+\Gamma_c: \Sh_{\RR}(X)\rightarrow \Vect_\RR,\ \sF \mapsto \Gamma_c(\sF) = \left\{ s\in \sF(X): \mathrm{sop}(s)\subset K,\ K\subset X \text{ compacto} \right\},
 \end{equation*}
 donde $\mathrm{sop}(s) = \left\{ x\in X: s(x)\neq 0 \right\}$. Este funtor también es exacto por la izquierda, y su funtor derivado da los \emph{grupos de cohomología con soporte compacto}
 \begin{equation*}
@@ -1024,27 +1024,27 @@ f^!: \DD^b(Y) \rightarrow \DD^b(X).
 No probaremos la existencia de $f^!$ en total generalidad, pero podemos hacer el caso particular en que $f=a_M$ es el morfismo terminal $a_M:M\rightarrow *$.
 
 \begin{thm}[Dualidad de Verdier]
-  Para toda variedad diferenciable $M$, existe un objeto $\cD_M=a_M^!\RR$ de $\DD^b(M)$ que cumple que, para todo haz $\sF$ en $M$,
+  Para toda variedad diferenciable $M$, existe un objeto $\sD_M=a_M^!\RR$ de $\DD^b(M)$ que cumple que, para todo haz $\sF$ en $M$,
   \begin{equation*}
-\Hom_{\DD^b(M)}(\sF, \cD_M) = \Hom_{\DD^b(\Vect_{\RR})}(R\Gamma_c(\sF), \RR).
+\Hom_{\DD^b(M)}(\sF, \sD_M) = \Hom_{\DD^b(\Vect_{\RR})}(R\Gamma_c(\sF), \RR).
   \end{equation*}
-  Este objeto $\cD_M$ se denomina el \emph{complejo dualizante} de $M$.
+  Este objeto $\sD_M$ se denomina el \emph{complejo dualizante} de $M$.
 \end{thm}
 
 \begin{proof}
-  Comenzamos tomando la resolución de Godement $\sF \rightarrow \cG^\bullet(\sF)$. Si existe, el objeto $\cD_M$ está caracterizado por la propiedad de que
+  Comenzamos tomando la resolución de Godement $\sF \rightarrow \cG^\bullet(\sF)$. Si existe, el objeto $\sD_M$ está caracterizado por la propiedad de que
   \begin{equation*}
-\Hom_{\DD^b(M)}(\sF, \cD_M) = \Hom_{\KK^b(\Vect_{\RR})}(\Gamma_c(\sG^\bullet(\sF)), \RR).
+\Hom_{\DD^b(M)}(\sF, \sD_M) = \Hom_{\KK^b(\Vect_{\RR})}(\Gamma_c(\sG^\bullet(\sF)), \RR).
   \end{equation*}
-  Si representamos $\cD_M$ por un complejo inyectivo $\cD_M^\bullet$, entonces, para cada $k\in \Z$, la $k$-ésima entrada de este complejo está caracterizada por la igualdad
+  Si representamos $\sD_M$ por un complejo inyectivo $\sD_M^\bullet$, entonces, para cada $k\in \Z$, la $k$-ésima entrada de este complejo está caracterizada por la igualdad
   \begin{equation*}
-\Hom_{\Sh_\RR(M)}(\sF,\cD_M^{-k}) = \Hom_{\Vect_\RR}(\Gamma_c(\sG^k(\sF)), \RR)= \Gamma_c(\sG^k(\sF))^*.
+\Hom_{\Sh_\RR(M)}(\sF,\sD_M^{-k}) = \Hom_{\Vect_\RR}(\Gamma_c(\sG^k(\sF)), \RR)= \Gamma_c(\sG^k(\sF))^*.
   \end{equation*}
-  Finalmente, la existencia de $\cD_M^{-k}$ se sigue del teorema de representabilidad aplicado al funtor
+  Finalmente, la existencia de $\sD_M^{-k}$ se sigue del teorema de representabilidad aplicado al funtor
   \begin{equation*}
 F^k:\Sh_\RR(M)^{\op} \rightarrow \Vect_\RR, \ \sF \mapsto \Gamma_c(\sG^k(\sF))^*,
   \end{equation*}
-  de modo que $F^k = \underline{\cD_M^{-k}}$.
+  de modo que $F^k = \underline{\sD_M^{-k}}$.
 \end{proof}
 
 
@@ -1054,13 +1054,13 @@ F^k:\Sh_\RR(M)^{\op} \rightarrow \Vect_\RR, \ \sF \mapsto \Gamma_c(\sG^k(\sF))^*
 \begin{defn}
   Sea $X$ una objeto de $\mathsf{Var}$. Para cada $k\in \Z$, se define el \emph{$k$-ésimo grupo de cohomología de $X$} (con coeficientes en $\RR$) como el grupo de cohomología de haces
   \begin{equation*}
-H^k(X,\RR) := H^k(X,\underline{\RR}_X),
+H^k(X,\RR) := H^k(\underline{\RR}_X),
   \end{equation*}
 donde $\underline{\RR}_X$ es el haz constante $\RR$ en $X$.
 
 Más generalmente, si $(X,A)$ es un par formado por un objeto $X$ de $\mathsf{Var}$ y un subespacio $A\subset X$, entonces se define el \emph{$k$-ésimo grupo de cohomología relativa de $(X,A)$} (con coeficientes en $\RR$) como el grupo de cohomología de haces
 \begin{equation*}
-H^k(X,A;\RR) := H^k(X,j_! \underline{\RR}_U),
+H^k(X,A;\RR) := H^k(j_! \underline{\RR}_U),
 \end{equation*}
 donde $j:U\rightarrow X$ es la inclusión del complemento $U=X\setminus A$.
 \end{defn}
@@ -1105,7 +1105,7 @@ Los grupos de cohomología que hemos definido cumplen los axiomas de Eilenberg--
   \end{center}
   Por funtorialidad, tenemos $j_!\underline{\RR}_U=(i_* \circ (j')_!)(\underline{\RR}_U)$, mientras que por la adjunción $i_*\dashv i^{-1}$ tenemos un isomorfismo
 \begin{equation*}
-i^*:R\Gamma(X,j_!\underline{\RR}_U) \longrightarrow R\Gamma(X\setminus Z, (j')_! \underline{\RR}_U).
+i^*:R\Gamma(j_!\underline{\RR}_U) \longrightarrow R\Gamma((j')_! \underline{\RR}_U).
 \end{equation*}
 El axioma de exactitud se sigue de la sucesión exacta de haces
 \begin{center}
@@ -1178,8 +1178,8 @@ En ambos casos, concluimos que $h_0$ da una homotopía entre $i_0^*$ e $i_1^*$.
   \begin{equation*}
     H^k_{\mathrm{dR}}(\RR^n) =
     \begin{cases}
-\RR & \text{ si } n= 0,\\
-0 & \text{ si } n\neq 0.
+\RR & \text{ si } k= 0,\\
+0 & \text{ si } k\neq 0.
 \end{cases}
   \end{equation*}
 \end{corol}
@@ -1291,12 +1291,135 @@ Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bu
 %
 %\subsection{Estructura de anillo} a
 
-\subsection{Cohomología con soportes compactos} a
+\subsection{Cohomología con soportes compactos} Hemos introducido los grupos de cohomología de $X$ como los funtores derivados del funtor $\Gamma$ aplicados al haz constante $\underline{R}_X$. Si en vez de $\Gamma$ utilizamos el funtor $\Gamma_c$ de secciones con soporte compacto, obtenemos los \emph{grupos de cohomología con soporte compacto de $X$} (con coeficientes en $\RR$), definidos como
+\begin{equation*}
+H_c^k(X,\RR) := H^k_c(X,\underline{\RR}_X) = R^k\Gamma_c(\underline{\RR}_X).
+\end{equation*}
 
-\subsection{Cálculo del dualizante}
+Para una variedad diferenciable $M$, también podemos definir los espacios de formas diferenciales con soporte compacto
+\begin{equation*}
+\Omega^k_c(M) = \left\{ \alpha \in \Omega^k(M): \mathrm{sop}(\alpha) \subset K,\ K\subset M  \text{ compacto} \right\}=\Gamma_c(\Omega^k_M),
+\end{equation*}
+donde $\mathrm{sop}(\alpha)=\left\{ x\in M: \alpha_x \neq 0 \right\}$. La diferencial exterior de una forma con soporte compacto también tiene soporte compacto; se obtiene entonces el \emph{complejo de de Rham con soporte compacto}
+  \begin{center}
+    \begin{tikzcd}
+\Omega_c^0(M) \rar{d} & \Omega_c^1(M)\rar{d} & \cdots \rar{d} & \Omega_c^k(M) \rar{d} & \Omega_c^{k+1}(M) \rar{d} & \dots,
+    \end{tikzcd}
+  \end{center}
+  cuyos grupos de cohomología son los \emph{grupos de cohomología de de Rham con soporte compacto}
+  \begin{equation*}
+H^k_{\mathrm{dR},c}(M) = H^k(\Omega_c^\bullet(M)) = \frac{\ker(d:\Omega_c^k(M)\rightarrow \Omega_c^{k+1}(M))}{d(\Omega_c^{k-1}(M))}.
+  \end{equation*}
+  El teorema de de Rham abstracto da automáticamente un isomorfismo
+  \begin{equation*}
+H^k_{\mathrm{dR},c}(M) \cong H_c^k(M,\RR),
+  \end{equation*}
+  para todo $k\in \Z$.
+
+\begin{prop}[Lema de Poincaré para soporte compacto]
+  Los grupos de cohomología con soporte compacto de $\RR^n$ son
+  \begin{equation*}
+    H^k_{c}(\RR^n,\RR) =
+    \begin{cases}
+\RR & \text{ si } k= n,\\
+0 & \text{ si } k\neq n.
+\end{cases}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+Consideramos la esfera $n$-dimensional $S^n$ y la inclusión natural $j:\RR^n\hookrightarrow S^n$ definida por compactificación por un punto $\infty \in S^n$. Nótese que el funtor $\Gamma_c: \Sh_\RR(\RR^n)\rightarrow \Vect_\RR$ ahora puede descomponerse como $\Gamma_c=\Gamma \circ j_!$. Como $j_!$ es un funtor exacto, tenemos que, para todo haz $\sF$ en $\RR^n$
+\begin{equation*}
+H^k_c(\sF) = R^k\Gamma_c(\sF) = R^k\Gamma(j_! \sF) = H^k(j_! \sF).
+\end{equation*}
+En particular, podemos identificar la cohomología con soportes compactos como una cohomología relativa
+\begin{equation*}
+H^k_c(\RR^n,\RR)=H^k_c(\underline{\RR}_{\RR^n}) = H^k(j_! \underline{\RR}_{\RR^n}) = H^k(S^n,\infty;\RR).
+\end{equation*}
+Por tanto, tenemos una sucesión exacta
+\begin{center}
+  \begin{tikzcd}[column sep=1em]
+\cdots \rar & H^{k}_c(\RR^n,\RR) \rar & H^k(S^n,\RR) \rar & H^k(*,\RR) \rar & H^{k+1}_c(\RR^n;\RR) \rar & \cdots.
+  \end{tikzcd}
+\end{center}
+Ahora, los grupos de cohomología de la esfera y del punto son
+\begin{equation*}
+  H^k(S^n,\RR) =
+  \begin{cases}
+    \RR, & \text{si } k=0,n,\\
+    0, & \text{ en caso contrario},
+\end{cases}
+\end{equation*}
+\begin{equation*}
+  H^k(*,\RR) =
+  \begin{cases}
+    \RR, & \text{si } k=0,\\
+    0, & \text{ en caso contrario}.
+\end{cases}
+\end{equation*}
+Sustituyendo en la sucesión exacta, se tiene lo que se quería probar.
+\end{proof}
+
+\begin{corol}[Dualidad de Poincaré local]
+  El emparejamiento
+  \begin{equation*}
+\Omega^{k}_c(\RR^n) \times \Omega^{n-k}(\RR^n) \rightarrow \RR,\ (\alpha,\beta) \mapsto \int_{\RR^n} \alpha \wedge \beta
+  \end{equation*}
+  determina un isomorfismo
+  \begin{equation*}
+H^k_c(\RR^n,\RR)^* \cong H^{n-k}(\RR^n,\RR).
+  \end{equation*}
+\end{corol}
+
+\subsection{Cálculo del dualizante} De la dualidad de Verdier se sigue que, para toda variedad diferenciable $M$ existe un complejo dualizante $\sD_M$ que cumple que
+\begin{equation*}
+\Hom_{\DD^b(M)}(\underline{\RR}_M,\sD_M) = \Hom_{\DD^b(\Vect_\RR)}(R\Gamma_c(\underline{\RR}_M),\RR).
+\end{equation*}
+Lo que de aquí se sigue es una serie de isomorfismos
+\begin{equation*}
+R^{-k}\Gamma(\sD_M) \cong H^k_c(M,\RR)^*,
+\end{equation*}
+para $k\in \Z$. En particular, de la dualidad de Poincaré local se sigue que, para $M=\RR^n$, se tiene
+\begin{equation*}
+R^{-k}\Gamma(\sD_{\RR^n}) \cong H^{n-k}(\RR^n,\RR),
+\end{equation*}
+con lo cual existe un isomorfismo (en $\DD^b(\RR^n)$, es decir, un cuasi-isomorfismo)
+\begin{equation*}
+\sD_{\RR^n} \cong \underline{\RR}_{\RR^n}[n],
+\end{equation*}
+donde la notación $[n]$ indica desplazar un complejo $n$ unidades a la izquierda; es decir $C^\bullet[n]=C^{\bullet+n}$.
+
+Globalmente, podemos tomar una variedad diferenciable $M$ de dimensión $n$ y recubrirla por un atlas $M=\bigcup_i U_i$. Cada $U_i$ es difeomorfo a $\RR^n$ y, por tanto, si fijamos una orientación $\mathrm{or}_i$ en $U_i$, tenemos un isomorfismo $\phi_i:\sD_{U_i} \cong \underline{\RR}_{U_i}[n]$. Para hallar el dualizante global $\sD_M$ debemos ver cómo se comparan los distintos $\phi_i$ en cada intersección $U_i\cap U_j$. En cada una de estas intersecciones tenemos dos orientaciones $\mathrm{or}_i$ y $\mathrm{or}_j$ y dos isomorfismos $\phi_i,\phi_j:\sD_{U_i\cap U_j}\cong \RR[n]$, que se relacionan como
+\begin{equation*}
+  \phi_i =
+  \begin{cases}
+\phi_j,& \text{ si } \mathrm{or}_i = \mathrm{or}_j\\
+-\phi_j,& \text{ si } \mathrm{or}_i = -\mathrm{or}_j.
+  \end{cases}
+\end{equation*}
+Por tanto, si podemos hallar una orientación global de $M$, tenemos que los isomorfismos $\phi_i$ pegan a un isomorfismo global $\phi:\sD_M \cong \underline{\RR}_M[n]$. En general, $\sD_M\cong \mathbf{or}_M[n]$, donde $\mathbf{or}_M$ es el \emph{haz de orientaciones} de $M$
+\begin{equation*}
+\mathbf{or}_M: U \mapsto H^n_c(U,\RR)^*.
+\end{equation*}
+Una orientación global de $M$ determina una sección global nunca nula de $\mathbf{or}_M$, y por tanto $\mathbf{or}_M\cong \underline{\RR}_M$ para una variedad orientable. Hemos probado lo siguiente.
+
+\begin{thm}[Dualidad de Poincaré (global)]
+El complejo dualizante de una variedad diferenciable $M$ es cuasi-isomorfo a $\mathbf{or}_M$. En particular, si $M$ es orientable, el emparejamiento
+  \begin{equation*}
+\Omega^{k}_c(M) \times \Omega^{n-k}(M) \rightarrow \RR,\ (\alpha,\beta) \mapsto \int_{M} \alpha \wedge \beta
+  \end{equation*}
+  determina un isomorfismo
+  \begin{equation*}
+H^k_c(M,\RR)^* \cong H^{n-k}(M,\RR).
+  \end{equation*}
+\end{thm}
 
 
-Dualidad de Poincaré
+
+
+
+
+
 
 
 \section{Teoría de Morse y teoría del grado}
@@ -1394,11 +1517,11 @@ donde $\deg f$ es un número real denominado el \emph{grado de Brouwer} de $f$. 
 \begin{prop}
   Sea $y\in N$ un valor regular de $f$; es decir, $d_xf\neq 0$ para todo $x\in f^{-1}(y)$. El grado $\deg f$ puede calcularse como
   \begin{equation*}
-\deg f = \sum_{x\in f^{-1}(y)} \epsilon(x),
+\deg f = \sum_{x\in f^{-1}(y)} \epsilon_f(x),
   \end{equation*}
   donde
   \begin{equation*}
-    \epsilon(x) =
+    \epsilon_f(x) =
     \begin{cases}
 +1 & \text{ si $d_xf$ preserva la orientación} \\
 -1 & \text{ si $d_xf$ invierte la orientación}.
@@ -1419,7 +1542,7 @@ f^{-1}(V) = \coprod_{x\in f^{-1}(y)} U_x
   \end{equation*}
   de entornos $U_x$ de cada $x\in f^{-1}(y)$ y de modo que $f$ restringe a un difeomorfismo $f_x:=f|_{U_x}:U_x\rightarrow V$ para cada $x$. Tomemos entonces una $n$-forma $\omega \in \Omega_c^n(V)$.  Podemos descomponer
   \begin{equation*}
-\deg f \int_N \omega=\int_M f^* \omega = \sum_{x\in f^{-1}(x)} \int_{U_x} f_x^* \omega  = \sum_{x\in f^{-1}(x)} \epsilon(x) \int_V \omega = \sum_{x\in f^{-1}(x)} \epsilon(x) ,
+\deg f \int_N \omega=\int_M f^* \omega = \sum_{x\in f^{-1}(x)} \int_{U_x} f_x^* \omega  = \sum_{x\in f^{-1}(x)} \epsilon_f(x) \int_V \omega = \sum_{x\in f^{-1}(x)} \epsilon_f(x) ,
   \end{equation*}
   donde hemos usado que cada $f_x$ es un difeomorfismo.
 \end{proof}
@@ -1539,6 +1662,32 @@ cuyo grado es igual a $(-1)^\lambda$. Por tanto, $\ind_x \nabla f = (-1)^\lambda
 como queríamos probar.
 \end{proof}
 
+\begin{corol}[Lema de Hopf]
+  Sea $M\subset \RR^N$ una subvariedad regular compacta y orientada y sea $\bm{n}:M\rightarrow S^{N-1}$ la \emph{aplicación de Gauss}, que asocia a cada punto $x\in M$ el \emph{vector unitario normal} $\bm{n}(x)\in S^{N-1}$ en el sentido compatible con la orientación. Se tiene que
+  \begin{equation*}
+\deg \bm{n} = \frac{1}{2}\chi(M).
+  \end{equation*}
+\end{corol}
+
+\begin{proof}
+  Tomamos cualquier vector unitario $\bm{u}\in S^{N-1}\subset \RR^N$ que sea un valor regular de $\bm{n}$ y tomamos su proyección ortogonal a cada espacio tangente $T_xM$, de modo que obtenemos un campo vectorial $X$ en $M$; detalladamente
+  \begin{equation*}
+X_x = \bm{u} - \langle \bm{n}(x),\bm{u} \rangle \bm{n}(x).
+  \end{equation*}
+  Los ceros de este campo $X$ son aquellos $x\in M$ tales que $\langle \bm{u},\bm{n}(x) \rangle = 0$. Es decir, $X_x=0$ si y solamente si $\bm{n}(x)=\pm \bm{u}$. Por tanto,
+  \begin{equation*}
+\ind X = \sum_{x\in \bm{n}^{-1}(\pm \bm{u})} \ind_x X .
+  \end{equation*}
+ Nótese que la correspondiente aplicación $\bar{X}$ invierte o preserva la orientación si y sólo si lo hace $\bm{n}$, luego el índice local de $X$ en $x$ puede calcularse como
+  \begin{equation*}
+\ind_x X = \epsilon_{\bm{n}}(x).
+  \end{equation*}
+  Concluimos que
+  \begin{equation*}
+\chi(M)=\ind X =\sum_{x\in \bm{n}^{-1}(\bm{u})} \epsilon_{\bm{n}}(x) + \sum_{x\in \bm{n}^{-1}(-\bm{u})} \epsilon_{\bm{n}}(x) =2 \deg \bm{n},
+  \end{equation*}
+por el teorema de Poincaré--Hopf.
+\end{proof}
 
 
 \chapter{Geometría riemanniana}
@@ -2001,86 +2150,82 @@ En efecto, la característica de Euler de la esfera es $2$.
 \end{ej}
 
 \begin{proof}[Demostración del teorema de Gauss--Bonnet]
-  Recordemos que, si $M$ y $N$ son variedades compactas y orientadas de dimensión $n$, podíamos definir el grado de una aplicación diferenciable $\nu:N\rightarrow M$ por la fórmula
+  Consideramos la aplicación de Gauss $\bm{n}:S\rightarrow S(V)$ y tenemos que
   \begin{equation*}
-\int_N \nu^* \omega = \deg \nu \int_M \omega,
-  \end{equation*}
-  para cualquier $\omega \in \Omega^n(M)$. En nuestro caso, podemos tomar $\nu=\bm{n}:S\rightarrow S(V)$, y tenemos que
-  \begin{equation*}
-\bm{n}^* d\mathrm{vol}_{S(V)} = \det(d\bm{n}) d\mathrm{vol}_g = \det(-S) d\mathrm{vol}_g = -Kd\mathrm{vol}_g.
+\bm{n}^* d\mathrm{vol}_{S(V)} = \det(d\bm{n}) d\mathrm{vol}_g = \det(S) d\mathrm{vol}_g = Kd\mathrm{vol}_g.
   \end{equation*}
   Por tanto,
   \begin{equation*}
-\int_S K d\mathrm{vol}_g =- \int_S \bm{n}^* d\mathrm{vol}_{S(V)} = -\deg \bm{n} \int_S d\mathrm{vol}_{S(V)}=-4\pi \deg \bm{n}.
+\int_S K d\mathrm{vol}_g =\int_S \bm{n}^* d\mathrm{vol}_{S(V)} = \deg \bm{n} \int_S d\mathrm{vol}_{S(V)}=4\pi \deg \bm{n} = 2\pi\chi(S),
   \end{equation*}
-Basta ver entonces que $\deg \bm{n} = -\chi(S)/2$.
-
-Recordemos ahora que el grado $\deg \bm{n}$ puede computarse como
-\begin{equation*}
-\deg \bm{n} = \sum_{p \in \bm{n}^{-1}(q)} \mathrm{sgn} \det(d_p \bm{n}),
-\end{equation*}
-donde $q\in S(V)$ es cualquier valor regular. Ahora, recordemos que
-\begin{equation*}
-d_p \bm{n} = - \mathrm{Hess}_p F,
-\end{equation*}
-donde $F$ es cualquier función $F:T_pS\rightarrow \RR$ con $F(0)=0$ y $d_0F=0$ tal que $S$ es localmente su gráfica.
-
-El siguiente paso es considerar una función de altura $H:E\rightarrow \RR$. Para ello, consideramos un punto base $p_0\in E$, de modo que podemos identificar $E$ y $V$, y fijamos un vector unitario $u\in S(V)$. Definimos
-\begin{equation*}
-H(v) = \langle u,v\rangle.
-\end{equation*}
-Para cada número real $a\in \RR$, podemos considerar el conjunto de nivel
-\begin{equation*}
-S_a = H^{-1}(a) \cap S = \left\{ p \in S: H(p)=a \right\},
-\end{equation*}
-que es posiblemente vacío. De hecho, como $S$ es compacta, existe un $M>0$ tal que para $S_a=\varnothing$ para $a<-M$ y para $a>M$.
-Los puntos críticos de $H$ son aquellos $p\in S$ para los que
-\begin{equation*}
-\grad H (p) = 0.
-\end{equation*}
-Dado un punto crítico $p$ podemos tener uno de los siguientes casos
-\begin{itemize}
-\item $p$ es un mínimo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
-  \item $p$ es un máximo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
-    \item $p$ es un punto de silla de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = -1$.
-\end{itemize}
-Sea $\varphi:\RR \times S \rightarrow S$ el flujo generado por el campo $-\grad H$.
-Utilizando $\varphi$, podemos construir una descomposición en celdas de $S$ de la siguiente forma:
-\begin{itemize}
-  \item para cada mínimo $p$ de $H$, tenemos una $2$-celda
-        \begin{equation*}
-\Delta_{p} = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) =p  \right\},
-        \end{equation*}
-  \item los vértices (las $0$-celdas) son los máximos de $H$,
-\item a cada punto de silla $p$ le corresponde una $1$-celda
-        \begin{equation*}
-A_p = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) = p \right\}.
-        \end{equation*}
-\end{itemize}
-Por tanto, concluimos que
-\begin{equation*}
-\chi(S) = \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H).
-\end{equation*}
-
-A priori, habría que tener un poco más de cuidado en la elección de $H$, ya que podría pasar que tuviera infinitos puntos críticos, o que las $1$-celdas así definidas unan puntos de silla con puntos de silla, y no puntos de silla con máximos, como deseamos. Con argumentos típicos de topología diferencial se puede modificar ligeramente la función $H$ para evitar que se de esa situación patológica. En términos técnicos, lo que se busca es que $\grad H$ sea un \textit{campo de Morse--Smale}.
-
-Por otra parte, tenemos que $\nabla H = u$, de modo que los puntos críticos $p$ de $H$ son aquellos para los cuales
-\begin{equation*}
-\langle u, v \rangle = 0
-\end{equation*}
-para todo $v\in T_pS$ o, lo que es lo mismo
-\begin{equation*}
-\mathrm{Crit}(H) = \bm{n}^{-1}(u) \cup \bm{n}^{-1}(-u).
-\end{equation*}
-Además, si tomamos coordenadas locales en torno a un punto crítico $p$ con $p=0$, $v=(0,0,1)$ y $S$ dada por $z=F(x,y)$, entonces
-\begin{equation*}
-F = H|_S,
-\end{equation*}
-de modo que $\mathrm{Hess}_p(H) = \mathrm{Hess}_p(F)$. Concluimos que
-\begin{align*}
-\chi(S) &= \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H) \\ &= \sum_{p \in \bm{n}^{-1}(u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) + \sum_{p \in \bm{n}^{-1}(-u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) = -2\deg(\bm{n}),
-\end{align*}
-como queríamos probar
+donde hemos usado que $\deg \bm{n} = \chi(S)/2$, por el lema de Hopf.
+%
+%Recordemos ahora que el grado $\deg \bm{n}$ puede computarse como
+%\begin{equation*}
+%\deg \bm{n} = \sum_{p \in \bm{n}^{-1}(q)} \mathrm{sgn} \det(d_p \bm{n}),
+%\end{equation*}
+%donde $q\in S(V)$ es cualquier valor regular. Ahora, recordemos que
+%\begin{equation*}
+%d_p \bm{n} = - \mathrm{Hess}_p F,
+%\end{equation*}
+%donde $F$ es cualquier función $F:T_pS\rightarrow \RR$ con $F(0)=0$ y $d_0F=0$ tal que $S$ es localmente su gráfica.
+%
+%El siguiente paso es considerar una función de altura $H:E\rightarrow \RR$. Para ello, consideramos un punto base $p_0\in E$, de modo que podemos identificar $E$ y $V$, y fijamos un vector unitario $u\in S(V)$. Definimos
+%\begin{equation*}
+%H(v) = \langle u,v\rangle.
+%\end{equation*}
+%Para cada número real $a\in \RR$, podemos considerar el conjunto de nivel
+%\begin{equation*}
+%S_a = H^{-1}(a) \cap S = \left\{ p \in S: H(p)=a \right\},
+%\end{equation*}
+%que es posiblemente vacío. De hecho, como $S$ es compacta, existe un $M>0$ tal que para $S_a=\varnothing$ para $a<-M$ y para $a>M$.
+%Los puntos críticos de $H$ son aquellos $p\in S$ para los que
+%\begin{equation*}
+%\grad H (p) = 0.
+%\end{equation*}
+%Dado un punto crítico $p$ podemos tener uno de los siguientes casos
+%\begin{itemize}
+%\item $p$ es un mínimo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
+%  \item $p$ es un máximo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
+%    \item $p$ es un punto de silla de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = -1$.
+%\end{itemize}
+%Sea $\varphi:\RR \times S \rightarrow S$ el flujo generado por el campo $-\grad H$.
+%Utilizando $\varphi$, podemos construir una descomposición en celdas de $S$ de la siguiente forma:
+%\begin{itemize}
+%  \item para cada mínimo $p$ de $H$, tenemos una $2$-celda
+%        \begin{equation*}
+%\Delta_{p} = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) =p  \right\},
+%        \end{equation*}
+%  \item los vértices (las $0$-celdas) son los máximos de $H$,
+%\item a cada punto de silla $p$ le corresponde una $1$-celda
+%        \begin{equation*}
+%A_p = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) = p \right\}.
+%        \end{equation*}
+%\end{itemize}
+%Por tanto, concluimos que
+%\begin{equation*}
+%\chi(S) = \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H).
+%\end{equation*}
+%
+%A priori, habría que tener un poco más de cuidado en la elección de $H$, ya que podría pasar que tuviera infinitos puntos críticos, o que las $1$-celdas así definidas unan puntos de silla con puntos de silla, y no puntos de silla con máximos, como deseamos. Con argumentos típicos de topología diferencial se puede modificar ligeramente la función $H$ para evitar que se de esa situación patológica. En términos técnicos, lo que se busca es que $\grad H$ sea un \textit{campo de Morse--Smale}.
+%
+%Por otra parte, tenemos que $\nabla H = u$, de modo que los puntos críticos $p$ de $H$ son aquellos para los cuales
+%\begin{equation*}
+%\langle u, v \rangle = 0
+%\end{equation*}
+%para todo $v\in T_pS$ o, lo que es lo mismo
+%\begin{equation*}
+%\mathrm{Crit}(H) = \bm{n}^{-1}(u) \cup \bm{n}^{-1}(-u).
+%\end{equation*}
+%Además, si tomamos coordenadas locales en torno a un punto crítico $p$ con $p=0$, $v=(0,0,1)$ y $S$ dada por $z=F(x,y)$, entonces
+%\begin{equation*}
+%F = H|_S,
+%\end{equation*}
+%de modo que $\mathrm{Hess}_p(H) = \mathrm{Hess}_p(F)$. Concluimos que
+%\begin{align*}
+%\chi(S) &= \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H) \\ &= \sum_{p \in \bm{n}^{-1}(u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) + \sum_{p \in \bm{n}^{-1}(-u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) = -2\deg(\bm{n}),
+%\end{align*}
+%como queríamos probar
 \end{proof}
 
 \section{Geometría riemanniana intrínseca}
