@@ -13,7 +13,7 @@
 \usepackage{bm}
 
 \usepackage{adjustbox}
-\usepackage{pdfpages}
+%\usepackage{pdfpages}
 \usepackage{graphicx}
 \usepackage{epigraph}
 
@@ -57,7 +57,7 @@
 \author{Guillermo Gallego}
 
 \begin{document}
-\includepdf[pages=1]{portada.pdf}
+%\includepdf[pages=1]{portada.pdf}
 
 \frontmatter
 \begin{titlepage}
@@ -71,8 +71,11 @@
 \vfill
 
 \begin{center}
-\includegraphics[width=\textwidth]{imagen_portada.png}
-De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
+%\includegraphics[width=\textwidth]{imagen_portada.png}
+%De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
+\includegraphics[width=0.7\textwidth]{fomenko.png} \\
+\textit{Funciones de Morse y el teorema sobre la característica de Euler}, por A. Fomenko
+%De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
 \end{center}
 
 \vfill
@@ -130,7 +133,7 @@ diferencial exterior conmuta con pullback
 \section{Campos vectoriales, flujos y derivada de Lie}
 a
 
-Fórmula pushforward y flujos
+Fórmula pushforward y flujos. Flujos completos (p. ej. si $M$ compacta)
 
 Campos $\psi$-relacionados
 
@@ -1252,7 +1255,7 @@ I^\bullet_{\mathrm{dR}}:\Omega^\bullet(M) \times C^\bullet(M,\RR) \rightarrow \R
       \RR \rar & C^\bullet(M,\RR) \ar{ru}{\text{ci}},
     \end{tikzcd}
   \end{center}
-  donde las flechas marcadas con ``ci'' son cuasi-isomorfismos porque las resoluciones acíclicas computan los funtores derivados. Por tanto, $I^\bullet_{dR}$ también es un cuasi-isomorfismo, que es justamente lo que queríamos probar.
+  donde las flechas marcadas con ``ci'' son cuasi-isomorfismos porque las resoluciones acíclicas computan los funtores derivados. Por tanto, $I^\bullet_{\mathrm{dR}}$ también es un cuasi-isomorfismo, que es justamente lo que queríamos probar.
 \end{proof}
 
 \subsection{Cohomología celular}
@@ -1282,14 +1285,59 @@ Estos grupos encajan en el siguiente diagrama
   \end{tikzcd}
   \end{adjustbox}
 \end{center}
-Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bullet(M)$ con $CH^k(M)=H^k(M_k,M_{k-1};\RR)\cong \RR^{c_k}$ y que sus grupos de cohomología coinciden con los grupos $H^\bullet(M,\RR)$. Concluimos que
+Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bullet(M,\RR)$ con $CH^k(M,\RR)=H^k(M_k,M_{k-1};\RR)\cong \RR^{c_k}$ y que sus grupos de cohomología coinciden con los grupos $H^\bullet(M,\RR)$. Concluimos que
 \begin{equation*}
 \chi(M) = \chi(R\Gamma(\underline{\RR}_M)) = \sum_{k} (-1)^k \dim H^k(M,\RR).
 \end{equation*}
-%
-%\subsection{Teorema de Künneth} a
-%
-%\subsection{Estructura de anillo} a
+Aquí, recordamos que la característica de Euler de un complejo $A^\bullet$ de espacios vectoriales se define como
+\begin{equation*}
+\chi(A^\bullet) = \sum_{k}(-1)^k \dim A^k.
+\end{equation*}
+Esta función es aditiva, en el sentido de que, si $0\rightarrow A^\bullet \rightarrow B^\bullet \rightarrow C^\bullet \rightarrow 0$ es una sucesión exacta corta de complejos, entonces
+\begin{equation*}
+\chi(B^\bullet) = \chi(A^\bullet) + \chi(C^\bullet).
+\end{equation*}
+
+\begin{ej}
+  Veamos ahora algunos ejemplos.
+  \begin{enumerate}
+  \item \textbf{Esferas}. Una $n$-esfera $S^n$ admite una descomposición celular con dos celdas: una $0$-celda y una $n$-celda. Por tanto, su complejo celular $CH^\bullet(S^n,\RR)$ es
+          \begin{center}
+            \begin{tikzcd}
+0 \rar & \RR \rar & 0 \rar & \cdots \rar & \RR \rar & 0.
+            \end{tikzcd}
+          \end{center}
+          Por tanto,
+          \begin{equation*}
+            H^k(S^n,\RR) = CH^k(S^n,\RR) =
+            \begin{cases}
+\RR & \text{ si } k=0,n\\
+0 & \text{ en caso contrario}.
+\end{cases}
+          \end{equation*}
+
+  \item \textbf{Superficies compactas orientables}. Una superficie compacta orientable de género $g$, que denotamos por $\Sigma_g$, puede verse como un polígono de $4g$ lados con una cierta relación de pegado de los mismos. De aquí se obtiene una descomposición celular de $\Sigma_g$ con una $0$-celda, $2g$ $1$-celdas, y $1$ $2$-celda. El complejo celular $CH^\bullet(\Sigma_g,\RR)$ se escribe entonces como
+          \begin{center}
+            \begin{tikzcd}
+0 \rar & \RR \rar & \RR^{2g} \rar &  \RR \rar & 0,
+            \end{tikzcd}
+          \end{center}
+          y todas las aplicaciones de este complejo son $0$, por las relaciones de pegado de la superficie. Por tanto,
+          \begin{equation*}
+H^k(\Sigma_g,\RR) = CH^k(\Sigma_g,\RR) =
+            \begin{cases}
+\RR & \text{ si } k=0,2\\
+\RR^{2g} & \text{ si } k=1\\
+0 & \text{ en caso contrario}.
+\end{cases}
+          \end{equation*}
+          En particular, recuperamos la conocida fórmula para la característica de Euler
+          \begin{equation*}
+\chi(M) = 2-2g .
+          \end{equation*}
+  \end{enumerate}
+\end{ej}
+
 
 \subsection{Cohomología con soportes compactos} Hemos introducido los grupos de cohomología de $X$ como los funtores derivados del funtor $\Gamma$ aplicados al haz constante $\underline{R}_X$. Si en vez de $\Gamma$ utilizamos el funtor $\Gamma_c$ de secciones con soporte compacto, obtenemos los \emph{grupos de cohomología con soporte compacto de $X$} (con coeficientes en $\RR$), definidos como
 \begin{equation*}
@@ -1663,14 +1711,14 @@ como queríamos probar.
 \end{proof}
 
 \begin{corol}[Lema de Hopf]
-  Sea $M\subset \RR^N$ una subvariedad regular compacta y orientada y sea $\bm{n}:M\rightarrow S^{N-1}$ la \emph{aplicación de Gauss}, que asocia a cada punto $x\in M$ el \emph{vector unitario normal} $\bm{n}(x)\in S^{N-1}$ en el sentido compatible con la orientación. Se tiene que
+  Sea $M\subset \RR^{2N+1}$ una hipersuperficie regular compacta y orientada y sea $\bm{n}:M\rightarrow S^{2N}$ la \emph{aplicación de Gauss}, que asocia a cada punto $x\in M$ el \emph{vector unitario normal} $\bm{n}(x)\in S^{2N}$ en el sentido compatible con la orientación. Se tiene que
   \begin{equation*}
 \deg \bm{n} = \frac{1}{2}\chi(M).
   \end{equation*}
 \end{corol}
 
 \begin{proof}
-  Tomamos cualquier vector unitario $\bm{u}\in S^{N-1}\subset \RR^N$ que sea un valor regular de $\bm{n}$ y tomamos su proyección ortogonal a cada espacio tangente $T_xM$, de modo que obtenemos un campo vectorial $X$ en $M$; detalladamente
+  Tomamos cualquier vector unitario $\bm{u}\in S^{2N}\subset \RR^{2N+1}$ que sea un valor regular de $\bm{n}$ y tomamos su proyección ortogonal a cada espacio tangente $T_xM$, de modo que obtenemos un campo vectorial $X$ en $M$; detalladamente
   \begin{equation*}
 X_x = \bm{u} - \langle \bm{n}(x),\bm{u} \rangle \bm{n}(x).
   \end{equation*}
@@ -1682,11 +1730,12 @@ X_x = \bm{u} - \langle \bm{n}(x),\bm{u} \rangle \bm{n}(x).
   \begin{equation*}
 \ind_x X = \epsilon_{\bm{n}}(x).
   \end{equation*}
-  Concluimos que
-  \begin{equation*}
-\chi(M)=\ind X =\sum_{x\in \bm{n}^{-1}(\bm{u})} \epsilon_{\bm{n}}(x) + \sum_{x\in \bm{n}^{-1}(-\bm{u})} \epsilon_{\bm{n}}(x) =2 \deg \bm{n},
-  \end{equation*}
-por el teorema de Poincaré--Hopf.
+  Concluimos que, por el teorema de Poincaré--Hopf,
+  \begin{align*}
+    \chi(M)&=\ind X =\sum_{x\in \bm{n}^{-1}(\bm{u})} \epsilon_{\bm{n}}(x) + \sum_{x\in \bm{n}^{-1}(-\bm{u})} \epsilon_{\bm{n}}(x) \\
+    &= \deg \bm{n} + \deg(-\bm{n})=\deg \bm{n} + (-1)^{2N} \deg \bm{n}=2\deg\bm{n},
+  \end{align*}
+luego $\deg \bm{n} = \tfrac{1}{2}\chi(M)$.
 \end{proof}
 
 
@@ -1704,11 +1753,6 @@ que recordamos que es una forma bilineal simétrica y definida positiva. Recorde
   Un par $(M,g)$ formado por una variedad diferenciable con una métrica riemanniana en ella, se denomina una \emph{variedad riemanniana}. Una \emph{isometría} entre dos variedades Riemannianas $(M_1,g_1)$ y $(M_2,g_2)$ es una aplicación diferenciable  $f:M\rightarrow N$ tal que $f^*g_2 = g_1$.
 \end{defn}
 
-\subsection{Existencia} La existencia de métricas Riemannianas en cualquier variedad diferenciable es clara. Basta tomar, para cada sistema de coordenadas local $\bm{x}:U\rightarrow \RR^n$, el pullback del producto escalar estándar en $\RR^n$. Es decir, tomamos la métrica Riemanniana $g_U$ en $U$ tal que la base $\left\{ \partial_i:i=1,\dots,n \right\}$ es ortonormal. Para recuperar una métrica definida globalmente, basta tomar una partición diferenciable de la unidad $\rho_U$ subordinada a la familia de abiertos $U$ y definir
-\begin{equation*}
-g = \sum_{U} \rho_U g_U.
-\end{equation*}
-
 \subsection{} Tomando coordenadas locales $x^1,\dots,x^n$ en $U\subset M$, podemos escribir una métrica como
 \begin{equation*}
 g = g_{ij} dx^i dx^j,
@@ -1717,25 +1761,39 @@ donde $g_{ij}:U\rightarrow \RR$ cumple
 \begin{equation*}
 g_{ij}(x) = \langle \partial_i|_x, \partial_j|_x \rangle_x.
 \end{equation*}
+En otras coordenadas $y^1,\dots,y^n$, una métrica $g$ se puede escribir como
+\begin{equation*}
+g= g_{ij} dx^idx^j = h_{ab} dy^a dy^b.
+\end{equation*}
+Por tanto,
+\begin{equation*}
+g_{ij} = h_{ab} \frac{\partial y^a}{\partial x^i} \frac{\partial y^b}{\partial x^j}.
+\end{equation*}
 
-\subsection{} Nótese que una métrica riemanniana $g$ en una $n$-variedad orientada $M$ tiene asociada de forma natural una forma de volumen $d \mathrm{vol}_g \in \Omega^n(M)$ definida como sigue. Para cada $p\in M$, se toma una base ortonormal positiva $e_1,\dots,e_n$ del espacio tangente $TM$, con base dual $\theta^1,\dots,\theta^n$, y se toma $d\mathrm{vol}_g=\theta^1\wedge \cdots \wedge \theta^n$. Esta forma está bien definida ya que, si se toma otra base ortonormal positiva $e_1',\dots,e_n'$, ésta difiere de $e_1,\dots,e_n$ por una matriz $A \in \mathrm{SO}_n(\RR)$, de modo que \[(\theta')^1\wedge \cdots \wedge (\theta')^n=\det(A) \theta^1\wedge \cdots \wedge \theta^n = \theta^1\wedge \cdots \wedge \theta^n.\]
+\subsection{Longitud, distancia y volumen}
+  Una métrica riemanniana es también una métrica en el sentido de que dota a la variedad $M$ de estructura de espacio métrico. En efecto, dada una curva diferenciable $\gamma:[0,1]\rightarrow M$, podemos definir su \emph{longitud} $\ell(\gamma)$ como la integral
+  \begin{equation*}
+\ell(\gamma)=\ell_g(\gamma) = \int_0^1  \sqrt{\langle \gamma'(t), \gamma'(t) \rangle_{\gamma(t)}} dt.
+  \end{equation*}
+  Definimos entonces la función de \emph{distancia}
+  \begin{equation*}
+d(x,y)=d_g(x,y) = \inf \left\{ \ell(\gamma): \gamma:[0,1] \rightarrow M \text{ curva diferenciable con } \gamma(0)=x, \gamma(1)=y   \right\}.
+  \end{equation*}
 
+Nótese además que una métrica riemanniana $g$ en una $n$-variedad orientada $M$ tiene asociada de forma natural una \emph{forma de volumen} $d \mathrm{vol}_g \in \Omega^n(M)$ definida como sigue. Para cada $p\in M$, se toma una base ortonormal positiva $e_1,\dots,e_n$ del espacio tangente $TM$, con base dual $\theta^1,\dots,\theta^n$, y se toma $d\mathrm{vol}_g=\theta^1\wedge \cdots \wedge \theta^n$. Esta forma está bien definida ya que, si se toma otra base ortonormal positiva $e_1',\dots,e_n'$, ésta difiere de $e_1,\dots,e_n$ por una matriz $A \in \mathrm{SO}_n(\RR)$, de modo que \[(\theta')^1\wedge \cdots \wedge (\theta')^n=\det(A) \theta^1\wedge \cdots \wedge \theta^n = \theta^1\wedge \cdots \wedge \theta^n.\]
 Si $x^1,\dots,x^n$ son coordenadas locales, entonces podemos escribir
 \begin{equation*}
 d \mathrm{vol}_g = \sqrt{\det(g_{ij})} dx^1\wedge \cdots \wedge dx^n.
 \end{equation*}
 
-
 \subsection{} Si consideramos el espacio euclidiano $\mathbb{R}^n$ con su producto escalar estándar, cualquier subvariedad $M\subset \mathbb{R}^n$ hereda una métrica al restringir el producto escalar a cada espacio tangente. Este es el tipo de variedades riemannianas que se estudiaron en la geometría diferencial clásica. En particular, se estudiaron las $1$-variedades en $\RR^2$ y en $\RR^3$ (las \emph{curvas planas} y las \emph{curvas en el espacio}, respectivamente) y las $2$-variedades en $\RR^3$ (las \emph{superficies en el espacio}).
 
-\subsection{} Supongamos que $x^1,\dots,x^n$ e $y^1,\dots,y^n$ son dos sistemas de coordenadas locales en una variedad $M$, y supongamos que una métrica $g$ se puede escribir en estas coordenadas como
+
+\subsection{Existencia} La existencia de métricas Riemannianas en cualquier variedad diferenciable es clara. Basta tomar, para cada sistema de coordenadas local $\bm{x}:U\rightarrow \RR^n$, el pullback del producto escalar estándar en $\RR^n$. Es decir, tomamos la métrica Riemanniana $g_U$ en $U$ tal que la base $\left\{ \partial_i:i=1,\dots,n \right\}$ es ortonormal. Para recuperar una métrica definida globalmente, basta tomar una partición diferenciable de la unidad $\rho_U$ subordinada a la familia de abiertos $U$ y definir
 \begin{equation*}
-g= g_{ij} dx^idx^j = h_{ab} dy^a dy^b.
+g = \sum_{U} \rho_U g_U.
 \end{equation*}
-Entonces,
-\begin{equation*}
-g_{ij} = h_{ab} \frac{\partial y^a}{\partial x^i} \frac{\partial y^b}{\partial x^j}.
-\end{equation*}
+
 
 \subsection{Subir y bajar índices} Un producto escalar $\langle-,-\rangle: V\times V \rightarrow \RR$, al ser definido positivo, determina un isomorfismo $V\rightarrow V^*$, que envía cada $v\in V$ a la forma lineal $\langle v,-\rangle: V\rightarrow \RR$. A su vez, precomponiendo con este isomorfismo, se obtiene un producto escalar en $V^*$.
 
@@ -2228,6 +2286,19 @@ donde hemos usado que $\deg \bm{n} = \chi(S)/2$, por el lema de Hopf.
 %como queríamos probar
 \end{proof}
 
+\begin{rmk}
+La misma demostración del teorema de Gauss--Bonnet sirve para hipersuperficies de dimensión par, con la definición adecuada de curvatura de Gauss. En efecto, si $M\subset \RR^{2N+1}$ es una hipersuperficie, podemos definir la correspondiente aplicación de Gauss $\bm{n}:M\rightarrow S^{2N}$. La \emph{curvatura de Gauss} $K$ se define como la función
+\begin{equation*}
+K: M \rightarrow \RR, \ x \mapsto \det(d\bm{n}(x)).
+\end{equation*}
+Exactamente la misma demostración prueba que
+\begin{equation*}
+\int_MK d\mathrm{vol}_g = \frac{1}{2} \mathrm{vol}(S^{2N}) \chi(M),
+\end{equation*}
+donde $\mathrm{vol}(S^{2N})$ es el ``$2N$-volumen'' de la $2N$-esfera de radio $1$.
+\end{rmk}
+
+
 \section{Geometría riemanniana intrínseca}
 \subsection{} Vamos a concluir nuestro estudio de las superficies viendo qué aspectos de la geometría de superficies en el espacio $S\subset E$ son intrínsecos a la superficie $S$, con su estructura riemanniana (dada por la primera forma fundamental) y no dependen del espacio ambiente. En primer lugar, veremos que el tensor de curvatura de Riemann en superficies se reduce simplemente a la curvatura de Gauss. Por tanto, la curvatura de Gauss es intrínseca. Este es el contenido del \emph{teorema egregio de Gauss}. Seguidamente, estudiaremos la \emph{derivada covariante}, que nos proporcionará una interpretación geométrica de los símbolos de Christoffel.
 
@@ -2301,7 +2372,7 @@ Sea $\gamma:(a,b)\rightarrow S$ una curva en la superficie $S$ y $X$ un campo ve
 
 Las siguientes propiedades se siguen fácilmente de las definiciones.
 
-\begin{lemma}
+\begin{lemma} La derivada covariante tiene las siguientes propiedades:
 \begin{enumerate}
 \item La aplicación $\nabla X: T_pS \rightarrow T_pS$, $v_p \mapsto \nabla_{v_p}X$ es lineal.
 \item La aplicación $\nabla_{v_p}: \fX(S) \rightarrow T_pS$, $X \mapsto \nabla_{v_p}X$ satisface la regla de Leibniz
@@ -2506,11 +2577,94 @@ Esto prueba que $\nabla$ es la conexión de Levi-Civita.
 
 
 \section{Geodésicas y aplicación exponencial}
-a
+Sea $(M,g)$ una variedad riemanniana y $\nabla$ su conexión de Levi-Civita.  En las secciones previas hemos introducido las nociones de paralelismo y geodésicas en superficies; las definiciones generales son totalmente análogas.
 
-añadir principio variacional y teorema de Hopf--Rinow
+\begin{defn}
+  Sean $\gamma:(a,b)\rightarrow M$ una curva en $M$ y $X$ un campo vectorial a lo largo de $\gamma$. El campo $X$ es \emph{paralelo} a lo largo de $\gamma$ si $\nabla_{\gamma'} X=\nabla X (\gamma') = 0$. Si $\nabla_{\gamma'} \gamma'=0$, es decir, si $\gamma'$ es paralelo a lo largo de $\gamma$, entonces $\gamma$ es una \emph{geodésica}.
+\end{defn}
 
-isometría local desde completo extiende a cover
+\subsection{Ecuación de las geodésicas} Podemos escribir ahora la ecuación $\nabla_{\gamma'}\gamma'=0$ en coordenadas, y obtener la ecuación local de las geodésicas. En coordenadas, $\gamma$ se escribe como $\gamma=(\gamma^1,\dots,\gamma^n)$, y el campo $\gamma'$ puede escribirse como
+\begin{equation*}
+(\gamma')_{\gamma(t)} = (\frac{d\gamma^1}{dt},\dots,\frac{d\gamma^n}{dt}).
+\end{equation*}
+Por tanto,
+\begin{equation*}
+\nabla \gamma' = (\partial_k\frac{d\gamma^i}{dt} + \frac{d\gamma^j}{dt} \Gamma^i_{kj}) dx^k.
+\end{equation*}
+Evaluando en $\gamma'$, tenemos
+\begin{equation*}
+\nabla_{\gamma'} \gamma' = \frac{d^2 \gamma^i}{dt^2} +  \Gamma^i_{kj}\frac{d\gamma^j}{dt} \frac{d\gamma^k}{dt}.
+\end{equation*}
+Por tanto, las geodésicas son soluciones de las ecuaciones locales
+\begin{equation*}
+\frac{d^2 \gamma^i}{dt^2} + \Gamma^i_{kj}\frac{d\gamma^j}{dt} \frac{d\gamma^k}{dt} = 0.
+\end{equation*}
+Esto es un sistema de EDOs de orden $2$. Por tanto, por la teoría clásica de ecuaciones diferenciales sabemos que, dados un punto $x\in M$ y un vector $v\in T_pM$, existe una única geodésica $\gamma_{x,v}:I_{x,v}\rightarrow M$, para algún intervalo maximal $I_{x,v}$, que cumple que $\gamma(0)=0$ y $\gamma'(0)=v$. Además, si $M$ es compacta, este intervalo $I_{x,v}$ es todo $\RR$.
+
+\subsection{El principio variacional} Las geodésicas minimizan localmente la distancia. Esto quiere decir que, para todo punto $x\in M$ existe un entorno $U$ de $x$ tal que, para todo punto $y\in U$ existe una única geodésica $\gamma:[0,d]\rightarrow M$ tal que $\lVert \gamma'(0) \rVert_{g} = 1$, $\gamma(0)=x$, y $\gamma(d)=y$, donde $d=d(x,y)$. Otra afirmación equivalente, pero con más significado físico es que las geodésicas cumplen el ``principio de mínima acción''. Una forma de ver esto es definiendo el \emph{funcional de acción} $\cS$, que a cada curva $\gamma:[0,d]\rightarrow M$ con $\langle \gamma'(0),\gamma'(0) \rangle_{\gamma(0)} = 1$, $\gamma(0)=p$, y $\gamma(d)=q$ le asocia el valor
+\begin{equation*}
+\cS (\gamma) = \frac{1}{2} \int_{0}^d \langle \gamma'(t),\gamma'(t) \rangle_{\gamma(t)} dt.
+\end{equation*}
+Podemos también definir la \emph{energía cinética}, que es la función
+\begin{equation*}
+E: TM \rightarrow \RR, \ (x,v) \mapsto \frac{1}{2} \langle v,v\rangle_x.
+\end{equation*}
+Tenemos entonces que la acción asocia a cada curva $\gamma$ la integral
+\begin{equation*}
+\cS(\gamma) = \frac{1}{2} \int_0^d E(\gamma(t),\gamma'(t)) dt.
+\end{equation*}
+Por tanto, la energía cinética $E$ es la función Lagrangiana para el funcional de acción $\cS$ y, por tanto, las curvas $\gamma$ que hagan la acción extremal son aquellas que localmente satisfacen las ecuaciones de Euler--Lagrange
+\begin{equation*}
+\frac{d}{dt} \frac{\partial E}{\partial \dot{x}^i} (\gamma(t),\gamma'(t)) -\frac{\partial E}{\partial x^i} (\gamma(t),\gamma'(t))  = 0,
+\end{equation*}
+donde $x^1,\dots,x^n,\dot{x}^1,\dots,\dot{x}^n$ es el sistema de coordenadas en $TM$ inducido por las coordenadas $x^1,\dots,x^n$. En estas coordenadas, la energía se escribe como
+\begin{equation*}
+E = \frac{1}{2} g_{ij} \dot{x}^i \dot{x}^j,
+\end{equation*}
+de modo que las ecuaciones de Euler--Lagrange resultan
+\begin{equation*}
+g_{kj} \ddot{x}^j + \partial_i g_{kj} \dot{x}^i \dot{x}^j - \frac{1}{2} \partial_k g_{ij} \dot{x}^i \dot{x}^j = 0.
+\end{equation*}
+Expandiendo $\partial_i g_{kj} \dot{x}^i \dot{x}^j = \tfrac{1}{2}(\partial_i g_{kj} + \partial_j g_{ki}) \dot{x}^i \dot{x}^j$, obtenemos
+\begin{equation*}
+g_{kj} \ddot{x}^j + \frac{1}{2} (\partial_i g_{kj} + \partial_j g_{ki} - \partial_k g_{ij}) \dot{x}^i \dot{x}^j = 0,
+\end{equation*}
+de modo que, multiplicando por $g^{lk}$, obtenemos
+\begin{equation*}
+\ddot{x}^l + \Gamma^l_{ij} \dot{x}^i \dot{x}^j = 0.
+\end{equation*}
+Componiendo con la función $(\gamma,\gamma'):[0,d]\rightarrow TM$, obtenemos la ecuación de las geodésicas.
+
+\subsection{Aplicación exponencial} Hemos visto que, por la teoría clásica de EDOs, para cada punto $(x,v)\in TM$ existe un intervalo maximal $I_{x,v}$ de modo que la geodésica $\gamma_{x,v}:I_{x,v}\rightarrow M$ con $\gamma(0) = x$ y $\gamma'(0)=v$ está bien definida. Definimos el subespacio
+\begin{equation*}
+\cV = \left\{ (x,v)\in TM: 1 \in I_{x,v} \right\} \subset TM.
+\end{equation*}
+Para cada $x\in M$, denotamos $\cV_x = \cV \cap T_xM$.
+Se define entonces la \emph{aplicación exponencial} como
+\begin{equation*}
+\exp: \cV \rightarrow M,\ (x,v) \mapsto \gamma_{x,v} (1).
+\end{equation*}
+En particular, para cada $x\in M$, definimos
+\begin{equation*}
+\exp_x: \cV_x \rightarrow M,\ v \mapsto \exp(x,v)= \gamma_{x,v}(1).
+\end{equation*}
+Nótese que, si $M$ es compacta, entonces $\cV = TM$ y por tanto la exponencial está definida en todo $TM$.
+
+\begin{defn}
+Una variedad riemanniana $(M,g)$ es \emph{(geodésicamente) completa} si para toda componente conexa $M^\circ \subset M$ existe un punto $x\in M^\circ$ tal que la aplicación exponencial $\exp_x:T_xM\rightarrow M$ está definida en todo $T_xM$.
+\end{defn}
+
+\begin{thm}[Hopf--Rinow]
+  Sea $(M,g)$ una variedad riemanniana conexa y sea $d:M\rightarrow \RR$ la correspondiente distancia. Son equivalentes:
+  \begin{enumerate}
+    \item $M$ es completa.
+    \item El espacio métrico $(M,d)$ es completo.
+    \item Un subconjunto $A\subset M$ es compacto si y sólo si es cerrado y acotado.
+  \end{enumerate}
+  En ese caso, para cualesquiera dos puntos $x,y\in M$ existe una geodésica $\gamma:[0,d]\rightarrow M$ con $\gamma(0)=x$, $\gamma(d)=y$, para $d=d(x,y)$.
+\end{thm}
+
+La demostración del teorema de Hopf--Rinow puede leerse en \todo{CITAR}.
 
 \section{El tensor de curvatura}
 a
@@ -2863,10 +3017,7 @@ a
 Aquí Poincaré--Hopf
 a
 
-\chapter{Holonomía y curvatura constante}
-\section{Holonomía}
-a
-
+\chapter{Curvatura constante y holonomía}
 \section{Geometría a la Cartan}
 Ha llegado la hora de revisitar el programa de Erlangen, a la manera que lo hizo Élie Cartan.
 
@@ -3044,6 +3195,12 @@ Una \emph{forma espacial} es una variedad riemanniana $(M,g)$ completa y de curv
           \item $E_K=\mathbb{H}^n_{-1/\sqrt{-K}}$, si $K<0$.
   \end{enumerate}
 \end{thm}
+
+\begin{proof}
+isometría local desde completo extiende a cover
+\end{proof}
+\section{Holonomía}
+a
 
 
 \chapter{Análisis global}
