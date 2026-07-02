@@ -1814,8 +1814,8 @@ En más generalidad, permite intercambiar partes covariantes y partes contravari
 \begin{equation*}
  T^{\dots i}_{\dots} := g^{ij} T^{\dots}_{\dots j \dots} \in \mathcal{T}^{k+1}_{l-1}(M).
 \end{equation*}
-
-\subsection{Gradiente, divergencia y laplaciano} \todo{Completar}
+%
+%\subsection{Gradiente, divergencia y laplaciano} \todo{Completar}
 
 \section{Simetrías y estructuras geométricas}
 
@@ -2994,14 +2994,14 @@ Ahora, la evaluación en la identidad determina un isomorfismo
 de modo que el álgebra $\Omega^\bullet(G)^G$ se identifica con el álgebra de Chevalley--Eilenberg.
 
 \section{Forma de Maurer--Cartan}
-
-\begin{thm}
-  Sea $\omega \in \Omega^1(M;\fg)$ una $1$-forma $\fg$-valorada en una variedad diferenciable $M$ que satisface la \emph{ecuación de estructura}
-  \begin{equation*}
-d \omega + \frac{1}{2}[\omega \wedge \omega] =0.
-  \end{equation*}
-Entonces, para cada punto $p\in M$, existe un entorno $U$ de $p$ y una aplicación diferenciable $f:U\rightarrow G$ tal que $\omega = f^* \theta$.
-\end{thm}
+%
+%\begin{thm}
+%  Sea $\omega \in \Omega^1(M;\fg)$ una $1$-forma $\fg$-valorada en una variedad diferenciable $M$ que satisface la \emph{ecuación de estructura}
+%  \begin{equation*}
+%d \omega + \frac{1}{2}[\omega \wedge \omega] =0.
+%  \end{equation*}
+%Entonces, para cada punto $p\in M$, existe un entorno $U$ de $p$ y una aplicación diferenciable $f:U\rightarrow G$ tal que $\omega = f^* \theta$.
+%\end{thm}
 \chapter{Fibrados principales}
 
 \section{Fibrados principales}
@@ -3017,7 +3017,92 @@ a
 Aquí Poincaré--Hopf
 a
 
-\chapter{Curvatura constante y holonomía}
+\chapter{Holonomía y espacios de curvatura constante}
+\section{Holonomía y conexiones planas}
+\subsection{Transporte paralelo} Sea $\pi:P\rightarrow M$ un $G$-fibrado principal y $A$ una conexión en $P$, con distribución horizontal $H^A\subset TP$. Una curva diferenciable $\tilde{\gamma}:[0,1]\rightarrow P$ se dice \emph{horizontal} si $\tilde{\gamma}'(t) \in H^A_{\tilde{\gamma}(t)}$ para todo $t$. Equivalentemente, $\tilde{\gamma}$ es horizontal si
+\begin{equation*}
+A(\tilde{\gamma}'(t)) = 0.
+\end{equation*}
+Localmente, en un abierto $U\subset M$ trivializante para $P$, podemos ver $\tilde{\gamma}(t)$ como un par $(\gamma(t),g(t))$, donde $\gamma=\pi \circ \tilde{\gamma}$ y $g:[0,1]\rightarrow G$ es una curva diferenciable. La ecuación anterior se escribe ahora como
+\begin{equation*}
+\ad_{g^{-1}(t)} A_U(\gamma'(t))  + (g^* \theta) (\gamma'(t)) = 0.
+\end{equation*}
+Vemos ahora que se trata de un sistema de EDOs de orden $1$ con coeficientes $C^\infty$, de modo que se le puede aplicar la teoría de existencia y unicidad de soluciones. Concluimos que si prescribimos $g(0)$, entonces $g(1)$ está determinado unívocamente. Globalmente: dados una curva $\gamma:[0,1]\rightarrow M$ y un elemento $p\in P$, existe una única curva horizontal $\tilde{\gamma}^A_p:[0,1]\rightarrow P$ tal que $\gamma=\pi \circ \tilde{\gamma}^A_p$ y $\tilde{\gamma}^A_p(0)=p$. Definimos el \emph{transporte paralelo} a lo largo de $\gamma$ determinado por $A$ como la aplicación
+\begin{equation*}
+\Pi^A_\gamma: P_{\gamma(0)} \rightarrow P_{\gamma(1)}, \ p \mapsto \tilde{\gamma}_p(1).
+\end{equation*}
+
+El transporte paralelo es un morfismo de $G$-torsores, es decir, para todo $g\in G$, se tiene que $\Pi^A_\gamma(p\cdot g)= \Pi^A_{\gamma}(p)\cdot g$. En efecto, la curva $\tilde{\gamma}_p\cdot g$ es horizontal, proyecta a $\gamma$, y en $0$ es igual a $p\cdot g$.
+
+\subsection{Holonomía} Tomemos ahora un lazo $\sigma:[0,1]\rightarrow M$, con $x=\sigma(0)=\sigma(1)$. Entonces el transporte paralelo determina una aplicación
+\begin{equation*}
+\Pi^A_\sigma: P_x \rightarrow P_x, \ p \mapsto \tilde{\sigma}_p(1).
+\end{equation*}
+Ahora, $p$ y $\Pi^A_\sigma(p)$ están en la misma fibra, de modo que existe un (único) $g\in G$ de modo que
+\begin{equation*}
+\Pi^A_\sigma(p) = p \cdot g.
+\end{equation*}
+Este elemento, que no depende de $p$, se denota por $\mathrm{Hol}^A_{x}(\sigma)$ y se denomina la \emph{holonomía} del lazo $\sigma$ determinada por $A$. Todo junto, esto determina una aplicación
+\begin{equation*}
+\mathrm{Hol}^A_x:\left\{ \text{Lazos en }M \right\} \rightarrow G,\ \sigma \mapsto \mathrm{Hol}^A_x(\sigma).
+\end{equation*}
+Además, nótese que la holonomía del lazo trivial es $1\in G$ y que la holonomía de la concatenación de dos lazos es igual al producto de sus holonomías.
+
+\begin{thm}
+  Si $A$ es una conexión plana, entonces el transporte paralelo $\Pi_\gamma^A$ sólo depende de la clase de homotopía del camino $\gamma$. Por tanto, $\mathrm{Hol}^A_x$ desciende a un homomorfismo de grupos
+  \begin{equation*}
+\rho=\mathrm{Hol}^A_x: \pi_1(M,x) \rightarrow G,\ [\sigma] \mapsto \mathrm{Hol}^A_x(\sigma).
+  \end{equation*}
+  Además, fijado un punto $p_0\in P_x$, existe un isomorfismo canónico de $G$-fibrados principales
+  \begin{equation*}
+\Phi_{p_0}: \widetilde{M} \times^{\rho} G \rightarrow P,
+  \end{equation*}
+  donde $\widetilde{M}\rightarrow M$ es el recubridor universal y definimos
+  \begin{equation*}
+\widetilde{M}\times^\rho G = (\widetilde{M} \times G)/\pi_1(M,x),
+  \end{equation*}
+para la acción $[\sigma]\cdot (y,g) = (y\cdot [\sigma]^{-1}, \rho([\sigma])g)$.
+\end{thm}
+\begin{proof}
+En primer lugar, se trata de demostrar que, dada una aplicación diferenciable \[\gamma:[0,1]\times [0,1]\rightarrow M,\] con $\gamma(-,0)=x_0$, $\gamma(-,1)=x_1$ entonces $\Pi^A_{\gamma_t}=\Pi^A_{\gamma_{t'}}$ para cualesquiera $t,t'\in [0,1]$, donde estamos denotando $\gamma_t(-)=\gamma(t,-)$.
+
+Si $A$ es plana, por el teorema de Frobenius, la distribución horizontal $H^A\subset TP$ es integrable. Esto quiere decir que, para todo $p\in P$, existe una subvariedad $N^A_p \subset P$, que contiene a $p$, y de modo que $T_q N^A_p = H^A_q$ para todo $q\in N^A_p$. Ahora, tenemos que $d_q\pi: H^A_q \rightarrow T_{\pi(q)}M$ es un isomorfismo, para todo $q\in P$. En particular, $\pi$ determina un isomorfismo $d_q\pi: T_qN^A_p \rightarrow T_{\pi(q)}M$ para todo $q\in N^A_p$ y por tanto define un difeomorfismo local
+\begin{equation*}
+\pi^A_p:=\pi|_{N^A_p}: N^A_p \longrightarrow M.
+\end{equation*}
+
+Para cada $t\in [0,1]$, podemos levantar horizontalmente cada camino $\gamma_t:[0,1]\rightarrow M$ a un camino $\tilde{\gamma}^A_{t,p}:[0,1]\rightarrow P$, que cumple que $\tilde{\gamma}^A_{t,p}(0)=p$. Como el levantamiento es horizontal, de hecho tenemos que $\tilde{\gamma}^A_{t,p}:[0,1]\rightarrow N_p$. Además, como $\gamma_t(1)=x_1$ para todo $t$, tenemos que $\tilde{\gamma}^A_{t,p}(1)\in (\pi_p^A)^{-1}(x_1)$. Definimos entonces la aplicación continua
+\begin{equation*}
+q: [0,1] \rightarrow (\pi_p^A)^{-1}(x_1),\ t \mapsto \tilde{\gamma}^A_{t,p}(1) = \Pi^A_{\gamma_t}(p).
+\end{equation*}
+Como $\pi_p^A$ es un difeomorfismo local, la fibra $(\pi_p^A)^{-1}(x_1)$ es discreta, de modo que $q$ es constante.
+
+Para la última parte, recordemos que el recubridor universal $\widetilde{M}\rightarrow M$ podía identificarse con el espacio de clases de homotopía de caminos
+\begin{equation*}
+\widetilde{M} = \left\{ [\gamma]: \gamma:[0,1] \rightarrow M,\ \gamma(0)=x  \right\}.
+\end{equation*}
+El grupo fundamental actúa naturalmente por concatenación como
+\begin{equation*}
+[\gamma] \cdot [\sigma]^{-1} = [\sigma * \gamma].
+\end{equation*}
+Definimos entonces
+\begin{equation*}
+\Psi_{p_0} :\widetilde{M} \times G \rightarrow P,\ ([\gamma], g) \mapsto \Pi^A_{\gamma}(p_0) \cdot g.
+\end{equation*}
+En efecto,
+\begin{equation*}
+\Psi_{p_0}([\gamma]\cdot [\sigma]^{-1}, \rho([\sigma]) \cdot g) = \Pi^A_{\gamma}(p_0)\mathrm{Hol}_{x}(\sigma)^{-1} \rho([\sigma]) g = \Psi_{p_0}([\gamma],g).
+\end{equation*}
+De modo que $\Psi_{p_0}$ desciende a una aplicación $\Phi_{p_0}:\widetilde{M} \times^\rho G \rightarrow P$, que es claramente un isomorfismo. En efecto, su inversa envía cada punto $p\in P$ a la clase del par $([\gamma],g)$, donde $[\gamma]$ es la clase de homotopía de un camino que une $x$ y $\pi(p)$ (que está bien definida salvo elementos de $\pi_1(M,x)$), y $g$ es el elemento tal que
+$p = \Pi^A_\gamma(p_0) \cdot g$.
+\end{proof}
+
+\begin{rmk}
+  \todo{terminar}
+Explicar lo que pasa con la forma de Maurer-Cartan.
+\end{rmk}
+
+
 \section{Geometría a la Cartan}
 Ha llegado la hora de revisitar el programa de Erlangen, a la manera que lo hizo Élie Cartan.
 
@@ -3038,37 +3123,62 @@ Ha llegado la hora de revisitar el programa de Erlangen, a la manera que lo hizo
   La \emph{torsión} de $(P,\omega)$ es la imagen $\rho(\Omega)$ por la proyección natural $\rho:\fg \rightarrow \fg/\fh$. Cuando $\Omega \in \Omega^2(P;\fh)$, decimos que la geometría $(P,\omega)$ es \emph{libre de torsión}. Si $\Omega=0$, entonces decimos que la geometría $(P,\omega)$ es \emph{plana}.
 \end{defn}
 
-\subsection{} Toda geometría de Klein $(G,H)$ define una geometría de Cartan en $M=G/H$ modelada sobre ella misma, la \emph{geometría de Cartan trivial}, tomando $P=G\rightarrow M=G/H$ la proyección natural y $\omega=\theta \in \Omega^1(G;\fg)$ la $1$-forma de Maurer-Cartan. Por otra parte, una geometría de Cartan plana es localmente isomorfa a la geometría trivial.
+\subsection{} Nótese que, dada una geometría de Cartan $(P,\omega)$ modelada en $(G,H)$, podemos considerar el $G$-fibrado principal extendido $P_G=P\times^H G$. Definimos ahora una $1$-forma $\fg$-valorada $\omega_G$ en $P\times G$ como
+\begin{equation*}
+\omega_G = \ad_{g^{-1}} \pr_P^* \omega + \pr_G^* \theta \in \Omega^1(P\times G, \fg).
+\end{equation*}
+Por las propiedades de $\omega$, esta $1$-forma desciende a una $1$-forma $\fg$-valorada en $P_G$, que además determina una $G$-conexión en $P_G$, cuya $2$-forma de curvatura es exactamente $\Omega$. \todo{Comprobar esto bien}
+
+\subsection{} Si $\tilde{M}\rightarrow M$ es un espacio recubridor y $(P,\omega)$ es una geometría de Cartan en $M$, obtenemos una geometría de Cartan $(\tilde{P},\tilde{\omega})$ inducida en $\tilde{M}$ simplemente poniendo $\tilde{P}=P \times_M \tilde{M}$ y $\tilde{\omega}= q^* \omega$, con $q:\tilde{P}\rightarrow P$ la aplicación natural.
+
+\subsection{} Toda geometría de Klein $(G,H)$ define una geometría de Cartan en $M=G/H$ modelada sobre ella misma, la \emph{geometría de Cartan trivial}, tomando $P=G\rightarrow M=G/H$ la proyección natural y $\omega=\theta \in \Omega^1(G;\fg)$ la $1$-forma de Maurer-Cartan. Por otra parte, como vemos a continuación, una geometría de Cartan plana es localmente isomorfa a la geometría trivial.
 
 \begin{prop}
-Si $(P,\omega)$ es una geometría de Cartan plana en una variedad $M$, entonces, para todo punto $x_0\in M$ existe un entorno $U\subset M$ de $x$ y difeomorfismos locales $\varphi:U \rightarrow G/H$ y $\psi:P|_U \rightarrow G$ de modo que el siguiente diagrama conmuta
+  Si $(P,\omega)$ es una geometría de Cartan plana en una variedad conexa $M$, con recubridor universal $\tilde{M}$, entonces existe un isomorfismo de geometrías de Cartan
 \begin{center}
   \begin{tikzcd}
-   P|_U \ar{r}{\psi} \ar{d} & G \ar{d} \\
-   U \ar{r}{\varphi} & G/H,
+   \tilde{P} \ar{r}{\psi} \ar{d} & G \ar{d} \\
+   \tilde{M} \ar{r}{\varphi} & G/H.
   \end{tikzcd}
 \end{center}
-y tales que $\omega=\psi^*\theta$.
+En particular, si $M$ es simplemente conexa, entonces $(P,\omega)$ es la geometría de Cartan trivial, y por tanto $M \cong G/H$.
 \end{prop}
 
 \begin{proof}
-  Sea $p\in P_{x_0}$ un punto cualquiera. Como $\omega_p$ es un isomorfismo, por el teorema de la función inversa extiende localmente a un difeomorfismo $\psi:V\rightarrow G$, en un cierto entorno  $V\subset P$ de $p$. Tomamos $U=\pi(V)$, donde $\pi:P\rightarrow M$ es la proyección natural, y una sección cualquiera $s:U\rightarrow P|_U$ con $s(x_0)=p$. Ahora, como $(P,\omega)$ es plana, la $1$-forma $\omega$ satisface la ecuación de estructura
-  \begin{equation*}
-d\omega + [\omega \wedge \omega ] =0,
-  \end{equation*}
-  y también la satisface la $1$-forma $s^* \omega \in \Omega^1(U;\fg)$. Por tanto, reduciendo $U$ si es necesario, existe una única aplicación diferenciable $f:U\rightarrow G$ con $f(x_0)=1$ y tal que $f^*\theta=s^* \omega$. Tomamos ahora una nueva sección $s'=s f$, y definimos
-  \begin{equation*}
-\varphi: U \rightarrow G/H, \ x \mapsto \rho(\psi(s'(x))),
-  \end{equation*}
-  donde $\rho:G\rightarrow G/H$ es la proyección natural. Por construcción, el diagrama
-\begin{center}
-  \begin{tikzcd}
-   V \ar{r}{\psi} \ar{d}{\pi} & G \ar{d}{\rho} \\
-   U \ar{r}{\varphi} & G/H,
-  \end{tikzcd}
-\end{center}
-conmuta, $\omega=\psi^*\theta$, y la aplicación $\varphi$ es un difeomorfismo local ya que $d\varphi = d\rho\circ (s')^*\omega$.
+  La $1$-forma $\omega_G$ determina una conexión plana en $P_G$, y por tanto un isomorfismo $\Phi:\tilde{M}\times^\rho G \rightarrow P_G$, donde $\rho:\pi_1(M)\rightarrow G$ es la holonomía de $\omega_G$. Sobre $\tilde{M}$, la correspondiente $1$-forma $\tilde{\omega}_G$ determina un isomorfismo de $G$-fibrados principales $\Phi: \tilde{M}\times G \rightarrow \tilde{P}_G$. El $H$-fibrado principal $\tilde{P}\subset P_G$ determina una reducción del grupo de estructura de $\tilde{P}_G$ a $\tilde{P}$, es decir, una aplicación $G$-equivariante $\tau: \tilde{P}_G \rightarrow G/H$. Como $\tilde{P}_G$ es trivial, admite una sección global $s:\tilde{M}\rightarrow \tilde{P}_G$, y podemos definir \[\varphi=\tau \circ s: \tilde{M}\longrightarrow G/H.\]
+  A su vez, como $\tilde{P}$ también es un $H$-fibrado trivial, tenemos un isomorfismo \[\psi:\tilde{P}\longrightarrow G/H \times H \cong G\] que cubre a $\varphi$.
 \end{proof}
+
+
+%\begin{prop}
+%Si $(P,\omega)$ es una geometría de Cartan plana en una variedad $M$, entonces, para todo punto $x_0\in M$ existe un entorno $U\subset M$ de $x$ y difeomorfismos locales $\varphi:U \rightarrow G/H$ y $\psi:P|_U \rightarrow G$ de modo que el siguiente diagrama conmuta
+%\begin{center}
+%  \begin{tikzcd}
+%   P|_U \ar{r}{\psi} \ar{d} & G \ar{d} \\
+%   U \ar{r}{\varphi} & G/H,
+%  \end{tikzcd}
+%\end{center}
+%y tales que $\omega=\psi^*\theta$.
+%\end{prop}
+%
+%\begin{proof}
+%  Sea $p\in P_{x_0}$ un punto cualquiera. Como $\omega_p$ es un isomorfismo, por el teorema de la función inversa extiende localmente a un difeomorfismo $\psi:V\rightarrow G$, en un cierto entorno  $V\subset P$ de $p$. Tomamos $U=\pi(V)$, donde $\pi:P\rightarrow M$ es la proyección natural, y una sección cualquiera $s:U\rightarrow P|_U$ con $s(x_0)=p$. Ahora, como $(P,\omega)$ es plana, la $1$-forma $\omega$ satisface la ecuación de estructura
+%  \begin{equation*}
+%d\omega + [\omega \wedge \omega ] =0,
+%  \end{equation*}
+%  y también la satisface la $1$-forma $s^* \omega \in \Omega^1(U;\fg)$. Por tanto, reduciendo $U$ si es necesario, existe una única aplicación diferenciable $f:U\rightarrow G$ con $f(x_0)=1$ y tal que $f^*\theta=s^* \omega$. Tomamos ahora una nueva sección $s'=s f$, y definimos
+%  \begin{equation*}
+%\varphi: U \rightarrow G/H, \ x \mapsto \rho(\psi(s'(x))),
+%  \end{equation*}
+%  donde $\rho:G\rightarrow G/H$ es la proyección natural. Por construcción, el diagrama
+%\begin{center}
+%  \begin{tikzcd}
+%   V \ar{r}{\psi} \ar{d}{\pi} & G \ar{d}{\rho} \\
+%   U \ar{r}{\varphi} & G/H,
+%  \end{tikzcd}
+%\end{center}
+%conmuta, $\omega=\psi^*\theta$, y la aplicación $\varphi$ es un difeomorfismo local ya que $d\varphi = d\rho\circ (s')^*\omega$.
+%\end{proof}
 
 \subsection{Geometría euclidiana a la Klein} Recordemos el grupo euclidiano $\mathrm{Euc}_n(\RR)$, definido como el grupo de automorfismos afines del espacio euclidiano estándar que preservan el producto escalar. Dado un punto $p$ del espacio euclidiano, se tiene una inclusión $\OO_n(\RR)\rightarrow \mathrm{Euc}_n(\RR)$ como el grupo de transformaciones que preservan el punto y el producto escalar con respecto a ese punto. Podemos identificar entonces el espacio cociente $\mathrm{Euc}_n(\RR)/\OO_n(\RR)$ con el espacio vectorial $\RR^n$. El par $(\mathrm{Euc}_n(\RR),\OO_n(\RR))$ determina una geometría de Klein, denominada la \emph{geometría euclidiana}.
 
@@ -3199,9 +3309,6 @@ Una \emph{forma espacial} es una variedad riemanniana $(M,g)$ completa y de curv
 \begin{proof}
 isometría local desde completo extiende a cover
 \end{proof}
-\section{Holonomía}
-a
-
 
 \chapter{Análisis global}
 \section{Estrella de Hodge y laplaciano}
