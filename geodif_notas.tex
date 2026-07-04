@@ -2661,7 +2661,7 @@ Una variedad riemanniana $(M,g)$ es \emph{(geodésicamente) completa} si para to
     \item El espacio métrico $(M,d)$ es completo.
     \item Un subconjunto $A\subset M$ es compacto si y sólo si es cerrado y acotado.
   \end{enumerate}
-  En ese caso, para cualesquiera dos puntos $x,y\in M$ existe una geodésica $\gamma:[0,d]\rightarrow M$ con $\gamma(0)=x$, $\gamma(d)=y$, para $d=d(x,y)$.
+  En ese caso, para cualesquiera dos puntos $x,y\in M$ en la misma componente conexa de $M$, existe una geodésica $\gamma:[0,d]\rightarrow M$ con $\gamma(0)=x$, $\gamma(d)=y$, para $d=d(x,y)$.
 \end{thm}
 
 La demostración del teorema de Hopf--Rinow puede leerse en \todo{CITAR}.
@@ -3009,14 +3009,6 @@ a
 \section{Conexiones y curvatura}
 a
 
-\section{Clases características}
-a
-
-\section{Clases de Euler}
-
-Aquí Poincaré--Hopf
-a
-
 \chapter{Holonomía y espacios de curvatura constante}
 \section{Holonomía y conexiones planas}
 \subsection{Transporte paralelo} Sea $\pi:P\rightarrow M$ un $G$-fibrado principal y $A$ una conexión en $P$, con distribución horizontal $H^A\subset TP$. Una curva diferenciable $\tilde{\gamma}:[0,1]\rightarrow P$ se dice \emph{horizontal} si $\tilde{\gamma}'(t) \in H^A_{\tilde{\gamma}(t)}$ para todo $t$. Equivalentemente, $\tilde{\gamma}$ es horizontal si
@@ -3283,7 +3275,7 @@ y equipada con la métrica obtenida al restringir  la forma
 
 \subsubsection{Curvatura negativa} Si $K<0$, el grupo $G_K$ es isomorfo al grupo $\SO(1,n)$, y el cociente $G_K/\SO_n(\RR)$ se identifica con el espacio hiperbólico $n$-dimensional de radio $R$ definido como la hoja superior de la superficie
 \begin{equation*}
-\mathbb{H}^n_R \cup (\mathbb{H}^n_R)'=  \left\{ (x^1,\dots,x^n,t): (x^1)^2 + \cdots + (x^n)^2 - t^2 = -R^2 \right\}
+\mathbb{H}^n_R \cup (\mathbb{H}^n_R)'=  \left\{ (x^1,\dots,x^n,t): (x^1)^2 + \cdots + (x^n)^2 - t^2 = R^2 \right\}
 \end{equation*}
 y equipado con la métrica obtenida al restringir la forma
 \begin{equation*}
@@ -3316,16 +3308,54 @@ Una \emph{forma espacial} es una variedad riemanniana $(M,g)$ completa y de curv
   \begin{enumerate}
     \item $E_K=\mathbb{E}^n$, si $K=0$,
           \item $E_K=\mathbb{S}^n_{1/\sqrt{K}}$, si $K>0$, y
-          \item $E_K=\mathbb{H}^n_{-1/\sqrt{-K}}$, si $K<0$.
+          \item $E_K=\mathbb{H}^n_{1/\sqrt{-K}}$, si $K<0$.
   \end{enumerate}
 \end{thm}
 
 \begin{proof}
-  En \todo{REF} hemos demostrado que existe una aplicación diferenciable $\varphi:\widetilde{M}\rightarrow G_K/\SO_n(\RR)$ que es una isometría local.
-
-isometría local desde completo extiende a cover
+  En \todo{REF} hemos demostrado que existe una aplicación diferenciable $\varphi:\widetilde{M}\rightarrow G_K/\SO_n(\RR)=E_K$ que es una isometría local. Como $M$ es simplemente conexa, $\widetilde{M}=M$ y por tanto tenemos una isometría local $\varphi:M\rightarrow E_K$. Como $E_K$ es simplemente conexo, basta probar que $\varphi$ es una aplicación recubridora riemanniana. Esto quiere decir que $\varphi$ es sobreyectiva y que para todo punto $y \in E_K$ existe un entorno $V \subset E_K$ de $y$ tal que $\varphi^{-1}(V)=\coprod_{x \in \varphi^{-1}(x)} U_x$, donde cada $U_x$ es un entorno de $x$ y $\varphi|_{U_x}:U_x \rightarrow V$ es una isometría. Basta entonces probar el siguiente lema.
 \end{proof}
 
+\begin{lemma}
+Sean $M$ y $N$ variedades riemannianas conexas, con $M$ completa, y sea $\varphi:M\rightarrow N$ una isometría local. Entonces $\varphi$ es una aplicación recubridora riemanniana y $N$ es completo.
+\end{lemma}
+
+\begin{proof}
+  El hecho clave es que las isometrías preservan las geodésicas. Por tanto, si $\tilde{\gamma}$ es una geodésica en $M$, entonces $\gamma=\varphi \circ \tilde{\gamma}$ es una geodésica. Por otra parte, dado un intervalo $I$ y una geodésica $\gamma:I\rightarrow N$ con $y=\gamma(0) \in \varphi(M)$, para todo $x\in \varphi^{-1}(y)$, podemos considerar la geodésica $\tilde{\gamma}_x$ con $\tilde{\gamma}_x(0)=x$ y $\tilde{\gamma}_x'(0)=(d_x\varphi)^{-1}(\gamma'(0))$. Como $M$ es completo, $\tilde{\gamma}_x(t)$ está definido para todo $t\in\RR$, y por unicidad de las geodésicas $\gamma = (\varphi \circ \tilde{\gamma}_x)|_{I}$.
+
+  Para ver que $\varphi$ es sobreyectiva basta ver que su imagen $\varphi(M)\subset N$ es abierta y cerrada, ya que $N$ es conexa. En efecto, es abierta por ser $\varphi$ un difeomorfismo local. Ahora, para todo punto $y$ en la adherencia de $\varphi(M)$ existe una geodésica $\gamma:[0,1]\rightarrow N$ con $\gamma([0,1))\subset \varphi(M)$ y $\gamma(1)=y$. Para cualquier punto $x\in \varphi^{-1}(\gamma(0))$ podemos tomar la geodésica $\tilde{\gamma}_x:\RR \rightarrow M$, que por continuidad de $\varphi$ ha de cumplir
+  \begin{equation*}
+\varphi(\tilde{\gamma}_x(1)) = \gamma(1)=y.
+  \end{equation*}
+  Por tanto $y\in \varphi(M)$, lo que prueba que $\varphi(M)$ es cerrado.
+
+  Para todo punto $y\in N$ existe una bola $B\subset T_y N$ de modo que $\exp_y:B\rightarrow N$ es un difeomorfismo sobre su imagen $V:=\exp_y(B)$. Ahora, para todo $x\in \varphi^{-1}(y)$, definimos
+  \begin{equation*}
+s_x: V \rightarrow M, \ \exp_y(v) \mapsto \exp_x((d_x\varphi)^{-1}(v)),
+  \end{equation*}
+  y tomamos $U_x=s_x(V)$. Claramente, $\varphi\circ s_x = \id_V$, luego $\varphi$ determina una isometría $U_x\rightarrow V$, con inversa $s_x$. Ahora, si $z \in U_x \cap U_{x'}$, para $x,x' \in \varphi^{-1}(y)$, tomando $v\in B$ tal que $\varphi(z)=\exp_y(v)$, la geodésica
+  \begin{equation*}
+\gamma:[0,1]\rightarrow N, \ t \mapsto \exp_y((1-t) v)
+  \end{equation*}
+  levanta a una geodésica $\tilde{\gamma}_z$. Por unicidad de las geodésicas, tenemos que $\tilde{\gamma}_z = s_x\circ \gamma = s_{x'}\circ \gamma$ y en particular $\tilde{\gamma}_z(1)=x=x'$.
+\end{proof}
+
+
+\chapter{Clases características}
+\section{Teoría de Chern--Weil}
+a
+
+\section{Clases de Chern}
+a
+
+\section{Clases de Pontryagin}
+a
+
+\section{Clases de Euler}
+a
+
+Aquí Poincaré--Hopf
+a
 \chapter{Análisis global}
 \section{Estrella de Hodge y laplaciano}
 \section{La ecuación de Poisson en superficies}
