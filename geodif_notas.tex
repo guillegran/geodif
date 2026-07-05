@@ -13,7 +13,7 @@
 \usepackage{bm}
 
 \usepackage{adjustbox}
-%\usepackage{pdfpages}
+\usepackage{pdfpages}
 \usepackage{graphicx}
 \usepackage{epigraph}
 
@@ -57,7 +57,7 @@
 \author{Guillermo Gallego}
 
 \begin{document}
-%\includepdf[pages=1]{portada.pdf}
+\includepdf[pages=1]{portada.pdf}
 
 \frontmatter
 \begin{titlepage}
@@ -2693,11 +2693,11 @@ Teorema de Frobenius
 Dada una variedad diferenciable $M$, el espacio $\fX(M)$ de campos vectoriales en $M$, equipado con el corchete de Lie, forma un álgebra de Lie (de dimensión infinita).
 \end{prop}
 
-\subsection{} Supongamos que $\fg$ es un álgebra de Lie de dimensión finita y que $x_1,\dots,x_n$ es una base de $\fg$. En ese caso, deben existir unas constantes $C^i_{jk}\in \RR$ tales que
+\subsection{} Supongamos que $\fg$ es un álgebra de Lie de dimensión finita y que $\xi_1,\dots,\xi_n$ es una base de $\fg$. En ese caso, deben existir unas constantes $C^i_{jk}\in \RR$ tales que
 \begin{equation*}
-[x_j,x_k] = C^i_{jk} x_i.
+[\xi_j,\xi_k] = C^i_{jk} \xi_i.
 \end{equation*}
-Dichas constantes se denominan las \emph{constantes de estructura} de $\fg$ con respecto a la base $x_1,\dots,x_n$. De la antisimetría del corchete, se deduce que $C^i_{jk}=-C^i_{kj}$, mientras que de la identidad de Jacobi se deduce que
+Dichas constantes se denominan las \emph{constantes de estructura} de $\fg$ con respecto a la base $\xi_1,\dots,\xi_n$. De la antisimetría del corchete, se deduce que $C^i_{jk}=-C^i_{kj}$, mientras que de la identidad de Jacobi se deduce que
 \begin{equation*}
 C_{ib}^a C_{jk}^b + C_{jb}^a C_{ki}^b + C_{kb}^aC_{ij}^b = 0.
 \end{equation*}
@@ -2717,11 +2717,11 @@ E_{ij}E_{kl} = \delta_{jk} E_{il},
   \end{equation*}
   Si escribimos
   \begin{equation*}
-[E_{ij},E_{kl}] = \sum_{a,b} C^{ab}_{ij,kl} E_{ab},
+[E_{ij},E_{kl}] =  C^{ab}_{ij,kl} E_{ab},
   \end{equation*}
   tenemos que las constantes de estructura son
   \begin{equation*}
-c^{ab}_{ij,kl} = \delta_{jk} \delta^a_{i} \delta^b_{l}- \delta_{li}\delta^a_k \delta^b_j.
+C^{ab}_{ij,kl} = \delta_{jk} \delta^a_{i} \delta^b_{l}- \delta_{li}\delta^a_k \delta^b_j.
   \end{equation*}
   Explícitamente
   \begin{equation*}
@@ -2783,7 +2783,7 @@ Los grupos de cohomología de este complejo se denotan por $H^i(\fg)$ y se denom
 se denomina el \emph{álgebra de Chevalley--Eilenberg}.
 
 \begin{prop}
- Supongamos que $x_1,\dots,x_n$ es una base del álgebra de Lie $\fg$ y que $\theta^1,\dots,\theta^n \in \fg^*$ es su base dual. Si $C^i_{jk}$ son las constantes de estructura correspondientes a esta base, entonces tenemos
+ Supongamos que $\xi_1,\dots,\xi_n$ es una base del álgebra de Lie $\fg$ y que $\theta^1,\dots,\theta^n \in \fg^*$ es su base dual. Si $C^i_{jk}$ son las constantes de estructura correspondientes a esta base, entonces tenemos
 \begin{equation*}
 d \theta^i + \frac{1}{2} C^i_{jk} \theta^j\wedge \theta^k = 0.
 \end{equation*}
@@ -2993,7 +2993,41 @@ Ahora, la evaluación en la identidad determina un isomorfismo
 \end{equation*}
 de modo que el álgebra $\Omega^\bullet(G)^G$ se identifica con el álgebra de Chevalley--Eilenberg.
 
-\section{Forma de Maurer--Cartan}
+\subsection{Forma de Maurer--Cartan} La \emph{$1$-forma de Maurer--Cartan} (invariante por la izquierda) $\theta\in \Omega^1(G;\fg)$ es la $1$-forma $\fg$-valorada
+\begin{equation*}
+\theta_g:= (L_{g^{-1}})_*: T_g G \longrightarrow T_1 G = \fg.
+\end{equation*}
+Si $X$ es un campo vectorial invariante por la izquierda, entonces $\theta(X)=X_1$, de modo que $\theta_1$ es la identificación natural entre $T_1 G$ y $\fg$.
+
+Si $G=\GL_n(\RR)$ o más generalmente es un grupo de matrices, entonces, para $A \in G$ y $\dot{A} \in T_A G$, tenemos
+\begin{equation*}
+\theta_A(\dot{A}) = (L_{A^{-1}})_* \dot{A} = A^{-1} \dot{A}.
+\end{equation*}
+Por tanto, si denotamos por $g:G\rightarrow \gl_n(\RR)$ la inclusión natural, tenemos que
+\begin{equation*}
+\theta = g^{-1} dg.
+\end{equation*}
+
+Para dar una expresión de $\theta$ en coordenadas podemos considerar una base $\xi_1,\dots,\xi_n$ de $\fg$, y su base dual $\theta^1,\dots,\theta^n$. La $1$-forma puede escribirse entonces como
+\begin{equation*}
+\theta = \xi_i \theta^i.
+\end{equation*}
+Recordemos la ecuación de estructura
+\begin{equation*}
+d\theta^i + \frac{1}{2} C^i_{jk}\theta^j\wedge \theta^k = 0.
+\end{equation*}
+Esta ecuación puede escribirse ahora como la \emph{identidad de Maurer--Cartan}
+\begin{equation*}
+d\theta + \frac{1}{2} \theta \wedge \theta = 0.
+\end{equation*}
+Aquí, la notación $\theta \wedge \theta$ involucra tomar simultáneamente el corchete de Lie y el producto wedge; explícitamente
+\begin{equation*}
+\theta \wedge \theta = (\xi_j \theta^j) \wedge (\xi_k \theta^k) = [\xi_j,\xi_k] \theta^j\wedge \theta^k = C^i_{jk}\xi_i \theta^j\wedge \theta^k.
+\end{equation*}
+
+
+
+
 %
 %\begin{thm}
 %  Sea $\omega \in \Omega^1(M;\fg)$ una $1$-forma $\fg$-valorada en una variedad diferenciable $M$ que satisface la \emph{ecuación de estructura}
