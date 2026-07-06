@@ -277,7 +277,7 @@ La inmersión de Yoneda $y:\sfC \rightarrow \PSh(\sfC)$ es plenamente fiel.
   La idea de los conos y los co-conos es pensar que $J$ es una categoría cuyos objetos indexan objetos de $\sfC$, y que el funtor $D$ determina un diagrama conmutativo de morfismos en $\sfC$. Un cono es un objeto con una serie de flechas a cada uno de los puntos del diagrama, y el límite es el cono ``más cercano'' al diagrama que podemos poner.
 \end{rmk}
 
-\begin{ej}
+\begin{ex}
   Veamos algunos ejemplos de límites y colímites:
   \begin{itemize}
   \item Si $J$ es la categoría vacía (sin objetos y sin morfismos), entonces sólo existe un fuctor de $J$ a cualquier categoría, el funtor vacío. El límite de este funtor, si existe, es simplemente el objeto $L$ tal que, para cualquier otro objeto $N$ de $\sfC$, existe un único morfismo $u:N\rightarrow L$. Se dice que $L$ es un \emph{objeto terminal}. Dualmente, el colímite de este funtor, si existe, es el \emph{objeto final}.
@@ -311,7 +311,7 @@ La inmersión de Yoneda $y:\sfC \rightarrow \PSh(\sfC)$ es plenamente fiel.
 \colim D= \varinjlim_{i \in J} D(i).
           \end{equation*}
   \end{itemize}
-\end{ej}
+\end{ex}
 
 \subsection{Representabilidad y densidad} Sea $\sfC$ una categoría y sea $F:\sfC^{\op} \rightarrow \Set$ un prehaz. Una pregunta natural es si existe algún objeto $X\in \sfC^{\op}$ tal que $F=\underline{X}= \Hom(-,X)$. En ese caso, decimos que $F$ es un \emph{funtor representable}. En general, no todo prehaz es un funtor representable, pero sí que se puede obtener como un colímite de funtores representables. Para ello, definimos la \emph{categoría de pares} $\int F$ cuyos objetos son los pares $(A,x)$ con $A$ un objeto de $\sfC$ y $x \in F(A)$, y tal que un morfismo entre dos pares $(A,x)\rightarrow (B,y)$ está dado por un morfismo $f:A\rightarrow B$ tal que $F(f)(y)=x$. Podemos entonces considerar el diagrama
 \begin{equation*}
@@ -1277,7 +1277,7 @@ para cada $k\in \Z$.
 Estos grupos encajan en el siguiente diagrama
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
-  \begin{tikzcd}
+  \begin{tikzcd}[column sep = 3pt]
 & & & H^k(M_{k+1},\RR) \cong H^k(M,\RR) \ar[hook]{rd} & & H^k(M_{k+1},\RR) = 0 & \\
 & & & & H^k(M_k,\RR) \ar{rd} \ar{ru}& & \\
 \cdots \rar & H^{k-1}(M_{k-1},M_{k-2};\RR) \ar{rd} \ar{rr} && H^k(M_k,M_{k-1};\RR) \ar{rr} \ar{ru} && H^{k+1}(M_{k+1},M_k;\RR) \ar{rd} \rar & \cdots \\
@@ -2004,7 +2004,7 @@ Denotamos por $\theta^1,\theta^2 :C\rightarrow V^*$ la base dual a $\bm{t},\bm{n
 \end{equation*}
 para una cierta función $\kappa:C\rightarrow \RR$. De nuevo, esta función es la curvatura de $C\subset E$.
 
-\begin{ej}
+\begin{ex}
   Sea $C$ la circunferencia de radio $R$ en el plano eucliano estándar $\RR^2$. Esta curva admite una parametrización local $\gamma:\RR\rightarrow C$, $\phi\mapsto (R\cos \phi, R\sin \phi)$. Si tomamos la orientación dada por la dirección normal apuntando hacia dentro de la circunferencia, tenemos
   \begin{equation*}
 \bm{n} = -\cos \phi \frac{\partial}{\partial x} - \sin \phi \frac{\partial}{\partial y}.
@@ -2036,7 +2036,7 @@ de modo que la curvatura de la circunferencia de radio $R$ es
 \begin{equation*}
 \kappa = \frac{1}{R}.
 \end{equation*}
-\end{ej}
+\end{ex}
 
 \subsection{Aplicación de Weingarten} Otra forma de obtener la curvatura de una curva es mediante la aplicación de Weingarten. En primer lugar, observamos que como el vector normal unitario es unitario (por construcción), éste determina una aplicación \[\bm{n}:C\rightarrow S(V),\] donde $S(V)\subset V$ es la circunferencia unidad, es decir
 \begin{equation*}
@@ -2199,13 +2199,13 @@ que permanece invariante al cambiar la orientación normal.
 
 \subsection{} Recordemos que la característica de Euler de una superficie $S$ se definía como \[\chi(S)=C-A+V,\] donde $C$, $A$ y $V$ son el número de caras, aristas y vértices, respectivamente, de cualquier triangulación o, más generalmente, de cualquier descomposición en celdas de $S$. También coincide con $2-2g(S)$, donde $g(S)=\frac{1}{2}\dim H^1(S,\RR)$ es el género de $S$.
 
-\begin{ej}
+\begin{ex}
   Supongamos que $S\subset E$ es una esfera de radio $R$. Todos los puntos de la esfera son umbilicales, con curvatura de Gauss igual a $1/R^2$. Por otra parte, el área de la esfera de radio $R$ es $4\pi R^2$. Por tanto,
   \begin{equation*}
 \int_S K d\mathrm{vol}_g = 4\pi R^2 \frac{1}{R^2} = 4\pi = 2\cdot 2\pi.
   \end{equation*}
 En efecto, la característica de Euler de la esfera es $2$.
-\end{ej}
+\end{ex}
 
 \begin{proof}[Demostración del teorema de Gauss--Bonnet]
   Consideramos la aplicación de Gauss $\bm{n}:S\rightarrow S(V)$ y tenemos que
@@ -2702,7 +2702,7 @@ Dichas constantes se denominan las \emph{constantes de estructura} de $\fg$ con 
 C_{ib}^a C_{jk}^b + C_{jb}^a C_{ki}^b + C_{kb}^aC_{ij}^b = 0.
 \end{equation*}
 
-\begin{ej}
+\begin{ex}
   El ejemplo más simple de álgebra de Lie es el álgebra $\mathfrak{gl}_n(\RR)$ formado por las matrices $n\times n$ reales, donde el corchete de Lie está dado por el conmutador
   \begin{equation*}
 [A,B] = AB - BA.
@@ -2733,10 +2733,10 @@ E_{il} & \text{ si } j=k, l\neq i,\\
       0 & \text{ en otro caso. }
 \end{cases}
   \end{equation*}
-\end{ej}
+\end{ex}
 
 
-\begin{ej}
+\begin{ex}
   Un ejemplo típico de álgebra de Lie es el álgebra $\mathfrak{so}_3(\RR)\subset \mathfrak{gl}_3(\RR)$, cuyos objetos son las matrices $3\times 3$ reales antisimétricas, y donde el corchete de Lie está de nuevo dado por el conmutador. Esta álgebra tiene dimensión $3$, y una base suya está dada por las matrices
   \begin{equation*}
     L_1 =
@@ -2763,7 +2763,7 @@ E_{il} & \text{ si } j=k, l\neq i,\\
 [L_i,L_j] = \epsilon_{ij}^k L_k,
   \end{equation*}
 donde $\epsilon_{ij}^k$ es el símbolo de Levi-Civita, que asocia a cada permutación $(i,j,k)$ de $(1,2,3)$, el signo de la permutación. Tenemos entonces que las constantes de estructura de $\mathfrak{so}_3(\RR)$ con respecto a esta base son $C_{ij}^k = \epsilon_{ij}^k$.
-\end{ej}
+\end{ex}
 
 \subsection{} Dada un álgebra de Lie $\fg$, podemos definir una aplicación $d:\fg^* \rightarrow \Lambda^2\fg^*$, tomando
 \begin{align*}
@@ -2826,7 +2826,7 @@ denominada la \emph{inversión}, de modo que $(G,m)$ determina una estructura de
 [Otra forma de decir lo mismo es decir que $G$ es un grupo en la categoría de las variedades diferenciables.]
 \end{defn}
 
-\begin{ej}
+\begin{ex}
 Veamos algunos ejemplos típicos de grupos de Lie.
 \begin{itemize}
 \item Si $V$ es un espacio vectorial de dimensión finita, entonces $(V,+)$ es un grupo de Lie (conmutativo).
@@ -2856,7 +2856,7 @@ A^T J A = J,
 
         Estos grupos $\GL_n$, $\mathrm{SL}_n$, $\mathrm{O}_n$, $\mathrm{SO}_n$, $\mathrm{Sp}_n$ forman la clase de los \emph{grupos clásicos}. Nótese además que todos estos grupos pueden definirse de forma análoga sobre cualquier cuerpo o incluso sobre $\mathbb{Z}$. De hecho, es fácil ver que todas las condiciones que determinan estos grupos son polinomiales, de modo que éstos son ejemplos de \emph{grupos algebraicos}. El hecho de que se puedan definir sobre $\mathbb{Z}$ y que para cualquiera de estos grupos $G$ y para cualquier otro anillo $R$ se pueda recuperar el grupo sobre $R$ cambiando de base el grupo sobre $\mathbb{Z}$, de modo que $G(R) = G_{R}(R)$, significa que estos son \emph{grupos escindidos}.
 \end{itemize}
-\end{ej}
+\end{ex}
 
 \subsection{} Para todo $g\in G$, podemos definir los difeomorfismos
 \begin{equation*}
@@ -3039,7 +3039,236 @@ Aquí, la notación $\theta \wedge \theta$ involucra tomar simultáneamente el c
 \chapter{Fibrados principales}
 
 \section{Fibrados principales}
-a
+\begin{defn}
+Sean $M$ una variedad diferenciable y $G$ un grupo de Lie. Un \emph{$G$-fibrado principal} $\pi:P\rightarrow M$ está dado por una variedad diferenciable $P$, junto con una acción de $G$ por la derecha
+\begin{equation*}
+P \times G \rightarrow P,\ (p,g) \mapsto p\cdot g
+\end{equation*}
+de forma que
+\begin{enumerate}
+  \item la acción de $G$ en $P$ es libre,
+  \item $M$ se identifica con el cociente $M=P/G$ y la proyección canónica $\pi:P\rightarrow M$ es diferenciable,
+  \item la fibración $\pi:P\rightarrow M$ es localmente trivial, en el sentido de que, para todo $x\in M$ existe un entorno $U\subset M$ de $x$ y un difeomorfismo $G$-equivariante (llamado \emph{trivialización de $P$ en $U$})
+        \begin{equation*}
+\psi_U: \pi^{-1}(U) \rightarrow U \times G
+        \end{equation*}
+        de forma que el siguiente diagrama conmuta
+        \begin{center}
+          \begin{tikzcd}
+           \pi^{-1}(U) \ar{r}{\psi_U} \ar{d}{\pi} & U\times G \ar{d}{\mathrm{pr}_1} \\
+           U \ar{r}{\id_U} & U.
+          \end{tikzcd}
+        \end{center}
+\end{enumerate}
+\end{defn}
+
+\begin{rmk} Algunos comentarios:
+  \begin{enumerate}
+    \item De la conmutatividad del diagrama anterior, se sigue que una trivialización de $P$ en $U$ se escribe como
+\begin{equation*}
+\psi_U(p) = (\pi(p), \varphi_U(p)),
+\end{equation*}
+          para $\varphi_U:\pi^{-1}(U)\rightarrow G$ una aplicación diferenciable.
+          La condición de $G$-equivariancia significa que
+          \begin{equation*}
+\varphi_U (p\cdot g) = \varphi_U(p) g.
+          \end{equation*}
+    \item Nótese que por definición el grupo $G$ actúa libre y transitivamente en cada fibra $P_x = \pi^{-1}(x)$; de modo que cada fibra $P_x$ es un $G$-torsor.
+    \item El \emph{$G$-fibrado principal trivial} se define como $P=M\times G$, con la acción natural $(x,g)\cdot h=(x,gh)$ y con $\pi=\pr_{1}$. Una \emph{trivialización global} de un fibrado principal $P$ es un difeomorfismo $G$-equivariante $\psi:P\rightarrow M\times G$, con $\pr_1 \circ \psi = \pi$.
+    \item Una \emph{sección} de un fibrado principal $P$ en un abierto $U\subset M$ es una aplicación diferenciable $s:U\rightarrow P$ de forma que $\pi\circ s = \id_U$. Denotamos por $\Gamma(U,P)$ el espacio de todas las secciones en $U$. Una sección es una \emph{sección global} si $U=M$.
+    \item Nótese que una sección $s\in \Gamma(U,P)$ determina una trivialización de $P$ en $U$ como sigue
+          \begin{equation*}
+\psi_U(p) = (\pi(p),g_p),
+          \end{equation*}
+para $p\in \pi^{-1}(U)$, donde $g_p\in G$ es el único elemento de $G$ con
+          \begin{equation*}
+p = s(\pi(p)) \cdot g_p.
+          \end{equation*}
+\item Si $\Gamma(U,P)\neq \varnothing$, entonces es un $G(U)$-torsor, donde $G(U)$ es el grupo de las aplicaciones diferenciables $U\rightarrow G$. En efecto, si $s, s'\in \Gamma(U,P)$ son dos secciones, entonces, para todo $x\in M$ existe un elemento $g(x)\in G$ tal que $s'(x)=s(x)\cdot g(x)$. La asignación $x\mapsto g(x)$ determina una aplicación $g:U\rightarrow G$, que es diferenciable, puesto que $s$ y $s'$ lo son.
+  \end{enumerate}
+\end{rmk}
+
+\subsection{Funciones de transición} La condición de trivialidad local implica que podemos recubrir $M=\coprod_{i\in I} U_i$ de forma que cada $\Gamma(U_i,P)\neq \varnothing$. Dado un elemento $(s_i)_{i\in I}$, con $s_i\in \Gamma(U_i,P)$, existen unas aplicaciones diferenciables $g_{ij}:U_i \cap U_j \rightarrow G$, para cada intersección no vacía $U_i\cap U_j \neq \varnothing$, de forma que
+          \begin{equation*}
+s_j|_{U_i\cap U_j}= s_i|_{U_i\cap U_j} \cdot g_{ij}.
+          \end{equation*}
+          Las funciones $g_{ij}\in G(U_{i}\cap U_j)$ se denominan \emph{funciones de transición} de $P$. Estas funciones cumplen la \emph{condición de cociclo}: para $U_i\cap U_j \cap U_k \neq \varnothing$, se tiene que
+          \begin{equation*}
+g_{ik} = g_{ij} g_{jk}.
+          \end{equation*}
+          Si cambiamos $(s_i)_{i\in I}$ por $(s_i')_{i\in I}$, con $s_i'=s_i \cdot g_i$, para $g_i\in G(U_i)$, entonces las funciones de transición cambian como
+          \begin{equation*}
+g'_{ij} = g_{i}^{-1} g_{ij} g_j.
+          \end{equation*}
+          El conjunto cociente
+          \begin{equation*}
+\check{H}^1(M,\left\{ U_i:i\in I \right\},G) = \prod_{i,j \in I} G(U_i\cap U_j) / \prod_{i} G(U_i)
+          \end{equation*}
+          con respecto de la acción $(g_{ij})_{i,j\in I}\cdot (g_i)_{i\in I}=(g_i^{-1}g_{ij}g_j)_{i,j \in I}$ se denomina el \emph{primer grupo de cohomología de \v{C}ech con coeficientes en $G$ y subordinado a $\left\{ U_i:i\in I \right\}$}. Hemos visto que la asignación $P\mapsto (g_{ij})_{i,j \in I}$ determina una aplicación natural
+          \begin{equation*}
+\left\{ G\text{-fibrados principales en }M \right\} \longrightarrow \check{H}^1(M,\left\{ U_i:i\in I \right\},G).
+          \end{equation*}
+De hecho, el fibrado $P$ puede reconstruirse de las funciones de transición, ya que éstas nos dan los datos de pegado para las piezas locales $P_i \cong U_i \times G$. Por tanto, la aplicación anterior es de hecho una biyección.
+
+\begin{ex}
+  Veamos algunos ejemplos de fibrados principales:
+  \begin{enumerate}
+    \item Tomemos $P=M=S^1\subset \C$, con la aplicación
+          \begin{equation*}
+\pi: S^1\rightarrow S^1,\ z \mapsto z^2.
+          \end{equation*}
+          Esta aplicación determina un $\Z/2\Z$-fibrado principal en $S^1$, con respecto a la acción
+          \begin{equation*}
+(z,\pm 1) \mapsto \pm z.
+          \end{equation*}
+Visualmente puede verse como la proyección del borde de la cinta de Möbius a una circunferencia interior. Nótese que es un fibrado no trivial, ya que una sección global suya equivaldría a definir una raíz cuadrada en toda la circunferencia, que sabemos que no se puede hacer. Si recubrimos $S^1$ por dos intervalos, la correspondiente función de transición de este fibrado vale $+1$ en una de las componentes conexas de la intersección y $-1$ en la otra.
+
+    \item Supongamos que $M$ es conexa y $\Pi=\pi_1(M)$ es su grupo fundamental en cualquier punto. Equipado con la topología discreta, $\Pi$ puede entenderse como un grupo de Lie (aunque posiblemente no cumpla el segundo axioma de numerabilidad). El recubridor universal $\pi:\widetilde{M}\rightarrow M$ es un $\Pi$-fibrado principal, con la acción en $\widetilde{M}$ dada por la acción de monodromía. Además, si $\Gamma \subset \Pi$ es un subgrupo normal de $\Pi$, entonces $\pi_\Gamma:\widetilde{M}/\Gamma \rightarrow M$ es un recubridor regular, con grupo de Galois $G=\Pi/\Gamma$. Esto quiere decir precisamente que $\pi_\Gamma:\widetilde{M}/\Gamma \rightarrow M$ es un $G$-fibrado principal.
+
+\item Recordemos el \emph{fibrado de referencias} de una variedad diferenciable $M$ de dimensión $n$,
+\begin{equation*}
+\cB(M) = \left\{ (x,b): x\in M, b:\RR^n \overset{\sim}{\rightarrow} T_x M \text{ isomorfismo lineal} \right\}.
+\end{equation*}
+La acción de cambio de base y la proyección natural $\pi:\cB(M)\rightarrow M$, $(x,b)\mapsto x$ dotan al fibrado de referencias de la estructura de $\GL_n(\RR)$-fibrado principal. Podemos recubrir $M$ por un atlas $M=\coprod_{i} U_i$, con cartas $\varphi_i:U_i\rightarrow \RR^n$ y cambios de coordenadas $\varphi_{ij}=\varphi_i\circ \varphi_j^{-1}:\varphi_j(U_j) \rightarrow \varphi_i(U_i)$. Las correspondientes funciones de transición de $\cB(M)$ son precisamente
+          \begin{equation*}
+g_{ij}: U_i \cap U_j \rightarrow \GL_n(\RR), \ x \mapsto d_{\varphi_j(x)}\varphi_{ij}.
+          \end{equation*}
+  Si $g$ es una métrica riemanniana en $M$ también podemos considerar el fibrado $\cB_{\OO}(M)$ de referencias ortogonales. En este caso, obtenemos un $\OO_n(\RR)$-fibrado principal.
+  \end{enumerate}
+\end{ex}
+
+\subsection{Grupos abelianos} Nótese que la asignación $U\mapsto G(U)$ determina un haz de grupos en $M$, que denotamos por $G_M$. En particular, si $G=A$ es un grupo abeliano, podemos considerar los grupos de cohomología de haces $H^k(M,A_M)$. Si $0\rightarrow A \rightarrow B \rightarrow C \rightarrow 0$ es una sucesión exacta de grupos abelianos, entonces existe un recubrimiento $M=\coprod_{i\in I} U_i$ de forma que las sucesiones $0\rightarrow A(U_i) \rightarrow B(U_i)\rightarrow C(U_i)\rightarrow 0$ también son exactas. No es difícil comprobar que globalmente se obtiene una sucesión exacta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & A(M) \rar & B(M) \rar & C(M) \rar & \check{H}^1(M,\left\{ U_i:i\in I \right\},A).
+  \end{tikzcd}
+\end{center}
+Por tanto,
+\begin{equation*}
+\check{H}^1(M,\left\{ U_i:i\in I \right\},A) = H^1(M,A_M).
+\end{equation*}
+Es decir, los $A$-fibrados principales están clasificados por el grupo de cohomología de haces $H^1(M,A_M)$.
+
+\begin{ex}
+Supongamos en particular que $\Lambda \cong \Z^n$ es un retículo de rango $n$ y que $A=T=\RR^n/\Lambda$ es el correspondiente toro. Tenemos una sucesión exacta
+\begin{center}
+  \begin{tikzcd}
+0 \rar & \Lambda \rar & \RR^n \rar & T \rar & 0.
+  \end{tikzcd}
+\end{center}
+Tenemos que $(\RR^n)_M=C^\infty_M \otimes_{\RR} \RR^n$, y como $C^\infty_M$ es fino, tenemos que $H^k(M,(\RR^n)_M)=0$ para todo $k>0$. Por tanto, obtenemos un isomorfismo
+\begin{equation*}
+H^1(M,T_M) \overset{\sim}{\longrightarrow} H^2(M,\Lambda).
+\end{equation*}
+Concluimos entonces que los $T$-fibrados principales están clasificados por el grupo de cohomología $H^2(M,\Lambda)$. En particular, si $T=S^1=\RR/\Z$, tenemos una biyección
+\begin{equation*}
+c:\left\{ S^1\text{-fibrados principales} \right\} \overset{\sim}{\longrightarrow} H^2(M,\Z).
+\end{equation*}
+La clase $c(P)\in H^2(M,\Z)$ asociada al $S^1$-fibrado principal $P\rightarrow M$, se denomina la \emph{clase de Chern} de $P$.
+\end{ex}
+
+\subsection{Fibrados asociados} Una \emph{$G$-variedad} es una variedad diferenciable $F$ equipada con una acción de $G$ diferenciable por la izquierda $G\times F\rightarrow F$, $(g,f)\mapsto g\cdot f$. Si $F$ es una $G$-variedad y $P\rightarrow M$ es un fibrado principal, podemos considerar la acción por la izquierda
+\begin{equation*}
+G \times (P\times F) \rightarrow P\times F, \ (g,(p,f)) \mapsto (p\cdot g^{-1}, g \cdot f)
+\end{equation*}
+y definir el \emph{fibrado asociado}
+\begin{equation*}
+P(F) = P \times^G F = (P\times F) / G.
+\end{equation*}
+Este espacio es una fibración sobre $M$ cuyas fibras están en biyección con $F$. Más generalmente, existe una biyección
+\begin{equation*}
+\left\{ \text{secciones de }P(F) \right\} \overset{\sim}{\longrightarrow} \left\{ \text{aplicaciones diferenciables } G\text{-equivariantes } P\rightarrow F \right\}.
+\end{equation*}
+
+Ejemplos claros de $G$-variedades son las \emph{representaciones}. Dado un grupo de Lie $G$, una \emph{representación (diferenciable) de $G$} es un par $(V,\rho)$, donde $V$ es un $\RR$-espacio vectorial y $\rho:G\rightarrow \GL(V)$ es una aplicación diferenciable. Dada una representación $(V,\rho)$ de $G$, tenemos una acción por la izquierda $(g,v)\mapsto \rho(g)(v)$. Si $P\rightarrow M$ es un $G$-fibrado principal, obtenemos un fibrado vectorial $P(V)\rightarrow M$. Por ejemplo, si $\cB(M)$ es el fibrado de referencias de $M$ y $\rho=\id: \GL_n(\RR)\rightarrow \GL(\RR^n)$ es la representación natural, el fibrado asociado $TM=\cB(M) \times^{\GL_n(\RR)} \RR^n$ es simplemente el fibrado tangente $TM\rightarrow M$. Más generalmente, si $V\rightarrow M$ es un fibrado vectorial de rango $r$, podemos considerar su fibrado de referencias
+\begin{equation*}
+\cB(V) = \left\{ (x,b): x\in M, b:\RR^r \overset{\sim}{\rightarrow} V_x \text{ isomorfismo lineal} \right\},
+\end{equation*}
+que es un $\GL_r(\RR)$-fibrado principal, y recuperar $V$ como el fibrado asociado $V=\cB(V)\times^{\GL_r(\RR)}\RR^r$. Naturalmente, $\cB(M)=\cB(TM)$.
+
+\section{Extensiones, reducciones y estructuras geométricas}
+\subsection{Extensión y reducción del grupo de estructura} Sea $G$ un grupo de Lie y $H\subset G$ un subgrupo de Lie suyo. Todo $H$-fibrado principal $P$ determina un $G$-fibrado principal $P_G=P\times^H G$, donde $H$ actúa en $G$ como $(h,g)\mapsto hg$, ya que es un subgrupo suyo. La asignación $P\mapsto P_H$ se denomina \emph{extensión del grupo de estructura}.
+
+La construcción recíproca no es inmediata, de hecho no siempre existe y no suele ser única. Dado un $G$-fibrado principal $P$, una \emph{reducción del grupo de estructura de $P$ a $H$} es un $H$-fibrado principal $P_H\rightarrow M$, junto con un encaje $P_H\hookrightarrow P$ compatible con las proyecciones a $M$ y de forma que $P=P_H\times^H G$.
+Equivalentemente, una reducción está dada por un subfibrado $P_H\subset P$ de forma que $p\cdot h \in P_H$ para todo $p\in P_H$ y para todo $h\in H$.
+
+La forma más natural de determinar una reducción del grupo de estructura es dar una aplicación $G$-equivariante $\sigma: P \rightarrow G/H$, donde el cociente $G/H$ está equipado con la acción $(g', gH) \mapsto g'gH$. En efecto, basta tomar $P_H=\sigma^{-1}(H)\subset P$. Equivalentemente, una reducción está dada por una sección del fibrado asociado
+\begin{equation*}
+P/H := P(G/H) = P\times^G (G/H).
+\end{equation*}
+
+
+Muchas estructuras geométricas en variedades diferenciables se pueden entender como reducciones del grupo de estructura de sus fibrados de referencias.
+\subsection{Métricas riemannianas} Dar una métrica riemanniana en una variedad $M$ equivale a dar una reducción del grupo de estructura de su fibrado de referencias $\cB(M)$ a $\OO_n(\RR)\subset \GL_n(\RR)$. En efecto, toda matriz invertible $A$ descompone de forma única como
+        \begin{equation*}
+A= QS,
+        \end{equation*}
+        donde $Q\in \OO_n(\RR)$ es una matriz ortogonal y $S$ es una matriz simétrica definida positiva. Por tanto, podemos identificar el cociente $P=\GL_n(\RR)/\OO_n(\RR)$ con el conjunto de las matrices simétricas definidas positivas, de modo que dar una sección de $\cB(M)\times^{\GL_n(\RR)} P$ equivale precisamente a definir un producto escalar en cada espacio tangente, de forma consistente con la estructura diferenciable; es decir, equivale a dar una métrica riemanniana.
+Más generalmente, se puede definir una noción de \emph{métrica riemanniana} en todo fibrado vectorial $V\rightarrow M$ como una reducción del grupo de estructura de $\cB(V)$ a $\OO_n(\RR)$.
+
+\subsection{Orientaciones} Dar una orientación en $M$ equivale a dar una reducción del grupo de estructura de $\cB(M)$ a $\GL_n^+(\RR)$, la componente conexa de $\GL_n(\RR)$ de las matrices con determinante positivo. El cociente $\GL_n(\RR)/\GL_n(\RR)^+$ es isomorfo a $\Z/2\Z$, de modo que para cualquier recubrimiento $M=\coprod_{i\in I} U_i$ de $M$ obtenemos una sucesión exacta en cohomología de \v{C}ech
+\begin{center}
+  \begin{tikzcd}[column sep = 10pt]
+\check{H}^1(M,\left\{U_i,i\in I\right\}, \GL_n(\RR)^+) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\},\GL_n(\RR)) \rar & H^1(M,\Z/2\Z).
+  \end{tikzcd}
+\end{center}
+
+Dado un fibrado vectorial $V\rightarrow M$, se define su \emph{primera clase de Stiefel--Whitney} $w_1(V)\in H^1(M,\Z/2\Z)$ como la imagen de $\cB(V)$ por la aplicación en la sucesión exacta anterior.  En particular, se define la primera clase de Stiefel--Whitney de $M$ como $w_1(M)=w_1(TM)$. Concluimos que una variedad es orientable si y sólo si $w_1(M)=0$. En general, decimos que un fibrado vectorial $V\rightarrow M$ es orientable si $w_1(V)=0$.
+
+\subsection{Forma de volumen} Dar una forma de volumen en $M$ equivale a dar una reducción del grupo de estructura de $\cB(M)$ a $\mathrm{SL}_n(\RR)$. En particular, una forma de volumen determina una orientación, ya que $\mathrm{SL}_n(\RR)\subset \GL_n(\RR)^+$. A su vez, una métrica riemanniana en una variedad orientada determina una forma de volumen ya que \[\OO_n(\RR) \cap \GL_n(\RR)^+=\OO_n(\RR)\cap \mathrm{SL}_n(\RR)= \SO_n(\RR).\]
+En otras palabras, una orientación junto con una métrica riemanniana determinan una reducción del grupo de estructura de $\cB(M)$ a $\SO_n(\RR)$.
+
+\subsection{Estructuras presimplécticas} Supongamos que $M$ es una variedad de dimensión $2n$. Dar una reducción del grupo de estructura de $\cB(M)$ al grupo simpléctico $\mathrm{Sp}_n(\RR)\subset \GL_{2n}(\RR)$ equivale a dar una $2$-forma no degenerada $\omega \in \Omega^2(M)$. Esta $2$-forma se denomina una \emph{estructura presimpléctica} en $M$. Si además, $d\omega =0$, se dice que $\omega$ es una \emph{estructura simpléctica} y el par $(M,\omega)$ se denomina una \emph{variedad simpléctica}. En ese caso, el \emph{teorema de Darboux} garantiza que existen coordenadas locales $q^1,\dots,q^n, p^1,\dots,p^n$ de modo que $\omega = \sum_i dp^i \wedge dq^i$.
+
+\subsection{Estructuras casi-complejas} De nuevo, supongamos que $M$ es una variedad de dimensión $2n$. El grupo $\GL_{n}(\C)$ de las matrices invertibles $n\times n$ con entradas en los números complejos admite una inclusión natural en $\GL_{2n}(\RR)$ en la forma
+\begin{equation*}
+  A=B+\mathbf{i} C \mapsto
+  \begin{pmatrix}
+    B & -C \\
+    C & B
+\end{pmatrix},
+\end{equation*}
+donde $\mathbf{i}$ es la unidad imaginaria.
+Así, la imagen de $\GL_n(\C)$ se corresponde justamente con el conjunto de aplicaciones lineales $\RR^{2n}\rightarrow \RR^{2n}$ que son $\C$-lineales, si identificamos $\RR^{2n}=\C^{n}$. Una reducción del grupo de estructura de $\cB(M)$ a $\GL_n(\C)$ corresponde a dar un automorfismo $J:TM\rightarrow TM$ de forma que $J^2=-\id_{TM}$. Este automorfismo $J$ se denomina una \emph{estructura casi-compleja} en $M$. Una estructura casi-compleja es \emph{integrable} si existen coordenadas locales $x^1,\dots,x^n,y^1,\dots,y^n$ de forma que
+\begin{equation*}
+J(\partial_{x^i}) = \partial_{y^i},\ J(\partial_{y^i}) = -\partial_{x^i}.
+\end{equation*}
+En ese caso, podemos tomar las coordenadas locales complejas $z^i=x^i + \mathbf{i} y^i$. Estas coordenadas dan un atlas de homeomorfismos $U\rightarrow \C^{n}$ cuyas aplicaciones de cambio de coordenadas son aplicaciones holomorfas $\C^n\rightarrow \C^n$. Se dice entonces que $J$ es un \emph{estructura compleja}, y el par $(M,J)$ se denomina una \emph{variedad compleja}.
+
+\subsection{Extensiones centrales}
+También es interesante considerar \emph{extensiones centrales}. Esto son sucesiones exactas cortas de grupos
+\begin{center}
+  \begin{tikzcd}
+1\rar & Z \rar & G \rar & H \rar & 1,
+  \end{tikzcd}
+\end{center}
+donde $Z$ es un subgrupo del centro de $G$. En particular, $Z$ es abeliano. Si $M=\coprod_{i\in I} U_i$ es un recubrimiento de $M$ tal que cada $G(U_i)\rightarrow H(U_i)$ es sobreyectiva, entonces la sucesión exacta anterior induce una sucesión exacta en cohomología de \v{C}ech
+\begin{center}
+  \begin{tikzcd}
+H^1(M,Z) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\}, G) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\},H) \rar & H^2(M,Z).
+  \end{tikzcd}
+\end{center}
+Vemos ahora que la obstrucción para que un $H$-fibrado principal $P$ provenga de un $G$-fibrado principal está precisamente en la imagen de $P$ en $H^2(M,Z)$.
+
+\subsection{Estructuras de spin} Un ejemplo sencillo de extensión central es el grupo de spin. Por definición, para $n>2$, se define el correspondiente \emph{grupo de spin real} $\mathrm{Spin}_n(\RR)$ como el recubridor universal del grupo $\SO_n(\RR)$. Resulta que el grupo fundamental de $\SO_n(\RR)$ es $\Z/2\Z$ (para $n=3$ se prueba a mano porque $\SO_3(\RR)\cong \mathbb{P}^3_{\RR}$, y para $n>3$ se deduce del caso $n=3$ por la sucesión exacta larga en homotopía; otra forma de probarlo es usando sistemas de raíces, ya que el resultado es cierto sobre cualquier anillo). Por tanto, se tiene una sucesión exacta corta
+\begin{center}
+  \begin{tikzcd}
+1\rar & \Z/2\Z \rar & \mathrm{Spin}_n(\RR) \rar & \SO_n(\RR) \rar & 1,
+  \end{tikzcd}
+\end{center}
+que induce una sucesión exacta
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+  \begin{tikzcd}[column sep = 10pt]
+H^1(M,\Z/2\Z) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\}, \mathrm{Spin}_n(\RR)) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\},\SO_n(\RR)) \rar & H^2(M,\Z/2\Z),
+  \end{tikzcd}
+\end{adjustbox}
+\end{center}
+donde $M=\coprod_{i\in I} U_i$ es un recubrimiento tal que cada $\mathrm{Spin}_n(\RR)(U_i)\rightarrow \SO_n(\RR)(U_i)$ es sobreyectiva.
+
+Una \emph{estructura de spin} en una variedad riemanniana orientada $(M,g)$ de dimensión $n$ es un $\mathrm{Spin}_n(\RR)$-fibrado principal $\cB_{\mathrm{Spin}}(M)$ cuya imagen por la aplicación en la sucesión exacta anterior es el fibrado de referencias ortonormales positivas $\cB_{\mathrm{SO}}(M)$. La imagen $w_2(P)\in H^2(M,\Z/2\Z)$ de un $\SO_n(\RR)$ fibrado principal $P$ por la aplicación anterior se denomina la \emph{segunda clase de Stiefel--Whitney}. En particular, la segunda clase de Stiefel--Whitney de $M$ se define como $w_2(M)=w_2(\cB_{\SO}(M))$. De la sucesión exacta vemos que $M$ admite una estructura de spin si y sólo si $w_2(M)=0$. Además, la estructura de spin, si existe, no es necesariamente única, sino que hay tantas estructuras de spin diferentes como clases en $H^1(M,\Z/2\Z)$.
+
+
 \section{Conexiones y curvatura}
 a
 
@@ -3128,6 +3357,7 @@ $p = \Pi^A_\gamma(p_0) \cdot g$.
 Explicar lo que pasa con la forma de Maurer-Cartan.
 \end{rmk}
 
+\todo{Grupo de holonomía y teorema de Berger}
 
 \section{Geometría a la Cartan}
 Ha llegado la hora de revisitar el programa de Erlangen, a la manera que lo hizo Élie Cartan.
