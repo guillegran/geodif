@@ -3250,27 +3250,113 @@ H^1(M,Z) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\}, G) \rar & \check{H}^1(M
 \end{center}
 Vemos ahora que la obstrucción para que un $H$-fibrado principal $P$ provenga de un $G$-fibrado principal está precisamente en la imagen de $P$ en $H^2(M,Z)$.
 
-\subsection{Estructuras de spin} Un ejemplo sencillo de extensión central es el grupo de spin. Por definición, para $n>2$, se define el correspondiente \emph{grupo de spin real} $\mathrm{Spin}_n(\RR)$ como el recubridor universal del grupo $\SO_n(\RR)$. Resulta que el grupo fundamental de $\SO_n(\RR)$ es $\Z/2\Z$ (para $n=3$ se prueba a mano porque $\SO_3(\RR)\cong \mathbb{P}^3_{\RR}$, y para $n>3$ se deduce del caso $n=3$ por la sucesión exacta larga en homotopía; otra forma de probarlo es usando sistemas de raíces, ya que el resultado es cierto sobre cualquier anillo). Por tanto, se tiene una sucesión exacta corta
+\subsection{Estructuras de spin} Un ejemplo sencillo de extensión central es el grupo de spin. Por definición, para $n>2$, se define el correspondiente \emph{grupo de spin real} $\mathrm{Spin}_n(\RR)$ como el recubridor universal del grupo $\SO_n(\RR)$. Resulta que el grupo fundamental de $\SO_n(\RR)$ es $\Z/2\Z$ (para $n=3$ se prueba a mano porque $\SO_3(\RR)\cong \mathbb{P}^3_{\RR}$, y para $n>3$ se deduce del caso $n=3$ por la sucesión exacta larga en homotopía; otra forma de probarlo es usando sistemas de raíces, ya que $\SO_n$ es un grupo escindido). Por tanto, se tiene una sucesión exacta corta
 \begin{center}
   \begin{tikzcd}
 1\rar & \Z/2\Z \rar & \mathrm{Spin}_n(\RR) \rar & \SO_n(\RR) \rar & 1,
   \end{tikzcd}
 \end{center}
 que induce una sucesión exacta
-\begin{center}
+\[
 \begin{adjustbox}{max width=\textwidth}
-  \begin{tikzcd}[column sep = 10pt]
-H^1(M,\Z/2\Z) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\}, \mathrm{Spin}_n(\RR)) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\},\SO_n(\RR)) \rar & H^2(M,\Z/2\Z),
-  \end{tikzcd}
+\begin{tikzcd}[column sep = 10pt]
+H^1(M,\Z/2\Z) \rar & \check{H}^1(M,\{U_i,i\in I\}, \mathrm{Spin}_n(\RR)) \rar & \check{H}^1(M,\{U_i,i\in I\},\SO_n(\RR)) \rar & H^2(M,\Z/2\Z),
+\end{tikzcd}
 \end{adjustbox}
-\end{center}
+\]
 donde $M=\coprod_{i\in I} U_i$ es un recubrimiento tal que cada $\mathrm{Spin}_n(\RR)(U_i)\rightarrow \SO_n(\RR)(U_i)$ es sobreyectiva.
 
 Una \emph{estructura de spin} en una variedad riemanniana orientada $(M,g)$ de dimensión $n$ es un $\mathrm{Spin}_n(\RR)$-fibrado principal $\cB_{\mathrm{Spin}}(M)$ cuya imagen por la aplicación en la sucesión exacta anterior es el fibrado de referencias ortonormales positivas $\cB_{\mathrm{SO}}(M)$. La imagen $w_2(P)\in H^2(M,\Z/2\Z)$ de un $\SO_n(\RR)$ fibrado principal $P$ por la aplicación anterior se denomina la \emph{segunda clase de Stiefel--Whitney}. En particular, la segunda clase de Stiefel--Whitney de $M$ se define como $w_2(M)=w_2(\cB_{\SO}(M))$. De la sucesión exacta vemos que $M$ admite una estructura de spin si y sólo si $w_2(M)=0$. Además, la estructura de spin, si existe, no es necesariamente única, sino que hay tantas estructuras de spin diferentes como clases en $H^1(M,\Z/2\Z)$.
 
 
-\section{Conexiones y curvatura}
+\section{Conexiones}
+\begin{defn}
+  Sea $\pi:P\rightarrow M$ un fibrado principal. Dado un punto $p\in P$, se define el \emph{subespacio vertical} como $V_p=\ker d_p\pi \subset T_p P$. Más generalmente, se define la \emph{distribución vertical} $V=\ker d\pi \subset TP$.
+\end{defn}
+
+\subsection{} Una distribución $D\subset TP$ se dice \emph{$G$-invariante} si
+\begin{equation*}
+R_{g,*} D_p = D_{p\cdot g}
+\end{equation*}
+para todo $g\in G$. Nótese que la distribución vertical es $G$-invariante, ya que $\pi(p\cdot g) = \pi(p)$ por definición.
+
+\begin{defn}
+  Una ($G$-)\emph{conexión} (principal) $A$ en $P$ está dada por una distribución $G$-invariante $H^A\subset TP$, llamada la \emph{distribución horizontal de la conexión}, tal que
+  \begin{equation*}
+TP = V \oplus H^A.
+  \end{equation*}
+  En otras palabras, una conexión es una escisión de la siguiente sucesión exacta corta de fibrados vectoriales sobre $P$
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & V \rar & TP \rar{d\pi} & \pi^* TM \rar & 0.
+    \end{tikzcd}
+  \end{center}
+\end{defn}
+
+\subsection{El campo fundamental} La acción de $G$ en $P$ determina una ``acción infinitesimal'' $\fg \rightarrow \fX(P)$, que a cada $X\in \fg$ le asigna el \emph{campo fundamental} $X^+$ cuyo valor en un punto $p\in P$ es
+\begin{equation*}
+X^+_p = \left. \frac{d}{dt} \right|_{t=0} (p \cdot \exp(tX)).
+\end{equation*}
+Nótese que
+\begin{equation*}
+d_p\pi X^+_p =\left. \frac{d}{dt} \right|_{t=0} \pi(p\cdot \exp(tX)) =  \left. \frac{d}{dt} \right|_{t=0} \pi(p) = 0,
+\end{equation*}
+de modo que $X^+$ es un campo vertical. Es más, como la acción de $G$ es libre, para todo $p\in P$, tenemos que la aplicación
+\begin{equation*}
+\fg \rightarrow V_p, \ X \mapsto X^+_p
+\end{equation*}
+es un isomorfismo. El grupo $G$ actúa en $V_p$ por medio de las aplicaciones $R_{g,*}$; veamos en qué se traduce esta acción en $\fg$. Tenemos que
+\begin{align*}
+R_{g,*} X^+_p &= \left. \frac{d}{dt} \right|_{t=0} R_g(p\cdot \exp(tX)) =  \left. \frac{d}{dt} \right|_{t=0} p\cdot \exp(tX)g =  \left. \frac{d}{dt} \right|_{t=0} p\cdot g g^{-1} \exp(tX)g \\
+  &=  \left. \frac{d}{dt} \right|_{t=0} p\cdot g \exp(t\mathrm{ad}_{g^{-1}}X) = (\mathrm{ad}_{g^{-1}}X)^+_p.
+\end{align*}
+Por tanto, $R_{g,*}X^+= \mathrm{ad}_{g^{-1}}X$.
+
+\subsection{La $1$-forma de conexión} Una escisión de la sucesión exacta corta
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & V \rar & TP \rar{d\pi} & \pi^* TM \rar & 0
+    \end{tikzcd}
+  \end{center}
+  está equivalentemente determinada por una aplicación $A:TP\rightarrow V$ que da la identidad al componerla con la inclusión $V\hookrightarrow TP$; la distribución horizontal es entonces $H^A=\ker A$.
+
+  Ahora, hemos visto que cada espacio vertical $V_p$ es isomorfo al álgebra de Lie $\fg$. Por tanto, podemos identificar la aplicación $A$ con una $1$-forma $\fg$-valorada $A\in \Omega^1(P;\fg)$ definida como
+  \begin{equation*}
+    A(Y) =
+    \begin{cases}
+X & \text{ si } Y \text{ es vertical, con } Y=X^+,\\
+0 & \text{ si } Y\in H^A .
+\end{cases}
+  \end{equation*}
+Esta $1$-forma se denomina la \emph{$1$-forma de conexión} de $A$.
+
+Veamos como actúa $G$ en esta $1$-forma,
+\begin{equation*}
+R^*_g A (X^+) = A(R_{g,*}X^+) = A((\ad_{g^{-1}}X)^+) = \ad_{g^{-1}}X.
+\end{equation*}
+Es decir,
+\begin{equation*}
+R^*_g A = \ad_{g^{-1}} \circ A.
+\end{equation*}
+
+\subsection{Las $1$-formas locales} Supongamos ahora que $M=\coprod_{i\in I} U_i$ es un recubrimiento de modo que $P$ es trivial sobre cada $U_i$, y tomemos una familia de secciones $s=(s_i)_{i\in I}$, con cada $s_i\in \Gamma(U_i,P)$. Para cada $i\in I$, definimos $A_i = s_i^* A \in \Omega^1(U_i,\fg)$. Podemos reconstruir la $1$-forma $A$ desde las $A_i$ poniendo
+\begin{equation*}
+A_{\pi^{-1}(U_i)} = \ad_{g_i^{-1}} \circ \pi^* A_i + g_i^* \theta.
+\end{equation*}
+Aquí, $g_i:\pi^{-1}(U_i) \rightarrow G$ es la aplicación que envía cada $p\in \pi^{-1}(U_i)$ al elemento $g_i(p)$ que cumple
+\begin{equation*}
+p = s_i(\pi(p)) g_i(p).
+\end{equation*}
+
+En efecto, veamos que $A_{\pi^{-1}(U_i)}=A|_{\pi^{-1}(U_i)}$. \todo{Terminar con el TFG de tomás}.
+
+\subsection{Conexiones en fibrados asociados}
 a
+
+\section{Curvatura}
+a
+
+
 
 \chapter{Holonomía y espacios de curvatura constante}
 \section{Holonomía y conexiones planas}
