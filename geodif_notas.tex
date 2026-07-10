@@ -3310,7 +3310,7 @@ es un isomorfismo. El grupo $G$ actúa en $V_p$ por medio de las aplicaciones $R
 R_{g,*} X^+_p &= \left. \frac{d}{dt} \right|_{t=0} R_g(p\cdot \exp(tX)) =  \left. \frac{d}{dt} \right|_{t=0} p\cdot \exp(tX)g =  \left. \frac{d}{dt} \right|_{t=0} p\cdot g g^{-1} \exp(tX)g \\
   &=  \left. \frac{d}{dt} \right|_{t=0} p\cdot g \exp(t\mathrm{ad}_{g^{-1}}X) = (\mathrm{ad}_{g^{-1}}X)^+_p.
 \end{align*}
-Por tanto, $R_{g,*}X^+= \mathrm{ad}_{g^{-1}}X$.
+Por tanto, $R_{g,*}X^+= (\mathrm{ad}_{g^{-1}}X)^+$.
 
 \subsection{La $1$-forma de conexión} Una escisión de la sucesión exacta corta
   \begin{center}
@@ -3339,16 +3339,59 @@ Es decir,
 R^*_g A = \ad_{g^{-1}} \circ A.
 \end{equation*}
 
+Recordemos que las fibras de $P$ son $G$-torsores; es decir, si fijamos un punto $p\in P$, y denotamos $x=\pi(p)$, entonces tenemos un difeomorfismo
+\begin{equation*}
+\psi_p:G \rightarrow P_x,\ g \mapsto p \cdot g.
+\end{equation*}
+Bajo esta aplicación, podemos ver que la $1$-forma de conexión se identifica con la $1$-forma de Maurer--Cartan,
+\begin{equation*}
+\psi_p^* A = \theta.
+\end{equation*}
+En efecto, dado $X_g \in T_g G$, tenemos
+\begin{equation*}
+(\psi_p^* A)_g (X_g) = A_{p\cdot g}(\psi_{p*} X_g) = L_{g^{-1} *} X_g = \theta_g(X_g).
+\end{equation*}
+
+
 \subsection{Las $1$-formas locales} Supongamos ahora que $M=\coprod_{i\in I} U_i$ es un recubrimiento de modo que $P$ es trivial sobre cada $U_i$, y tomemos una familia de secciones $s=(s_i)_{i\in I}$, con cada $s_i\in \Gamma(U_i,P)$. Para cada $i\in I$, definimos $A_i = s_i^* A \in \Omega^1(U_i,\fg)$. Podemos reconstruir la $1$-forma $A$ desde las $A_i$ poniendo
 \begin{equation*}
 A_{\pi^{-1}(U_i)} = \ad_{g_i^{-1}} \circ \pi^* A_i + g_i^* \theta.
 \end{equation*}
 Aquí, $g_i:\pi^{-1}(U_i) \rightarrow G$ es la aplicación que envía cada $p\in \pi^{-1}(U_i)$ al elemento $g_i(p)$ que cumple
 \begin{equation*}
-p = s_i(\pi(p)) g_i(p).
+p = s_i(\pi(p))\cdot g_i(p).
 \end{equation*}
 
-En efecto, veamos que $A_{\pi^{-1}(U_i)}=A|_{\pi^{-1}(U_i)}$. \todo{Terminar con el TFG de tomás}.
+En efecto, veamos que $A_{\pi^{-1}(U_i)}=A|_{\pi^{-1}(U_i)}$. Sea $p\in \pi^{-1}(U_i)$ y denotemos $x=\pi(p)$. El espacio tangente a $s_i(x)$ descompone como
+\begin{equation*}
+T_{s_i(x)} P = s_{i*}(T_{x} M) \oplus V_{s_i(x)}.
+\end{equation*}
+Ahora, como $p=s_i(x)\cdot g_i(p)$, podemos descomponer
+\begin{equation*}
+T_pP = R_{g_i(p)*}(T_{s_i(x)} P) =(R_{g_i(p)}\circ s_i \circ \pi)_*(T_{x} M) \oplus V_p,
+\end{equation*}
+ya que $V_p = R_{g_i(p)*}(V_{s_i(x)})$.
+Por tanto, un campo $Y\in \fX(\pi^{-1}(U))$ descompone de forma única como
+\begin{equation*}
+Y = R_{g_i*}\circ s_{i*}\circ \pi_* Y + Y^v,
+\end{equation*}
+donde $Y^v$ es un campo vertical.
+Ahora,
+\begin{equation*}
+A(R_{g_i*}\circ s_{i*}\circ \pi_* Y) = R_{g_i}^*(s_i^* A(\pi_*Y)) = R_{g_i}^* (A_i(\pi_* Y)) = R_{g_i}^*(\pi^* A_i(Y)) = \ad_{g_i^{-1}} \circ \pi^* A_i (Y).
+\end{equation*}
+Por otra parte, tenemos la trivialización
+\begin{equation*}
+\psi_i: \pi^{-1}(U_i) \rightarrow U_i \times G,\ p \mapsto (s_i(\pi(p)), g_i(p)),
+\end{equation*}
+y podemos escribir
+\begin{equation*}
+A(Y^v) = (\psi_i^* A)(g_{i*} Y) = \theta(g_{i*} Y) = g_i^* \theta (Y).
+\end{equation*}
+Por tanto,
+\begin{equation*}
+A(Y) = \ad_{g_i^{-1}} \circ \pi^* A_i (Y) + g_i^*\theta(Y).
+\end{equation*}
 
 \subsection{Conexiones en fibrados asociados}
 a
