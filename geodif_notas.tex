@@ -3293,6 +3293,16 @@ TP = V \oplus H^A.
   \end{center}
 \end{defn}
 
+\subsection{} Podemos considerar la proyección horizontal $\pi_H: TP \rightarrow TP$ definida como
+\begin{equation*}
+  \pi_H(X) =
+  \begin{cases}
+X & \text{ si } X \in H, \\
+0 & \text{ si } X \in V.
+\end{cases}
+\end{equation*}
+Para cada $X\in TP$, denotamos $X^h=\pi_H(X)$.
+
 \subsection{El campo fundamental} La acción de $G$ en $P$ determina una ``acción infinitesimal'' $\fg \rightarrow \fX(P)$, que a cada $X\in \fg$ le asigna el \emph{campo fundamental} $X^+$ cuyo valor en un punto $p\in P$ es
 \begin{equation*}
 X^+_p = \left. \frac{d}{dt} \right|_{t=0} (p \cdot \exp(tX)).
@@ -3371,14 +3381,14 @@ Ahora, como $p=s_i(x)\cdot g_i(p)$, podemos descomponer
 T_pP = R_{g_i(p)*}(T_{s_i(x)} P) =(R_{g_i(p)}\circ s_i \circ \pi)_*(T_{x} M) \oplus V_p,
 \end{equation*}
 ya que $V_p = R_{g_i(p)*}(V_{s_i(x)})$.
-Por tanto, un campo $Y\in \fX(\pi^{-1}(U))$ descompone de forma única como
+Por tanto, un campo $Y\in \fX(\pi^{-1}(U_i))$ descompone de forma única como
 \begin{equation*}
-Y = R_{g_i*}\circ s_{i*}\circ \pi_* Y + Y^v,
+Y = (R_{g_i*}\circ s_{i*}\circ \pi_*) (Y) + Y^v,
 \end{equation*}
 donde $Y^v$ es un campo vertical.
 Ahora,
 \begin{equation*}
-A(R_{g_i*}\circ s_{i*}\circ \pi_* Y) = R_{g_i}^*(s_i^* A(\pi_*Y)) = R_{g_i}^* (A_i(\pi_* Y)) = R_{g_i}^*(\pi^* A_i(Y)) = \ad_{g_i^{-1}} \circ \pi^* A_i (Y).
+A((R_{g_i*}\circ s_{i*}\circ \pi_*) (Y)) = R_{g_i}^*(s_i^* A(\pi_*Y)) = R_{g_i}^* (A_i(\pi_* Y)) = R_{g_i}^*(\pi^* A_i(Y)) = \ad_{g_i^{-1}} \circ \pi^* A_i (Y).
 \end{equation*}
 Por otra parte, tenemos la trivialización
 \begin{equation*}
@@ -3393,13 +3403,109 @@ Por tanto,
 A(Y) = \ad_{g_i^{-1}} \circ \pi^* A_i (Y) + g_i^*\theta(Y).
 \end{equation*}
 
+Similarmente, se prueba que, en una intersección $U_i\cap U_j$, tenemos la relación
+\begin{equation*}
+A_{i} = \ad_{g_{ij}} \circ A_j + (g_{ij}^{-1})^* \theta,
+\end{equation*}
+con $g_{ij}=g_i \circ s_j$.
+
+
 \subsection{Conexiones en fibrados asociados}
-a
+La distribución vertical $V$ puede definirse en cualquier fibrado $E\rightarrow M$, no necesariamente principal. Una \emph{conexión de Ehresmann} en $E$ es simplemente una distribución horizontal, es decir, una distribución $H\subset TE$ tal que $TE=V\oplus H$. A toda conexión de Ehrsemann se le puede asociar una derivada covariante, que asigna a cada sección $s\in \Gamma(E)$ la aplicación
+\begin{equation*}
+\nabla s: \fX(M) \rightarrow \Gamma(s^* V), \ X \mapsto s_*(X) - X^h,
+\end{equation*}
+En particular, si $E$ es un fibrado vectorial, entonces $s^*V\rightarrow M$ es isomorfo a $E\rightarrow M$, por tanto $\nabla s: \fX(M)\rightarrow \Gamma(E)$, y la aplicación $s\mapsto \nabla s$ determina una conexión lineal en $E$.
+
+Supongamos ahora que $P$ es un $G$-fibrado principal y $A$ es una conexión en $P$. Sea $F$ una $G$-variedad, y consideremos la proyección natural
+\begin{equation*}
+q: P \times F \rightarrow E:= P \times^G F = (P\times F)/G.
+\end{equation*}
+Podemos definir una conexión de Ehresmann $H$ en $E$ como
+\begin{equation*}
+H= q_*(H^A \oplus 0),
+\end{equation*}
+es decir, para cada punto $e=[p,f]\in E$, ponemos
+\begin{equation*}
+H_e = d_{(p,f)} q (H^A_p \oplus 0).
+\end{equation*}
+La definición no depende del representante $(p,f)$; en efecto,
+\begin{equation*}
+d_{(p,f)} q (X,0) = d_{pg, g^{-1} f} q ((R_g)_* X,0),
+\end{equation*}
+y recordemos que la distribución $H^A$ es $G$-invariante: $R_{g,*} H^A_p = H^A_{p\cdot g}$.
 
 \section{Curvatura}
-a
+\begin{defn}
+  Sea $P$ un $G$-fibrado principal y $A$ una conexión en $P$. Se define la \emph{($2$-forma de) curvatura} de $A$ como la $2$-forma
+  \begin{equation*}
+F_A = \pi_H^* (dA) \in \Omega^2(P;\fg).
+  \end{equation*}
+
+\end{defn}
+
+\subsection{} La curvatura mide la obstrucción a la integrabilidad de la distribución horizontal. En efecto, por definición
+\begin{equation*}
+F_A(X,Y) = dA(X^h,Y^h) = X^h A(Y^h) - Y^h A(X^h) - A([X^h,Y^h]) = - A([X^h,Y^h]),
+\end{equation*}
+ya que $A$ se anula en la distribución horizontal. Por tanto, $F_A(X,Y)=0$ si y sólo si el campo $[X^h,Y^h]$ es horizontal.
+
+\begin{prop}[Ecuación de estructura]
+\begin{equation*}
+F_A = d A + \tfrac{1}{2} A\wedge A.
+\end{equation*}
+\end{prop}
+
+\begin{proof}
+  Se trata de probar que
+  \begin{equation*}
+dA( X^h,Y^h ) = dA(X,Y) + [A(X),A(Y)],
+  \end{equation*}
+  para cualesquiera dos campos $X,Y \in \fX(P)$. Veámoslo caso a caso. Si $X$ e $Y$ son ambos horizontales, entonces no hay nada que probar. Si ambos son verticales, podemos asumir que son de la forma $X^+, Y^+$, para $X,Y \in \fg$, y basta probar que
+  \begin{align*}
+dA(X^+, Y^+) + [A(X^+),A(Y^+)] = 0.
+  \end{align*}
+  Ahora,
+  \begin{align*}
+dA(X^+,Y^+) &= X^+ Y - Y^+ X - A([X^+, Y^+]) \\ & = -A([X^+,Y^+]) = -A([X,Y]^+)\\ &= -[X,Y] = -[A(X^+),A(Y^+)].
+  \end{align*}
+  Finalmente, si $X$ es horizontal e $Y^+$, con $Y\in \fg$ es vertical, entonces basta ver que
+  \begin{equation*}
+dA (X, Y^+) = 0,
+  \end{equation*}
+  que a su vez equivale a
+  \begin{equation*}
+A([X,Y^+]) = 0.
+  \end{equation*}
+  Pero, por la invariancia de la distribución horizontal, el corchete de un campo horizontal con un campo vertical es horizontal.
+\end{proof}
+
+\begin{prop}[Identidad de Bianchi]
+\begin{equation*}
+\pi^*_H dF_A = 0.
+\end{equation*}
+\end{prop}
+
+\begin{proof}
+\begin{align*}
+  \pi_H^* dF_A &= \pi_H^* d(dA + \tfrac{1}{2} A \wedge A) = \pi_H^* (\tfrac{1}{2} dA \wedge A - \tfrac{1}{2} A \wedge dA) \\
+  &= \pi_H^* (dA \wedge A) = (\pi_H^* dA) \wedge (\pi_H^* A) =0.
+\end{align*}
+\end{proof}
 
 
+\subsection{} Equivalentemente, la curvatura $F_A$ puede verse como una $2$-forma con valores en el \emph{fibrado adjunto}
+\begin{equation*}
+\ad P := P(\fg) = P \times^G \fg,
+\end{equation*}
+asociado a la acción adjunta de $G$ en $\fg$. En efecto, podemos tomar un recubrimiento $M=\coprod_{i\in I} U_i$ de modo que $P$ es trivial sobre cada $U_i$, y una familia de secciones $s=(s_i)_{i\in I}$, con $s_i \in \Gamma(U_i,P)$ y con funciones de transición $g_{ij} \in G(U_{ij})$. Para cada $i\in I$, definimos
+\begin{equation*}
+F_i = s_i^* F_A = d A_i + \tfrac{1}{2} A_i \wedge A_i.
+\end{equation*}
+Ahora, usando la igualdad $A_i = \ad_{g_{ij}}\circ A_j + (g_{ij}^{-1})^* \theta$ y la ecuación de Maurer--Cartan $d\theta = -\tfrac{1}{2} \theta \wedge \theta$, concluimos que
+\begin{equation*}
+F_i = \ad_{g_{ij}} \circ F_j.
+\end{equation*}
 
 \chapter{Holonomía y espacios de curvatura constante}
 \section{Holonomía y conexiones planas}
@@ -3411,7 +3517,7 @@ Localmente, en un abierto $U\subset M$ trivializante para $P$, podemos ver $\til
 \begin{equation*}
 \ad_{g^{-1}(t)} A_U(\gamma'(t))  + (g^* \theta) (\gamma'(t)) = 0.
 \end{equation*}
-Vemos ahora que se trata de un sistema de EDOs de orden $1$ con coeficientes $C^\infty$, de modo que se le puede aplicar la teoría de existencia y unicidad de soluciones. Concluimos que si prescribimos $g(0)$, entonces $g(1)$ está determinado unívocamente. Globalmente: dados una curva $\gamma:[0,1]\rightarrow M$ y un elemento $p\in P$, existe una única curva horizontal $\tilde{\gamma}^A_p:[0,1]\rightarrow P$ tal que $\gamma=\pi \circ \tilde{\gamma}^A_p$ y $\tilde{\gamma}^A_p(0)=p$. Definimos el \emph{transporte paralelo} a lo largo de $\gamma$ determinado por $A$ como la aplicación
+Vemos ahora que se trata de un sistema de EDOs de orden $1$ con coeficientes $C^\infty$, de modo que se le puede aplicar la teoría de existencia y unicidad de soluciones. Concluimos que, si prescribimos $g(0)$, entonces $g(1)$ está determinado unívocamente. Globalmente: dados una curva $\gamma:[0,1]\rightarrow M$ y un elemento $p\in P$, existe una única curva horizontal $\tilde{\gamma}^A_p:[0,1]\rightarrow P$ tal que $\gamma=\pi \circ \tilde{\gamma}^A_p$ y $\tilde{\gamma}^A_p(0)=p$. Definimos el \emph{transporte paralelo} a lo largo de $\gamma$ determinado por $A$ como la aplicación
 \begin{equation*}
 \Pi^A_\gamma: P_{\gamma(0)} \rightarrow P_{\gamma(1)}, \ p \mapsto \tilde{\gamma}_p(1).
 \end{equation*}
@@ -3431,6 +3537,10 @@ Este elemento, que no depende de $p$, se denota por $\mathrm{Hol}^A_{x}(\sigma)$
 \mathrm{Hol}^A_x:\left\{ \text{Lazos en }M \right\} \rightarrow G,\ \sigma \mapsto \mathrm{Hol}^A_x(\sigma).
 \end{equation*}
 Además, nótese que la holonomía del lazo trivial es $1\in G$ y que la holonomía de la concatenación de dos lazos es igual al producto de sus holonomías.
+
+\begin{defn}
+Una \emph{conexión plana} es una conexión $A$ con $F_A=0$.
+\end{defn}
 
 \begin{thm}
   Si $A$ es una conexión plana, entonces el transporte paralelo $\Pi_\gamma^A$ sólo depende de la clase de homotopía del camino $\gamma$. Por tanto, $\mathrm{Hol}^A_x$ desciende a un homomorfismo de grupos
@@ -3503,7 +3613,7 @@ Ha llegado la hora de revisitar el programa de Erlangen, a la manera que lo hizo
 
   Dada una geometría de Cartan $(P,\omega)$ modelada en una geometría de Klein $(G,H)$, se define su \emph{curvatura} como la $2$-forma $\fg$-valorada
   \begin{equation*}
-\Omega = d\omega + \tfrac{1}{2}[\omega \wedge \omega].
+\Omega = d\omega + \tfrac{1}{2} \omega \wedge \omega.
   \end{equation*}
   La \emph{torsión} de $(P,\omega)$ es la imagen $\rho(\Omega)$ por la proyección natural $\rho:\fg \rightarrow \fg/\fh$. Cuando $\Omega \in \Omega^2(P;\fh)$, decimos que la geometría $(P,\omega)$ es \emph{libre de torsión}. Si $\Omega=0$, entonces decimos que la geometría $(P,\omega)$ es \emph{plana}.
 \end{defn}
@@ -3576,12 +3686,12 @@ y de modo que $\psi^* \theta = \tilde{\omega}$.
 \end{equation*}
 Nótese que la $2$-forma
 \begin{equation*}
-T_A = d\theta + \frac{1}{2}[A\wedge \theta]
+T_A = d\theta + \frac{1}{2}A\wedge \theta
 \end{equation*}
 determina precisamente la torsión de la conexión. Como $A$ es la conexión de Levi-Civita, tenemos que $T_A=0$.
 La suma $\omega:= A + \theta \in \Omega^1(\cB_{\OO}(M),\mathfrak{euc}_n(\RR))$ determina una $1$-forma en $\cB_{\OO}(M)$ con valores en $\mathfrak{euc}_n(\RR)=\so_n(\RR) \oplus \RR^n$ y por tanto el par $(\cB_{\OO}(M),\omega)$ es una geometría de Cartan modelada sobre la geometría euclidiana $(\mathrm{Euc}_n(\RR),\OO_n(\RR))$. La curvatura de esta geometría es igual a
 \begin{equation*}
-\Omega = d\omega + \frac{1}{2}[\omega \wedge \omega] = dA + \frac{1}{2}[A\wedge A] + d\theta + \frac{1}{2}[A\wedge \alpha] = F_A + T_A = F_A.
+\Omega = d\omega + \frac{1}{2}\omega \wedge \omega = dA + \frac{1}{2}A\wedge A + d\theta + \frac{1}{2}A\wedge \alpha = F_A + T_A = F_A.
 \end{equation*}
 En coordenadas
 \begin{equation*}
@@ -3597,7 +3707,7 @@ es decir
 \end{equation*}
 donde $K$ es la curvatura seccional. En conclusión, tenemos la ecuación
 \begin{equation*}
-d\omega + \frac{1}{2}[\omega \wedge \omega] = K(\theta \wedge \theta).
+d\omega + \frac{1}{2}\omega \wedge \omega = K(\theta \wedge \theta).
 \end{equation*}
 
 \section{Formas espaciales}
@@ -3607,11 +3717,11 @@ d\omega + \frac{1}{2}[\omega \wedge \omega] = K(\theta \wedge \theta).
 \end{equation*}
 La ecuación de estructura
 \begin{equation*}
-d\omega + \frac{1}{2}[\omega \wedge \omega] = K(\theta \wedge \theta)
+d\omega + \frac{1}{2}\omega \wedge \omega = K(\theta \wedge \theta)
 \end{equation*}
 puede entonces reescribirse como
 \begin{equation*}
-d\omega + \frac{1}{2}[\omega \wedge \omega]_{\fg_K} = 0.
+d\omega + \frac{1}{2}(\omega \wedge \omega)_{\fg_K} = 0.
 \end{equation*}
 De modo que $\omega$ puede verse como una $1$-forma valorada en $\fg_K$, y $(\cB_{\OO}(M),\omega)$ determina una geometría de Cartan plana modelada sobre $(G_K,\SO_n(\RR))$, donde $G_K$ es un grupo de Lie con álgebra de Lie $\fg_K$.
 
