@@ -115,7 +115,7 @@
 \chapter{Fundamentos de variedades diferenciables}
 
 
-\section{Definición de variedad diferenciable}
+\section{Variedades diferenciables: definición y ejemplos}
 
 \begin{defn}
   Un \emph{sistema de coordenadas de dimensión $n$} en un espacio topológico $M$ es un par $(U,\bm{x})$ formado por un abierto $U\subset M$ y un homeomorfismo $\bm{x}: U \rightarrow \bm{x}(U)\subset \RR^n$, con $\bm{x}(U)\subset \RR^n$ un subconjunto abierto.
@@ -179,17 +179,150 @@ es una variedad diferenciable de dimensión igual a la dimensión de $M$, con el
 (U_i = \RR \bbP^n \setminus \left\{ x_i=0 \right\}, (x_0:x_1:\dots:x_n) \mapsto (x_0/x_i, x_1/x_i,\dots,x_n/x_i)).
 \end{equation*}
 
-\subsubsection{} Dos estructuras diferenciables en $\RR$. Lo que pasa en $\RR^4$.
+\subsubsection{} Es posible hallar estructuras diferenciables diferentes en una misma variedad topológica $M$. Basta hallar dos atlas con sistemas de coordenadas que no sean compatibles entre sí, de modo que los atlas maximales que los contengan serán distintos. Por ejemplo, $(\RR,\id_\RR)$ y $(\RR, t \mapsto t^3)$ son dos sistemas de coordenadas que no son compatibles, ya que la aplicación $t\mapsto t^3$ es un homeomorfismo, pero no es un difeomorfismo (su inversa, $t\mapsto t^{1/3}$, no es diferenciable en $t=0$). Sin embargo, las dos variedades diferenciables resultantes son difeomorfas, siendo el difeomorfismo entre ellas precisamente la aplicación $t\mapsto t^3$.
 
-\subsubsection{} Recta con dos orígenes.
+Una pregunta mucho más interesante es si una variedad diferenciable admite varias estructuras diferenciables distintas \textit{y que no sean difeomorfas entre sí}. En otras palabras, si existen variedades diferenciables homeomorfas, pero no difeomorfas. Los ejemplos más sencillos son las \emph{esferas exóticas} construidas por Milnor: variedades diferenciables homeomorfas, pero no difeomorfas, a la esfera $7$-dimensional $S^7$. Otro caso más sorprendente es el de $\RR^4$: mientras que $\RR^n$ admite una única estructura diferenciable (salvo difeomorfismo) para $n\neq 4$, el espacio $\RR^4$ admite una cantidad no numerable de estructuras diferenciables no difeomorfas entre sí.
 
-\subsubsection{} Unión no numerable de $\RR^n$s.
+\subsubsection{} Veamos ahora la clase de ``casos patológicos'' que se evitan al imponer que las variedades sean Hausdorff y II axioma. Un ejemplo es la \emph{recta con dos orígenes}, obtenida como el cociente de la unión disjunta $\RR_{(1)} \sqcup \RR_{(2)}$ por la relación de equivalencia $x_{(1)} \sim x_{(2)}$ para $x\neq 0$. El espacio resultante es localmente homeomorfo a $\RR$, pero no es Hausdorff: los puntos $0_{(1)}$ y $0_{(2)}$ no están identificados, y no se pueden separar. Otro ejemplo es una unión disjunta no numerable de copias de $\RR$; dicho espacio es también localmente homeomorfo a $\RR$, pero no cumple el segundo axioma de numerabilidad.
+
+\subsubsection{Variedades con borde} La definición de variedad que hemos dado a priori excluye a discos, anillos, u otros objetos con una noción de \emph{borde}, ya que éstos no son localmente homeomorfos a $\RR^n$ en los puntos del borde. Esto puede solucionarse de forma sencilla reemplazando el modelo local por el semiespacio
+\begin{equation*}
+\mathbb{H}^n = \left\{ (x^1,\dots,x^n)\in \RR^n: x^n \geq 0 \right\}.
+\end{equation*}
+
+\subsection{Particiones diferenciables de la unidad} Sea $M$ una variedad diferenciable. Una familia $\left\{ \rho_\alpha:\alpha \in I \right\}$ de funciones $\rho_\alpha:M\rightarrow \RR$ es \emph{localmente finita} si, para todo $x\in M$, se tiene que $\rho_\alpha(x)=0$ para todos excepto una cantidad finita de elementos $\alpha \in I$. En tal caso, la suma $\sum_{\alpha} \rho_\alpha(x)$ está definida para todo punto $x\in M$, y por tanto, la función $\sum_{\alpha} \rho_\alpha$ está bien definida. Una \emph{partición diferenciable de la unidad} (PDU) es una familia localmente finita de funciones diferenciables $\rho_\alpha:M\rightarrow \RR$ de modo que $\sum_{\alpha}\rho_\alpha \equiv 1$. Se dice que una partición diferenciable de la unidad $\left\{ \rho_\alpha: \alpha \in I \right\}$ está subordinada a un recubrimiento $\left\{ U_\alpha: \alpha \in I \right\}$ de $M$ si $\mathrm{supp}(\rho_\alpha) \subset U_\alpha$ para cada $\alpha \in I$.
+
+\begin{thm}
+Todo recubrimiento $\left\{ U_\alpha: \alpha \in I \right\}$ de una variedad diferenciable $M$ admite una PDU.
+\end{thm}
+
+\begin{proof}[Idea de la demostración]
+En primer lugar, es un resultado de topología general que todo espacio Hausdorff, II axioma y localmente compacto es paracompacto. Esto quiere decir que todo recubrimiento abierto de $M$ admite un subrecubrimiento localmente finito. Por tanto, podemos hallar un subconjunto $I'\subset I$ de modo que, para todo $x\in M$ existe una cantidad finita de $\alpha \in I$ tal que $x\in U_\alpha$. Basta tomar ahora una \emph{función meseta} $f_\alpha$ para cada $\alpha\in I'$; esto es, para cada $\alpha \in I'$ tomamos una función $f_\alpha:M\rightarrow \RR$ tal que $\mathrm{supp}(\rho_\alpha)\subset U_\alpha$ y tal que $f_\alpha \equiv 1$ en un subconjunto $V_\alpha \subset U_\alpha$ de modo que $M=\bigcup_{\alpha \in I} V_\alpha$. La familia de las $f_\alpha$ es localmente finita, y podemos considerar su suma $f=\sum_{\alpha \in I'} f_\alpha$. Definimos entonces $\rho_\alpha = f_\alpha/f$. Estas funciones $\rho_\alpha$ forman una partición diferenciable de la unidad.
+\end{proof}
 
 
 \section{El espacio tangente}
-a
+\subsection{Modelo 1: Gérmenes de curva} Sea $M$ una variedad diferenciable y $x\in M$ un punto. Un \emph{germen de curva diferenciable en $x$} es un par $(\varepsilon,\gamma)$, con $\varepsilon >0$ y $\gamma:(-\varepsilon,\varepsilon)\rightarrow M$ una curva diferenciable. Definimos una relación de equivalencia en los gérmenes de curva diciendo que $(\varepsilon_1,\gamma_1) \sim (\varepsilon_2,\gamma_2)$ si para cualquier sistema de coordenadas $(U,\bm{x})$ con $x\in U$, se tiene que
+\begin{equation*}
+(\bm{x} \circ \gamma)' (0) = (\bm{x} \circ \eta)'(0).
+\end{equation*}
+Se define el \emph{espacio tangente $T_xM$ a $M$ en $x$} como el conjunto de las clases de equivalencia. Dado un sistema de coordenadas $(U,\bm{x})$, con $x\in U$, la aplicación
+\begin{equation*}
+T_xM \rightarrow \RR^n, [(\varepsilon,\gamma)] \mapsto (\bm{x}\circ \gamma)'(0)
+\end{equation*}
+determina una biyección entre $T_xM$ y $\RR^n$, por medio de la cual $T_xM$ adquiere una estructura natural de espacio vectorial real de dimensión $n$.
 
-Añadir: valor regular, función implícita, etc. Esferas con norma = 1, SLn.
+\subsection{Modelo 2: Derivaciones} Un \emph{germen de función diferenciable en $x$} es un par $(U,f)$ formado por un entorno abierto $U\subset M$ de $x$ y una función diferenciable $f:U\rightarrow \RR$. Dos gérmenes $(U_1,f_1)$ y $(U_2,f_2)$ son equivalentes si existe un subconjunto abierto $V\subset U_1\cap U_2$ de modo que $f_1|_V=f_2|_V$. Los gérmenes de funciones diferenciables en $x$ forman un anillo, que denotamos por $\sO_{M,x}$. Dicho anillo está equipado con una aplicación $\mathrm{ev}_{x}:\sO_{M,x}\rightarrow \RR$ dada por la evaluación en $x$
+\begin{equation*}
+\mathrm{ev}_x([U,f]) = f(x).
+\end{equation*}
+Una \emph{derivación} en $x$ es una aplicación $\RR$-lineal $X_x: \sO_{M,x} \rightarrow \RR$ que cumple la \emph{regla de Leibniz}
+\begin{equation*}
+X_x(fg) = X_x(f) g(x) + f(x) X_x(g).
+\end{equation*}
+Se define el \emph{espacio tangente $T_xM$ a $M$ en $x$} como el conjunto de las derivaciones en $x$.
+
+Ambas definiciones coinciden. Más precisamente, existe un isomorfismo lineal entre el conjunto de las clases de equivalencia de gérmenes de curva y el conjunto de las derivaciones, dado como sigue. A cada clase $[(\varepsilon,\gamma)]$ le asignamos la derivación $X^\gamma$ definida como
+\begin{equation*}
+X^\gamma(f) = (f\circ \gamma)'(0).
+\end{equation*}
+
+Como hemos visto, un sistema de coordenadas $(U,\bm{x}=(x^1,\dots,x^n))$ con $x\in U$ determina un isomorfismo $T_xM \rightarrow \RR^n$. La base canónica de $\RR^n$ se corresponde por este isomorfismo con la base cuyos elementos denotamos como
+\begin{equation*}
+\left. \frac{\partial}{\partial x^1}\right|_x, \dots, \left. \frac{\partial}{\partial x^n}\right|_x
+\end{equation*}
+o, en notación más corta,
+\begin{equation*}
+  \partial_{x^1}|_x,\dots, \partial_{x^n}|_x,
+\end{equation*}
+o incluso
+\begin{equation*}
+  \partial_{1}|_x,\dots, \partial_{n}|_x.
+\end{equation*}
+La notación tiene sentido ya que, para cualquier $f\in \sO_{M,x}$, se tiene que
+\begin{equation*}
+\frac{\partial f}{\partial x^i}(x):=\partial_{i}|_x f=\partial_{x^i}|_x f = \left. \frac{\partial}{\partial x^i} \right|_x f = \frac{\partial (f \circ \bm{x}^{-1})}{\partial x^i} (\bm{x}^{-1}(x)).
+\end{equation*}
+
+\subsection{La diferencial} Dada una aplicación diferenciable $f:M\rightarrow N$ entre dos variedades diferenciables, podemos definir su \emph{diferencial} en un punto $x\in M$. Esta es una aplicación lineal
+\begin{equation*}
+d_x f: T_xM \rightarrow T_{f(x)}N
+\end{equation*}
+definida como sigue. En términos de gérmenes de curvas,
+\begin{equation*}
+d_x f ([(\varepsilon,\gamma)]) = [(\varepsilon, f\circ \gamma)].
+\end{equation*}
+En términos de derivaciones
+\begin{equation*}
+d_xf(X_x) (g) = X_x(g \circ f).
+\end{equation*}
+
+Con respecto a las bases $\partial_{x^1}|_x,\dots,\partial_{x^n}|_x$ y $\partial_{y^1}|_x,\dots,\partial_{y^n}|_x$ determinadas por sendos sistemas de coordenadas $\bm{x}$ y $\bm{y}$ en $M$ y en $N$, respectivamente, la diferencial $d_xf$ de una aplicación diferenciable $f:M\rightarrow N$ se expresa en términos de la matriz jacobiana: si escribimos $X_x = \sum_i X^i \partial_{x^i}|_x$ y $d_xf(X_x)= \sum_i Y^i \partial_{y^i}|_{f(x)}$, entonces
+\begin{equation*}
+\begin{pmatrix}
+  Y^1 \\
+  \vdots \\
+  Y^n
+\end{pmatrix} = J_xf (\bm{y} \circ f \circ \bm{x}^{-1})
+\begin{pmatrix}
+  X^1 \\
+  \vdots \\
+  X^n
+\end{pmatrix}.
+\end{equation*}
+
+Se comprueba inmediatamente que se cumple la \emph{regla de la cadena}
+\begin{equation*}
+d_x(g \circ f) = d_{f(x)} g \circ d_x f.
+\end{equation*}
+Esto puede reformularse como la ``funtorialidad'' del espacio tangente. En efecto, la asignación que a cada par $(M,x)$ formado por una variedad diferenciable $M$ y un punto $x\in M$ le asocia el espacio tangente $T_xM$ y a cada aplicación diferenciable $f:M\rightarrow N$ con $f(x)=y$ le asocia la diferencial $d_xf: T_xM \rightarrow T_yN$ determina un funtor de la categoría de variedades diferenciables con punto base a la categoría de espacios vectoriales reales. Consultar el Capítulo \todo{REF} para más información sobre teoría de categorías.
+
+De la regla de la cadena se deduce inmediatamente que la diferencial de un difeomorfismo es un isomorfismo lineal. El recíproco es cierto sólo localmente:
+
+\begin{thm}[Teorema de la función inversa]
+Sea $f:M\rightarrow N$ una aplicación diferenciable tal que $d_xf:T_xM\rightarrow T_{f(x)}N$ es un isomorfismo, para un cierto $x\in M$. Entonces, existen entornos abiertos $U\subset M$ de $x$ y $V=f(U)\subset N$ de $f(x)$ de modo que $f|_U:U\rightarrow V$ es un difeomorfismo.
+\end{thm}
+
+\subsection{Subvariedades regulares} Una \emph{subvariedad regular} de una variedad diferenciable $M$ de dimensión $m$ es un subconjunto $N \subset M$ localmente difeomorfo a $\RR^n$, para algún $n\leq m$. Es decir, para cada $y\in N$ existe un entorno abierto $U\subset M$ de $y$ y un difeomorfismo $\bm{y}:U\cap N \rightarrow \RR^n$. Un \emph{encaje}, \emph{embebimiento} o \emph{inmersión difeomórfica} es una aplicación diferenciable $i:N\rightarrow M$ entre dos variedades diferenciables que determina un difeomorfismo $i:N\rightarrow i(N)$. En particular, la imagen $i(N)\subset M$ de un encaje es una subvariedad regular.
+
+\begin{defn}
+  Sea $f:M\rightarrow N$ una aplicación diferenciable. Decimos que un punto $y\in N$ es un \emph{valor regular} de $f$ si, para todo punto $x\in f^{-1}(y)$, la diferencial
+  \begin{equation*}
+d_x f: T_x M \rightarrow T_y N
+  \end{equation*}
+  es sobreyectiva.
+\end{defn}
+
+\begin{thm}[Teorema de la función implícita]
+Sea $f:M\rightarrow N$ una aplicación diferenciable. Para todo valor regular $y\in N$, la preimagen $f^{-1}(y)\subset M$ es una subvariedad regular de dimensión $\dim M - \dim N$.
+\end{thm}
+
+\subsection{Más ejemplos}
+El teorema de la función implícita nos permite dar muchos ejemplos de variedades diferenciables, obtenidas como las subvariedades regulares formadas por los ceros de ciertas ecuaciones.
+
+\subsubsection{Esferas} La esfera $S^n$ también puede construirse como una subvariedad regular de $\RR^{n+1}$, $S^n = f^{-1}(0)$, para
+\begin{equation*}
+f: \RR^{n+1} \rightarrow \RR,\ (x^1,\dots,x^n) \mapsto (x^1)^2 + \cdots + (x^n)^2 - 1.
+\end{equation*}
+En efecto, $1$ es un valor regular de $f$ ya que la aplicación linear $d_xf$ está representada por la matriz jacobiana
+\begin{equation*}
+J_xf=\begin{pmatrix}
+2 x^1 & \cdots & 2x^n
+\end{pmatrix},
+\end{equation*}
+que tiene rango $1$ para todo $(x^1,\dots,x^n) \in S^n$.
+
+\subsubsection{El grupo especial lineal} El grupo de las matrices $n\times n$ invertibles de determinante $1$ se denomina el \emph{$n$-ésimo grupo especial lineal} (real) y se denota por $\mathrm{SL}_n(\RR)$. Es el subconjunto del espacio de matrices $M_n(\RR)$ determinado por la ecuación $\det A = 1$. Se puede comprobar a mano que, en efecto, $1$ es un valor regular para la aplicación $\det: M_n(\RR) \rightarrow \RR$, y que por tanto $\mathrm{SL}_n(\RR)\subset M_n(\RR)$ es una subvariedad regular.
+
+\subsubsection{Todas las variedades se pueden embeber}
+No es muy difícil demostrar \todo{CITE} que toda variedad diferenciable $M$ admite un embebimiento $i:M\rightarrow \RR^n$, para algún $n$ (que depende de $n$). Además, el valor de dicha $n$ se puede acotar de forma precisa en términos de la dimensión de $M$; esto último es bastante más complicado, y constituye los célebres teoremas de inmersión de Whitney \todo{CITE}.
+
+\subsection{Espacio cotangente} El \emph{espacio cotangente} $T^*_xM$ a una variedad diferenciable $M$ en un punto $x\in M$ es el espacio vectorial dual del espacio tangente $T_xM$. Dado un sistema de coordenadas $(U,\bm{x})$, la base dual de la correspondiente base $\partial_{1}|_x,\dots, \partial_{n}|_x$ de $T_xM$ se denota por $dx_1|_x,\dots, dx_n|_x$. Así, una forma $\alpha_x \in T^*_xM$ puede escribirse como
+\begin{equation*}
+\alpha_x = \sum_{i=1}^n \alpha_i(x) dx_i|_x,
+\end{equation*}
+para $\alpha_i(x)=\alpha_x(\partial_i|_x)$.
+
 
 \section{Fibrado tangente y fibrados vectoriales}
 a
