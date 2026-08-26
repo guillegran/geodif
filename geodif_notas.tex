@@ -59,6 +59,11 @@
 \begin{document}
 \includepdf[pages=1]{portada.pdf}
 
+\thispagestyle{empty}
+\vfill
+\footnote{Imagen de portada: \textit{El geógrafo y el naturalista}, por Adriaen van Stalbent}
+\hrule
+
 \frontmatter
 \begin{titlepage}
 \setcounter{page}{1}
@@ -71,11 +76,8 @@
 \vfill
 
 \begin{center}
-%\includegraphics[width=\textwidth]{imagen_portada.png}
-%De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
 \includegraphics[width=0.7\textwidth]{fomenko.png} \\
 \textit{Funciones de Morse y el teorema sobre la característica de Euler}, por A. Fomenko
-%De izquierda a derecha: Gauss, Riemann, servidor, Klein y E. Cartan
 \end{center}
 
 \vfill
@@ -113,13 +115,81 @@
 \chapter{Fundamentos de variedades diferenciables}
 
 
-\section{Definiciones de variedad diferenciable}
+\section{Definición de variedad diferenciable}
+
+\begin{defn}
+  Un \emph{sistema de coordenadas de dimensión $n$} en un espacio topológico $M$ es un par $(U,\bm{x})$ formado por un abierto $U\subset M$ y un homeomorfismo $\bm{x}: U \rightarrow \bm{x}(U)\subset \RR^n$, con $\bm{x}(U)\subset \RR^n$ un subconjunto abierto.
+
+  Una \emph{variedad topológica de dimensión $n$} es un espacio topológico $M$ Hausdorff y que cumple el segundo axioma de numerabilidad, y tal que, para todo punto $x\in M$, existe un sistema de coordenadas $(U,\bm{x})$ de dimension $n$ con $x\in U$.
+
+  Dados dos sistemas de coordenadas $(U,\bm{x})$ y $(V,\bm{y})$, se denomina \emph{función de transición} a la aplicación (continua) $\varphi_{UV}:\bm{x} \circ \bm{y}^{-1}: \bm{x}(U)\cap \bm{y}(V) \rightarrow \bm{x}(U) \cap \bm{y}(V)$. Los sistemas $(U,\bm{x})$ y $(V,\bm{y})$ son \emph{diferenciablemente (resp. $C^r$, resp. $C^\infty$) compatibles} si las funciones de transición $\varphi_{UV}$ y $\varphi_{VU}=\varphi_{UV}^{-1}$ son diferenciables (resp. $C^r$, resp $C^\infty$).
+
+
+  Un \emph{atlas diferenciable (resp. $C^r$, resp. $C^\infty$)} es un conjunto de sistemas de coordenadas $\cA=\left\{ (U_\alpha,\bm{x_\alpha})\right\}$, diferenciablemente (resp. $C^r$, resp. $C^\infty$) compatibles dos a dos, y de modo que $M=\bigcup_{\alpha} U_\alpha$. Un atlas es \emph{maximal} si cualquier sistema de coordenadas compatible con sus elementos pertenece a él.
+
+  Una \emph{variedad diferenciable (resp. $C^r$, resp. $C^\infty$)} $(M,\cA_M)$ es un par formado por una variedad topológica $M$ y un atlas diferenciable (resp. $C^r$, resp. $C^\infty$) maximal $\cA_M$. En un abuso de notación, nos referimos a una variedad diferenciable $(M,\cA_M)$ simplemente como $M$; a su vez, el atlas $\cA_M$ se denomina la \emph{estructura diferenciable} de $M$.
+\end{defn}
+
+\subsection{}
+A lo largo del texto, generalmente asumiremos que todo es $C^\infty$. Así, salvo que se especifique lo contrario, compatible querrá decir $C^\infty$-compatible, variedad diferenciable querrá decir variedad $C^\infty$, etc.
+
+\subsection{}
+Nótese que la dimensión $\dim M$ de una variedad diferenciable conexa $M$ está bien definida. En efecto, si dos abiertos $U\subset \RR^n$ y $V\subset \RR^m$ son difeomorfos, entonces $n=m$, ya que la diferencial de un difeomorfismo $U\rightarrow V$ es un isomorfismo lineal $\RR^n\rightarrow \RR^m$. Lo mismo también es cierto si reemplazamos difeomorfismo por homeomorfismo, pero el mismo argumento no sirve. Como veremos en los capítulos posteriores, la dimensión de un espacio euclidiano puede caracterizarse con su homología (o equivalentemente, con su cohomología con soportes compactos).
+
+\begin{defn}
+Sean $M$ y $N$ dos variedades diferenciables. Una aplicación $f:M\rightarrow N$ es \emph{diferenciable (resp. $C^r$, resp. $C^\infty$)} si, para cualesquiera dos sistemas de coordenadas $(U,\bm{x})$ en $M$ y $(V,\bm{y})$ en $N$, con $f(U)\subset V$, la aplicación $\bm{y} \circ f \circ \bm{x}^{-1}: \bm{x}(U)\subset \RR^m \rightarrow \bm{y}(V)\subset \RR^n$ es diferenciable.
+\end{defn}
+
+\subsection{El haz de estructura}
+  Dada una variedad diferenciable $M$, se define su \emph{anillo de estructura} como el anillo
+  \begin{equation*}
+\sO_M(M):= \left\{ f:M\rightarrow \RR : f\text{ es diferenciable} \right\}.
+  \end{equation*}
+  Más generalmente, para cada subconjunto abierto $U\subset M$, podemos considerar el anillo
+  \begin{equation*}
+\sO_M(U):= \left\{ f:U\rightarrow \RR : f\text{ es diferenciable} \right\}.
+  \end{equation*}
+  Si $U\subset V\subset M$ son subconjuntos abiertos, tenemos una aplicación de restricción $\sO_M(V)\rightarrow \sO_M(U)$, $f\mapsto f|_U$. Se dice entonces que la asignación $U\mapsto \sO_M(U)$ determina un \emph{funtor contravariante} de la categoría de los abiertos de $M$ con sus inclusiones a la categoría de $\RR$-álgebras\footnote{Más sobre teoría de categorías en el capítulo \todo{REF}.}. Dicho funtor se denota por $\sO_M$ y se denomina el \emph{haz de estructura} de $M$.
+
+  Es posible recuperar la estructura diferenciable del haz de estructura. En efecto, basta decir que un sistema de coordenadas $(U,\bm{x})$ está en el correspondiente atlas maximal si y sólo si, para toda función diferenciable $f: \RR^n \rightarrow \RR$, la composición $f|_{\bm{x}(U)} \circ \bm{x}:U\rightarrow \RR$ pertenece al anillo $\sO_M(U)$.
+
+\subsection{Ejemplos y no-ejemplos}
+\subsubsection{} El ejemplo por antonomasia de variedad diferenciable es el espacio $\RR^n$ con su estructura diferenciable estándar: el atlas maximal está formado por los pares $(U,\id_U)$, donde $U\subset \RR^n$ es un abierto.
+
+\subsubsection{} Si $M$ es una variedad diferenciable, entonces cualquier subconjunto abierto suyo $U\subset M$ hereda una estructura diferenciable
+\begin{equation*}
+\cA_U = \left\{ (U \cap U_\alpha,\bm{x}_\alpha|_{U\cap U_\alpha}): (U_\alpha,\bm{x}_\alpha) \in \cA_M \right\}.
+\end{equation*}
+
+\subsubsection{} Si $f:M\rightarrow N$ es una aplicación diferenciable, entonces su gráfica
+\begin{equation*}
+G(f):= \left\{ (x,y) \in M \times N: y=f(x) \right\}
+\end{equation*}
+es una variedad diferenciable de dimensión igual a la dimensión de $M$, con el atlas maximal que contiene al conjunto de cartas
+\begin{equation*}
+\left\{ ((U \times N)\cap G(f), (x,f(x)) \mapsto \bm{x}(x)) : (U,\bm{x}) \in \cA_M \right\}.
+\end{equation*}
+
+\subsubsection{} La esfera $n$-dimensional $S^n$ es naturalmente una variedad diferenciable, con el atlas maximal que contiene a las cartas $(U_1=S^n \setminus x_1,\bm{x}_1)$ y $(U_2=S^n \setminus p_2,\bm{x}_2)$, donde $x_1$ y $x_2$ son dos puntos distintos de $S^n$ y $\bm{x}_i:S^n \setminus x_i\rightarrow \RR^n$ es la proyección estereográfica con respecto al punto $x_i$, para $i=1,2$.
+
+\subsubsection{} El conjunto $M_n(\RR)$ de las matrices reales $n\times n$ forma un espacio vectorial de dimensión $n^2$. El grupo $\GL_n(\RR)$ de las matrices invertibles es un subconjunto abierto de $M_n(\RR)$ y por tanto hereda automáticamente una estructura de variedad diferenciable. Además, es fácil comprobar que la inversión y el producto de matrices son aplicaciones diferenciables, de modo que $\GL_n(\RR)$ es un \emph{grupo de Lie} (ver capítulo \todo{REF}).
+
+\subsubsection{} El espacio proyectivo real $\RR \bbP^n$ es una variedad diferenciable de dimensión $n$, con el atlas maximal que contiene a las cartas afines
+\begin{equation*}
+(U_i = \RR \bbP^n \setminus \left\{ x_i=0 \right\}, (x_0:x_1:\dots:x_n) \mapsto (x_0/x_i, x_1/x_i,\dots,x_n/x_i)).
+\end{equation*}
+
+\subsubsection{} Dos estructuras diferenciables en $\RR$. Lo que pasa en $\RR^4$.
+
+\subsubsection{} Recta con dos orígenes.
+
+\subsubsection{} Unión no numerable de $\RR^n$s.
+
+
+\section{El espacio tangente}
 a
 
-Ejemplo: Grupos de Lie
-
-\section{Definiciones del espacio tangente}
-a
+Añadir: valor regular, función implícita, etc. Esferas con norma = 1, SLn.
 
 \section{Fibrado tangente y fibrados vectoriales}
 a
