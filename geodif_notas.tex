@@ -122,7 +122,7 @@
 
   Una \emph{variedad topológica de dimensión $n$} es un espacio topológico $M$ Hausdorff y que cumple el segundo axioma de numerabilidad, y tal que, para todo punto $x\in M$, existe un sistema de coordenadas $(U,\bm{x})$ de dimension $n$ con $x\in U$.
 
-  Dados dos sistemas de coordenadas $(U,\bm{x})$ y $(V,\bm{y})$, se denomina \emph{función de transición} a la aplicación (continua) $\varphi_{UV}:\bm{x} \circ \bm{y}^{-1}: \bm{x}(U)\cap \bm{y}(V) \rightarrow \bm{x}(U) \cap \bm{y}(V)$. Los sistemas $(U,\bm{x})$ y $(V,\bm{y})$ son \emph{diferenciablemente (resp. $C^r$, resp. $C^\infty$) compatibles} si las funciones de transición $\varphi_{UV}$ y $\varphi_{VU}=\varphi_{UV}^{-1}$ son diferenciables (resp. $C^r$, resp $C^\infty$).
+  Dados dos sistemas de coordenadas $(U,\bm{x})$ y $(V,\bm{y})$, se denomina \emph{función de transición} a la aplicación (continua) $\varphi_{UV}:\bm{x} \circ \bm{y}^{-1}: \bm{x}(U)\cap \bm{y}(V) \rightarrow \bm{x}(U) \cap \bm{y}(V)$. Los sistemas $(U,\bm{x})$ y $(V,\bm{y})$ son \emph{diferenciablemente (resp. $C^r$, resp. $C^\infty$) compatibles} si las funciones de cambio de coordenadas $\varphi_{UV}$ y $\varphi_{VU}=\varphi_{UV}^{-1}$ son diferenciables (resp. $C^r$, resp $C^\infty$).
 
 
   Un \emph{atlas diferenciable (resp. $C^r$, resp. $C^\infty$)} es un conjunto de sistemas de coordenadas $\cA=\left\{ (U_\alpha,\bm{x_\alpha})\right\}$, diferenciablemente (resp. $C^r$, resp. $C^\infty$) compatibles dos a dos, y de modo que $M=\bigcup_{\alpha} U_\alpha$. Un atlas es \emph{maximal} si cualquier sistema de coordenadas compatible con sus elementos pertenece a él.
@@ -325,7 +325,71 @@ para $\alpha_i(x)=\alpha_x(\partial_i|_x)$.
 
 
 \section{Fibrado tangente y fibrados vectoriales}
-a
+\subsection{El fibrado tangente} El \emph{fibrado tangente} de una variedad diferenciable $M$, de dimensión $n$, se define como el conjunto
+\begin{equation*}
+TM = \coprod_{x\in M} T_xM,
+\end{equation*}
+equipado con la estructura diferenciable inducida por los sistemas de coordenadas $(TU,T\bm{x})$, asociados a cada sistema de coordenadas $(U,\bm{x})$ de $M$, y definidos como
+\begin{equation*}
+T\bm{x}: TU:=\coprod_{x\in U} T_xM \rightarrow \bm{x}(U) \times \RR^n,\  X_x \in T_x M \mapsto (\bm{x}(x),(X^1,\dots,X^n)),
+\end{equation*}
+donde $X_x=\sum_i X^i \partial_{x^i}$. Estos sistemas son compatibles, ya que los cambios de coordenadas
+\begin{equation*}
+(\bm{x}(U) \cap \bm{y}(V)) \times \RR^n \rightarrow (\bm{x}(U) \cap \bm{y}(V)) \times \RR^n, \  (a,v) \mapsto (\bm{y}(\bm{x}^{-1}(a)), d_a (\bm{y}\circ \bm{x}^{-1})(v))
+\end{equation*}
+son claramente funciones diferenciables. Por tanto, $TM$ es una variedad diferenciable de dimensión $2n$. Esta variedad está equipada con una proyección natural
+\begin{equation*}
+\pi: TM \rightarrow M, X_x \in T_xM \mapsto x.
+\end{equation*}
+Además, el hecho de que los cambios de coordenadas sean lineales en la parte de $\RR^n$, hacen que la aplicación $\pi:TM\rightarrow M$ sea un \emph{fibrado vectorial}, que definimos a continuación.
+
+Nótese además que la construcción del fibrado tangente es functorial, por la regla de la cadena. En efecto, a cada aplicación diferenciable $f:M\rightarrow N$ le podemos asociar la aplicación
+\begin{equation*}
+Tf: TM \rightarrow TN,\  X_x \in T_xM \mapsto d_xf(X_x) \in T_{f(x)}N.
+\end{equation*}
+
+
+\begin{defn}
+  Un \emph{fibrado vectorial (real) de rango $r$} sobre $M$ es una variedad diferenciable $E$ junto con una aplicación diferenciable $\pi:E\rightarrow M$ de modo que cada preimagen $E_x=\pi^{-1}(x)$ es un espacio vectorial real de dimensión $r$ y, para cada punto $x\in M$, existe un entorno $U$ de $x$ y un difeomorfismo
+  \begin{equation*}
+\varphi_U: E|_U := \pi^{-1}(U) \rightarrow U \times \RR^r,
+  \end{equation*}
+  de forma que el siguiente diagrama conmuta
+  \begin{equation*}
+      \begin{tikzcd}
+        E|_U \rar{\varphi_U} \dar{\pi} & U \times \RR^r \ar{ld}{\mathrm{pr}_1} \\
+        U &
+      \end{tikzcd}
+  \end{equation*}
+y que restringe a un isomorfismo lineal $\varphi_{U,y}:E_y \rightarrow \RR^r$ para cada $y \in U$.
+
+Una \emph{sección} (local) de $E$ es una aplicación diferenciable $s:U\rightarrow E$, para algún $U\subset M$ abierto, de forma que $\pi\circ s = \id_U$. Si $U=M$, entonces decimos que $s$ es una \emph{sección global}. Denotamos por $\Gamma(U,E)$ el conjunto de las secciones de $E$ definidas en $U$.
+\end{defn}
+
+\begin{rmk}
+De igual manera se pueden definir los \emph{fibrados vectoriales complejos}, reemplazando $\RR^r$ por $\C^r$ y pidiendo que las fibras $E_x$ sean espacios vectoriales complejos y que las aplicaciones $\varphi_{U,y}$ sean isomorfismos $\C$-lineales.
+\end{rmk}
+
+
+\subsection{Funciones de transición} Sea $\pi:E\rightarrow M$ un fibrado vectorial real de rango $r$. Tomemos dos abiertos $U,V \subset M$, con intersección no vacía, junto con difeomorfismos $\varphi_U:E|_U\rightarrow U\times \RR^r$ y $\varphi_V:E|_V\rightarrow V\times \RR^r$ como en la definición anterior. Sobre la intersección $U\cap V$, podemos definir la aplicación
+\begin{equation*}
+\varphi_V \circ \varphi_U^{-1}: (U\cap V) \times \RR^r \rightarrow (U\cap V) \times \RR^r, (x,v) \mapsto (x, g_{UV}(x)v).
+\end{equation*}
+Aquí, $g_{UV}:U\cap V \rightarrow \GL_r(\RR)$ es una aplicación diferenciable, denominada la \emph{función de transición}. Sobre intersecciones triples $U\cap V \cap W$, las funciones de transición cumplen la \emph{condición de cociclo}
+\begin{equation*}
+g_{UV} g_{VW} = g_{UW}.
+\end{equation*}
+A su vez, las funciones de transición pueden usarse para ``pegar'' y recuperar el fibrado $E$ a partir de las piezas locales $U\times \RR^r$.
+
+\begin{ex}
+  Toda variedad diferenciable $M$ tiene varios fibrados vectoriales asociados naturalmente. En primer lugar están los \textit{fibrados triviales}, para cada $r>0$, definimos el \emph{fibrado trivial de rango $r$} sobre $M$ como el producto $E=M\times \RR^r$, con la proyección natural $\pi=\mathrm{pr}_1:M\times \RR^r\rightarrow M$. El fibrado tangente $TM\rightarrow M$, definido anteriormente, es otro ejemplo claro. También podemos considerar el \emph{fibrado cotangente} $T^*M\rightarrow M$, cuyas fibras son los espacios cotangentes $T^*_xM$.
+\end{ex}
+
+\subsection{Construcciones} a
+
+\subsection{Fibrados y $\sO_X$-módulos} (localmente libre)
+
+\subsection{Fibrado imagen recíproca (\textit{pullback})} a
 
 \section{Cálculo tensorial}
 
