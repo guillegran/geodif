@@ -385,26 +385,181 @@ A su vez, las funciones de transición pueden usarse para ``pegar'' y recuperar 
   Toda variedad diferenciable $M$ tiene varios fibrados vectoriales asociados naturalmente. En primer lugar están los \textit{fibrados triviales}, para cada $r>0$, definimos el \emph{fibrado trivial de rango $r$} sobre $M$ como el producto $E=M\times \RR^r$, con la proyección natural $\pi=\mathrm{pr}_1:M\times \RR^r\rightarrow M$. El fibrado tangente $TM\rightarrow M$, definido anteriormente, es otro ejemplo claro. También podemos considerar el \emph{fibrado cotangente} $T^*M\rightarrow M$, cuyas fibras son los espacios cotangentes $T^*_xM$.
 \end{ex}
 
-\subsection{Construcciones} a
-
-\subsection{Fibrados y $\sO_X$-módulos} (localmente libre)
+\subsection{Fibrados y $\sO_M$-módulos} Dado un fibrado vectorial $E\rightarrow M$, para cualquier abierto $U\subset M$, el espacio de secciones $\Gamma(U,E)$ es un módulo sobre el anillo $\sO_M(U)$ de las funciones diferenciables $U\rightarrow \RR$. En efecto, dada cualquier sección $s:U\rightarrow E$, y cualquier función $f:U\rightarrow \RR$, el producto $fs:U\rightarrow E$ sigue siendo una sección de $E$ sobre $U$. Globalmente, decimos que el \emph{haz de secciones} $\Gamma_E:U\mapsto \Gamma(U,E)$ es un $\sO_M$-módulo. En general, $\Gamma(U,E)$ no es un $\sO_M(U)$-módulo libre, pero, si $U$ es tal que $E|_U$ es isomorfo al fibrado trivial $U\times \RR^r$, entonces este isomorfismo induce un isomorfismo $\Gamma(U,E)\cong \sO_M(U)^r$. Este isomorfismo determina una base $e_1,\dots,e_r$ de $\Gamma(U,E)$ como $\sO_M(U)$-módulo, que se denomina una \emph{referencia} de $E$. En particular, si $E=TM$, una referencia de $TM$ sobre un abierto $U\subset M$ se denomina una \emph{referencia móvil} (o, simplemente, una \emph{referencia}) de $M$. Como, por definición, los fibrados son localmente triviales, el haz de secciones $\Gamma_E$ es un haz \emph{localmente libre}. De hecho, esto da una equivalencia de categorías entre los haces localmente libres de $\sO_M$-módulos y los fibrados vectoriales sobre $M$.
 
 \subsection{Fibrado imagen recíproca (\textit{pullback})} a
 
 \section{Cálculo tensorial}
 
+\subsection{Álgebra tensorial} Recordemos que, dada una familia de espacios vectoriales $\left\{ V_i: i = 1,\dots, n \right\}$, su \emph{producto tensorial} es el espacio vectorial
+\begin{equation*}
+\bigotimes_{i=1}^n V_i,
+\end{equation*}
+determinado por la siguiente propiedad universal: existe una única aplicación multilineal
+\begin{equation*}
+ \prod_{i=1}^n V_i  \rightarrow \bigotimes_{i=1}^n V_i ,\ (v_1,\dots,v_n) \mapsto v_1\otimes \cdots \otimes v_n,
+\end{equation*}
+tal que, para todo espacio vectorial $W$ y para toda aplicación multilineal $m:\prod_{i=1}^n V_i \rightarrow W$, existe una única aplicación lineal $l:\bigotimes_{i=1}^n V_i \rightarrow W$ de forma que el siguiente diagrama conmuta
+\begin{equation*}
+\begin{tikzcd}
+  \prod_{i=1}^n V_i \rar{m} \dar & W \\
+  \bigotimes_{i=1}^n V_i; \ar{ru}{l}
+\end{tikzcd}
+\end{equation*}
+es decir, de forma que
+\begin{equation*}
+m(v_1,\dots,v_n) = l(v_1\otimes \cdots \otimes v_n).
+\end{equation*}
+
+Dado un espacio vectorial sobre un cuerpo $K$, y un número $k\geq 0$, definimos su \emph{$k$-ésima potencia tensorial} como el espacio vectorial
+\begin{equation*}
+V^{\otimes k} := V\otimes \overset{(k)}{\cdots} \otimes V.
+\end{equation*}
+Para $k=0$, por convenio ponemos $T^0V:= K$. El \emph{álgebra tensorial} de $V$ es el espacio vectorial
+\begin{equation*}
+T(V) := \bigoplus_{k=0}^\infty V^{\otimes k} = K \oplus (V\otimes V) \oplus (V\otimes V \otimes V) \oplus \cdots,
+\end{equation*}
+con el producto asociativo determinado por el \emph{producto tensorial}
+\begin{equation*}
+(v \in V^{\otimes k} , w \in V^{\otimes l} ) \mapsto v \otimes w \in V^{\otimes (k+l)}.
+\end{equation*}
+Los elementos de $T(V)$ se denominan \emph{tensores}.
+
+Se define el \emph{álgebra simétrica} $S(V)$ de $V$ como el cociente del álgebra tensorial $T(V)$ por el ideal generado por los conmutadores
+\begin{equation*}
+[v,w] = v\otimes w - w \otimes v, \ v, w\in V.
+\end{equation*}
+Se denota por $vw$ y se denomina \emph{producto simétrico} de $v$ y $w$ a la imagen de un producto tensorial $v\otimes w$ por el cociente $T(V)\rightarrow S(V)$. A su vez, si $K$ es de característica nula, este cociente admite una sección
+\begin{equation*}
+S(V) \rightarrow T(V), \  v_1v_2\cdots v_n \mapsto \frac{1}{n!} \sum_{\sigma \in \mathfrak{S}_n} v_{\sigma(1)} \otimes \cdots \otimes v_{\sigma(n)}.
+\end{equation*}
+La imagen de esta sección es el subespacio de $T(V)$ formado por los \emph{tensores simétricos}: un elemento de $V^{\otimes k}$ es simétrico si es invariante bajo la transformación $v_1\otimes \cdots \otimes v_n \mapsto v_{\sigma(1)} \otimes \cdots \otimes v_{\sigma(n)}$, para toda permutación $\sigma \in \mathfrak{S}_n$. De esta forma, $S(V)$ forma un álgebra graduada
+\begin{equation*}
+S(V) = \bigoplus_{k=0}^\infty S^k(V) = K \oplus S^2(V) \oplus S^3(V) \oplus \cdots,
+\end{equation*}
+donde cada $S^k(V)$ se identifica con los tensores simétricos en $V^{\otimes k}$.
+De hecho, $V$ tiene dimensión $n$, cualquier isomorfismo $V\rightarrow K^n$ determina un isomorfismo del álgebra $S(V)$ con el álgebra polinomial $K[x_1,\dots,x_n]$.
+
+Se define el \emph{álgebra exterior} $\Lambda(V)$ de $V$ como el cociente del álgebra tensorial $T(V)$ por el ideal generado por los elementos de la forma
+\begin{equation*}
+v\otimes v, \ v\in V.
+\end{equation*}
+Se denota por $v\wedge w$ y se denomina \emph{producto exterior} de $v$ y $w$ a la imagen de un producto tensorial $v\otimes w$ por el cociente $T(V)\rightarrow \Lambda(V)$. A su vez, si $K$ es de característica nula, este cociente admite una sección
+\begin{equation*}
+\Lambda(V) \rightarrow T(V), \  v_1\wedge v_2\wedge \cdots \wedge v_n \mapsto \sum_{\sigma \in \mathfrak{S}_n} (-1)^\sigma v_{\sigma(1)} \otimes \cdots \otimes v_{\sigma(n)}.
+\end{equation*}
+La imagen de esta sección es el subespacio de $T(V)$ formado por los \emph{tensores antisimétricos}: un elemento de la forma $a=\sum a_{1,\dots,k} v_{1} \otimes \cdots \otimes v_k \in V^{\otimes k}$ es antisimétrico si $\sigma(a)=(-1)^\sigma a$, para toda permutación $\sigma \in \mathfrak{S}_n$, donde $\sigma(a)$ se define como $\sigma(a)=\sum a_{1,\dots,k} v_{\sigma(1)}\otimes \cdots \otimes v_{\sigma(k)}$. De esta forma $\Lambda(V)$ forma un álgebra graduada
+\begin{equation*}
+\Lambda(V) = \bigoplus_{k=0}^\infty \Lambda^k(V) = K \oplus \Lambda^2(V) \oplus \Lambda^3(V) \oplus \cdots = K\otimes \Lambda^2(V) \oplus \Lambda^3(V) \oplus \cdots \oplus \Lambda^n(V),
+\end{equation*}
+donde cada $\Lambda^k(V)$ se identifica con los tensores antisimétricos en $V^{\otimes k}$. En particular, nótese que $\Lambda^k(V)=0$ para $k>n=\dim V$, y que $\Lambda^n(V)$ es isomorfo a $K$, mediante la aplicación
+\begin{equation*}
+\det: \Lambda^n(V) \rightarrow K,\ v_1\wedge \cdots \wedge v_n \mapsto \det(v_1, \dots, v_n).
+\end{equation*}
+
+El lector puede comprobar fácilmente que, debido a la naturalidad de estas construcciones, es posible replicarlas en la categoría de los fibrados vectoriales y así, dado un fibrado vectorial $E\rightarrow M$ sobre una variedad diferenciable, se pueden definir similarmente sus potencias tensoriales $E^{\otimes k}\rightarrow M$, simétricas $S^k(E)\rightarrow M$ y antisimétricas $\Lambda^k(E)\rightarrow M$.
+
+\subsection{Campos, formas, métricas y tensores} Sea $M$ una variedad diferenciable. Un \emph{campo tensorial} (o, simplemente un \emph{tensor}) \emph{$r$ veces covariante y $s$ veces contravariante} (equivalentemente, \emph{de tipo $(r,s)$}), es una sección del fibrado vectorial
+\begin{equation*}
+T^{r}_s (M) = (T^*M)^{\otimes r} \otimes (TM)^{\otimes s}.
+\end{equation*}
+Existen algunos casos particulares de tensores que serán especialmente importantes. Denotamos por
+\begin{equation*}
+\mathcal{T}^r_s(M) := \Gamma(M,T^{r}_s(M)),
+\end{equation*}
+el espacio de los tensores de tipo $(r,s)$.
+
+Un tensor de tipo $(0,1)$ es simplemente una sección de $TM$, es decir, un \emph{campo vectorial}. El espacio de los campos vectoriales se denota por
+\begin{equation*}
+\fX(M) = \mathcal{T}^0_1(M) = \Gamma(M,TM).
+\end{equation*}
+
+Un tensor de tipo $(2,0)$ determina una forma bilineal en cada espacio tangente $T_xM$, $x\in M$. En particular, si el tensor es simétrico y la forma es no degenerada en cada punto, el tensor se denomina una \emph{métrica} (riemanniana).
+
+Un tensor antisimétrico de tipo $(k,0)$ se denomina una \emph{forma diferencial de grado $k$} o \emph{$k$-forma diferencial}. El espacio de las $k$-formas diferenciales se denota como
+\begin{equation*}
+\Omega^k(M) = \Gamma(M, \Lambda^k(T^*M)).
+\end{equation*}
+Todos juntos, estos espacios forman el \emph{álgebra exterior de $M$}
+\begin{equation*}
+\Omega(M) = \bigoplus_{k=0}^{\infty} \Omega^k(M),
+\end{equation*}
+equipado con el \emph{producto exterior} $(\alpha,\beta) \mapsto \alpha \wedge \beta$.
+
+\subsection{Cálculo tensorial en coordenadas} Un sistema de coordenadas $(U,\bm{x}=(x^1,\dots,x^n))$ en una variedad diferenciable $M$ induce automáticamente una referencia sobre $U$ para el fibrado tangente $TM$, dada por los campos
+\begin{equation*}
+\partial_1=\partial_{x^1} = \frac{\partial}{\partial x^1}, \dots, \partial_n=\partial_{x^n} = \frac{\partial}{\partial x^n}.
+\end{equation*}
+A su vez, también se obtiene una referencia para el cotangente $T^*M$, dada por las formas
+\begin{equation*}
+dx^1,\dots, dx^n.
+\end{equation*}
+En general, se obtiene una referencia para cualquier fibrado $T^r_s(M)$ formada por los elementos de la forma
+\begin{equation*}
+dx^{i_1} \otimes \cdots \otimes dx^{i_r} \otimes \partial_{j_1} \otimes \cdots \otimes \partial_{j_s}.
+\end{equation*}
+Así, cualquier tensor $A \in \mathcal{T}^r_s(U)$ puede escribirse como
+\begin{equation*}
+A = \sum_{i_1,\dots,i_r,j_1,\dots,j_s} A_{i_1 \dots i_r}^{j_1 \dots j_s}dx^{i_1} \otimes \cdots \otimes dx^{i_r} \otimes \partial_{j_1} \otimes \cdots \otimes \partial_{j_s}.
+\end{equation*}
+Aquí, cada uno de los términos $A_{i_1 \dots i_r}^{j_1 \dots j_s}$ es una función diferenciable con valores en $\RR$. Cuando se trabaja en coordenadas es habitual referirse al tensor $A$ simplemente como el conjunto de términos $A_{i_1 \dots i_r}^{j_1 \dots j_s}$.
+
+En geometría diferencial es habitual utilizar el \emph{convenio de índices repetidos} o \emph{convenio de suma de Einstein}, donde, si un índice se repite dos veces en una expresión, una vez como subíndice y otra como superíndice, se sobreentiende que se está sumando en ese índice. Así, en vez de escribir
+\begin{equation*}
+A = \sum_{i_1,\dots,i_r,j_1,\dots,j_s} A_{i_1 \dots i_r}^{j_1 \dots j_s}dx^{i_1} \otimes \cdots \otimes dx^{i_r} \otimes \partial_{j_1} \otimes \cdots \otimes \partial_{j_s},
+\end{equation*}
+como antes, escribiremos simplemente
+\begin{equation*}
+A = A_{i_1\dots i_r}^{j_1\dots j_s}dx^{i_1} \otimes \cdots \otimes dx^{i_r} \otimes \partial_{j_1} \otimes \cdots \otimes \partial_{j_s},
+\end{equation*}
+estando el sumatorio implícito en la notación. Nótese que los índices de la parte covariante se ponen abajo y que los índices de la parte contravariante se ponen arriba.
+
+Es importante tener especial cuidado con los tensores antisimétricos. Si $\alpha$ es un tensor antisimétrico $k$ veces covariante, que en coordenadas se escribe como
+\begin{equation*}
+\alpha = \frac{1}{k!} \alpha_{i_1\dots i_k} dx^{i_1}\otimes \cdots \otimes dx^{i_k}
+\end{equation*}
+(aquí, la antisimetría significa que $\alpha_{i_{\sigma(1)} \dots i_{\sigma(k)}}=(-1)^\sigma \alpha_{i_1 \dots i_k}$, para toda permutación $\sigma \in \mathfrak{S}_k$) entonces el correspondiente elemento de $\Lambda^k(M)$ se escribe como
+\begin{equation*}
+\alpha = \frac{1}{k!} \alpha_{i_1 \dots i_k} dx^{i_1}\wedge \cdots \wedge dx^{i_k} = \sum_{i_1<\cdots <i_k} \alpha_{i_1 \dots i_k} dx^{i_1} \wedge \cdots \wedge dx^{i_k}.
+\end{equation*}
+Es decir, es necesario añadir el factor de $k!$ para tener en cuenta la distinción entre sumar para todas las tuplas $(i_1,\dots,i_k)$ o solo sumar para las tuplas ordenadas.
+
+La notación de índices repretidos es especialmente útil a la hora de hacer \emph{contracciones}, es decir, de emplear la dualidad entre campos y $1$-formas $\fX(M)\times \Omega^1(M)\rightarrow \sO_X(M)$ para emparejar tensores. Por ejemplo, si $A$ es un tensor $r$ veces covariante y $B$ es un tensor $s$ veces contravariante, para $s\leq r$, se pueden emparejar sus $s$-primeros índices (o los que sean) para formar un tensor $r-s$ veces covariante; esto se denotaría así
+\begin{equation*}
+(AB)_{j_{s+1} \dots j_{r}} = A_{j_1 \dots j_s j_{s+1} \dots j_r} B^{j_1 \dots j_s}.
+\end{equation*}
+
+Un ejemplo muy típico de lo anterior es el \emph{producto interior} inducido por un campo $X$, definido como la aplicación de grado $-1$
+\begin{equation*}
+i_X: \Omega(M) \rightarrow \Omega(M)
+\end{equation*}
+dada por la igualdad
+\begin{equation*}
+i_X \alpha(X_1,\dots,X_k) = \alpha(X,X_1,\dots,X_k).
+\end{equation*}
+En coordenadas, si $\alpha$ se escribe como
+\begin{equation*}
+\alpha = \frac{1}{(k+1)!} \alpha_{i_0 i_1 \dots i_k} dx^{i_0} \wedge dx^{i_1} \wedge \cdots \wedge dx^{i_k},
+\end{equation*}
+y el campo $X$ se escribe como $X= X^i \partial_i$, entonces
+entonces
+\begin{equation*}
+i_X\alpha =\frac{1}{(k+1)!} \alpha_{i i_1 \dots i_k} X^i dx^{i_1}\wedge \cdots \wedge dx^{i_k}.
+\end{equation*}
+
 Añadir: notación del producto simétrico $dx^i dx^j$. Convenio de índices repetidos. Cuidado con convenio al hacer antisimétricos. Pullback, covariancia y contravariancia, etc.
 
+\subsection{Diferencial exterior}
 diferencial exterior conmuta con pullback
 
-\section{Campos vectoriales, flujos y derivada de Lie}
+\subsection{Campos vectoriales, flujos y derivada de Lie}
 a
 
 Fórmula pushforward y flujos. Flujos completos (p. ej. si $M$ compacta)
 
 Campos $\psi$-relacionados
 
-\section{Integración de formas y teorema de Stokes}
+\section{Orientaciones, integración de formas y teorema de Stokes}
 a
 
 Introducir orientaciones
