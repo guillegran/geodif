@@ -263,7 +263,7 @@ Con respecto a las bases $\partial_{x^1}|_x,\dots,\partial_{x^n}|_x$ y $\partial
   Y^1 \\
   \vdots \\
   Y^n
-\end{pmatrix} = J_xf (\bm{y} \circ f \circ \bm{x}^{-1})
+\end{pmatrix} = \frac{\partial} J_{\bm{x}(x)}(\bm{y} \circ f \circ \bm{x}^{-1})
 \begin{pmatrix}
   X^1 \\
   \vdots \\
@@ -387,7 +387,18 @@ A su vez, las funciones de transición pueden usarse para ``pegar'' y recuperar 
 
 \subsection{Fibrados y $\sO_M$-módulos} Dado un fibrado vectorial $E\rightarrow M$, para cualquier abierto $U\subset M$, el espacio de secciones $\Gamma(U,E)$ es un módulo sobre el anillo $\sO_M(U)$ de las funciones diferenciables $U\rightarrow \RR$. En efecto, dada cualquier sección $s:U\rightarrow E$, y cualquier función $f:U\rightarrow \RR$, el producto $fs:U\rightarrow E$ sigue siendo una sección de $E$ sobre $U$. Globalmente, decimos que el \emph{haz de secciones} $\Gamma_E:U\mapsto \Gamma(U,E)$ es un $\sO_M$-módulo. En general, $\Gamma(U,E)$ no es un $\sO_M(U)$-módulo libre, pero, si $U$ es tal que $E|_U$ es isomorfo al fibrado trivial $U\times \RR^r$, entonces este isomorfismo induce un isomorfismo $\Gamma(U,E)\cong \sO_M(U)^r$. Este isomorfismo determina una base $e_1,\dots,e_r$ de $\Gamma(U,E)$ como $\sO_M(U)$-módulo, que se denomina una \emph{referencia} de $E$. En particular, si $E=TM$, una referencia de $TM$ sobre un abierto $U\subset M$ se denomina una \emph{referencia móvil} (o, simplemente, una \emph{referencia}) de $M$. Como, por definición, los fibrados son localmente triviales, el haz de secciones $\Gamma_E$ es un haz \emph{localmente libre}. De hecho, esto da una equivalencia de categorías entre los haces localmente libres de $\sO_M$-módulos y los fibrados vectoriales sobre $M$.
 
-\subsection{Fibrado imagen recíproca (\textit{pullback})} a
+\subsection{Fibrado imagen recíproca (\textit{pullback})} Sea $\pi:E\rightarrow M$ un fibrado vectorial y $f:M' \rightarrow M$ una aplicación diferenciable. A partir de estos objetos, se construye un fibrado vectorial $\pi':f^*E\rightarrow M'$, con fibras $(f^*E)_{x}=E_{f(x)}$, como sigue. El espacio total del fibrado es la subvariedad
+\begin{equation*}
+f^* E = \left\{ (x,e) \in M'\times E: f(x)=\pi(e) \right\} \subset M' \times E,
+\end{equation*}
+y la proyección $\pi':f^*E \rightarrow M'$ es simplemente la restricción de la proyección al primer factor. La proyección al segundo factor determina una aplicación $f^*E\rightarrow E$ de forma que el siguiente diagrama conmuta
+\begin{equation*}
+  \begin{tikzcd}
+f^*E    \ar{r} \ar{d}{\pi'} & E \ar{d}{\pi} \\
+M'    \ar{r}{f} & M.
+  \end{tikzcd}
+\end{equation*}
+El fibrado $\pi':f^*E\rightarrow M'$ se denomina el \emph{fibrado \textit{pullback}} o \emph{imagen recíproca} de $E\rightarrow M$ por $f$.
 
 \section{Cálculo tensorial}
 
@@ -480,6 +491,7 @@ Un tensor antisimétrico de tipo $(k,0)$ se denomina una \emph{forma diferencial
 \begin{equation*}
 \Omega^k(M) = \Gamma(M, \Lambda^k(T^*M)).
 \end{equation*}
+Las formas diferenciales de grado máximo $\omega \in \Omega^{n}(M)$, para $n=\dim M$, se denominan \emph{formas de volumen}.
 Todos juntos, estos espacios forman el \emph{álgebra exterior de $M$}
 \begin{equation*}
 \Omega(M) = \bigoplus_{k=0}^{\infty} \Omega^k(M),
@@ -547,22 +559,276 @@ entonces
 i_X\alpha =\frac{1}{(k+1)!} \alpha_{i i_1 \dots i_k} X^i dx^{i_1}\wedge \cdots \wedge dx^{i_k}.
 \end{equation*}
 
-Añadir: notación del producto simétrico $dx^i dx^j$. Convenio de índices repetidos. Cuidado con convenio al hacer antisimétricos. Pullback, covariancia y contravariancia, etc.
+\subsection{Pullback} Una de las propiedades fundamentales de los tensores covariantes es que se pueden trasladar a través de aplicaciones diferenciables $f:M\rightarrow N$. En efecto, si $A \in \mathcal{T}^0_k(N)$ es un tensor covariante, podemos definir su \emph{pullback} $f^*A \in \mathcal{T}^0_k(M)$ como la sección de $(T^*M)^{\otimes k}$ que al evaluarla en unos vectores tangentes $X_1,\dots,X_n \in T_xM$ está dada por la igualdad
+\begin{equation*}
+(f^*A)_x (X_1,\dots,X_n) = A_{f(x)}(d_xf(X_1),\dots,d_xf(X_n)).
+\end{equation*}
 
-\subsection{Diferencial exterior}
-diferencial exterior conmuta con pullback
+Si tomamos sistemas de coordenadas $(U,\bm{x}=(x^1,\dots,x^m))$ y $(V,\bm{y}=(y^1,\dots,y^n))$ en $M$ y $N$, respectivamente, y definimos la aplicación
+\begin{equation*}
+\tilde{f}:= \bm{y} \circ f \circ \bm{x}^{-1}: \RR^m \rightarrow \RR^n,
+\end{equation*}
+de modo que, si $\tilde{f}$ se escribe como $\tilde{f}=(\tilde{f}^1,\dots,\tilde{f}^n)$, tenemos
+\begin{equation*}
+y^i(f(x)) = \tilde{f}^i(x^1(x),\dots,x^n(x)),
+\end{equation*}
+entonces
+\begin{equation*}
+f^*(dy^i) = d(\tilde{f}^i(x^1,\dots,x^n)) = \frac{\partial \tilde{f}^i}{\partial x^j}(x^1,\dots,x^n) dx^j.
+\end{equation*}
+En particular, esto hace evidente el \emph{teorema del cambio de variable}:
+\begin{equation*}
+dy^1 \wedge \cdots \wedge dy^n = \det \left(\frac{\partial \bm{y}}{\partial \bm{x}} \right) dx^1 \wedge \cdots \wedge dx^n.
+\end{equation*}
 
-\subsection{Campos vectoriales, flujos y derivada de Lie}
-a
+Si $f:M\rightarrow M$ es un difeomorfismo, también es posible definir el pullback de un tensor contravariante. Para ello, para cada punto $x\in M$, se considera la diferencial $d_xf: T_xM \rightarrow T_{f(x)}M$ y su inversa $(d_xf)^{-1}: T_{f(x)}M \rightarrow T_xM$. Así, dado un campo vectorial $X\in \fX(M)$, definimos su pullback $f^* X$ como
+\begin{equation*}
+f^* X = (df)^{-1} X \circ f.
+\end{equation*}
+La definición se extiende de forma natural a cualquier tensor contravariante.
 
-Fórmula pushforward y flujos. Flujos completos (p. ej. si $M$ compacta)
+\subsection{Diferencial exterior} La \emph{diferencial exterior} se define axiomáticamente como la única aplicación
+\begin{equation*}
+d: \Omega(M) \rightarrow \Omega(M),
+\end{equation*}
+de grado $1$ que satisface las siguientes propiedades:
+\begin{enumerate}
+  \item Para toda función diferenciable $f:M\rightarrow \RR$, la $1$-forma $d f\in \Omega^1(M)$ está dada por la diferencial
+        \begin{equation*}
+(d f)_x = d_xf: T_xM \rightarrow \RR.
+        \end{equation*}
+ \item $d^2=0$; es decir $d(d\omega)=0$ para toda forma diferencial $\omega$.
+  \item Regla de Leibniz:
+        \begin{equation*}
+d(\alpha \wedge \beta) = d\alpha \wedge \beta + (-1)^{\deg \alpha}(\alpha \wedge d\beta).
+        \end{equation*}
+\end{enumerate}
 
-Campos $\psi$-relacionados
+Su existencia se puede probar construyéndola localmente. En un sistema de coordenadas $(U,\bm{x})$, una forma diferencial de grado $k$ se escribe como
+\begin{equation*}
+\alpha = \sum_{i_1<\cdots < i_k} \alpha_{i_1\dots i_k} dx^{i_1}\wedge \cdots \wedge dx^{i_k},
+\end{equation*}
+y su diferencial es la $(k+1)$-forma
+\begin{equation*}
+d\alpha = \sum_{i_1< \cdots < i_k} \frac{\partial \alpha_{i_1 \dots i_k}}{\partial x^i} dx^i \wedge dx^{i_1} \wedge \cdots \wedge dx^{i_k}.
+\end{equation*}
+
+Una de las propiedades más importantes de la diferencial exterior es que conmuta con el pullback; es decir, para toda aplicación diferenciable $f:M\rightarrow N$ y toda forma diferencial $\omega \in \Omega(N)$, se tiene que
+\begin{equation*}
+d(f^* \omega) = f^* (d\omega).
+\end{equation*}
+
+\begin{ex}
+  Es interesante considerar el ejemplo de las formas diferenciales en $\RR^3$. La dimensión del espacio vectorial $\Lambda^2 \RR^3$ es ${3 \choose 2} = 3$, con una base dada por las $2$-formas
+  \begin{equation*}
+dy\wedge dz\ , dx\wedge dz,\ dx \wedge dy.
+  \end{equation*}
+  Si $f:\RR^3\rightarrow \RR$ es una función diferenciable, entonces
+  \begin{equation*}
+df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac{\partial f}{\partial z} dz .
+  \end{equation*}
+Es decir, en la base dada por $\left\{ dx,dy,dz \right\}$, la diferencial $df$ se identifica con el \emph{gradiente}
+\begin{equation*}
+\nabla f = (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} dy, \frac{\partial f}{\partial z}).
+\end{equation*}
+
+Por otra parte, dada una $1$-forma
+\begin{equation*}
+\alpha = \alpha_x dx + \alpha_y dy + \alpha_z dz,
+\end{equation*}
+su diferencial es la $2$-forma
+\begin{equation*}
+d\alpha =\left( \frac{\partial \alpha_z}{\partial y} -\frac{\partial \alpha_y}{\partial z} \right) dy\wedge dz - \left( \frac{\partial \alpha_z}{\partial x} -\frac{\partial \alpha_x}{\partial z} \right) dz\wedge dx + \left( \frac{\partial \alpha_y}{\partial x} -\frac{\partial \alpha_x}{\partial y} \right) dx \wedge dy,
+\end{equation*}
+Por tanto, con respecto a las bases $\left\{ dx,dy,dz \right\}$ y $\left\{ dy\wedge dz, dz\wedge dx,dx \wedge dy \right\}$, la diferencial exterior se identifica con el \emph{rotacional}: dada $\bm{F}=(F_x,F_y,F_z):\RR^3\rightarrow \RR^3$, su rotacional $\nabla \times \bm{F}: \RR^3\rightarrow \RR^3$ está dado por
+\begin{equation*}
+\nabla \times \bm{F} = \left(\frac{\partial F_z}{\partial y} -\frac{\partial F_y}{\partial z},-\frac{\partial F_z}{\partial x} +\frac{\partial F_x}{\partial z},  \frac{\partial F_y}{\partial x} -\frac{\partial F_x}{\partial y}  \right).
+\end{equation*}
+
+Finalmente, dada una $2$-forma
+\begin{equation*}
+\alpha = \alpha_{yz} dy\wedge dz + \alpha_{zx} dz\wedge dx + \alpha_{xy} dx\wedge dy,
+\end{equation*}
+su diferencial es la $3$-forma
+\begin{equation*}
+d\alpha = \left( \frac{\partial \alpha_{yz}}{\partial x} + \frac{\partial \alpha_{zx}}{\partial y} + \frac{\partial \alpha_{xy}}{\partial z} \right) dx\wedge dy \wedge dz.
+\end{equation*}
+Por tanto, con respecto a las bases $\left\{ dy\wedge dz, dz\wedge dx,dx \wedge dy \right\}$ y $\left\{ dx\wedge dy \wedge dz \right\}$, la diferencial exterior se identifica con la \emph{divergencia}
+\begin{equation*}
+\nabla \cdot \bm{F} = \frac{\partial F_{x}}{\partial x} + \frac{\partial F_{y}}{\partial y} + \frac{\partial F_{z}}{\partial z} .
+\end{equation*}
+\end{ex}
+
+
+\section{Campos y flujos}
+
+\subsection{El corchete de Lie}
+Un campo vectorial $X\in \fX(M)$ actúa en el espacio de las funciones $C^\infty(M)$ en la forma
+\begin{equation*}
+X f (p) = X_p f.
+\end{equation*}
+Así, vistos como operadores, es posible definir el conmutador $[X,Y]$ de dos campos, que a su vez será otro campo determinado por su acción en $C^\infty(M)$:
+\begin{equation*}
+[X,Y](f) = X(Yf) - Y(Xf).
+\end{equation*}
+En coordenadas, si escribimos $X=X^i \partial_i$, $Y=Y^i\partial_i$ y $[X,Y]=[X,Y]^i \partial_i$, entonces
+\begin{equation*}
+[X,Y]^i = X^j\partial_j Y^i - Y^j\partial_j X^i.
+\end{equation*}
+
+El operador resultante $[-,-]: \fX(M) \times \fX(M)\rightarrow \fX(M)$ se denomina el \emph{corchete de Lie}, y es una aplicación $\RR$-bilineal, antisimétrica, y satisface la \emph{identidad de Jacobi}
+\begin{equation*}
+[[X,Y],Z] + [[Y,Z],X] + [[Z,X], Y] = 0.
+\end{equation*}
+Por tanto, determina en $\fX(M)$ la estructura de un \emph{álgebra de Lie} (ver Sección \todo{REF}). Además, el corchete de Lie satisface la \emph{regla de Leibniz}
+\begin{equation*}
+[X,fY] = f[X,Y] + (Xf) Y.
+\end{equation*}
+
+\begin{ex}
+  Consideremos un ejemplo sencillo: $M=\RR^2$, $X=\partial_x$ e $Y=x\partial_y$. Entonces,
+  \begin{align*}
+[X,Y]  = [\partial_x,x\partial_y] = (\partial_xx)\partial_y = \partial_y.
+  \end{align*}
+
+\end{ex}
+
+\subsection{Flujos} Una \emph{curva integral} de un campo $X$ pasando por un punto $x\in M$ es una curva $\gamma:(-\varepsilon,\varepsilon) \rightarrow M$ que resuelve el problema de valor inicial
+\begin{equation*}
+\begin{cases}
+  \gamma'(t) = X_{\gamma(t)}, & t\in (-\varepsilon,\varepsilon) \\
+  \gamma(0) = x.
+\end{cases}
+\end{equation*}
+Por el teorema de existencia y unicidad de ecuaciones diferenciales ordinarias, existe un intervalo maximal $I_x$ y una única curva integral $\gamma_x:I_x\rightarrow M$ con $\gamma(0)=x$. La unión de todas estas curvas determina el \emph{flujo} o \emph{grupo uniparamétrico} asociado al campo $X$
+\begin{equation*}
+\varphi: D \subset \RR \times M \rightarrow M,\ \varphi(t,x) = \gamma_x(t).
+\end{equation*}
+Aquí, $D$ es un subconjunto abierto que contiene a $\left\{ 0 \right\}\times M$, la aplicación $\varphi_0=\varphi(0,-):M\rightarrow M$ es la identidad $\varphi_0=\id_M$, y se tiene que
+\begin{equation*}
+\varphi(t+s,x) = \varphi(t,\varphi_s(x)),
+\end{equation*}
+si ambos lados de la ecuación están bien definidos. Fijado $t$, la aplicación $\varphi_t=\varphi(t,-):M\rightarrow M$ es un difeomorfismo cuya inversa es $(\varphi_t)^{-1}=\varphi_{-t}$.
+
+Se dice que el campo $X$ (o, equivalentemente, su flujo $\varphi$) es \emph{completo} si $D=\RR \times M$. Nótese que un flujo con soporte compacto (en particular, cualquier flujo en una variedad compacta) es completo.
+
+\subsection{Derivada de Lie} Dado un campo vectorial $X \in \fX(M)$, se puede definir un operador en cada espacio de tensores
+\begin{equation*}
+\mathcal{L}_X: \mathcal{T}^{r}_s(M) \rightarrow \mathcal{T}^{r}_s(M),
+\end{equation*}
+que preserva los tensores simétricos y antisimétricos, denominado la \emph{derivada de Lie} asociada a $X$. Dado un tensor $A \in \mathcal{T}^r_s(M)$, se define su derivada de Lie con respecto a $X$ como
+\begin{equation*}
+(\mathcal{L}_X A)_x = \lim_{t\rightarrow 0} \frac{(\varphi_t)^* A_{\varphi_t(x)}- A_x}{t}.
+\end{equation*}
+
+La derivada de Lie cumple las siguientes propiedades, que la caracterizan axiomáticamente:
+\begin{enumerate}
+\item Si $f:M\rightarrow \RR$ es una función diferenciable, entonces $\mathcal{L}_X f = Xf$.
+  \item Regla de Leibniz:
+        \begin{equation*}
+\cL_X(A\otimes B) = (\cL_X A) \otimes B + A \otimes (\cL_X B).
+        \end{equation*}
+  \item Compatibilidad con la contracción:
+        \begin{align*}
+(\cL_Y A) (\alpha_1,\dots,\alpha_r, X_1,\dots, X_s)  = & Y(A(\alpha_1,\dots,\alpha_r,X_1\dots,X_s)) \\ & - A(\cL_Y\alpha_1,\dots,\alpha_r,X_1,\dots,X_s) \\ & - \dots -  A(\alpha_1,\dots,\cL_Y\alpha_r,X_1,\dots,X_s) \\ & -  A(\alpha_1,\dots,\alpha_r,\cL_YX_1,\dots,X_s) \\ & - \dots -A(\alpha_1,\dots,\alpha_r,X_1,\dots,\cL_YX_s).
+        \end{align*}
+  \item Compatibilidad con la diferencial exterior:
+        \begin{equation*}
+\cL_X \circ d = d\circ \cL_X.
+        \end{equation*}
+\end{enumerate}
+
+Finalmente, para una forma diferencial $\alpha \in \Omega(M)$, la derivada de Lie, la diferencial exterior y el producto interno se relacionan por medio de la \emph{fórmula ``mágica'' de Cartan}
+\begin{equation*}
+\cL_X \alpha = i_X (d \alpha)  + d(i_X \alpha).
+\end{equation*}
+
+De la compatibilidad con la contracción se deduce fácilmente que la expresión en coordenadas de la derivada de Lie está dada por
+\begin{align*}
+(\cL_XA)^{i_1\dots i_r}_{j_1\dots j_s} = & X^k(\partial_k A^{i_1\dots i_r}_{j_1\dots j_s}) - (\partial_k X^{i_1})A^{k i_2 \dots i_r}_{j_1 \dots j_s} - \cdots - (\partial_k X^{i_r})A^{i_1 \dots i_{r-1} k}_{j_1 \dots j_s} \\
+& + (\partial_{j_1} X^{k})A^{i_1 \dots i_r}_{k j_2 \dots j_s} + \cdots + (\partial_{j_s} X^{k})A^{i_1 \dots i_{r}}_{j_1 \dots j_{s-1} k}.
+\end{align*}
+
 
 \section{Orientaciones, integración de formas y teorema de Stokes}
-a
+\subsection{Orientaciones} Sea $V$ un espacio vectorial real de dimensión $n$. El conjunto $\cB(V)$ de las bases de $V$ puede ponerse en biyección (eligiendo una base) con el grupo $\GL_n(\RR)$. Este grupo tiene dos componentes conexas, diferenciadas por el signo del determinante. Una \emph{orientación} de $V$ es una elección de una de estas dos componentes conexas en $\cB(V)$. Una \emph{orientación} de una variedad diferenciable $M$ de dimensión $n$ es una elección global consistente de la orientación de sus espacios tangentes. Más precisamente, una orientación está dada por un atlas de $M$ cuyos cambios de coordenadas tienen todos diferencial en la componente conexa de determinante positivo $\GL_n(\RR)^+ \subset \GL_n(\RR)$. Equivalentemente, es una elección de referencias locales del fibrado tangente $TM\rightarrow M$ con matrices de transición en $\GL_n(\RR)$.
 
-Introducir orientaciones
+No todas las variedades admiten una orientación. El ejemplo más sencillo es la \emph{banda de Möbius}. Una variedad que admite una orientación se dice \emph{orientable}. Una variedad equipada con una orientación es una \emph{variedad orientada}.
+
+Una forma diferencial de grado máximo $\omega \in \Omega^n(M)$ que no se anula en ningún punto de $M$ determina una orientación en $M$. En efecto, la correspondiente orientación está determinada por el subconjunto del atlas maximal de $M$ formado por los sistemas de coordenadas $(U,\bm{x})$ tales que la función $f:U\rightarrow \RR$ con
+\begin{equation*}
+\omega|_U = f dx^1\wedge \cdots \wedge dx^n
+\end{equation*}
+cumple $f(x)>0$ para todo $x\in M$ (en efecto, como $\omega$ no se anula nunca, el signo de $f$ es constante en $U$).
+
+\subsection{Formas con soporte compacto} Una forma diferencial $\omega \in \Omega(M)$ tiene \emph{soporte compacto} si existe un subconjunto compacto $K\subset M$ de forma que $\omega_x = 0$ para todo $x\not \in M$. Nótese que si $M$ es compacta, entonces podemos tomar $K=M$, y todas las formas tienen soporte compacto. Denotamos por $\Omega_c(M)\subset \Omega(M)$ (resp. $\Omega_c^k(M)\subset \Omega^k(M)$) al subespacio formado por las formas diferenciales (resp. de grado $k$) con soporte compacto.
+
+\subsection{Integración de formas en $\RR^n$} Sea $U\subset \RR^n$ un abierto de $\RR^n$ y $\omega \in \Omega^n_c(U)$ una $n$-forma con soporte compacto. Esta forma diferencial puede escribirse como
+\begin{equation*}
+\omega = f dx^1\wedge \cdots \wedge dx^n,
+\end{equation*}
+donde $f:U\rightarrow \RR$ es una función diferenciable con soporte compacto (es decir, que se anula en el complementario de un conjunto compacto $K\subset U$). La \emph{integral} de $\omega$ en $U$ se define como la integral de Riemann
+\begin{equation*}
+\int_{U} \omega = \int_{U} f dx^1\wedge \cdots \wedge dx^n := \int_{U} f(x^1,\dots,x^n) dx^1\dots dx^n.
+\end{equation*}
+
+\subsection{Integración de formas en variedades}
+Sea $M$ una variedad diferenciable. Como $M$ es paracompacta, podemos tomar una familia localmente finita de sistemas de coordenadas $\left\{ (U_\alpha,\bm{x}_\alpha) : \alpha \in I \right\}$, con $M=\bigcup_{\alpha \in I} U_\alpha$ y una PDU $\left\{ \rho_\alpha:\alpha\in I \right\}$ subordinada al recubrimiento $\left\{ U_\alpha: \alpha \in I \right\}$ . Si $\omega \in \Omega_c(M)$ es una forma diferencial con soporte compacto, podemos reescribir
+\begin{equation*}
+\omega = \sum_{\alpha \in I} \rho_\alpha \omega.
+\end{equation*}
+La suma está bien definida ya que $\omega$ tiene soporte compacto, luego el conjunto de puntos donde no se anula se puede recubrir por una cantidad finita de los $U_\alpha$.
+
+Si $\omega \in \Omega_c^n(M)$ es una forma diferencial con soporte compacto y de grado máximo, entonces podemos definir, para cada $\alpha \in I$,
+\begin{equation*}
+\int_{U_\alpha} \rho_\alpha \omega := \int_{\bm{x}_\alpha(U_\alpha)}\bm{x}_{\alpha}^*(\rho_\alpha \omega).
+\end{equation*}
+Finalmente, definimos la \emph{integral} de $\omega$ en $M$ como el número
+\begin{equation*}
+\int_M \omega := \sum_{\alpha \in I} \int_{U_\alpha} \rho_\alpha \omega.
+\end{equation*}
+La integración determina una aplicación $\RR$-lineal
+\begin{equation*}
+\int_M: \Omega^n_c(M) \longrightarrow \RR.
+\end{equation*}
+
+\subsection{Integración en el borde} Supongamos que $M$ es una variedad diferenciable de dimensión $n$ con borde $\partial M$. Supongamos además que $M$ es orientable, y fijemos una orientación en $M$. La orientación en $M$ determina naturalmente una orientación en su borde: una base $\left\{ e_1,\dots, e_{n-1}\right\}$ de $T_x\partial M$ está en la componente determinada por la orientación de $\partial M$ si y sólo si la base $\left\{ \nu, e_1,\dots,e_{n-1} \right\}$ de $T_xM$ está en la componente determinada por la orientación de $M$, donde $\nu \in T_xM$ es un vector normal ``saliente'' al borde $\partial M$.
+
+Dada una $(n-1)$-forma diferencial con soporte compacto $\omega \in \Omega^{n-1}_c(M)$, podemos definir la integral de $\omega$ a lo largo de $\partial M$ como
+\begin{equation*}
+\int_{\partial M} \omega := \int_{\partial M} i^*\omega,
+\end{equation*}
+donde $i:\partial M \hookrightarrow M$ es la inclusión natural. El siguiente resultado, de gran importancia, se sigue directamente del teorema fundamental del cálculo.
+
+\begin{thm}[Teorema de Stokes]
+\begin{equation*}
+\int_{\partial M} \omega = \int_M d\omega.
+\end{equation*}
+\end{thm}
+
+\subsection{Los teoremas clásicos} Algunos casos particulares del teorema de Stokes son los resultados clásicos sobre integración en la recta y en subvariedades del plano y el espacio.
+
+\subsubsection{El teorema fundamental del cálculo} Tomando un intervalo $M=[a,b]$ y $\omega = dF = F' dt$, para una cierta función diferenciable $F:[a,b]\rightarrow \RR$, tenemos
+\begin{equation*}
+\int_a^b F'(t) dt = \int_{[a,b]} F' dt = \int_{\left\{ a,b \right\}} F = F(b)- F(a).
+\end{equation*}
+
+\subsubsection{El teorema de Green} Aquí, tomamos $M\subset \RR^2$ una subvariedad de dimensión $2$ con borde y $\omega= F_x dx + F_y dy$, para ciertas funciones diferenciables $F_x,F_y:M\rightarrow \RR$. Tenemos que
+\begin{equation*}
+\int_{\partial M} F_x dx + F_y dy =  \int_{\partial M} \omega = \int_M d\omega = \int_M (\partial_x F_y - \partial_y F_x) dx dy.
+\end{equation*}
+
+\subsubsection{El teorema de Gauss o teorema de la divergencia} Tomamos $M\subset \RR^3$ una subvariedad de dimensión $3$ con borde y $\omega= F_x dy\wedge dz + F_y dz\wedge dx + F_z dx \wedge dy$. Denotamos por $\bm{\nu}$ el campo vectorial normal saliente al borde $\partial M$ y por $dS$ el elemento de superficie en $\partial M$. Denotamos $\bm{F}=(F_x,F_y,F_z)$ y concluimos que
+\begin{equation*}
+\int_{\partial M} \bm{F} \cdot \bm{\nu} dS = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \cdot \bm{F}) dxdydz.
+\end{equation*}
+
+\subsubsection{El teorema de Stokes clásico} Tomamos $M\subset \RR^3$ una subvariedad de dimensión $2$ con borde y $\omega = F_x dx + F_y dy + F_z dz$. Denotamos por $d\bm{r}$ el elemento de línea en $\partial M$ y por $dS$ el elemento de superficie en $M$. Denotamos $\bm{F}=(F_x,F_y,F_z)$ y concluimos que
+\begin{equation*}
+\int_{\partial M} \bm{F} \cdot d\bm{r} = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \times \bm{F}) \cdot \bm{\nu} dS.
+\end{equation*}
+
+
 
 \chapter{Topología algebraica en variedades}
 \section{Teoría de categorías}
