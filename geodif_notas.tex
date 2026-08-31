@@ -283,7 +283,10 @@ De la regla de la cadena se deduce inmediatamente que la diferencial de un difeo
 Sea $f:M\rightarrow N$ una aplicación diferenciable tal que $d_xf:T_xM\rightarrow T_{f(x)}N$ es un isomorfismo, para un cierto $x\in M$. Entonces, existen entornos abiertos $U\subset M$ de $x$ y $V=f(U)\subset N$ de $f(x)$ de modo que $f|_U:U\rightarrow V$ es un difeomorfismo.
 \end{thm}
 
-\subsection{Subvariedades regulares} Una \emph{subvariedad regular} de una variedad diferenciable $M$ de dimensión $m$ es un subconjunto $N \subset M$ localmente difeomorfo a $\RR^n$, para algún $n\leq m$. Es decir, para cada $y\in N$ existe un entorno abierto $U\subset M$ de $y$ y un difeomorfismo $\bm{y}:U\cap N \rightarrow \RR^n$. Un \emph{encaje}, \emph{embebimiento} o \emph{inmersión difeomórfica} es una aplicación diferenciable $i:N\rightarrow M$ entre dos variedades diferenciables que determina un difeomorfismo $i:N\rightarrow i(N)$. En particular, la imagen $i(N)\subset M$ de un encaje es una subvariedad regular.
+\subsection{Subvariedades regulares} Sea $M$ una variedad diferenciable de dimensión $n$. Una \emph{subvariedad regular} de dimensión $k$ de $M$ es un subconjunto $S\subset M$ tal que, para cada punto $x\in S$, existe un sistema de coordenadas $(U,\bm{x})$, con $x\in U$, y de forma que $\bm{x}(U\cap S)$ es la intersección de $\bm{x}(U)$ con un subespacio vectorial $V\subset \RR^n$ de dimensión $k$. Los pares $(U\cap S, \bm{x}|_{U\cap S})$ forman un atlas de $S$ y por tanto determinan una estructura diferenciable en $S$.
+Un \emph{encaje}, \emph{embebimiento} o \emph{inmersión difeomórfica} es una aplicación diferenciable $i:N\rightarrow M$ entre dos variedades diferenciables de forma que $i(N)\subset M$ es una subvariedad regular y la aplicación $i:N\rightarrow i(N)$ es un difeomorfismo.
+
+\subsection{Subvariedades inmersas} Existe una noción más débil de subvariedad, dada por la noción de \emph{inmersión}. Una \emph{inmersión} es una aplicación diferenciable $i:N\rightarrow M$ entre dos variedades diferenciables de forma que $d_xi: T_xN\rightarrow T_{i(x)}M$ es inyectiva, para todo $x\in N$. La imagen $i(N)\subset M$ de una inmersión se denomina un \emph{subvariedad inmersa}. El teorema de la función inversa implica que toda inmersión es localmente un embebimiento, pero esto no es cierto globalmente en general. Por ejemplo, la lemniscata de Bernoulli da una inmersión (además, inyectiva) de $\RR$ en $\RR^2$ que no es un embebimiento. Si $N$ es compacta, entonces toda inmersión \textit{inyectiva} sí que es un embebimiento.
 
 \begin{defn}
   Sea $f:M\rightarrow N$ una aplicación diferenciable. Decimos que un punto $y\in N$ es un \emph{valor regular} de $f$ si, para todo punto $x\in f^{-1}(y)$, la diferencial
@@ -3362,8 +3365,62 @@ a
 
 \chapter{Distribuciones, álgebras de Lie y grupos de Lie}
 
-\section{Distribuciones y foliaciones}
-Teorema de Frobenius
+\section{Distribuciones, foliaciones y el teorema de Frobenius}
+
+Comenzamos por enunciar el siguiente resultado clásico de ecuaciones en derivadas parciales, cuya demostración es elemental y puede leerse en \todo{CITAR: Spivak Vol. 1}.
+
+\begin{thm}[Teorema de Frobenius. Versión clásica]
+  Sea $U\times V \subset \RR^m \times \RR^n$ un subconjunto abierto, donde $U$ es un entorno de $0\in \RR^m$, y sean $F_i=(F_i^1,\dots,F_i^n):U\times V \rightarrow \RR^n$ funciones diferenciables, para $i=1,\dots,m$. Entonces, para cada $x\in V$ existe una (y sólo una) función diferenciable
+  \begin{equation*}
+\alpha : W\rightarrow V
+  \end{equation*}
+  definida en un entorno $W$ de $0$ en $\RR^m$, que satisface
+  \begin{equation*}
+\begin{cases}
+  \alpha(0) = x, \\
+  \frac{\partial \alpha}{\partial t^i} (t) = F_i(t,\alpha(t)), & \text{para todo } t\in W,
+\end{cases}
+  \end{equation*}
+si y sólo si existe un entorno de $(0,x)\in U\times V$ en el que se cumple la siguiente \emph{condición de integrabilidad}
+\begin{equation*}
+\frac{\partial F_j}{\partial t^i} - \frac{\partial F_i}{\partial t^j} + \frac{\partial F_j}{\partial x^k} F_i^k - \frac{\partial F_i}{\partial x^k} F_j^k =0,
+\end{equation*}
+para cualesquiera $i,j \in \left\{ 1,\dots,m \right\}$.
+\end{thm}
+
+\begin{defn}
+Sea $M$ una variedad diferenciable. Una \emph{distribución} de rango $k$ en $M$ es un subfibrado $D\subset TM$ de rango $k$. En particular, para cada punto $x\in M$ se tiene un subespacio vectorial $D_p\subset T_pM$ de dimensión $k$. Localmente, en abiertos $U$ suficientemente pequeños, es posible encontrar campos $X_1,\dots,X_k$ de modo que los vectores $X_1|_x,\dots,X_k|_x$ forman una base de $D_x$ para cada $x\in U$. Decimos que los vectores \emph{generan} la distribución $D$ sobre $U$.
+
+Una \emph{variedad integral} de una distribución $D$ en $M$ es una subvariedad inmersa $N\subset M$ tal que $T_xN=D_x$ para cada $x\in N$. La distribución $D$ es \emph{integrable} si para cada punto $x\in M$ existe una variedad integral $N\subset M$ de $D$ con $x\in N$.
+
+Una distribución $D$ es \emph{involutiva} si para cualesquiera dos secciones $X,Y \subset \Gamma(M,D) \subset \fX(M)$, el corchete de Lie $[X,Y]$ también es una sección de $D$ (es decir, si $[X,Y]_x\in D_x$ para todo $x\in M$). En particular, si $D$ es involutiva, entonces $\Gamma(M,D)$ forma una subálgebra de Lie del álgebra $\fX(M)$.
+\end{defn}
+
+\begin{prop}
+Toda distribución integrable es involutiva.
+\end{prop}
+
+\begin{proof}
+Sean $X,Y \subset \Gamma(M,D)$, $x\in M$, y $N\subset M$ una variedad integral de $D$ con $x\in M$. Como $N$ es una variedad integral de $D$, para todo $y\in N$ se tiene que, en un entorno de $x$, $X,Y$ restringen a campos $X|_N,Y|_N \in \fX(N)$. Por tanto, su corchete de Lie $[X|_N,Y|_N]$ también es un campo en $N$, luego $[X,Y]_x = [X|_N,Y|_N]_x \in T_xN=D_x$.
+\end{proof}
+
+\begin{ex}
+  \begin{enumerate}
+  \item Un campo vectorial $X$ nunca nulo en una variedad diferenciable $M$ genera una distribución de rango $1$ en $M$. La imagen curva integral de $X$ es una subvariedad integral de $D$.
+  \item En $\RR^n$, los campos $\partial_1,\dots,\partial_k$ generan una distribución de rango $k$ cuyas variedades integrales son los subespacios afines paralelos al subespacio vectorial $\RR^k\times \left\{ 0 \right\}\subset \RR^n$.
+  \item Consideremos el campo vectorial radial $X=x^i \partial_i$ en $M=\RR^n \setminus \left\{ 0 \right\}$ y la distribución de hiperplanos $D$ en $M$ tal que cada $D_x\subset \RR^n$ es el hiperplano perpendicular al vector $X_x$. En cada punto $x\in M$, la esfera de radio $\lVert x \rVert$ centrada en $0$ es una variedad integral de $D$.
+    \item La distribución $D$ en $\RR^3$ generada por los campos
+          \begin{equation*}
+X= \partial_x + y \partial_z, \ \ Y=\partial_y
+          \end{equation*}
+no es integrable, ya que no es involutiva:
+          \begin{equation*}
+[X,Y] =\partial_z \not\in \Gamma(\RR^3,D).
+          \end{equation*}
+  \end{enumerate}
+\end{ex}
+
+\todo{Terminar}
 
 \section{Álgebras de Lie}
 \begin{defn}
