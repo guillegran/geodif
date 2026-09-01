@@ -831,6 +831,175 @@ donde $i:\partial M \hookrightarrow M$ es la inclusión natural. El siguiente re
 \int_{\partial M} \bm{F} \cdot d\bm{r} = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \times \bm{F}) \cdot \bm{\nu} dS.
 \end{equation*}
 
+\section{Distribuciones, foliaciones y el teorema de Frobenius}
+
+Comenzamos por enunciar el siguiente resultado clásico de ecuaciones en derivadas parciales, cuya demostración es elemental y puede leerse en \todo{CITAR: Spivak Vol. 1}.
+
+\begin{thm}[Teorema de Frobenius. Versión clásica]
+  Sea $U\times V \subset \RR^m \times \RR^n$ un subconjunto abierto, donde $U$ es un entorno de $0\in \RR^m$, y sean $F_i=(F_i^1,\dots,F_i^n):U\times V \rightarrow \RR^n$ funciones diferenciables, para $i=1,\dots,m$. Entonces, para cada $\bm{x}\in V$ existe una (y sólo una) función diferenciable
+  \begin{equation*}
+\alpha : W\rightarrow V
+  \end{equation*}
+  definida en un entorno $W$ de $0$ en $\RR^m$, que satisface
+  \begin{equation*}
+\begin{cases}
+  \alpha(0) = \bm{x}, \\
+  \frac{\partial \alpha}{\partial t^i} (\bm{t}) = F_i(\bm{t},\alpha(\bm{t})), & \text{para todo } \bm{t}\in W,
+\end{cases}
+  \end{equation*}
+si y sólo si existe un entorno de $(0,\bm{x})\in U\times V$ en el que se cumple la siguiente \emph{condición de integrabilidad}
+\begin{equation*}
+\frac{\partial F_j}{\partial t^i} - \frac{\partial F_i}{\partial t^j} + \frac{\partial F_j}{\partial x^k} F_i^k - \frac{\partial F_i}{\partial x^k} F_j^k =0,
+\end{equation*}
+para cualesquiera $i,j \in \left\{ 1,\dots,m \right\}$.
+\end{thm}
+
+\begin{defn}
+Sea $M$ una variedad diferenciable. Una \emph{distribución} de rango $k$ en $M$ es un subfibrado $D\subset TM$ de rango $k$. En particular, para cada punto $x\in M$ se tiene un subespacio vectorial $D_p\subset T_pM$ de dimensión $k$. Localmente, en abiertos $U$ suficientemente pequeños, es posible encontrar campos $X_1,\dots,X_k$ de modo que los vectores $X_1|_x,\dots,X_k|_x$ forman una base de $D_x$ para cada $x\in U$. Decimos que los vectores \emph{generan} la distribución $D$ sobre $U$.
+
+Una \emph{variedad integral} de una distribución $D$ en $M$ es una subvariedad inmersa $N\subset M$ tal que $T_xN=D_x$ para cada $x\in N$. La distribución $D$ es \emph{integrable} si para cada punto $x\in M$ existe una variedad integral $N\subset M$ de $D$ con $x\in N$.
+
+Una distribución $D$ es \emph{involutiva} si para cualesquiera dos secciones $X,Y \subset \Gamma(M,D) \subset \fX(M)$, el corchete de Lie $[X,Y]$ también es una sección de $D$ (es decir, si $[X,Y]_x\in D_x$ para todo $x\in M$). En particular, si $D$ es involutiva, entonces $\Gamma(M,D)$ forma una subálgebra de Lie del álgebra $\fX(M)$.
+\end{defn}
+
+\begin{prop}
+Toda distribución integrable es involutiva.
+\end{prop}
+
+\begin{proof}
+Sean $X,Y \subset \Gamma(M,D)$, $x\in M$, y $N\subset M$ una variedad integral de $D$ con $x\in M$. Como $N$ es una variedad integral de $D$, para todo $y\in N$ se tiene que, en un entorno de $x$, $X,Y$ restringen a campos $X|_N,Y|_N \in \fX(N)$. Por tanto, su corchete de Lie $[X|_N,Y|_N]$ también es un campo en $N$, luego $[X,Y]_x = [X|_N,Y|_N]_x \in T_xN=D_x$.
+\end{proof}
+
+\begin{ex} \leavevmode
+  \begin{enumerate}
+  \item Un campo vectorial $X$ nunca nulo en una variedad diferenciable $M$ genera una distribución de rango $1$ en $M$. La imagen curva integral de $X$ es una subvariedad integral de $D$.
+  \item En $\RR^n$, los campos $\partial_1,\dots,\partial_k$ generan una distribución de rango $k$ cuyas variedades integrales son los subespacios afines paralelos al subespacio vectorial $\RR^k\times \left\{ 0 \right\}\subset \RR^n$.
+  \item Consideremos el campo vectorial radial $X=x^i \partial_i$ en $M=\RR^n \setminus \left\{ 0 \right\}$ y la distribución de hiperplanos $D$ en $M$ tal que cada $D_x\subset \RR^n$ es el hiperplano perpendicular al vector $X_x$. En cada punto $x\in M$, la esfera de radio $\lVert x \rVert$ centrada en $0$ es una variedad integral de $D$.
+    \item La distribución $D$ en $\RR^3$ generada por los campos
+          \begin{equation*}
+X= \partial_x + y \partial_z, \ \ Y=\partial_y
+          \end{equation*}
+no es integrable, ya que no es involutiva:
+          \begin{equation*}
+[X,Y] =\partial_z \not\in \Gamma(\RR^3,D).
+          \end{equation*}
+  \end{enumerate}
+\end{ex}
+
+\begin{thm}[Teorema de Frobenius. Versión local]
+  Toda distribución involutiva $D$ es integrable.
+
+  Más aún, si $m$ es el rango de $D$ y $m+n$ la dimensión de $M$, entonces para cada punto $x\in M$ existe un sistema de coordenadas $(U,(\bm{t},\bm{y}))$ con $(\bm{t},\bm{y})(x)=0$ y
+  \begin{equation*}
+(\bm{t},\bm{y})(U) = (-\varepsilon,\varepsilon) \times \cdots \times (-\varepsilon, \varepsilon),
+  \end{equation*}
+  para cierto $\varepsilon > 0$, de modo que, para cada $\bm{a} \in (-\varepsilon,\varepsilon)^n$, el conjunto
+  \begin{equation*}
+N_{\bm{a}}=\left\{ y \in U: \bm{y}(y)=\bm{a} \right\}
+  \end{equation*}
+es una variedad integral de $D$.
+Además, la intersección de cualquier variedad integral conexa de $D$ con $U$ está contenida en alguno de estos subconjuntos $N_{\bm{a}}$.
+\end{thm}
+
+\begin{proof}
+  Veamos que el resultado se sigue de la versión clásica del teorema de Frobenius. En primer lugar, nos damos cuenta de que, como la noción de integrabilidad es local, podemos suponer que $M=\RR^{m+n}$ y basta probar la integrabilidad en torno al punto $(0,0)\in \RR^{m+n}$. En particular, podemos enteder $D$ como una colección de $m$ campos vectoriales $X_1,\dots,X_m$ en $\RR^{m+n}$ linealmente independientes. Con una elección apropiada de coordenadas $(\bm{t}=(t^1,\dots,t^m),\bm{x}=(x^1,\dots,x^n))$, podemos escribir estos campos como
+  \begin{equation*}
+X_i = \partial_{t^i} + X_i^k \partial_{x^k}.
+  \end{equation*}
+
+  Calculando directamente vemos que
+  \begin{equation*}
+[X_i,X_j] = \left( \partial_{t^i} X^s_j - \partial_{t^j} X^s_i + X_i^k \partial_{x^k} X^s_j - X^k_j \partial_{x^k} X^s_i \right) \partial_{x^s}.
+  \end{equation*}
+  Si denotamos $F_i = X_i^k \partial_{x^k}$, nos damos cuenta de que la expresión anterior es precisamente la condición de integrabilidad para la EDP
+  \begin{equation*}
+\frac{\partial \alpha}{\partial t^i}(\bm{t}) = F_i(\bm{t},\alpha(\bm{t})),
+  \end{equation*}
+  con $\alpha:U\rightarrow \RR^n$ definida en un abierto $U\subset \RR^m$ con $0\in U$.
+
+  Denotando $\varphi=(\id,\alpha):U\rightarrow U\times \RR^n$, el conjunto
+  \begin{equation*}
+N_0=\varphi(U) = \left\{ (\bm{t},\alpha(\bm{t})) \in \RR^{m+n}: \bm{t}\in U \right\} \subset \RR^{m+n}
+  \end{equation*}
+  es una subvariedad de $\RR^{m+n}$ cuyo espacio tangente en un punto $(\bm{t},\alpha(\bm{t}))$ está generado por los vectores
+  \begin{equation*}
+d_{\bm{t}} \varphi (\partial_{t^i}|_{\bm{t}}) = \partial_{t^i}|_{(\bm{t},\alpha(\bm{t}))} + \partial_{t^i}\alpha (\bm{t}) = \partial_{t^i}|_{(\bm{t},\alpha(\bm{t}))} + F_i(\bm{t},\alpha(\bm{t})) = X_i|_{(\bm{t},\alpha(\bm{t}))}.
+  \end{equation*}
+Por tanto, $N_0$ es una variedad integral de $D$ con $(0,\alpha(0))\in N_0$. Más generalmente, para cualquier $\bm{x}\in \RR^n$, podemos tomar $\bm{a}=\bm{x}-\alpha(0)$ y definir la subvariedad
+  \begin{equation*}
+N_{\bm{a}}= \left\{ (\bm{t},\alpha(\bm{t})+\bm{a}) \in \RR^{m+n}: \bm{t}\in U \right\} \subset \RR^{m+n},
+  \end{equation*}
+que es una variedad integral de $D$ con $(0,\bm{x})\in N_{\bm{a}}$. En particular, $(0,0)\in N_{-\alpha(0)}$. Esto prueba que la distribución es integrable.
+
+Si definimos la función
+\begin{equation*}
+\bm{y}(\bm{t},\bm{x}) = \bm{x} - \alpha(\bm{t}),
+\end{equation*}
+entonces
+\begin{equation*}
+N_{\bm{a}} = \left\{ (\bm{t},\bm{x}) \in \RR^{m+n}: \bm{t}\in U,\ \bm{y}(\bm{t},\bm{x}) = \bm{a} \right\}.
+\end{equation*}
+Por tanto, en las coordenadas $(\bm{t},\bm{y})$, la variedad integral $N_{\bm{a}}$ tiene la forma deseada. Nótese además que, en estas nuevas coordenadas, podemos identificar
+\begin{equation*}
+\partial_{t^i}|_{(\bm{t},\bm{y})} = \partial_{t^i}|_{(\bm{t},\bm{x})} + \partial_{t^i}\alpha(\bm{t}) = X_i|_{(\bm{t},\bm{x})}.
+\end{equation*}
+Luego, en estas coordenadas, la distribución está generada por los campos $\partial_{t^1},\dots,\partial_{t^m}$.
+
+Finalmente, supongamos que $N\subset U$ es una variedad integral de $D$ conexa, y denotemos por $i:N\rightarrow U$ la inclusión. Para cualquier vector tangente $X_y\in T_yN$, tenemos
+\begin{equation*}
+d(y^j\circ i)(X_y) = X_y(y^j \circ i) = d_yi(X_y) (y^j) = 0,
+\end{equation*}
+ya que $d_yi(X_y)\in D_y$, que está generada por los $\partial_{t^i}|_{y}$. Por tanto, $d(y^j\circ i)=0$ para todo $j=1,\dots,n$, con lo cual las funciones $y^j\circ i$ son constantes en $N$. Como $N$ es conexa, tenemos que $N\subset N_{\bm{a}}$, para algún $\bm{a}\in \RR^n$.
+\end{proof}
+
+\begin{defn}
+  Una \emph{foliación} $\cF$ \emph{de dimensión $k$} en una variedad diferenciable $M$ es un conjunto
+  \begin{equation*}
+\cF = \left\{ \cF_i: i\in I \right\}
+  \end{equation*}
+  de subvariedades inmersas conexas $\cF_i \subset M$, llamadas \emph{hojas} de la foliación, de dimensión $k$, no vacías y disjuntas dos a dos, con $M=\bigcup_{i\in I} \cF_i$ y de modo que, para cada $x\in M$ existe un sistema de coordenadas $(U,\bm{x})$ con $x\in U$ de forma que $\bm{x}(U)\subset \RR^n$ es un cubo y, para cada $i\in I$, la intersección $U\cap \cF_i$ es vacía o una unión numerable de subvariedades de la forma
+  \begin{equation*}
+\bm{x}^{-1}\left(\left\{ (x^1,\dots,x^n)\in \bm{x}(U): x^{k+1}=c^{k+1},\dots,x^{n}=c^n \right\}\right),
+  \end{equation*}
+para $(c^{k+1},\dots,c^n)\in \RR^{n-k}$.
+\end{defn}
+
+\begin{ex} \leavevmode
+\begin{enumerate}
+\item  El conjunto de todos los subespacios afines de $\RR^n$ de dimensión $k$ paralelos a $\RR^k\times \left\{ 0 \right\} \subset \RR^n$ forma una foliación $k$-dimensional de $\RR^n$.
+  \item El conjunto de los rayos de la forma $\left\{ \lambda x: \lambda>0 \right\}$ para $x\in \RR^{n}\setminus \left\{ 0 \right\}$ forma una foliación de dimensión $1$ de $\RR^n\setminus 0$.
+\item La colección de las esferas centradas en $0$ es una foliación de dimensión $n-1$ de $\RR^n\setminus \left\{ 0 \right\}$.
+  \item Si $M$ y $N$ son variedades diferenciables conexas, los subconjuntos de la forma $M\times \left\{ y \right\}$, para $y\in N$, forman una foliación de $M\times N$ cuyas hojas son difeomorfas a $M$. Por ejemplo, los círculos de la forma $S^1\times \left\{ y \right\}\subset T^2$ o los círculos de la forma $\left\{ x \right\}\times S^1 \subset T^2$ forman dos foliaciones diferentes en el toro $T^2$.
+  \item Otra foliación interesante en el toro es la dada por el conjunto
+        \begin{equation*}
+\sF^\alpha = \left\{ (e^{it}, e^{i(\alpha t + \theta)}): \theta \in \RR \right\}\subset T^2,
+        \end{equation*}
+para un número fijo $\alpha \in \RR$. Esta es una foliación de dimensioń $1$. Si $\alpha$ es racional, entonces sus hojas son círculos embebidos, mientras que si $\alpha$ es irracional, cada hoja es densa en $T^2$.
+\end{enumerate}
+\end{ex}
+
+\begin{thm}[Teorema de Frobenius. Versión global]
+Sea $D$ una distribución involutiva de rango $k$ en una variedad diferenciable $M$. El conjunto de todas las variedades integrales conexas maximales\footnote{Es decir, no contenidas en una variedad integral conexa más grande.} de $D$ forma una foliación de $M$.
+\end{thm}
+
+\begin{proof}
+De la versión local del teorema de Frobenius se sigue que $M$ puede recubrirse por un conjunto de sistemas de coordenadas $(U_\alpha,\bm{x}_\alpha)$ de modo que toda intersección conexa de una variedad integral con $U_\alpha$ está contenida en una de las subvariedades
+  \begin{equation*}
+N^\alpha_{\bm{a}}=\left\{ x \in U_\alpha: x^j_\alpha(x)=a^j, j=k+1,\dots,n \right\},
+  \end{equation*}
+  con $n=\dim M$ y para ciertos $a^j\in \RR$. Cada una de estas subvariedades $N^\alpha_{\bm{a}}$ se denomina una \emph{rebanada} de $U_\alpha$. Una rebanada $N$ de $U_\alpha$ puede cortar a $U_\beta$ en más de una rebanada, pero $N\cap U_\beta$ tiene a lo sumo una cantidad numerable de componentes conexas, y cada componente está contenida en una única rebanada de $U_\beta$.
+
+  Tomemos un punto $x\in M$, uno de estos sistema de coordenadas $(U_0,\bm{x}_0)$ en torno a $x$, y sea $N_0$ la rebanada de $U_0$ que contiene a $x$. Decimos que una rebanada $N$ de algún $U_\alpha$ está \emph{unida} a $x$ si existe una sucesión $\alpha_0,\alpha_1,\dots,\alpha_l=\alpha$ de elementos de $I$ y rebanadas $N_{j}$ de $U_{\alpha_j}$,  con $N_j\cap N_{j+1}\neq \varnothing$, para cada $j=1,\dots,l$.
+  Nótese que a lo sumo existe una cantidad numerable de rebanadas unidas a $x$, de modo que la unión de todas ellas
+  \begin{equation*}
+\cF_x = \bigcup_{N \text{ rebanada unida a }x} N
+  \end{equation*}
+  es una subvariedad conexa de $M$. Para otro punto $y\neq x$, tenemos que, o bien $\cF_x=\cF_y$, o bien $\cF_x\cap \cF_y = \varnothing$. Concluimos que el conjunto
+  \begin{equation*}
+\cF=\left\{ \cF_x : x\in M \right\}
+  \end{equation*}
+forma una foliación de $M$, cuyas hojas son variedades integrales de $D$, y tal que, para cualquier otra variedad integral $N$ de $D$, se tiene que $N\subset \cF_x$, para cualquier punto $x\in N$.
+\end{proof}
 
 
 \chapter{Topología algebraica en variedades}
@@ -3363,64 +3532,7 @@ a
 \subsection{Curvatura de Ricci y curvatura seccional}
 a
 
-\chapter{Distribuciones, álgebras de Lie y grupos de Lie}
-
-\section{Distribuciones, foliaciones y el teorema de Frobenius}
-
-Comenzamos por enunciar el siguiente resultado clásico de ecuaciones en derivadas parciales, cuya demostración es elemental y puede leerse en \todo{CITAR: Spivak Vol. 1}.
-
-\begin{thm}[Teorema de Frobenius. Versión clásica]
-  Sea $U\times V \subset \RR^m \times \RR^n$ un subconjunto abierto, donde $U$ es un entorno de $0\in \RR^m$, y sean $F_i=(F_i^1,\dots,F_i^n):U\times V \rightarrow \RR^n$ funciones diferenciables, para $i=1,\dots,m$. Entonces, para cada $x\in V$ existe una (y sólo una) función diferenciable
-  \begin{equation*}
-\alpha : W\rightarrow V
-  \end{equation*}
-  definida en un entorno $W$ de $0$ en $\RR^m$, que satisface
-  \begin{equation*}
-\begin{cases}
-  \alpha(0) = x, \\
-  \frac{\partial \alpha}{\partial t^i} (t) = F_i(t,\alpha(t)), & \text{para todo } t\in W,
-\end{cases}
-  \end{equation*}
-si y sólo si existe un entorno de $(0,x)\in U\times V$ en el que se cumple la siguiente \emph{condición de integrabilidad}
-\begin{equation*}
-\frac{\partial F_j}{\partial t^i} - \frac{\partial F_i}{\partial t^j} + \frac{\partial F_j}{\partial x^k} F_i^k - \frac{\partial F_i}{\partial x^k} F_j^k =0,
-\end{equation*}
-para cualesquiera $i,j \in \left\{ 1,\dots,m \right\}$.
-\end{thm}
-
-\begin{defn}
-Sea $M$ una variedad diferenciable. Una \emph{distribución} de rango $k$ en $M$ es un subfibrado $D\subset TM$ de rango $k$. En particular, para cada punto $x\in M$ se tiene un subespacio vectorial $D_p\subset T_pM$ de dimensión $k$. Localmente, en abiertos $U$ suficientemente pequeños, es posible encontrar campos $X_1,\dots,X_k$ de modo que los vectores $X_1|_x,\dots,X_k|_x$ forman una base de $D_x$ para cada $x\in U$. Decimos que los vectores \emph{generan} la distribución $D$ sobre $U$.
-
-Una \emph{variedad integral} de una distribución $D$ en $M$ es una subvariedad inmersa $N\subset M$ tal que $T_xN=D_x$ para cada $x\in N$. La distribución $D$ es \emph{integrable} si para cada punto $x\in M$ existe una variedad integral $N\subset M$ de $D$ con $x\in N$.
-
-Una distribución $D$ es \emph{involutiva} si para cualesquiera dos secciones $X,Y \subset \Gamma(M,D) \subset \fX(M)$, el corchete de Lie $[X,Y]$ también es una sección de $D$ (es decir, si $[X,Y]_x\in D_x$ para todo $x\in M$). En particular, si $D$ es involutiva, entonces $\Gamma(M,D)$ forma una subálgebra de Lie del álgebra $\fX(M)$.
-\end{defn}
-
-\begin{prop}
-Toda distribución integrable es involutiva.
-\end{prop}
-
-\begin{proof}
-Sean $X,Y \subset \Gamma(M,D)$, $x\in M$, y $N\subset M$ una variedad integral de $D$ con $x\in M$. Como $N$ es una variedad integral de $D$, para todo $y\in N$ se tiene que, en un entorno de $x$, $X,Y$ restringen a campos $X|_N,Y|_N \in \fX(N)$. Por tanto, su corchete de Lie $[X|_N,Y|_N]$ también es un campo en $N$, luego $[X,Y]_x = [X|_N,Y|_N]_x \in T_xN=D_x$.
-\end{proof}
-
-\begin{ex}
-  \begin{enumerate}
-  \item Un campo vectorial $X$ nunca nulo en una variedad diferenciable $M$ genera una distribución de rango $1$ en $M$. La imagen curva integral de $X$ es una subvariedad integral de $D$.
-  \item En $\RR^n$, los campos $\partial_1,\dots,\partial_k$ generan una distribución de rango $k$ cuyas variedades integrales son los subespacios afines paralelos al subespacio vectorial $\RR^k\times \left\{ 0 \right\}\subset \RR^n$.
-  \item Consideremos el campo vectorial radial $X=x^i \partial_i$ en $M=\RR^n \setminus \left\{ 0 \right\}$ y la distribución de hiperplanos $D$ en $M$ tal que cada $D_x\subset \RR^n$ es el hiperplano perpendicular al vector $X_x$. En cada punto $x\in M$, la esfera de radio $\lVert x \rVert$ centrada en $0$ es una variedad integral de $D$.
-    \item La distribución $D$ en $\RR^3$ generada por los campos
-          \begin{equation*}
-X= \partial_x + y \partial_z, \ \ Y=\partial_y
-          \end{equation*}
-no es integrable, ya que no es involutiva:
-          \begin{equation*}
-[X,Y] =\partial_z \not\in \Gamma(\RR^3,D).
-          \end{equation*}
-  \end{enumerate}
-\end{ex}
-
-\todo{Terminar}
+\chapter{Álgebras y grupos de Lie}
 
 \section{Álgebras de Lie}
 \begin{defn}
