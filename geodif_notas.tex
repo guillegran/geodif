@@ -204,7 +204,7 @@ En primer lugar, es un resultado de topología general que todo espacio Hausdorf
 \section{El espacio tangente}
 \subsection{Modelo 1: Gérmenes de curva} Sea $M$ una variedad diferenciable y $x\in M$ un punto. Un \emph{germen de curva diferenciable en $x$} es un par $(\varepsilon,\gamma)$, con $\varepsilon >0$ y $\gamma:(-\varepsilon,\varepsilon)\rightarrow M$ una curva diferenciable. Definimos una relación de equivalencia en los gérmenes de curva diciendo que $(\varepsilon_1,\gamma_1) \sim (\varepsilon_2,\gamma_2)$ si para cualquier sistema de coordenadas $(U,\bm{x})$ con $x\in U$, se tiene que
 \begin{equation*}
-(\bm{x} \circ \gamma)' (0) = (\bm{x} \circ \eta)'(0).
+(\bm{x} \circ \gamma_1)' (0) = (\bm{x} \circ \gamma_2)'(0).
 \end{equation*}
 Se define el \emph{espacio tangente $T_xM$ a $M$ en $x$} como el conjunto de las clases de equivalencia. Dado un sistema de coordenadas $(U,\bm{x})$, con $x\in U$, la aplicación
 \begin{equation*}
@@ -263,7 +263,7 @@ Con respecto a las bases $\partial_{x^1}|_x,\dots,\partial_{x^n}|_x$ y $\partial
   Y^1 \\
   \vdots \\
   Y^n
-\end{pmatrix} = \frac{\partial} J_{\bm{x}(x)}(\bm{y} \circ f \circ \bm{x}^{-1})
+\end{pmatrix} =  J_{\bm{x}(x)}(\bm{y} \circ f \circ \bm{x}^{-1})
 \begin{pmatrix}
   X^1 \\
   \vdots \\
@@ -305,15 +305,15 @@ El teorema de la función implícita nos permite dar muchos ejemplos de variedad
 
 \subsubsection{Esferas} La esfera $S^n$ también puede construirse como una subvariedad regular de $\RR^{n+1}$, $S^n = f^{-1}(0)$, para
 \begin{equation*}
-f: \RR^{n+1} \rightarrow \RR,\ (x^1,\dots,x^n) \mapsto (x^1)^2 + \cdots + (x^n)^2 - 1.
+f: \RR^{n+1} \rightarrow \RR,\ (x^1,\dots,x^{n+1}) \mapsto (x^1)^2 + \cdots + (x^{n+1})^2 - 1.
 \end{equation*}
 En efecto, $1$ es un valor regular de $f$ ya que la aplicación linear $d_xf$ está representada por la matriz jacobiana
 \begin{equation*}
 J_xf=\begin{pmatrix}
-2 x^1 & \cdots & 2x^n
+2 x^1 & \cdots & 2x^{n+1}
 \end{pmatrix},
 \end{equation*}
-que tiene rango $1$ para todo $(x^1,\dots,x^n) \in S^n$.
+que tiene rango $1$ para todo $(x^1,\dots,x^{n+1}) \in S^n$.
 
 \subsubsection{El grupo especial lineal} El grupo de las matrices $n\times n$ invertibles de determinante $1$ se denomina el \emph{$n$-ésimo grupo especial lineal} (real) y se denota por $\mathrm{SL}_n(\RR)$. Es el subconjunto del espacio de matrices $M_n(\RR)$ determinado por la ecuación $\det A = 1$. Se puede comprobar a mano que, en efecto, $1$ es un valor regular para la aplicación $\det: M_n(\RR) \rightarrow \RR$, y que por tanto $\mathrm{SL}_n(\RR)\subset M_n(\RR)$ es una subvariedad regular.
 
@@ -632,7 +632,7 @@ df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac
   \end{equation*}
 Es decir, en la base dada por $\left\{ dx,dy,dz \right\}$, la diferencial $df$ se identifica con el \emph{gradiente}
 \begin{equation*}
-\nabla f = (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} dy, \frac{\partial f}{\partial z}).
+\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right).
 \end{equation*}
 
 Por otra parte, dada una $1$-forma
