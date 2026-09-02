@@ -1,0 +1,199 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{I}{Fundamentos de variedades diferenciables}}{1}{chapter.1}%
+\contentsline {section}{\tocsection {}{1}{Variedades diferenciables: definición y ejemplos}}{1}{section.1.1}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{}}{1}{subsection.1.1.2}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{}}{1}{subsection.1.1.3}%
+\contentsline {subsection}{\tocsubsection {}{1.5}{El haz de estructura}}{2}{subsection.1.1.5}%
+\contentsline {subsection}{\tocsubsection {}{1.6}{Ejemplos y no-ejemplos}}{2}{subsection.1.1.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.1}{}}{2}{subsubsection.1.1.6.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.2}{}}{2}{subsubsection.1.1.6.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.3}{}}{2}{subsubsection.1.1.6.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.4}{}}{2}{subsubsection.1.1.6.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.5}{}}{2}{subsubsection.1.1.6.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.6}{}}{3}{subsubsection.1.1.6.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.7}{}}{3}{subsubsection.1.1.6.7}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.8}{}}{3}{subsubsection.1.1.6.8}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.9}{Variedades con borde}}{3}{subsubsection.1.1.6.9}%
+\contentsline {subsection}{\tocsubsection {}{1.7}{Particiones diferenciables de la unidad}}{3}{subsection.1.1.7}%
+\contentsline {section}{\tocsection {}{2}{El espacio tangente}}{4}{section.1.2}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Modelo 1: Gérmenes de curva}}{4}{subsection.1.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.2}{Modelo 2: Derivaciones}}{4}{subsection.1.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.3}{La diferencial}}{5}{subsection.1.2.3}%
+\contentsline {subsection}{\tocsubsection {}{2.5}{Subvariedades regulares}}{6}{subsection.1.2.5}%
+\contentsline {subsection}{\tocsubsection {}{2.6}{Subvariedades inmersas}}{6}{subsection.1.2.6}%
+\contentsline {subsection}{\tocsubsection {}{2.9}{Más ejemplos}}{6}{subsection.1.2.9}%
+\contentsline {subsubsection}{\tocsubsubsection {}{2.9.1}{Esferas}}{6}{subsubsection.1.2.9.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{2.9.2}{El grupo especial lineal}}{7}{subsubsection.1.2.9.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{2.9.3}{Todas las variedades se pueden embeber}}{7}{subsubsection.1.2.9.3}%
+\contentsline {subsection}{\tocsubsection {}{2.10}{Espacio cotangente}}{7}{subsection.1.2.10}%
+\contentsline {section}{\tocsection {}{3}{Fibrado tangente y fibrados vectoriales}}{7}{section.1.3}%
+\contentsline {subsection}{\tocsubsection {}{3.1}{El fibrado tangente}}{7}{subsection.1.3.1}%
+\contentsline {subsection}{\tocsubsection {}{3.4}{Funciones de transición}}{8}{subsection.1.3.4}%
+\contentsline {subsection}{\tocsubsection {}{3.6}{Fibrados y $\mathscr O_M$-módulos}}{8}{subsection.1.3.6}%
+\contentsline {subsection}{\tocsubsection {}{3.7}{Fibrado imagen recíproca (\textit {pullback})}}{9}{subsection.1.3.7}%
+\contentsline {section}{\tocsection {}{4}{Cálculo tensorial}}{9}{section.1.4}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{Álgebra tensorial}}{9}{subsection.1.4.1}%
+\contentsline {subsection}{\tocsubsection {}{4.2}{Campos, formas, métricas y tensores}}{11}{subsection.1.4.2}%
+\contentsline {subsection}{\tocsubsection {}{4.3}{Cálculo tensorial en coordenadas}}{11}{subsection.1.4.3}%
+\contentsline {subsection}{\tocsubsection {}{4.4}{Pullback}}{13}{subsection.1.4.4}%
+\contentsline {subsection}{\tocsubsection {}{4.5}{Diferencial exterior}}{14}{subsection.1.4.5}%
+\contentsline {section}{\tocsection {}{5}{Orientaciones, integración de formas y teorema de Stokes}}{15}{section.1.5}%
+\contentsline {subsection}{\tocsubsection {}{5.1}{Orientaciones}}{15}{subsection.1.5.1}%
+\contentsline {subsection}{\tocsubsection {}{5.2}{Formas con soporte compacto}}{15}{subsection.1.5.2}%
+\contentsline {subsection}{\tocsubsection {}{5.3}{Integración de formas en $\mathbb R^n$}}{16}{subsection.1.5.3}%
+\contentsline {subsection}{\tocsubsection {}{5.4}{Integración de formas en variedades}}{16}{subsection.1.5.4}%
+\contentsline {subsection}{\tocsubsection {}{5.5}{Integración en el borde}}{16}{subsection.1.5.5}%
+\contentsline {subsection}{\tocsubsection {}{5.7}{Los teoremas clásicos}}{17}{subsection.1.5.7}%
+\contentsline {subsubsection}{\tocsubsubsection {}{5.7.1}{El teorema fundamental del cálculo}}{17}{subsubsection.1.5.7.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{5.7.2}{El teorema de Green}}{17}{subsubsection.1.5.7.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{5.7.3}{El teorema de Gauss o teorema de la divergencia}}{17}{subsubsection.1.5.7.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{5.7.4}{El teorema de Stokes clásico}}{17}{subsubsection.1.5.7.4}%
+\contentsline {section}{\tocsection {}{6}{Campos y flujos}}{17}{section.1.6}%
+\contentsline {subsection}{\tocsubsection {}{6.1}{El corchete de Lie}}{17}{subsection.1.6.1}%
+\contentsline {subsection}{\tocsubsection {}{6.3}{Flujos}}{18}{subsection.1.6.3}%
+\contentsline {subsection}{\tocsubsection {}{6.4}{Derivada de Lie}}{18}{subsection.1.6.4}%
+\contentsline {section}{\tocsection {}{7}{Distribuciones, foliaciones y el teorema de Frobenius}}{19}{section.1.7}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{II}{Topología algebraica en variedades}}{25}{chapter.2}%
+\contentsline {section}{\tocsection {}{8}{Teoría de categorías}}{25}{section.2.8}%
+\contentsline {subsection}{\tocsubsection {}{8.5}{}}{25}{subsection.2.8.5}%
+\contentsline {subsection}{\tocsubsection {}{8.7}{}}{26}{subsection.2.8.7}%
+\contentsline {subsection}{\tocsubsection {}{8.12}{}}{27}{subsection.2.8.12}%
+\contentsline {subsection}{\tocsubsection {}{8.19}{Representabilidad y densidad}}{29}{subsection.2.8.19}%
+\contentsline {section}{\tocsection {}{9}{Álgebra homológica 1: Categorías abelianas}}{29}{section.2.9}%
+\contentsline {subsection}{\tocsubsection {}{9.8}{Teorema de representabilidad}}{31}{subsection.2.9.8}%
+\contentsline {section}{\tocsection {}{10}{Álgebra homológica 2: La categoría derivada}}{33}{section.2.10}%
+\contentsline {subsection}{\tocsubsection {}{10.3}{}}{33}{subsection.2.10.3}%
+\contentsline {subsection}{\tocsubsection {}{10.4}{}}{33}{subsection.2.10.4}%
+\contentsline {subsection}{\tocsubsection {}{10.5}{}}{33}{subsection.2.10.5}%
+\contentsline {subsection}{\tocsubsection {}{10.7}{}}{34}{subsection.2.10.7}%
+\contentsline {subsection}{\tocsubsection {}{10.11}{}}{35}{subsection.2.10.11}%
+\contentsline {subsection}{\tocsubsection {}{10.19}{}}{38}{subsection.2.10.19}%
+\contentsline {section}{\tocsection {}{11}{Teoría de haces en variedades}}{39}{section.2.11}%
+\contentsline {subsection}{\tocsubsection {}{11.1}{}}{39}{subsection.2.11.1}%
+\contentsline {subsection}{\tocsubsection {}{11.6}{El haz de Godement}}{40}{subsection.2.11.6}%
+\contentsline {subsection}{\tocsubsection {}{11.10}{Imágenes directas}}{42}{subsection.2.11.10}%
+\contentsline {subsection}{\tocsubsection {}{11.11}{Soportes compactos}}{42}{subsection.2.11.11}%
+\contentsline {section}{\tocsection {}{12}{Cohomología en variedades}}{43}{section.2.12}%
+\contentsline {subsection}{\tocsubsection {}{12.3}{Axiomas de Eilenberg--Steenrod}}{44}{subsection.2.12.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.3.1}{Axioma de escisión}}{44}{subsubsection.2.12.3.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.3.2}{Axioma de dimensión}}{44}{subsubsection.2.12.3.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.3.3}{Axioma de aditividad}}{44}{subsubsection.2.12.3.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.3.4}{Axioma de exactitud}}{44}{subsubsection.2.12.3.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.3.5}{Axioma de homotopía}}{44}{subsubsection.2.12.3.5}%
+\contentsline {subsection}{\tocsubsection {}{12.6}{}}{45}{subsection.2.12.6}%
+\contentsline {subsection}{\tocsubsection {}{12.11}{Cohomología singular}}{46}{subsection.2.12.11}%
+\contentsline {subsection}{\tocsubsection {}{12.13}{Cohomología celular}}{47}{subsection.2.12.13}%
+\contentsline {subsection}{\tocsubsection {}{12.15}{Cohomología con soportes compactos}}{49}{subsection.2.12.15}%
+\contentsline {subsection}{\tocsubsection {}{12.18}{Cálculo del dualizante}}{50}{subsection.2.12.18}%
+\contentsline {section}{\tocsection {}{13}{Teoría de Morse y teoría del grado}}{51}{section.2.13}%
+\contentsline {subsection}{\tocsubsection {}{13.1}{Funciones de Morse}}{51}{subsection.2.13.1}%
+\contentsline {subsection}{\tocsubsection {}{13.3}{Característica de Euler via teoría de Morse}}{52}{subsection.2.13.3}%
+\contentsline {subsection}{\tocsubsection {}{13.5}{Teoría del grado}}{53}{subsection.2.13.5}%
+\contentsline {subsection}{\tocsubsection {}{13.10}{El índice de un campo vectorial}}{55}{subsection.2.13.10}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{III}{Geometría riemanniana}}{59}{chapter.3}%
+\contentsline {section}{\tocsection {}{14}{Métricas riemannianas}}{59}{section.3.14}%
+\contentsline {subsection}{\tocsubsection {}{14.1}{}}{59}{subsection.3.14.1}%
+\contentsline {subsection}{\tocsubsection {}{14.3}{}}{59}{subsection.3.14.3}%
+\contentsline {subsection}{\tocsubsection {}{14.4}{Longitud, distancia y volumen}}{59}{subsection.3.14.4}%
+\contentsline {subsection}{\tocsubsection {}{14.5}{}}{60}{subsection.3.14.5}%
+\contentsline {subsection}{\tocsubsection {}{14.6}{Existencia}}{60}{subsection.3.14.6}%
+\contentsline {subsection}{\tocsubsection {}{14.7}{Subir y bajar índices}}{60}{subsection.3.14.7}%
+\contentsline {section}{\tocsection {}{15}{Simetrías y estructuras geométricas}}{61}{section.3.15}%
+\contentsline {subsection}{\tocsubsection {}{15.1}{El programa de Erlangen}}{61}{subsection.3.15.1}%
+\contentsline {subsection}{\tocsubsection {}{15.2}{Geometría lineal}}{61}{subsection.3.15.2}%
+\contentsline {subsection}{\tocsubsection {}{15.3}{Geometría afín}}{61}{subsection.3.15.3}%
+\contentsline {subsection}{\tocsubsection {}{15.4}{Geometría euclidiana}}{62}{subsection.3.15.4}%
+\contentsline {subsection}{\tocsubsection {}{15.5}{Geometría riemanniana}}{62}{subsection.3.15.5}%
+\contentsline {section}{\tocsection {}{16}{Curvatura intrínseca}}{63}{section.3.16}%
+\contentsline {subsection}{\tocsubsection {}{16.2}{}}{63}{subsection.3.16.2}%
+\contentsline {section}{\tocsection {}{17}{Curvatura extrínseca: Curvas planas}}{64}{section.3.17}%
+\contentsline {subsection}{\tocsubsection {}{17.1}{}}{64}{subsection.3.17.1}%
+\contentsline {subsection}{\tocsubsection {}{17.2}{}}{65}{subsection.3.17.2}%
+\contentsline {subsection}{\tocsubsection {}{17.3}{Curvatura de una curva}}{65}{subsection.3.17.3}%
+\contentsline {subsection}{\tocsubsection {}{17.4}{}}{65}{subsection.3.17.4}%
+\contentsline {subsection}{\tocsubsection {}{17.6}{Aplicación de Weingarten}}{66}{subsection.3.17.6}%
+\contentsline {subsection}{\tocsubsection {}{17.7}{Prescribir la curvatura}}{66}{subsection.3.17.7}%
+\contentsline {section}{\tocsection {}{18}{Superficies en el espacio}}{67}{section.3.18}%
+\contentsline {subsection}{\tocsubsection {}{18.1}{}}{67}{subsection.3.18.1}%
+\contentsline {subsection}{\tocsubsection {}{18.2}{Curvatura, operador de forma y segunda forma fundamental}}{68}{subsection.3.18.2}%
+\contentsline {subsection}{\tocsubsection {}{18.4}{}}{68}{subsection.3.18.4}%
+\contentsline {subsection}{\tocsubsection {}{18.6}{}}{69}{subsection.3.18.6}%
+\contentsline {section}{\tocsection {}{19}{Geometría riemanniana intrínseca}}{70}{section.3.19}%
+\contentsline {subsection}{\tocsubsection {}{19.1}{}}{70}{subsection.3.19.1}%
+\contentsline {subsection}{\tocsubsection {}{19.3}{}}{71}{subsection.3.19.3}%
+\contentsline {subsection}{\tocsubsection {}{19.6}{}}{71}{subsection.3.19.6}%
+\contentsline {section}{\tocsection {}{20}{La conexión de Levi-Civita}}{73}{section.3.20}%
+\contentsline {subsection}{\tocsubsection {}{20.1}{Expresión de una conexión en coordenadas}}{73}{subsection.3.20.1}%
+\contentsline {subsection}{\tocsubsection {}{20.2}{Conexión de Levi-Civita}}{75}{subsection.3.20.2}%
+\contentsline {section}{\tocsection {}{21}{Geodésicas y aplicación exponencial}}{75}{section.3.21}%
+\contentsline {subsection}{\tocsubsection {}{21.2}{Ecuación de las geodésicas}}{76}{subsection.3.21.2}%
+\contentsline {subsection}{\tocsubsection {}{21.3}{El principio variacional}}{76}{subsection.3.21.3}%
+\contentsline {subsection}{\tocsubsection {}{21.4}{Aplicación exponencial}}{77}{subsection.3.21.4}%
+\contentsline {section}{\tocsection {}{22}{Curvatura de una variedad riemanniana}}{77}{section.3.22}%
+\contentsline {subsection}{\tocsubsection {}{22.1}{El tensor de Riemann}}{77}{subsection.3.22.1}%
+\contentsline {subsection}{\tocsubsection {}{22.2}{Interpretación geométrica}}{78}{subsection.3.22.2}%
+\contentsline {subsection}{\tocsubsection {}{22.3}{Simetrías del tensor de curvatura}}{78}{subsection.3.22.3}%
+\contentsline {subsection}{\tocsubsection {}{22.5}{Curvatura seccional}}{78}{subsection.3.22.5}%
+\contentsline {subsection}{\tocsubsection {}{22.9}{Curvatura de Ricci}}{79}{subsection.3.22.9}%
+\contentsline {subsection}{\tocsubsection {}{22.10}{Curvatura escalar}}{80}{subsection.3.22.10}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{IV}{Álgebras y grupos de Lie}}{81}{chapter.4}%
+\contentsline {section}{\tocsection {}{23}{Álgebras de Lie}}{81}{section.4.23}%
+\contentsline {subsection}{\tocsubsection {}{23.3}{}}{81}{subsection.4.23.3}%
+\contentsline {subsection}{\tocsubsection {}{23.6}{}}{82}{subsection.4.23.6}%
+\contentsline {section}{\tocsection {}{24}{Grupos de Lie}}{83}{section.4.24}%
+\contentsline {subsection}{\tocsubsection {}{24.3}{}}{84}{subsection.4.24.3}%
+\contentsline {subsection}{\tocsubsection {}{24.4}{}}{84}{subsection.4.24.4}%
+\contentsline {subsection}{\tocsubsection {}{24.7}{}}{85}{subsection.4.24.7}%
+\contentsline {subsection}{\tocsubsection {}{24.8}{}}{85}{subsection.4.24.8}%
+\contentsline {subsection}{\tocsubsection {}{24.11}{}}{86}{subsection.4.24.11}%
+\contentsline {subsection}{\tocsubsection {}{24.12}{Forma de Maurer--Cartan}}{87}{subsection.4.24.12}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{V}{Fibrados principales}}{89}{chapter.5}%
+\contentsline {section}{\tocsection {}{25}{Fibrados principales}}{89}{section.5.25}%
+\contentsline {subsection}{\tocsubsection {}{25.3}{Funciones de transición}}{90}{subsection.5.25.3}%
+\contentsline {subsection}{\tocsubsection {}{25.5}{Grupos abelianos}}{91}{subsection.5.25.5}%
+\contentsline {subsection}{\tocsubsection {}{25.7}{Fibrados asociados}}{92}{subsection.5.25.7}%
+\contentsline {section}{\tocsection {}{26}{Extensiones, reducciones y estructuras geométricas}}{92}{section.5.26}%
+\contentsline {subsection}{\tocsubsection {}{26.1}{Extensión y reducción del grupo de estructura}}{92}{subsection.5.26.1}%
+\contentsline {subsection}{\tocsubsection {}{26.2}{Métricas riemannianas}}{93}{subsection.5.26.2}%
+\contentsline {subsection}{\tocsubsection {}{26.3}{Orientaciones}}{93}{subsection.5.26.3}%
+\contentsline {subsection}{\tocsubsection {}{26.4}{Forma de volumen}}{93}{subsection.5.26.4}%
+\contentsline {subsection}{\tocsubsection {}{26.5}{Estructuras presimplécticas}}{94}{subsection.5.26.5}%
+\contentsline {subsection}{\tocsubsection {}{26.6}{Estructuras casi-complejas}}{94}{subsection.5.26.6}%
+\contentsline {subsection}{\tocsubsection {}{26.7}{Extensiones centrales}}{94}{subsection.5.26.7}%
+\contentsline {subsection}{\tocsubsection {}{26.8}{Estructuras de spin}}{94}{subsection.5.26.8}%
+\contentsline {section}{\tocsection {}{27}{Conexiones}}{95}{section.5.27}%
+\contentsline {subsection}{\tocsubsection {}{27.2}{}}{95}{subsection.5.27.2}%
+\contentsline {subsection}{\tocsubsection {}{27.4}{}}{95}{subsection.5.27.4}%
+\contentsline {subsection}{\tocsubsection {}{27.5}{El campo fundamental}}{96}{subsection.5.27.5}%
+\contentsline {subsection}{\tocsubsection {}{27.6}{La $1$-forma de conexión}}{96}{subsection.5.27.6}%
+\contentsline {subsection}{\tocsubsection {}{27.7}{Las $1$-formas locales}}{97}{subsection.5.27.7}%
+\contentsline {subsection}{\tocsubsection {}{27.8}{Conexiones en fibrados asociados}}{97}{subsection.5.27.8}%
+\contentsline {section}{\tocsection {}{28}{Curvatura}}{98}{section.5.28}%
+\contentsline {subsection}{\tocsubsection {}{28.2}{}}{98}{subsection.5.28.2}%
+\contentsline {subsection}{\tocsubsection {}{28.5}{}}{99}{subsection.5.28.5}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{VI}{Holonomía y espacios de curvatura constante}}{101}{chapter.6}%
+\contentsline {section}{\tocsection {}{29}{Holonomía y conexiones planas}}{101}{section.6.29}%
+\contentsline {subsection}{\tocsubsection {}{29.1}{Transporte paralelo}}{101}{subsection.6.29.1}%
+\contentsline {subsection}{\tocsubsection {}{29.2}{Holonomía}}{101}{subsection.6.29.2}%
+\contentsline {section}{\tocsection {}{30}{Geometría a la Cartan}}{103}{section.6.30}%
+\contentsline {subsection}{\tocsubsection {}{30.2}{}}{104}{subsection.6.30.2}%
+\contentsline {subsection}{\tocsubsection {}{30.3}{}}{104}{subsection.6.30.3}%
+\contentsline {subsection}{\tocsubsection {}{30.4}{}}{104}{subsection.6.30.4}%
+\contentsline {subsection}{\tocsubsection {}{30.6}{Geometría euclidiana a la Klein}}{105}{subsection.6.30.6}%
+\contentsline {subsection}{\tocsubsection {}{30.7}{Geometría riemanniana a la Cartan}}{105}{subsection.6.30.7}%
+\contentsline {section}{\tocsection {}{31}{Formas espaciales}}{106}{section.6.31}%
+\contentsline {subsection}{\tocsubsection {}{31.1}{}}{106}{subsection.6.31.1}%
+\contentsline {subsection}{\tocsubsection {}{31.2}{Geometrías de curvatura constante}}{106}{subsection.6.31.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{31.2.1}{Curvatura nula}}{106}{subsubsection.6.31.2.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{31.2.2}{Curvatura positiva o negativa}}{106}{subsubsection.6.31.2.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{31.2.3}{Curvatura positiva}}{107}{subsubsection.6.31.2.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{31.2.4}{Curvatura negativa}}{107}{subsubsection.6.31.2.4}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{VII}{Clases características}}{109}{chapter.7}%
+\contentsline {section}{\tocsection {}{32}{Teoría de Chern--Weil}}{109}{section.7.32}%
+\contentsline {section}{\tocsection {}{33}{Clases de Chern}}{109}{section.7.33}%
+\contentsline {section}{\tocsection {}{34}{Clases de Pontryagin}}{109}{section.7.34}%
+\contentsline {section}{\tocsection {}{35}{Clases de Euler}}{109}{section.7.35}%
+\contentsline {chapter}{\tocchapter {Cap\'{\i }tulo}{VIII}{Análisis global}}{111}{chapter.8}%
+\contentsline {section}{\tocsection {}{36}{Estrella de Hodge y laplaciano}}{111}{section.8.36}%
+\contentsline {section}{\tocsection {}{37}{La ecuación de Poisson en superficies}}{111}{section.8.37}%
+\contentsline {section}{\tocsection {}{38}{Superficies de Riemann compactas}}{111}{section.8.38}%
