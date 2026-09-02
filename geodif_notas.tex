@@ -473,9 +473,9 @@ donde cada $\Lambda^k(V)$ se identifica con los tensores antisimétricos en $V^{
 
 El lector puede comprobar fácilmente que, debido a la naturalidad de estas construcciones, es posible replicarlas en la categoría de los fibrados vectoriales y así, dado un fibrado vectorial $E\rightarrow M$ sobre una variedad diferenciable, se pueden definir similarmente sus potencias tensoriales $E^{\otimes k}\rightarrow M$, simétricas $S^k(E)\rightarrow M$ y antisimétricas $\Lambda^k(E)\rightarrow M$.
 
-\subsection{Campos, formas, métricas y tensores} Sea $M$ una variedad diferenciable. Un \emph{campo tensorial} (o, simplemente un \emph{tensor}) \emph{$r$ veces covariante y $s$ veces contravariante} (equivalentemente, \emph{de tipo $(r,s)$}), es una sección del fibrado vectorial
+\subsection{Campos, formas, métricas y tensores} Sea $M$ una variedad diferenciable. Un \emph{campo tensorial} (o, simplemente un \emph{tensor}) \emph{$r$ veces contravariante y $s$ veces covariante} (equivalentemente, \emph{de tipo $(r,s)$}), es una sección del fibrado vectorial
 \begin{equation*}
-T^{r}_s (M) = (T^*M)^{\otimes r} \otimes (TM)^{\otimes s}.
+T^{r}_s (M) = (TM)^{\otimes r} \otimes (T^*M)^{\otimes s}.
 \end{equation*}
 Existen algunos casos particulares de tensores que serán especialmente importantes. Denotamos por
 \begin{equation*}
@@ -483,14 +483,14 @@ Existen algunos casos particulares de tensores que serán especialmente importan
 \end{equation*}
 el espacio de los tensores de tipo $(r,s)$.
 
-Un tensor de tipo $(0,1)$ es simplemente una sección de $TM$, es decir, un \emph{campo vectorial}. El espacio de los campos vectoriales se denota por
+Un tensor de tipo $(1,0)$ es simplemente una sección de $TM$, es decir, un \emph{campo vectorial}. El espacio de los campos vectoriales se denota por
 \begin{equation*}
-\fX(M) = \mathcal{T}^0_1(M) = \Gamma(M,TM).
+\fX(M) = \mathcal{T}^1_0(M) = \Gamma(M,TM).
 \end{equation*}
 
-Un tensor de tipo $(2,0)$ determina una forma bilineal en cada espacio tangente $T_xM$, $x\in M$. En particular, si el tensor es simétrico y la forma es no degenerada en cada punto, el tensor se denomina una \emph{métrica} (riemanniana).
+Un tensor de tipo $(0,2)$ determina una forma bilineal en cada espacio tangente $T_xM$, $x\in M$. En particular, si el tensor es simétrico y la forma es no degenerada en cada punto, el tensor se denomina una \emph{métrica} (riemanniana).
 
-Un tensor antisimétrico de tipo $(k,0)$ se denomina una \emph{forma diferencial de grado $k$} o \emph{$k$-forma diferencial}. El espacio de las $k$-formas diferenciales se denota como
+Un tensor antisimétrico de tipo $(0,k)$ se denomina una \emph{forma diferencial de grado $k$} o \emph{$k$-forma diferencial}. El espacio de las $k$-formas diferenciales se denota como
 \begin{equation*}
 \Omega^k(M) = \Gamma(M, \Lambda^k(T^*M)).
 \end{equation*}
@@ -662,13 +662,90 @@ Por tanto, con respecto a las bases $\left\{ dy\wedge dz, dz\wedge dx,dx \wedge 
 \end{equation*}
 \end{ex}
 
+\section{Orientaciones, integración de formas y teorema de Stokes}
+\subsection{Orientaciones} Sea $V$ un espacio vectorial real de dimensión $n$. El conjunto $\cB(V)$ de las bases de $V$ puede ponerse en biyección (eligiendo una base) con el grupo $\GL_n(\RR)$. Este grupo tiene dos componentes conexas, diferenciadas por el signo del determinante. Una \emph{orientación} de $V$ es una elección de una de estas dos componentes conexas en $\cB(V)$. Una \emph{orientación} de una variedad diferenciable $M$ de dimensión $n$ es una elección global consistente de la orientación de sus espacios tangentes. Más precisamente, una orientación está dada por un atlas de $M$ cuyos cambios de coordenadas tienen todos diferencial en la componente conexa de determinante positivo $\GL_n(\RR)^+ \subset \GL_n(\RR)$. Equivalentemente, es una elección de referencias locales del fibrado tangente $TM\rightarrow M$ con matrices de transición en $\GL_n(\RR)^+$.
+
+No todas las variedades admiten una orientación. El ejemplo más sencillo es la \emph{banda de Möbius}. Una variedad que admite una orientación se dice \emph{orientable}. Una variedad equipada con una orientación es una \emph{variedad orientada}.
+
+Una forma diferencial de grado máximo $\omega \in \Omega^n(M)$ que no se anula en ningún punto de $M$ determina una orientación en $M$. En efecto, la correspondiente orientación está determinada por el subconjunto del atlas maximal de $M$ formado por los sistemas de coordenadas $(U,\bm{x})$ tales que la función $f:U\rightarrow \RR$ con
+\begin{equation*}
+\omega|_U = f dx^1\wedge \cdots \wedge dx^n
+\end{equation*}
+cumple $f(x)>0$ para todo $x\in M$ (en efecto, como $\omega$ no se anula nunca, el signo de $f$ es constante en $U$).
+
+\subsection{Formas con soporte compacto} Una forma diferencial $\omega \in \Omega(M)$ tiene \emph{soporte compacto} si existe un subconjunto compacto $K\subset M$ de forma que $\omega_x = 0$ para todo $x\not \in K$. Nótese que si $M$ es compacta, entonces podemos tomar $K=M$, y todas las formas tienen soporte compacto. Denotamos por $\Omega_c(M)\subset \Omega(M)$ (resp. $\Omega_c^k(M)\subset \Omega^k(M)$) al subespacio formado por las formas diferenciales (resp. de grado $k$) con soporte compacto.
+
+\subsection{Integración de formas en $\RR^n$} Sea $U\subset \RR^n$ un abierto de $\RR^n$ y $\omega \in \Omega^n_c(U)$ una $n$-forma con soporte compacto. Esta forma diferencial puede escribirse como
+\begin{equation*}
+\omega = f dx^1\wedge \cdots \wedge dx^n,
+\end{equation*}
+donde $f:U\rightarrow \RR$ es una función diferenciable con soporte compacto (es decir, que se anula en el complementario de un conjunto compacto $K\subset U$). La \emph{integral} de $\omega$ en $U$ se define como la integral de Riemann
+\begin{equation*}
+\int_{U} \omega = \int_{U} f dx^1\wedge \cdots \wedge dx^n := \int_{U} f(x^1,\dots,x^n) dx^1\dots dx^n.
+\end{equation*}
+
+\subsection{Integración de formas en variedades}
+Sea $M$ una variedad diferenciable. Como $M$ es paracompacta, podemos tomar una familia localmente finita de sistemas de coordenadas $\left\{ (U_\alpha,\bm{x}_\alpha) : \alpha \in I \right\}$, con $M=\bigcup_{\alpha \in I} U_\alpha$ y una PDU $\left\{ \rho_\alpha:\alpha\in I \right\}$ subordinada al recubrimiento $\left\{ U_\alpha: \alpha \in I \right\}$ . Si $\omega \in \Omega_c(M)$ es una forma diferencial con soporte compacto, podemos reescribir
+\begin{equation*}
+\omega = \sum_{\alpha \in I} \rho_\alpha \omega.
+\end{equation*}
+La suma está bien definida ya que $\omega$ tiene soporte compacto, luego el conjunto de puntos donde no se anula se puede recubrir por una cantidad finita de los $U_\alpha$.
+
+Si $\omega \in \Omega_c^n(M)$ es una forma diferencial con soporte compacto y de grado máximo, entonces podemos definir, para cada $\alpha \in I$,
+\begin{equation*}
+\int_{U_\alpha} \rho_\alpha \omega := \int_{\bm{x}_\alpha(U_\alpha)}\bm{x}_{\alpha}^*(\rho_\alpha \omega).
+\end{equation*}
+Finalmente, definimos la \emph{integral} de $\omega$ en $M$ como el número
+\begin{equation*}
+\int_M \omega := \sum_{\alpha \in I} \int_{U_\alpha} \rho_\alpha \omega.
+\end{equation*}
+La integración determina una aplicación $\RR$-lineal
+\begin{equation*}
+\int_M: \Omega^n_c(M) \longrightarrow \RR.
+\end{equation*}
+
+\subsection{Integración en el borde} Supongamos que $M$ es una variedad diferenciable de dimensión $n$ con borde $\partial M$. Supongamos además que $M$ es orientable, y fijemos una orientación en $M$. La orientación en $M$ determina naturalmente una orientación en su borde: una base $\left\{ e_1,\dots, e_{n-1}\right\}$ de $T_x\partial M$ está en la componente determinada por la orientación de $\partial M$ si y sólo si la base $\left\{ \nu, e_1,\dots,e_{n-1} \right\}$ de $T_xM$ está en la componente determinada por la orientación de $M$, donde $\nu \in T_xM$ es un vector normal ``saliente'' al borde $\partial M$.
+
+Dada una $(n-1)$-forma diferencial con soporte compacto $\omega \in \Omega^{n-1}_c(M)$, podemos definir la integral de $\omega$ a lo largo de $\partial M$ como
+\begin{equation*}
+\int_{\partial M} \omega := \int_{\partial M} i^*\omega,
+\end{equation*}
+donde $i:\partial M \hookrightarrow M$ es la inclusión natural. El siguiente resultado, de gran importancia, se sigue directamente del teorema fundamental del cálculo.
+
+\begin{thm}[Teorema de Stokes]
+\begin{equation*}
+\int_{\partial M} \omega = \int_M d\omega.
+\end{equation*}
+\end{thm}
+
+\subsection{Los teoremas clásicos} Algunos casos particulares del teorema de Stokes son los resultados clásicos sobre integración en la recta y en subvariedades del plano y el espacio.
+
+\subsubsection{El teorema fundamental del cálculo} Tomando un intervalo $M=[a,b]$ y $\omega = dF = F' dt$, para una cierta función diferenciable $F:[a,b]\rightarrow \RR$, tenemos
+\begin{equation*}
+\int_a^b F'(t) dt = \int_{[a,b]} F' dt = \int_{\left\{ a,b \right\}} F = F(b)- F(a).
+\end{equation*}
+
+\subsubsection{El teorema de Green} Aquí, tomamos $M\subset \RR^2$ una subvariedad de dimensión $2$ con borde y $\omega= F_x dx + F_y dy$, para ciertas funciones diferenciables $F_x,F_y:M\rightarrow \RR$. Tenemos que
+\begin{equation*}
+\int_{\partial M} F_x dx + F_y dy =  \int_{\partial M} \omega = \int_M d\omega = \int_M (\partial_x F_y - \partial_y F_x) dx dy.
+\end{equation*}
+
+\subsubsection{El teorema de Gauss o teorema de la divergencia} Tomamos $M\subset \RR^3$ una subvariedad de dimensión $3$ con borde y $\omega= F_x dy\wedge dz + F_y dz\wedge dx + F_z dx \wedge dy$. Denotamos por $\bm{\nu}$ el campo vectorial normal saliente al borde $\partial M$ y por $dS$ el elemento de superficie en $\partial M$. Denotamos $\bm{F}=(F_x,F_y,F_z)$ y concluimos que
+\begin{equation*}
+\int_{\partial M} \bm{F} \cdot \bm{\nu} dS = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \cdot \bm{F}) dxdydz.
+\end{equation*}
+
+\subsubsection{El teorema de Stokes clásico} Tomamos $M\subset \RR^3$ una subvariedad de dimensión $2$ con borde y $\omega = F_x dx + F_y dy + F_z dz$. Denotamos por $d\bm{r}$ el elemento de línea en $\partial M$ y por $dS$ el elemento de superficie en $M$. Denotamos $\bm{F}=(F_x,F_y,F_z)$ y concluimos que
+\begin{equation*}
+\int_{\partial M} \bm{F} \cdot d\bm{r} = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \times \bm{F}) \cdot \bm{\nu} dS.
+\end{equation*}
 
 \section{Campos y flujos}
 
 \subsection{El corchete de Lie}
 Un campo vectorial $X\in \fX(M)$ actúa en el espacio de las funciones $C^\infty(M)$ en la forma
 \begin{equation*}
-X f (p) = X_p f.
+X f (x) = X_x f.
 \end{equation*}
 Así, vistos como operadores, es posible definir el conmutador $[X,Y]$ de dos campos, que a su vez será otro campo determinado por su acción en $C^\infty(M)$:
 \begin{equation*}
@@ -753,83 +830,6 @@ De la compatibilidad con la contracción se deduce fácilmente que la expresión
 \end{align*}
 
 
-\section{Orientaciones, integración de formas y teorema de Stokes}
-\subsection{Orientaciones} Sea $V$ un espacio vectorial real de dimensión $n$. El conjunto $\cB(V)$ de las bases de $V$ puede ponerse en biyección (eligiendo una base) con el grupo $\GL_n(\RR)$. Este grupo tiene dos componentes conexas, diferenciadas por el signo del determinante. Una \emph{orientación} de $V$ es una elección de una de estas dos componentes conexas en $\cB(V)$. Una \emph{orientación} de una variedad diferenciable $M$ de dimensión $n$ es una elección global consistente de la orientación de sus espacios tangentes. Más precisamente, una orientación está dada por un atlas de $M$ cuyos cambios de coordenadas tienen todos diferencial en la componente conexa de determinante positivo $\GL_n(\RR)^+ \subset \GL_n(\RR)$. Equivalentemente, es una elección de referencias locales del fibrado tangente $TM\rightarrow M$ con matrices de transición en $\GL_n(\RR)$.
-
-No todas las variedades admiten una orientación. El ejemplo más sencillo es la \emph{banda de Möbius}. Una variedad que admite una orientación se dice \emph{orientable}. Una variedad equipada con una orientación es una \emph{variedad orientada}.
-
-Una forma diferencial de grado máximo $\omega \in \Omega^n(M)$ que no se anula en ningún punto de $M$ determina una orientación en $M$. En efecto, la correspondiente orientación está determinada por el subconjunto del atlas maximal de $M$ formado por los sistemas de coordenadas $(U,\bm{x})$ tales que la función $f:U\rightarrow \RR$ con
-\begin{equation*}
-\omega|_U = f dx^1\wedge \cdots \wedge dx^n
-\end{equation*}
-cumple $f(x)>0$ para todo $x\in M$ (en efecto, como $\omega$ no se anula nunca, el signo de $f$ es constante en $U$).
-
-\subsection{Formas con soporte compacto} Una forma diferencial $\omega \in \Omega(M)$ tiene \emph{soporte compacto} si existe un subconjunto compacto $K\subset M$ de forma que $\omega_x = 0$ para todo $x\not \in M$. Nótese que si $M$ es compacta, entonces podemos tomar $K=M$, y todas las formas tienen soporte compacto. Denotamos por $\Omega_c(M)\subset \Omega(M)$ (resp. $\Omega_c^k(M)\subset \Omega^k(M)$) al subespacio formado por las formas diferenciales (resp. de grado $k$) con soporte compacto.
-
-\subsection{Integración de formas en $\RR^n$} Sea $U\subset \RR^n$ un abierto de $\RR^n$ y $\omega \in \Omega^n_c(U)$ una $n$-forma con soporte compacto. Esta forma diferencial puede escribirse como
-\begin{equation*}
-\omega = f dx^1\wedge \cdots \wedge dx^n,
-\end{equation*}
-donde $f:U\rightarrow \RR$ es una función diferenciable con soporte compacto (es decir, que se anula en el complementario de un conjunto compacto $K\subset U$). La \emph{integral} de $\omega$ en $U$ se define como la integral de Riemann
-\begin{equation*}
-\int_{U} \omega = \int_{U} f dx^1\wedge \cdots \wedge dx^n := \int_{U} f(x^1,\dots,x^n) dx^1\dots dx^n.
-\end{equation*}
-
-\subsection{Integración de formas en variedades}
-Sea $M$ una variedad diferenciable. Como $M$ es paracompacta, podemos tomar una familia localmente finita de sistemas de coordenadas $\left\{ (U_\alpha,\bm{x}_\alpha) : \alpha \in I \right\}$, con $M=\bigcup_{\alpha \in I} U_\alpha$ y una PDU $\left\{ \rho_\alpha:\alpha\in I \right\}$ subordinada al recubrimiento $\left\{ U_\alpha: \alpha \in I \right\}$ . Si $\omega \in \Omega_c(M)$ es una forma diferencial con soporte compacto, podemos reescribir
-\begin{equation*}
-\omega = \sum_{\alpha \in I} \rho_\alpha \omega.
-\end{equation*}
-La suma está bien definida ya que $\omega$ tiene soporte compacto, luego el conjunto de puntos donde no se anula se puede recubrir por una cantidad finita de los $U_\alpha$.
-
-Si $\omega \in \Omega_c^n(M)$ es una forma diferencial con soporte compacto y de grado máximo, entonces podemos definir, para cada $\alpha \in I$,
-\begin{equation*}
-\int_{U_\alpha} \rho_\alpha \omega := \int_{\bm{x}_\alpha(U_\alpha)}\bm{x}_{\alpha}^*(\rho_\alpha \omega).
-\end{equation*}
-Finalmente, definimos la \emph{integral} de $\omega$ en $M$ como el número
-\begin{equation*}
-\int_M \omega := \sum_{\alpha \in I} \int_{U_\alpha} \rho_\alpha \omega.
-\end{equation*}
-La integración determina una aplicación $\RR$-lineal
-\begin{equation*}
-\int_M: \Omega^n_c(M) \longrightarrow \RR.
-\end{equation*}
-
-\subsection{Integración en el borde} Supongamos que $M$ es una variedad diferenciable de dimensión $n$ con borde $\partial M$. Supongamos además que $M$ es orientable, y fijemos una orientación en $M$. La orientación en $M$ determina naturalmente una orientación en su borde: una base $\left\{ e_1,\dots, e_{n-1}\right\}$ de $T_x\partial M$ está en la componente determinada por la orientación de $\partial M$ si y sólo si la base $\left\{ \nu, e_1,\dots,e_{n-1} \right\}$ de $T_xM$ está en la componente determinada por la orientación de $M$, donde $\nu \in T_xM$ es un vector normal ``saliente'' al borde $\partial M$.
-
-Dada una $(n-1)$-forma diferencial con soporte compacto $\omega \in \Omega^{n-1}_c(M)$, podemos definir la integral de $\omega$ a lo largo de $\partial M$ como
-\begin{equation*}
-\int_{\partial M} \omega := \int_{\partial M} i^*\omega,
-\end{equation*}
-donde $i:\partial M \hookrightarrow M$ es la inclusión natural. El siguiente resultado, de gran importancia, se sigue directamente del teorema fundamental del cálculo.
-
-\begin{thm}[Teorema de Stokes]
-\begin{equation*}
-\int_{\partial M} \omega = \int_M d\omega.
-\end{equation*}
-\end{thm}
-
-\subsection{Los teoremas clásicos} Algunos casos particulares del teorema de Stokes son los resultados clásicos sobre integración en la recta y en subvariedades del plano y el espacio.
-
-\subsubsection{El teorema fundamental del cálculo} Tomando un intervalo $M=[a,b]$ y $\omega = dF = F' dt$, para una cierta función diferenciable $F:[a,b]\rightarrow \RR$, tenemos
-\begin{equation*}
-\int_a^b F'(t) dt = \int_{[a,b]} F' dt = \int_{\left\{ a,b \right\}} F = F(b)- F(a).
-\end{equation*}
-
-\subsubsection{El teorema de Green} Aquí, tomamos $M\subset \RR^2$ una subvariedad de dimensión $2$ con borde y $\omega= F_x dx + F_y dy$, para ciertas funciones diferenciables $F_x,F_y:M\rightarrow \RR$. Tenemos que
-\begin{equation*}
-\int_{\partial M} F_x dx + F_y dy =  \int_{\partial M} \omega = \int_M d\omega = \int_M (\partial_x F_y - \partial_y F_x) dx dy.
-\end{equation*}
-
-\subsubsection{El teorema de Gauss o teorema de la divergencia} Tomamos $M\subset \RR^3$ una subvariedad de dimensión $3$ con borde y $\omega= F_x dy\wedge dz + F_y dz\wedge dx + F_z dx \wedge dy$. Denotamos por $\bm{\nu}$ el campo vectorial normal saliente al borde $\partial M$ y por $dS$ el elemento de superficie en $\partial M$. Denotamos $\bm{F}=(F_x,F_y,F_z)$ y concluimos que
-\begin{equation*}
-\int_{\partial M} \bm{F} \cdot \bm{\nu} dS = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \cdot \bm{F}) dxdydz.
-\end{equation*}
-
-\subsubsection{El teorema de Stokes clásico} Tomamos $M\subset \RR^3$ una subvariedad de dimensión $2$ con borde y $\omega = F_x dx + F_y dy + F_z dz$. Denotamos por $d\bm{r}$ el elemento de línea en $\partial M$ y por $dS$ el elemento de superficie en $M$. Denotamos $\bm{F}=(F_x,F_y,F_z)$ y concluimos que
-\begin{equation*}
-\int_{\partial M} \bm{F} \cdot d\bm{r} = \int_{\partial M} \omega = \int_M d\omega = \int_M (\nabla \times \bm{F}) \cdot \bm{\nu} dS.
-\end{equation*}
 
 \section{Distribuciones, foliaciones y el teorema de Frobenius}
 
@@ -2608,7 +2608,7 @@ luego $\deg \bm{n} = \tfrac{1}{2}\chi(M)$.
 que recordamos que es una forma bilineal simétrica y definida positiva. Recordemos también que una base $\left\{ e_1,\dots,e_n \right\}$ de $V$ se denomina \emph{ortonormal} si $\langle e_i, e_j \rangle = \delta_{ij}$. El algoritmo de Gram--Schmidt permite producir una base ortonormal a partir de una base cualquiera.
 
 \begin{defn}
-  Una \emph{métrica riemanniana} (o, simplemente, una \emph{métrica}) en una variedad diferenciable $M$ es una elección de producto escalar $\langle-,-\rangle_x:T_xM \times T_xM \rightarrow \RR$ en cada espacio tangente, que depende del punto $x$ de forma diferenciable. Equivalentemente, una métrica riemanniana es un tensor simétrico de tipo $(0,2)$, es decir $g\in \mathcal{S}^0_2(M)$.
+  Una \emph{métrica riemanniana} (o, simplemente, una \emph{métrica}) en una variedad diferenciable $M$ es una elección de producto escalar $\langle-,-\rangle_x:T_xM \times T_xM \rightarrow \RR$ en cada espacio tangente, que depende del punto $x$ de forma diferenciable. Equivalentemente, una métrica riemanniana es un tensor simétrico y no degenerado de tipo $(0,2)$.
 
   Un par $(M,g)$ formado por una variedad diferenciable con una métrica riemanniana en ella, se denomina una \emph{variedad riemanniana}. Una \emph{isometría} entre dos variedades Riemannianas $(M_1,g_1)$ y $(M_2,g_2)$ es una aplicación diferenciable  $f:M\rightarrow N$ tal que $f^*g_2 = g_1$.
 \end{defn}
@@ -2657,7 +2657,7 @@ g = \sum_{U} \rho_U g_U.
 
 \subsection{Subir y bajar índices} Un producto escalar $\langle-,-\rangle: V\times V \rightarrow \RR$, al ser definido positivo, determina un isomorfismo $V\rightarrow V^*$, que envía cada $v\in V$ a la forma lineal $\langle v,-\rangle: V\rightarrow \RR$. A su vez, precomponiendo con este isomorfismo, se obtiene un producto escalar en $V^*$.
 
-De igual manera, una métrica Riemanniana en una variedad $M$ determina el denominado \emph{isomorfismo musical} $TM \rightarrow T^*M$, que envía cada campo vectorial $X \in \fX(M)$ a la $1$-forma $X^\sharp=g(X,-) \in \Omega^1(M)$. Componiendo con este isomorfismo, se obtiene un tensor simétrico $g^\sharp$ de tipo $(2,0)$, es decir $g^\sharp \in \mathcal{S}^2_0(M)$, denominado el \emph{tensor métrico inverso}. En coordenadas, denotamos
+De igual manera, una métrica Riemanniana en una variedad $M$ determina el denominado \emph{isomorfismo musical} $TM \rightarrow T^*M$, que envía cada campo vectorial $X \in \fX(M)$ a la $1$-forma $X^\sharp=g(X,-) \in \Omega^1(M)$. Componiendo con este isomorfismo, se obtiene un tensor simétrico $g^\sharp$ de tipo $(2,0)$, denominado el \emph{tensor métrico inverso}. En coordenadas, denotamos
 \begin{equation*}
 g^\sharp = g^{ij} \partial_i \partial_j.
 \end{equation*}
@@ -2902,17 +2902,17 @@ de modo que la curvatura de la circunferencia de radio $R$ es
 \begin{equation*}
 S(V) = \left\{ v\in V: \langle v,v\rangle = 1 \right\}.
 \end{equation*}
-Esta aplicación es diferenciable, por construcción, y su diferencial en un punto $p\in C$ es la llamada \emph{aplicación de Weingarten}
+Esta aplicación es diferenciable, por construcción, y su diferencial en un punto $x\in C$ es la llamada \emph{aplicación de Weingarten}
 \begin{align*}
-S_p=- d_p\bm{n} : T_pC  \rightarrow T_{\bm{n}(p)} S(V).
+S_x=- d_x\bm{n} : T_xC  \rightarrow T_{\bm{n}(p)} S(V).
 \end{align*}
-El espacio tangente $T_{\bm{n}(p)}S(V)$ está generado por el vector tangente unitario $\bm{t}_p$, de modo que podemos escribir
+El espacio tangente $T_{\bm{n}(p)}S(V)$ está generado por el vector tangente unitario $\bm{t}_x$, de modo que podemos escribir
 \begin{equation*}
-S_p(\bm{t}_p) = \lambda \bm{t}_p,
+S_x(\bm{t}_x) = \lambda \bm{t}_x,
 \end{equation*}
 para un cierto número $\lambda \in \RR$, pero resulta que este número es precisamente $\kappa(p)$. En efecto,
 \begin{equation*}
-\lambda \bm{t}_p =-d_p\bm{n}(\bm{t}_p) =- (d\bm{n})_p(\bm{t}_p) = \alpha_p(\bm{t}_p) \bm{t}_p = \kappa (i^*\theta^1)_p(\bm{t}_p) \bm{t}_p = \kappa \bm{t}_p.
+\lambda \bm{t}_x =-d_x\bm{n}(\bm{t}_x) =- (d\bm{n})_x(\bm{t}_x) = \alpha_x(\bm{t}_x) \bm{t}_x = \kappa (i^*\theta^1)_x(\bm{t}_x) \bm{t}_x = \kappa \bm{t}_x.
 \end{equation*}
 
 \subsection{Prescribir la curvatura} Consideramos ahora el siguiente problema:
@@ -2963,7 +2963,7 @@ De modo que $T_{\mathbb{I}} O_2(\RR)$ es la recta de las matrices $2\times 2$ an
 \end{equation*}
 es una de estas matrices, de modo que $A(s)$ puede verse como un campo en $\cB_{\mathrm{O}}(E)$ dependiente de $s$.
 
-El teorema de existencia y unicidad de soluciones para sistemas de ecuaciones diferenciales de orden $1$ implica que, dados un punto inicial $p\in C$ y unos vectores unitarios perpendiculares $\bm{t}_0,\bm{n}_0 \in E$, existen un $\varepsilon > 0$ y unas únicas aplicaciones diferenciables $\gamma,\bm{t},\bm{n}:(-\varepsilon,\varepsilon)\rightarrow E$ con $\gamma(0)=p$, $\bm{t}(0)=\bm{t}_0$ y $\bm{n}(0)=\bm{n}_0$ y tales que
+El teorema de existencia y unicidad de soluciones para sistemas de ecuaciones diferenciales de orden $1$ implica que, dados un punto inicial $x\in C$ y unos vectores unitarios perpendiculares $\bm{t}_0,\bm{n}_0 \in E$, existen un $\varepsilon > 0$ y unas únicas aplicaciones diferenciables $\gamma,\bm{t},\bm{n}:(-\varepsilon,\varepsilon)\rightarrow E$ con $\gamma(0)=p$, $\bm{t}(0)=\bm{t}_0$ y $\bm{n}(0)=\bm{n}_0$ y tales que
 \begin{equation*}
 \frac{d}{ds}\begin{pmatrix}
 \gamma(s) & \bm{t}(s) & \bm{n}(s)
@@ -2975,50 +2975,50 @@ Además, esta solución se puede prolongar a un intervalo maximal $I \subset \RR
 
 \section{Superficies en el espacio}
 
-\subsection{} Sea $E$ un espacio euclidiano $3$-dimensional. Una \emph{superficie no singular} en $E$ es una subvariedad regular $S\subset E$ de dimensión $2$ equipada con una orientación de la dirección normal a $S$. El producto escalar en $E$ induce una métrica riemanniana $g$ en $S$; clásicamente, a esta métrica riemanniana se le llama la \emph{primera forma fundamental}, y se denota por $g_p=I_p$. Igual que en curvas, la orientación normal determina un vector normal unitario $\bm{n}$. La correspondiente aplicación
+\subsection{} Sea $E$ un espacio euclidiano $3$-dimensional. Una \emph{superficie no singular} en $E$ es una subvariedad regular $S\subset E$ de dimensión $2$ equipada con una orientación de la dirección normal a $S$. El producto escalar en $E$ induce una métrica riemanniana $g$ en $S$; clásicamente, a esta métrica riemanniana se le llama la \emph{primera forma fundamental}, y se denota por $g_x=I_x$. Igual que en curvas, la orientación normal determina un vector normal unitario $\bm{n}$. La correspondiente aplicación
 \begin{equation*}
 \bm{n}: S \rightarrow S(E),
 \end{equation*}
 donde $S(E)\subset E$ es la esfera unidad en $E$, se denomina la \emph{aplicación de Gauss}.
-De nuevo, podemos considerar la \emph{aplicación de Weingarten}, para cada $p\in S$
+De nuevo, podemos considerar la \emph{aplicación de Weingarten}, para cada $x\in S$
 \begin{equation*}
-S_p = -d_p \bm{n}: T_pS \rightarrow T_p S(E).
+S_x = -d_x \bm{n}: T_xS \rightarrow T_x S(E).
 \end{equation*}
 De nuevo, la elección de $\bm{n}$ induce un isomorfismo
 \begin{equation*}
-T_pS \cong \ker \langle\bm{n},-\rangle \cong T_p S(E),
+T_xS \cong \ker \langle\bm{n},-\rangle \cong T_x S(E),
 \end{equation*}
 de modo que podemos ver la aplicación de Weingarten como un operador
 \begin{equation*}
-S_p:T_pS\rightarrow T_pS.
+S_x:T_xS\rightarrow T_xS.
 \end{equation*}
 
 \subsection{Curvatura, operador de forma y segunda forma fundamental} Una forma de introducir una noción de curvatura para $S$ es considerar, para cada $p\in S$, la aplicación
 \begin{equation*}
-\kappa_p: \mathbb{P}(T_p S) \rightarrow \RR,
+\kappa_x: \mathbb{P}(T_x S) \rightarrow \RR,
 \end{equation*}
-que asigna a cada recta $L\subset T_pS$ la curvatura de la curva $S\cap \Pi(L)$, obtenida como la intersección de $S$ con el plano $\Pi(L)\subset E$ que contiene a $L$ y pasa por $p$.
+que asigna a cada recta $L\subset T_xS$ la curvatura de la curva $S\cap \Pi(L)$, obtenida como la intersección de $S$ con el plano $\Pi(L)\subset E$ que contiene a $L$ y pasa por $p$.
 
-Por el teorema de la función inversa, podemos ver localmente la superficie $S$ como la gráfica de una función $F:T_pS\rightarrow \RR$ con $F(0)=0$ y $d_0 F=0$. Se denomina la \emph{segunda forma fundamental} al hessiano
+Por el teorema de la función inversa, podemos ver localmente la superficie $S$ como la gráfica de una función $F:T_xS\rightarrow \RR$ con $F(0)=0$ y $d_0 F=0$. Se denomina la \emph{segunda forma fundamental} al hessiano
 \begin{equation*}
-II_p:=\mathrm{Hess}_p F: T_pS \times T_p S \rightarrow \RR.
+II_x:=\mathrm{Hess}_x F: T_xS \times T_x S \rightarrow \RR.
 \end{equation*}
-La función $\kappa_p$ mide la segunda derivada de $F$, en el sentido de que se tiene, para cada recta $L\subset T_pS$, y para cada vector unitario $v\in L$,
+La función $\kappa_x$ mide la segunda derivada de $F$, en el sentido de que se tiene, para cada recta $L\subset T_xS$, y para cada vector unitario $v\in L$,
 \begin{equation*}
-II_p(v,v) = \kappa_p(L).
+II_x(v,v) = \kappa_x(L).
 \end{equation*}
 
-Como la primera forma fundamental $I_p=g_p$ es no degenerada, ha de existir un operador $S_p:T_pS \rightarrow T_pS$, llamado el \emph{operador de forma}, de modo que
+Como la primera forma fundamental $I_x=g_x$ es no degenerada, ha de existir un operador $S_x:T_xS \rightarrow T_xS$, llamado el \emph{operador de forma}, de modo que
 \begin{equation*}
-II_p(v,w) = I_p(v,S_p(w)).
+II_x(v,w) = I_x(v,S_x(w)).
 \end{equation*}
 
 \begin{lemma}
-El operador de forma $S_p$ coincide con la aplicación de Weingarten.
+El operador de forma $S_x$ coincide con la aplicación de Weingarten.
 \end{lemma}
 
 \begin{proof}
-  Tomamos ``coordenadas euclidianas'' $x$ y $y$ en el espacio afín tangente $p+T_p S \subset E$ y definimos $F=F(x,y)$ de modo que en un entorno de $p$, tenemos que $S$ es la gráfica de $F$. Entonces
+  Tomamos ``coordenadas euclidianas'' $x$ y $y$ en el espacio afín tangente $x+T_x S \subset E$ y definimos $F=F(x,y)$ de modo que en un entorno de $x$, tenemos que $S$ es la gráfica de $F$. Entonces
   \begin{equation*}
 \bm{n}(x,y) = \frac{(\frac{\partial F}{\partial x}, \frac{\partial F}{\partial y}, 1)}{\lVert (\frac{\partial F}{\partial x}, \frac{\partial F}{\partial y}, 1)\rVert},
   \end{equation*}
@@ -3028,24 +3028,24 @@ El operador de forma $S_p$ coincide con la aplicación de Weingarten.
 -\left. \begin{pmatrix}
 \partial_{xx} F & \partial_{xy} F \\
 \partial_{yx} F & \partial_{yy} F \\
-\end{pmatrix} \right|_p = - \mathrm{Hess}_p F,
+\end{pmatrix} \right|_x = - \mathrm{Hess}_x F,
   \end{equation*}
-  que es la matriz asociada a $II_p$ en estas coordenadas euclidianas.
+  que es la matriz asociada a $II_x$ en estas coordenadas euclidianas.
 \end{proof}
 
-\subsection{} Como la segunda forma fundamental es simétrica, el operador de forma $S_p$ es autoadjunto, por lo que es diagonalizable y tiene autovalores reales $\lambda_1,\lambda_2 \in \RR$. Distinguimos dos casos:
+\subsection{} Como la segunda forma fundamental es simétrica, el operador de forma $S_x$ es autoadjunto, por lo que es diagonalizable y tiene autovalores reales $\lambda_1,\lambda_2 \in \RR$. Distinguimos dos casos:
 \begin{enumerate}
-\item Si $\lambda_1=\lambda_2=\lambda$, entonces $S_p = \lambda \mathrm{id}_{T_p S}$. Decimos entonces que $p$ es un \emph{punto umbilical}.
-  \item Si $\lambda_1\neq \lambda_2$ (supongamos, sin pérdida de generalidad que $\lambda_1>\lambda_2$), entonces el espacio $T_pS$ descompone ortogonalmente como $T_pS=L_1\oplus L_2$, donde los $L_i$ son los autoespacios, llamados \emph{líneas principales}, con autovalores $\lambda_i$, llamados \emph{curvaturas principales}. Se tiene que $\lambda_1$ es el máximo de la función $\kappa_p$, que se alcanza en $L_1$, mientras que $\lambda_2$ es su mínimo, que se alcanza en $L_2$.
+\item Si $\lambda_1=\lambda_2=\lambda$, entonces $S_x = \lambda \mathrm{id}_{T_x S}$. Decimos entonces que $x$ es un \emph{punto umbilical}.
+  \item Si $\lambda_1\neq \lambda_2$ (supongamos, sin pérdida de generalidad que $\lambda_1>\lambda_2$), entonces el espacio $T_xS$ descompone ortogonalmente como $T_xS=L_1\oplus L_2$, donde los $L_i$ son los autoespacios, llamados \emph{líneas principales}, con autovalores $\lambda_i$, llamados \emph{curvaturas principales}. Se tiene que $\lambda_1$ es el máximo de la función $\kappa_x$, que se alcanza en $L_1$, mientras que $\lambda_2$ es su mínimo, que se alcanza en $L_2$.
 \end{enumerate}
 
-Al cambiar la orientación normal, se intercambian $\kappa_p \mapsto -\kappa_p$ y $\lambda_i\mapsto -\lambda_i$. Se denomina \emph{curvatura media} a la función
+Al cambiar la orientación normal, se intercambian $\kappa_x \mapsto -\kappa_x$ y $\lambda_i\mapsto -\lambda_i$. Se denomina \emph{curvatura media} a la función
 \begin{equation*}
-H(p) := \frac{\lambda_1 + \lambda_2}{2} = \frac{1}{2} \mathrm{tr}(S_p).
+H(x) := \frac{\lambda_1 + \lambda_2}{2} = \frac{1}{2} \mathrm{tr}(S_x).
 \end{equation*}
 Al cambiar la orientación normal, tenemos $H\mapsto -H$. Por otra parte, tenemos la \emph{curvatura de Gauss}
 \begin{equation*}
-K(p) := \lambda_1 \lambda_2 = \det(S_p),
+K(x) := \lambda_1 \lambda_2 = \det(S_x),
 \end{equation*}
 que permanece invariante al cambiar la orientación normal.
 
@@ -3163,15 +3163,15 @@ donde $\mathrm{vol}(S^{2N})$ es el ``$2N$-volumen'' de la $2N$-esfera de radio $
 \subsection{} Vamos a concluir nuestro estudio de las superficies viendo qué aspectos de la geometría de superficies en el espacio $S\subset E$ son intrínsecos a la superficie $S$, con su estructura riemanniana (dada por la primera forma fundamental) y no dependen del espacio ambiente. En primer lugar, veremos que el tensor de curvatura de Riemann en superficies se reduce simplemente a la curvatura de Gauss. Por tanto, la curvatura de Gauss es intrínseca. Este es el contenido del \emph{teorema egregio de Gauss}. Seguidamente, estudiaremos la \emph{derivada covariante}, que nos proporcionará una interpretación geométrica de los símbolos de Christoffel.
 
 \begin{thm}[Teorema egregio de Gauss]
-  Dada una superficie $S\subset E$ y un punto $p\in S$, se tiene
+  Dada una superficie $S\subset E$ y un punto $x\in S$, se tiene
   \begin{equation*}
-K(p) = R^1_{212}(p),
+K(x) = R^1_{212}(x),
   \end{equation*}
 donde $K$ es la curvatura de Gauss y $R^1_{212}$ es el tensor de curvatura de Riemann. Por tanto $K$ es intrínseca a la superficie.
 \end{thm}
 
 \begin{proof}
-  En un entorno de $p$ podemos ver la superficie $S$ como la gráfica de una función $(x^1,x^2)\mapsto (x^1,x^2,F(x^1,x^2))$, de modo que tenemos
+  En un entorno de $x$ podemos ver la superficie $S$ como la gráfica de una función $(x^1,x^2)\mapsto (x^1,x^2,F(x^1,x^2))$, de modo que tenemos
   \begin{equation*}
 \partial_1|_{(x^1,x^2)} = (1,0,\partial_1 F) \text{ y } \partial_2|_{(x^1,x^2)} = (1,0,\partial_2 F).
   \end{equation*}
@@ -3210,18 +3210,18 @@ R^1_{212}(0,0) = (\partial_{11}F \partial_{22}F - \partial_{12}F\partial_{21}F)|
 como queríamos probar.
 \end{proof}
 
-\subsection{} Procedemos ahora a dar una interpretación geométrica de los símbolos de Christoffel. Comenzamos estudiando la noción de \emph{paralelismo}. En un espacio euclidiano $E$, dado un campo vectorial $X:E\rightarrow V$, podemos calcular sus derivadas direccionales a lo largo de una dirección $v_p \in T_pE$, definiendo
+\subsection{} Procedemos ahora a dar una interpretación geométrica de los símbolos de Christoffel. Comenzamos estudiando la noción de \emph{paralelismo}. En un espacio euclidiano $E$, dado un campo vectorial $X:E\rightarrow V$, podemos calcular sus derivadas direccionales a lo largo de una dirección $v_x \in T_xE$, definiendo
 \begin{equation*}
-D_{v_p} X : = \lim_{t\rightarrow 0} \frac{X(p+tv_p)-X(p)}{t}.
+D_{v_x} X : = \lim_{t\rightarrow 0} \frac{X(p+tv_x)-X(p)}{t}.
 \end{equation*}
-Si $\gamma:(-\varepsilon,\varepsilon)\rightarrow E$ es una curva con $\gamma(0)=p$ y $\gamma'(0)=v_p$, entonces
+Si $\gamma:(-\varepsilon,\varepsilon)\rightarrow E$ es una curva con $\gamma(0)=p$ y $\gamma'(0)=v_x$, entonces
 \begin{equation*}
-D_{v_p} X = \left. \frac{d}{dt}\right|_{t=0} X(\gamma(t)).
+D_{v_x} X = \left. \frac{d}{dt}\right|_{t=0} X(\gamma(t)).
 \end{equation*}
 Sin embargo, cuando consideramos una superficie $S\subset E$, tomar la derivada direccional de un campo vectorial en general nos puede dar algo que ``se salga'' de la superficie. Una forma de remediarlo es proyectar esta derivada direccional a $TS$.
 
 \begin{defn}
-La \emph{derivada covariante} $\nabla_{v_p}X$ de un campo vectorial $X\in \fX(S)$ a lo largo de una dirección $v_p\in T_pS$ es la proyección de $D_{v_p}X \in V$ a $T_pS$.
+La \emph{derivada covariante} $\nabla_{v_x}X$ de un campo vectorial $X\in \fX(S)$ a lo largo de una dirección $v_x\in T_xS$ es la proyección de $D_{v_x}X \in V$ a $T_xS$.
 \end{defn}
 
 \begin{defn}
@@ -3234,13 +3234,13 @@ Las siguientes propiedades se siguen fácilmente de las definiciones.
 
 \begin{lemma} La derivada covariante tiene las siguientes propiedades:
 \begin{enumerate}
-\item La aplicación $\nabla X: T_pS \rightarrow T_pS$, $v_p \mapsto \nabla_{v_p}X$ es lineal.
-\item La aplicación $\nabla_{v_p}: \fX(S) \rightarrow T_pS$, $X \mapsto \nabla_{v_p}X$ satisface la regla de Leibniz
+\item La aplicación $\nabla X: T_xS \rightarrow T_xS$, $v_x \mapsto \nabla_{v_x}X$ es lineal.
+\item La aplicación $\nabla_{v_x}: \fX(S) \rightarrow T_xS$, $X \mapsto \nabla_{v_x}X$ satisface la regla de Leibniz
         \begin{equation*}
-\nabla_{v_p}(fX) = (v_p\cdot f) X + f \nabla_{v_p}X.
+\nabla_{v_x}(fX) = (v_x\cdot f) X + f \nabla_{v_x}X.
         \end{equation*}
-\item $\nabla_{v_p}(X+X')=\nabla_{v_p}(X) + \nabla_{v_p}(X')$.
-\item $v_p \cdot \langle X, X' \rangle = \langle \nabla_{v_p}X,X'\rangle + \langle X, \nabla_{v_p}X'\rangle$.
+\item $\nabla_{v_x}(X+X')=\nabla_{v_x}(X) + \nabla_{v_x}(X')$.
+\item $v_x \cdot \langle X, X' \rangle = \langle \nabla_{v_x}X,X'\rangle + \langle X, \nabla_{v_x}X'\rangle$.
 \end{enumerate}
 \end{lemma}
 
@@ -3526,11 +3526,135 @@ Una variedad riemanniana $(M,g)$ es \emph{(geodésicamente) completa} si para to
 
 La demostración del teorema de Hopf--Rinow puede leerse en \todo{CITAR}.
 
-\section{El tensor de curvatura}
-a
+\section{Curvatura de una variedad riemanniana}
+\subsection{El tensor de Riemann} En secciones previas ya hemos introducido el \emph{tensor de curvatura de Riemann} $R\in \mathcal{T}^1_3(M)$ asociado a una variedad riemanniana $(M,g)$, que en coordenadas locales se expresa como
+\begin{equation*}
+R=R^i_{jkl} \partial_i \otimes dx^j \otimes dx^k \otimes dx^l,
+\end{equation*}
+donde los términos $R^i_{jkl}$ se definen a partir de los coeficientes de Christoffel como sigue
+\begin{equation*}
+R^i_{jkl} = \partial_{k}\Gamma^i_{jl} - \partial_l \Gamma^i_{jk} + \Gamma^m_{jl} \Gamma^i_{mk} - \Gamma^m_{jk} \Gamma^i_{ml}.
+\end{equation*}
 
-\subsection{Curvatura de Ricci y curvatura seccional}
-a
+Vamos a dar ahora una definición intrínseca del tensor $R$, a partir de la conexión de Levi-Civita. Como $R$ es un tensor de tipo $(1,3)$, puede definirse como una aplicación $C^\infty(M)$-lineal
+\begin{equation*}
+R: \fX(M)\times \fX(M) \times \fX(M) \rightarrow \fX(M),\ (X,Y,Z) \mapsto R(X,Y) Z.
+\end{equation*}
+Ponemos
+\begin{equation*}
+R(X,Y)Z:= \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z.
+\end{equation*}
+
+\subsection{Interpretación geométrica} Una posible interpretación intuitiva de la curvatura es como sigue. Fijamos un punto $x\in M$. Si nos movemos ligeramente en la dirección de $X_x$, siguiendo su flujo, y después en la dirección de $Y_x$, tenemos una pequeña discrepancia con movernos primero en la direección de $Y_x$ y luego en la dirección de $X_x$. Esta pequeña discrepancia está dada precisamente por el corchete $[X,Y]_x$. La curvatura $R(X,Y)Z$ mide la no-conmutatividad de las derivadas covariantes $\nabla_X$ y $\nabla_Y$, y corrige con la derivada $\nabla_{[X,Y]}$ (para poder cerrar el circuito).
+
+\subsection{Simetrías del tensor de curvatura} Es habitual contraer la curvatura con la métrica para obtener un tensor de tipo $(0,4)$. En coordenadas,
+$R = R_{ijkl} dx^i \otimes dx^j \otimes dx^k \otimes dx^l$,
+con $R_{ijkl}=R^m_{ijk}g_{ml}$. Globalmente,
+\begin{equation*}
+R(X,Y,Z,T) = \langle R(X,Y)Z,T \rangle.
+\end{equation*}
+A priori, el tensor $R$ está determinado por $n^4$ funciones, donde $n=\dim M$, pero muchas de estas son redundantes, ya que tiene varias simetrías.
+
+\begin{prop}
+  Dados campos vectoriales $X,Y,Z,T\in \fX(M)$, se tiene
+  \begin{enumerate}
+    \item $R(X,Y,Z,T)=-R(Y,X,Z,T)$,
+    \item $R(X,Y,Z,T)=-R(X,Y,T,Z)$,
+    \item $R(X,Y,Z,T)=R(Z,T,X,Y)$,
+    \item $R(X,Y,Z,T)+R(Y,Z,X,Y) + R(Z,X,Y,T)=0$ (\emph{identidad de Bianchi}).
+  \end{enumerate}
+\end{prop}
+
+\subsection{Curvatura seccional} Las dos primeras propiedades anteriores implican que, para $x\in M$, tenemos \[R_x \in \Lambda^2(T^*_xM) \otimes \Lambda^2(T^*_xM).\] La tercera propiedad da la simetría entre estos dos factores, de modo que, de hecho $R_x \in S^2(\Lambda^2 T_x^*M)$. Por tanto, $R_x$ está determinado por la forma cuadrática correspondiente
+\begin{equation*}
+\Lambda^2(T_xM) \rightarrow \RR,\  u\wedge v \mapsto R_x(u,v,u,v).
+\end{equation*}
+Esto motiva la introducción de la \emph{curvatura seccional}, que tiene la misma información que la curvatura de Riemann.
+
+\begin{defn}
+  Sea $x\in M$ un punto, $u,v \in T_xM$ vectores linealmente independientes, y $\sigma \subset T_xM$ el plano que generan. Se define la \emph{curvatura seccional} de $\sigma$ como
+  \begin{equation*}
+K_x(\sigma) = -\frac{R_x(u,v,u,v)}{\lVert u \wedge v \rVert^2},
+  \end{equation*}
+  donde $\lVert u \wedge v \rVert^2 = \lVert u\rVert^2\lVert v\rVert^2- \langle u,v \rangle^2$, es el cuadrado del área del paralelogramo determinado por $u$ y $v$.
+\end{defn}
+
+\begin{rmk}
+  En una superficie $S$, podemos tomar una base ortogonal del plano tangente $e_1,e_2\in T_xS$, y calcular su curvatura seccional en el punto $x$ como
+  \begin{equation*}
+K_x(T_xS) = -R_x(e_1,e_2,e_1,e_2) = R^1_{212}(x),
+  \end{equation*}
+que es igual a la curvatura de Gauss $K(x)$, por el teorema egregio de Gauss.
+
+Se puede ver que, de hecho, la curvatura es esencialmente un fenómeno ``en dimensión 2'', ya que la curvatura seccional de $M$ se puede recuperar de la curvatura de ciertas superficies en $M$.
+\end{rmk}
+
+\begin{prop}
+Sea $x\in M$ y $\sigma \subset T_xM$ un plano. Consideremos una bola $B^d_{\varepsilon}(0)\subset T_xM$ y la superficie $S=\exp_x(\sigma \cap B_{\varepsilon}(0)) \subset M$. Entonces, la curvatura seccional $K_x(\sigma)$ coincide con la curvatura de Gauss de $S$ en $x$.
+\end{prop}
+
+\begin{proof}
+Por construcción de $S$, podemos hallar unas coordenadas $x^1,x^2,\dots,x^n$ en un entorno de $x$, de modo que $S$ se identifique en este entorno con la superficie dada por la ecuación $x^3=\cdots=x^n =0$. En estas coordenadas, la restricción $\bar{g}=g|_S$ de la métrica $g$ a $S$ es simplemente \[\bar{g}(x^1,x^2)=g_{ij}(x^1,x^2,0,\dots,0) dx^i\otimes dx^j, \]
+para $i,j=1,2$. Por tanto, la curvatura de Gauss de la métrica restringida es
+\begin{equation*}
+K(x)=\bar{R}^{1}_{212} (x) = R^1_{212}(x) = -R_x(\partial_1,\partial_2,\partial_1,\partial_2) = K_x(\sigma),
+\end{equation*}
+como queríamos probar.
+\end{proof}
+
+\subsection{Curvatura de Ricci} Otro tensor interesante es el \emph{tensor de Ricci}, un tensor de tipo $(0,2)$ construido a partir de la curvatura, y definido como sigue. Para cada $x\in M$, definimos la aplicación
+\begin{equation*}
+\mathrm{Ric}_x: T_xM \times T_xM \rightarrow \RR
+\end{equation*}
+como
+\begin{equation*}
+\mathrm{Ric}_x(Y,Z) := \frac{1}{n-1} \mathrm{tr}(X\mapsto R_x(X,Y)Z).
+\end{equation*}
+Equivalentemente,
+\begin{equation*}
+\mathrm{Ric}_x(Y,Z) = \frac{1}{n-1} \sum_i R_x(Y,e_i,Z,e_i),
+\end{equation*}
+donde $(e_1,e_2,\dots,e_n)$ es una base ortogonal de $T_xM$. En coordenadas, $\mathrm{Ric}=R_{ij} dx^i\otimes dx^j$, para
+\begin{equation*}
+\mathrm{Ric}_{ij} = \frac{1}{n-1} R^{k}_{jki} = \frac{1}{n-1} R^k_{ikj}.
+\end{equation*}
+
+Como el tensor de Ricci es simétrico, está determinado por la \emph{curvatura de Ricci}
+\begin{equation*}
+\mathrm{Ric}_x(X) = \mathrm{Ric}_x(X,X).
+\end{equation*}
+Si $X$ es un vector unitario y tomamos una base ortonormal $e_1=X,e_2,\dots,e_n$, y denotamos por $\sigma_{j}$ el plano generado por $X$ y $e_j$, tenemos que
+\begin{equation*}
+\mathrm{Ric}_x(X) = \frac{1}{n-1} \sum_{j=2}^n K_x(\sigma_j)
+\end{equation*}
+es el promedio de las curvaturas seccionales de los planos que contienen a $X$. También puede calcularse como una integral
+\begin{equation*}
+\mathrm{Ric}_x(X) = \frac{1}{\mathrm{vol}(S^{n-2})} \int_{u \in S^{n-2}} K_x(\sigma_u),
+\end{equation*}
+donde $u$ es el plano generado por $X$ y $u$. Aquí, por $S^{n-2}$ entendemos el subconjunto
+\begin{equation*}
+S^{n-2} = \left\{ u \in T_xM: u \perp X, \lVert u \rVert = 1 \right\}.
+\end{equation*}
+
+\subsection{Curvatura escalar} Finalmente, podemos considerar la \emph{curvatura escalar}, que es ($\tfrac{1}{n}$ por) la traza del tensor de Ricci con respecto de la curvatura; esto es
+\begin{equation*}
+\mathrm{Scal}(x) = \frac{1}{n} \sum_{i=1}^n \mathrm{Ric}_x(e_i,e_i).
+\end{equation*}
+ En coordenadas
+\begin{equation*}
+\mathrm{Scal} = g^{ij} R_{ij}.
+\end{equation*}
+Equivalentemente, $\mathrm{Scal}(x)$ es el promedio de todas las curvaturas seccionales en $x$, esto es
+\begin{equation*}
+\mathrm{Scal}(x) = \frac{1}{n(n-1)} \sum_{i\neq j} K_x(\sigma_{ij}),
+\end{equation*}
+para $\sigma_{ij}$ el plano generado por los vectores $e_i$ y $e_j$ de una base ortonormal $e_1,\dots,e_n$ de $T_xM$.
+
+
+
+
+
+
 
 \chapter{Álgebras y grupos de Lie}
 
