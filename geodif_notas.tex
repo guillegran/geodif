@@ -373,6 +373,30 @@ Una \emph{sección} (local) de $E$ es una aplicación diferenciable $s:U\rightar
 De igual manera se pueden definir los \emph{fibrados vectoriales complejos}, reemplazando $\RR^r$ por $\C^r$ y pidiendo que las fibras $E_x$ sean espacios vectoriales complejos y que las aplicaciones $\varphi_{U,y}$ sean isomorfismos $\C$-lineales.
 \end{rmk}
 
+\subsection{Ejemplo: El fibrado de Möbius} El ejemplo más simple de un fibrado vectorial no trivial está dado por la bien conocida construcción de Möbius. Definimos
+\begin{equation*}
+E = \frac{[0,1]\times \RR}{(0,t)\sim (1,-t)}
+\end{equation*}
+y
+\begin{equation*}
+\pi:E \rightarrow S^1,\ [s,t] \mapsto e^{2\pi i s}.
+\end{equation*}
+Si el fibrado fuera trivial existiría una trivialización global
+\begin{equation*}
+\varphi: E \rightarrow S^1 \times \RR.
+\end{equation*}
+Consideramos entonces la aplicación
+\begin{equation*}
+s: S^1\rightarrow S^1\times \RR,\ x \mapsto (x,1)
+\end{equation*}
+y la composición $s'=\varphi^{-1}\circ s: S^1 \rightarrow E$. Esta aplicación levanta a una aplicación $f:[0,1]\rightarrow [0,1] \times \RR$. Como $\varphi$ es un isomorfismo lineal en cada fibra, para cada $x\in S^1$, el punto $s'(x)\in E_x$ es un elemento de $E_x$ distinto de $0$. Por tanto, $f$ ha de satisfacer las condiciones
+\begin{equation*}
+\begin{cases}
+f(t)\neq 0 & \text{para todo } t \in [0,1], \\
+f(1) = -f(0).
+\end{cases}
+\end{equation*}
+Esto contradice el teorema de Bolzano.
 
 \subsection{Funciones de transición} Sea $\pi:E\rightarrow M$ un fibrado vectorial real de rango $r$. Tomemos dos abiertos $U,V \subset M$, con intersección no vacía, junto con difeomorfismos $\varphi_U:E|_U\rightarrow U\times \RR^r$ y $\varphi_V:E|_V\rightarrow V\times \RR^r$ como en la definición anterior. Sobre la intersección $U\cap V$, podemos definir la aplicación
 \begin{equation*}
