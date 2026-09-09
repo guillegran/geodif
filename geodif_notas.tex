@@ -3795,11 +3795,35 @@ s_x: V \rightarrow M, \ \exp_y(v) \mapsto \exp_x((d_x\varphi)^{-1}(v)),
 \end{proof}
 
 
-\chapter{Clases características}
+\chapter{Teoría de Chern--Weil}
 En construcción
-%\section{Teoría de Chern--Weil}
-%a
-%
+
+\section{Polinomios invariantes}
+\subsection{} Sea $V$ un espacio vectorial sobre $\RR$. Recordemos que habíamos definido el álgebra simétrica $S(V)=\bigoplus_{k=0}^\infty S^k(V)$, y que esta se podía identificar con el álgebra polinomial $\RR[V]$, cuyos elementos son funciones polinomiales en los elementos $x_1,\dots,x_n$ de una base del espacio dual $V^*$. Supongamos que $G$ es un grupo que actúa en $V$ por transformaciones lineales; es decir, que existe un homomorfismo de grupos $G\rightarrow \GL(V)$. Definimos la $\RR$-álgebra de funciones polinomiales $G$-invariantes como el anillo
+\begin{equation*}
+\RR[V]^G = \left\{ f\in \RR[V]: f(g\cdot v) = f(v), \forall g\in G \right\}.
+\end{equation*}
+
+\subsection{} Es particularmente interesante el caso en el que $G$ es un grupo de Lie, $V=\fg$ es su álgebra de Lie y la acción de $G$ en $\fg$ está dada por la representación adjunta
+\begin{equation*}
+\mathrm{ad}: G \rightarrow \GL(\fg),\ g \rightarrow \ad_g.
+\end{equation*}
+En este capítulo nos va a interesar dar una descripción explícita del álgebra $\RR[\fg]^G$ de polinomios invariantes por la acción adjunta, para lo que nos será muy útil el siguiente teorema.
+
+\begin{thm}
+  Sea $G$ un grupo de Lie y $\fg$ su álgebra de Lie. Sea $G'\subset G$ un subgrupo de Lie y sea $\fg'$ su álgebra de Lie. Supongamos además que
+  \begin{equation*}
+\fg= \left\{ \ad_g x': g \in G, x'\in \fg'  \right\}.
+  \end{equation*}
+  Denotamos
+  \begin{equation*}
+N=\left\{ g \in G: \ad_g \fg' \subset \fg' \right\}.
+  \end{equation*}
+La aplicación de restricción $\RR[\fg]\rightarrow \RR[\fg']$ determina un isomorfismo $\RR[\fg]\rightarrow \RR[\fg']^N$.
+\end{thm}
+
+
+
 %\section{Clases de Chern}
 %a
 %
