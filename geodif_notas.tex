@@ -1153,6 +1153,18 @@ C^k(M) \times \Omega^k(M) \rightarrow (\sigma,\omega) \mapsto \int_{\sigma([0,1]
 emparejando $k$-cadenas singulares con $k$-formas determina un isomorfismo entre la cohomología singular de $M$ y su cohomología de de Rham. Esta versión abstracta puede probarse con la tecnología de la teoría de haces: basta ver que el complejo de de Rham proporciona una resolución acíclica del haz constante.
 \end{rmk}
 
+\subsection{Estructura de anillo}
+La equivalencia entre la cohomología definida axiomáticamente y la cohomología de de Rham nos permite definir un producto en cohomología, el llamado \emph{producto cup}
+\begin{equation*}
+\smile: H^p(M,\RR) \times H^q(M,\RR) \rightarrow H^{p+q}(M,\RR)\ ([\alpha],[\beta]) \mapsto [\alpha \wedge \beta].
+\end{equation*}
+
+Esto nos permite definir el \emph{anillo de cohomología} de $M$, como la suma
+\begin{equation*}
+H^*(M,\RR)= \bigoplus_{k\in \Z} H^k(M,\RR),
+\end{equation*}
+equipada con el producto cup. Este anillo es, de hecho, una $\RR$-álgebra
+
 \subsection{Cohomología celular}
 La forma más efectiva en la práctica de calcular grupos de cohomología es utilizar una descomposición en celdas. Dada una variedad diferenciable $M$ de dimensión $n$, una \emph{descomposición en celdas} de $M$ es una sucesión de espacios topológicos
 \begin{equation*}
@@ -3848,11 +3860,11 @@ La aplicación de restricción $\RR[\fg] \rightarrow \RR[\fg']$ determina un iso
 \begin{proof}
 Claramente un elemento de $\RR[\fg]^G$ restringido a $\fg'$ está en $\RR[\fg']^N$. Para probar que la aplicación $\RR[\fg]^G\rightarrow \RR[\fg']^N$ es inyectiva, basta ver que para todo elemento $f\in \RR[\fg]^G$ que cumple que
 \begin{equation*}
-f(x',\dots,x') = 0, \ \text{para todo } x' \in \fg'
+f(x') = 0, \ \text{para todo } x' \in \fg'
 \end{equation*}
-se tiene que $f=0$. Ahora, por hipótesis, todo elemento $x\in \fg$ es de la forma $\ad_g(x)$, para $g\in G$ y $x\in \fg'$; por tanto, como $f$ es invariante por la acción adjunta,
+se tiene que $f=0$. Ahora, por hipótesis, todo elemento $x\in \fg$ es de la forma $\ad_g(x')$, para $g\in G$ y $x'\in \fg'$; por tanto, como $f$ es invariante por la acción adjunta,
 \begin{equation*}
-f(x,\dots,x) = f(x',\dots,x')=0.
+f(x) = f(x')=0.
 \end{equation*}
 Por tanto, $f=0$.
 \end{proof}
@@ -3862,9 +3874,9 @@ Podemos usar el resultado anterior para obtener generadores del anillo $\RR[\fg]
 
 Comenzamos considerando un elemento $A\in \mathfrak{so}_n(\RR)$ (es decir, una matriz $n\times n$ antisimétrica) y tomando su polinomio característico
 \begin{equation*}
-p_A(T) = \det(\lambda \mathbb{I}_n - A) = T^n + f_1(A) T^{n-2} + f_2(A) T^{n-4} + \cdots + f_m(A).
+p_A(T) = \det(T \mathbb{I}_n - A) = T^n + f_1(A) T^{n-2} + f_2(A) T^{n-4} + \cdots + f_m(A).
 \end{equation*}
-Esto nos determina unas funciones $f_1,\dots,f_m \in \RR[\mathfrak{so}_n]$. Como el polinomio característico es invariante por conjugación, estas funciones pertencen a $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.  Nótese que, como $(\lambda \mathbb{I}_n - A)^T = \lambda \mathbb{I}_n + A$, tenemos que $p_A(-T)=(-1)^n p_A(T)$, con lo cual el coeficiente que acompaña a cada $T^{n-i}$, con $i$ impar, se anula.
+Esto nos determina unas funciones $f_1,\dots,f_m \in \RR[\mathfrak{so}_n(\RR)]$. Como el polinomio característico es invariante por conjugación, estas funciones pertencen a $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.  Nótese que, como $(T \mathbb{I}_n - A)^T = T \mathbb{I}_n + A$, tenemos que $p_A(-T)=(-1)^n p_A(T)$, con lo cual el coeficiente que acompaña a cada $T^{n-i}$, con $i$ impar, se anula.
 
 En el caso en que $n=2m$ es par, existe otra función $p\in \RR[\mathfrak{so}_n(\RR)]$, denominada el \emph{pfaffiano}, que cumple que
 \begin{equation*}
@@ -3882,7 +3894,7 @@ entonces
 \begin{equation*}
 \omega_A^{m} = p(A) dx^1 \wedge \cdots dx^{2m}.
 \end{equation*}
-En particular, para $g\in \mathrm{GL}_{2n}(\RR)$, se tiene que $p(gAg^T)=\det(g)p(A)$, luego $p$ pertenece al anillo de invariantes $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.
+En particular, para $g\in \mathrm{GL}_{2m}(\RR)$, se tiene que $p(gAg^T)=\det(g)p(A)$, luego $p$ pertenece al anillo de invariantes $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.
 
 
 
@@ -3919,7 +3931,7 @@ si $n=2m$ es par, o
  &  & & & & 0
 \end{pmatrix},
 \end{equation*}
-si $n=2m+1$ es impar. Toda matriz antisimétrica puede conjugarse por un elemento de $\mathfrak{SO}_n(\RR)$ a una matriz de la forma anterior. Por tanto, se cumplen las hipótesis del teorema previo y tenemos que la restricción induce un isomorfismo
+si $n=2m+1$ es impar. Toda matriz antisimétrica puede conjugarse por un elemento de $\mathrm{SO}_n(\RR)$ a una matriz de la forma anterior. Por tanto, se cumplen las hipótesis del teorema previo y tenemos que la restricción induce un isomorfismo
 \begin{equation*}
 \RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} \rightarrow \RR[\mathfrak{t}]^N,
 \end{equation*}
@@ -3934,7 +3946,7 @@ Las funciones $f_1,\dots,f_m$ evaluadas en un elemento $[x_1,\dots,x_m]\in \math
 \end{equation*}
 Ahora, para cada par $(i,j)$, con $1\leq i<j \leq m$ podemos encontrar una matriz $A\in N$ tal que
 \begin{equation*}
-A [x_1,\dots,x_i,\dots,x_j,\dots,x_m] A^{-1} = [x_1,\dots,x_i,\dots,x_j,\dots,x_m].
+A [x_1,\dots,x_i,\dots,x_j,\dots,x_m] A^{-1} = [x_1,\dots,x_j,\dots,x_i,\dots,x_m].
 \end{equation*}
 Por ejemplo, para $i=1$ y $j=2$ podemos tomar
 \begin{equation*}
@@ -4007,7 +4019,73 @@ como queríamos probar.
 \end{proof}
 
 \section{El homomorfismo de Chern--Weil}
-aa
+\subsection{Construcción} En esta sección, vamos a ver cómo, a cada $G$-fibrado principal $P\rightarrow M$ se le puede asociar un homomorfismo de $\RR$-álgebras
+\begin{equation*}
+w_P: \RR[\fg]^G \rightarrow H^*(M,\RR),
+\end{equation*}
+denominado el \emph{homomorfismo de Chern--Weil}.
+
+Comenzamos fijando una conexión $A$ en el fibrado $P$, con curvatura $F_A\in \Omega^2(P;\fg)$. Ahora, para cada elemento homogéneo $f\in \RR[\fg]^G$, con $k=\deg f$, definimos la $2k$-forma $f(F_A)=f(F_A\wedge \overset{k}{\cdots} \wedge F_A)\in \Omega^{2k}(P)$ como
+\begin{align*}
+f(F_A)&(X_1,\dots,X_{2k}) \\
+  &= \frac{1}{(2k)!} \sum_{\sigma \in \mathfrak{S}_{2k}} (-1)^\sigma \tilde{f}(F_A(X_{\sigma(1)},X_{\sigma(2)}),\dots,F_A(X_{\sigma(2k-1)},X_{\sigma(2k)})),
+\end{align*}
+para $X_1,\dots,X_{2k} \in \fX(P)$. Aquí, $\tilde{f}:\fg \times \overset{k}{\cdots} \times \fg \rightarrow \RR$ denota la \emph{polarización} de $f$; es decir, $\tilde{f}$ es la única aplicación $k$-lineal tal que $f(x)=\tilde{f}(x,\dots,x)$.
+
+Recordemos que, equivalentemente, la curvatura puede verse como una $2$-forma en $M$ con valores en el fibrado adjunto $\ad P$, es decir $F_A \in \Omega^2(M;\ad P)$. Ahora, como $f$ es $\ad$-invariante, podemos definir la aplicación
+\begin{equation*}
+\bar{f}: \ad P \times \overset{k}{\cdots} \times \ad P \rightarrow \RR,\ ([(p,x_1)],\dots,[(p,x_k)]) \mapsto f(x_1,\dots,x_k).
+\end{equation*}
+Esto permite definir una $2$-forma $\bar{f}(F_A)=\bar{f}(F_A \wedge \overset{k}{\cdots} \wedge F_A)\in \Omega^2(M)$ como
+\begin{equation*}
+\bar{f}(F_A) = \frac{1}{2k!} \sum_{\sigma \in \mathfrak{S}_{2k}} (-1)^\sigma \bar{f}(F_A(X_{\sigma(1)},X_{\sigma(2)}),\dots,F_A(X_{\sigma(2k-1)},X_{\sigma(2k)})),
+\end{equation*}
+para $X_1,\dots,X_{2k} \in \fX(M)$. Por construcción, es claro que
+\begin{equation*}
+f(F_A) = \pi^* \bar{f}(F_A).
+\end{equation*}
+
+\begin{thm} La $2k$-forma $\bar{f}(F_A)$ es cerrada y su clase de cohomología de de Rham
+        \begin{equation*}
+w_P(f) := [\bar{f}(F_A)] \in H^{2k}(M,\RR)
+        \end{equation*}
+        es independiente de la conexión $A$.
+\end{thm}
+
+\begin{proof}
+Para ver que $\bar{f}(F_A)$ es cerrada, basta ver que $f(F_A)$ lo es (ya que $\pi$ es una sumersión sobreyectiva). Ahora, por construcción $f(F_A)$ se anula en los vectores verticales, luego $df(F_A)=\pi_H^* df(F_A)$ y, por la identidad de Bianchi
+\begin{equation*}
+ df(F_A)=\pi_H^* df(F_A) = f(\pi_H^* d F_A \wedge F_A \wedge \overset{k}{\cdots} \wedge F_A) + \cdots + f( F_A \wedge \overset{k}{\cdots} \wedge F_A \wedge \pi_H^* dF_A) = 0.
+\end{equation*}
+
+Para ver que no depende de la conexión, de nuevo, basta ver que $f(F_A)$ no depende de la conexión. Tomemos dos conexiones distintas $A_0$ y $A_1$ en $P$ y consideremos su diferencia $\alpha=A_1-A_0\in \Omega^1(P;\fg)$. Podemos considerar la familia uniparamétrica de conexiones
+\begin{equation*}
+A_t = A_0 + t\alpha,
+\end{equation*}
+con curvaturas
+\begin{equation*}
+F_t = dA_t + A_t \wedge A_t = dA_0 + td\alpha + (A_0 + t\alpha) \wedge (A_0+t\alpha).
+\end{equation*}
+En particular,
+\begin{equation*}
+\frac{d}{dt} F_t = d\alpha + \alpha \wedge A_t + A_t \wedge \alpha = \pi_{H_{A_t}}^* d\alpha.
+\end{equation*}
+Queremos ver que $f(F_{A_1})-f(F_{A_0})=dh$ para cierta forma $h$, que queremos hallar. Vamos a construir esta $h$ como
+\begin{equation*}
+h = k \int_0^1 f(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt.
+\end{equation*}
+En efecto,
+\begin{align*}
+dh &= k \int_0^1 df(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt = k \int_0^1 \pi_{H_{A_t}}^* df(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt  \\
+&= k \int_0^1 f(\pi_{H_{A_t}}^*d\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt + k \int_0^1 f(\alpha \wedge \pi_{H_{A_t}}^* dF_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt \\
+& +k \int_0^1 f(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge \pi_{H_{A_t}}^*dF_t) dt = k \int_0^1 f\left(\frac{dF_t}{dt} \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t\right) dt  \\
+  &= \int_0^1 \frac{d}{dt} f(F_t) dt = f(F_0) - f(F_1),
+\end{align*}
+como queríamos probar.
+\end{proof}
+
+
+
 
 \section{Clases de Euler y el teorema de Gauss--Bonnet}
 aa
