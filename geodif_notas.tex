@@ -3878,13 +3878,13 @@ p_A(T) = \det(T \mathbb{I}_n - A) = T^n + f_1(A) T^{n-2} + f_2(A) T^{n-4} + \cdo
 \end{equation*}
 Esto nos determina unas funciones $f_1,\dots,f_m \in \RR[\mathfrak{so}_n(\RR)]$. Como el polinomio característico es invariante por conjugación, estas funciones pertencen a $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.  Nótese que, como $(T \mathbb{I}_n - A)^T = T \mathbb{I}_n + A$, tenemos que $p_A(-T)=(-1)^n p_A(T)$, con lo cual el coeficiente que acompaña a cada $T^{n-i}$, con $i$ impar, se anula.
 
-En el caso en que $n=2m$ es par, existe otra función $p\in \RR[\mathfrak{so}_n(\RR)]$, denominada el \emph{pfaffiano}, que cumple que
+En el caso en que $n=2m$ es par, existe otra función $\mathrm{Pf}\in \RR[\mathfrak{so}_n(\RR)]$, denominada el \emph{pfaffiano}, que cumple que
 \begin{equation*}
-p(A)^2 = f_m(A) = \det(A)
+\mathrm{Pf}(A)^2 = f_m(A) = \det(A)
 \end{equation*}
 y se define como sigue. Si denotamos $A=(a_{ij})_{i,j}$, entonces
 \begin{equation*}
-p(A) = \frac{1}{2^m m!} \sum_{\sigma \in \mathfrak{S}_{2m}} (-1)^\sigma \prod_{i=1}^m a_{\sigma(2i-1)\sigma(2i)}.
+\mathrm{Pf}(A) = \frac{1}{2^m m!} \sum_{\sigma \in \mathfrak{S}_{2m}} (-1)^\sigma \prod_{i=1}^m a_{\sigma(2i-1)\sigma(2i)}.
 \end{equation*}
 Equivalentemente, si definimos la $2$-forma en $\RR^{2m}$
 \begin{equation*}
@@ -3892,11 +3892,9 @@ Equivalentemente, si definimos la $2$-forma en $\RR^{2m}$
 \end{equation*}
 entonces
 \begin{equation*}
-\omega_A^{m} = p(A) dx^1 \wedge \cdots dx^{2m}.
+\omega_A^{m} = \mathrm{Pf}(A) dx^1 \wedge \cdots dx^{2m}.
 \end{equation*}
-En particular, para $g\in \mathrm{GL}_{2m}(\RR)$, se tiene que $p(gAg^T)=\det(g)p(A)$, luego $p$ pertenece al anillo de invariantes $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.
-
-
+En particular, para $g\in \mathrm{GL}_{2m}(\RR)$, se tiene que $\mathrm{Pf}(gAg^T)=\det(g)\mathrm{Pf}(A)$, luego $\mathrm{Pf}$ pertenece al anillo de invariantes $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.
 
 \begin{thm}
   Si $n=2m+1$ es impar, entonces
@@ -3905,7 +3903,7 @@ En particular, para $g\in \mathrm{GL}_{2m}(\RR)$, se tiene que $p(gAg^T)=\det(g)
   \end{equation*}
   Si $n=2m$ es par, entonces
   \begin{equation*}
-\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} = \RR[f_1,\dots,f_{m-1},p].
+\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} = \RR[f_1,\dots,f_{m-1},\mathrm{Pf}].
   \end{equation*}
 \end{thm}
 
@@ -4007,13 +4005,13 @@ De aquí concluimos que todo elemento de $\RR[\ft]^N$ es una función simétrica
 \begin{equation*}
 f = g + x_1\cdots x_m h,
 \end{equation*}
-para $g,h \in \RR[(x_1)^2,\dots,(x_m)^2]$. Además, como $f$ es simétrica en las variables $x_1,\dots,x_m$, tenemos que $g,h\in \RR[(x_1)^2,\dots,(x_m)^2]^{\mathfrak{S}_m}=\RR[f_1,\dots,f_m]$. Finalmente, como $p$ restringido a $\mathfrak{t}$ es igual al polinomio $x_1\cdots x_m$ y $p^2=f_m$, concluimos que
+para $g,h \in \RR[(x_1)^2,\dots,(x_m)^2]$. Además, como $f$ es simétrica en las variables $x_1,\dots,x_m$, tenemos que $g,h\in \RR[(x_1)^2,\dots,(x_m)^2]^{\mathfrak{S}_m}=\RR[f_1,\dots,f_m]$. Finalmente, como $\mathrm{Pf}$ restringido a $\mathfrak{t}$ es igual al polinomio $x_1\cdots x_m$ y $\mathrm{Pf}^2=f_m$, concluimos que
 \begin{equation*}
-\RR[\ft]^N = \RR[f_1,\dots,f_{m-1},p],
+\RR[\ft]^N = \RR[f_1,\dots,f_{m-1},\mathrm{Pf}],
 \end{equation*}
 y por tanto tenemos un isomorfismo
 \begin{equation*}
-\RR[\mathfrak{so}_{2m}(\RR)]^{\mathrm{SO}_{2m}(\RR)} \cong \RR[f_1,\dots,f_{m-1},p],
+\RR[\mathfrak{so}_{2m}(\RR)]^{\mathrm{SO}_{2m}(\RR)} \cong \RR[f_1,\dots,f_{m-1},\mathrm{Pf}],
 \end{equation*}
 como queríamos probar.
 \end{proof}
@@ -4087,12 +4085,58 @@ como queríamos probar.
 
 
 
-\section{Clases de Euler y el teorema de Gauss--Bonnet}
-aa
-%a
-%
-%Aquí Poincaré--Hopf
-%a
+\section{La clase de Euler y el teorema de Gauss--Bonnet}
+\subsection{La clase de Euler} Dado un $\SO_{2m}(\RR)$-fibrado principal $P\rightarrow M$, se define su \emph{clase de Euler} $e(P)\in H^{2m}(M,\RR)$ como la imagen del pfaffiano $\mathrm{Pf} \in \RR[\mathfrak{so}_{2m}(\RR)]^{\SO_{2m}(\RR)}$ por el homomorfismo de Chern--Weil,
+\begin{equation*}
+e(P) = w_P(\mathrm{Pf}) \in H^{2m}(M,\RR).
+\end{equation*}
+Es decir,
+\begin{equation*}
+e(P) = \overline{\mathrm{Pf}}(F_A),
+\end{equation*}
+para cualquier conexión $A$ en $P$.
+
+La clase de Euler cumple las siguientes propiedades, que la caracterizan axiomáticamente.
+
+\begin{thm} \leavevmode
+\begin{enumerate}
+  \item  (Naturalidad). Dados un $\SO_{2m}(\RR)$-fibrado principal $P\rightarrow M$ y una aplicación diferenciable $f:M'\rightarrow M$, se tiene que
+        \begin{equation*}
+e(f^* P ) = f^*(e(P))
+        \end{equation*}
+  \item (Normalización). Si $L$ es un $S^1$-fibrado principal, visto como un $\SO_2(\RR)$ fibrado principal por medio del isomorfismo natural $S^1\cong \SO_2(\RR)$, entonces la clase de Euler de $L$ coincide con su clase de Chern \todo{REF},
+        \begin{equation*}
+e(L)= c_1(L).
+        \end{equation*}
+  \item (Fórmula de la suma de Whitney). Sean $L_1,\dots,L_m$ $S^1$-fibrados principales, y sean $E_1,\dots,E_m$ los correspondientes fibrados vectoriales de rango $2$ asociados a ellos por la representación natural
+        \begin{equation*}
+S^1 \cong \SO_2(\RR) \hookrightarrow \GL(\RR^2).
+        \end{equation*}
+        Sea $P$ el $\SO_{2m}(\RR)$-fibrado principal obtenido como el fibrado de referencias del fibrado vectorial $E=E_1\oplus \cdots \oplus E_m$ compatibles con las estructuras $\SO_2(\RR)$ de cada $E_i$. Se tiene que
+        \begin{equation*}
+e(P) = e(L_1)\cdots e(L_m).
+        \end{equation*}
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+a
+\end{proof}
+
+\begin{thm}[Teorema de Chern--Gauss--Bonnet]
+  Sea $(M,g)$ una variedad riemanniana orientada de dimensión par $n=2m$ y sea $P=\mathcal{B}_{\SO}(M)$ su fibrado de referencias ortogonales compatibles con la orientación, que es un $\SO_{2m}(\RR)$-fibrado principal. Se tiene que
+  \begin{equation*}
+\int_{M} e(P) = (2\pi)^k \chi(M),
+  \end{equation*}
+donde $\chi(M)$ es la característica de Euler de $M$. En particular, si $R$ es la curvatura de $M$, se tiene que
+  \begin{equation*}
+\int_{M} \overline{\mathrm{Pf}}(R) = (2\pi)^k \chi(M).
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+a
+\end{proof}
 \chapter{Un poco de análisis global}
 En construcción
 %\section{Estrella de Hodge y laplaciano}
