@@ -3819,8 +3819,7 @@ s_x: V \rightarrow M, \ \exp_y(v) \mapsto \exp_x((d_x\varphi)^{-1}(v)),
 \end{proof}
 
 
-\chapter{Teoría de Chern--Weil}
-En construcción
+\chapter{Introducción a las clases características}
 
 \section{Polinomios invariantes}
 \subsection{} Sea $V$ un espacio vectorial sobre $\RR$. Recordemos que habíamos definido el álgebra simétrica $S(V)=\bigoplus_{k=0}^\infty S^k(V)$, y que esta se podía identificar con el álgebra polinomial $\RR[V]$, cuyos elementos son funciones polinomiales en los elementos $x_1,\dots,x_n$ de una base del espacio dual $V^*$. Supongamos que $G$ es un grupo que actúa en $V$ por transformaciones lineales; es decir, que existe un homomorfismo de grupos $G\rightarrow \GL(V)$. Definimos la $\RR$-álgebra de funciones polinomiales $G$-invariantes como el anillo
@@ -3843,23 +3842,180 @@ En este capítulo nos va a interesar dar una descripción explícita del álgebr
   \begin{equation*}
 N=\left\{ g \in G: \ad_g \fg' \subset \fg' \right\}.
   \end{equation*}
-La aplicación de restricción $\RR[\fg]\rightarrow \RR[\fg']$ determina un isomorfismo $\RR[\fg]\rightarrow \RR[\fg']^N$.
+La aplicación de restricción $\RR[\fg] \rightarrow \RR[\fg']$ determina un isomorfismo $\RR[\fg]^G \rightarrow \RR[\fg']^N$.
 \end{thm}
 
+\begin{proof}
+Claramente un elemento de $\RR[\fg]^G$ restringido a $\fg'$ está en $\RR[\fg']^N$. Para probar que la aplicación $\RR[\fg]^G\rightarrow \RR[\fg']^N$ es inyectiva, basta ver que para todo elemento $f\in \RR[\fg]^G$ que cumple que
+\begin{equation*}
+f(x',\dots,x') = 0, \ \text{para todo } x' \in \fg'
+\end{equation*}
+se tiene que $f=0$. Ahora, por hipótesis, todo elemento $x\in \fg$ es de la forma $\ad_g(x)$, para $g\in G$ y $x\in \fg'$; por tanto, como $f$ es invariante por la acción adjunta,
+\begin{equation*}
+f(x,\dots,x) = f(x',\dots,x')=0.
+\end{equation*}
+Por tanto, $f=0$.
+\end{proof}
+
+\subsection{}
+Podemos usar el resultado anterior para obtener generadores del anillo $\RR[\fg]^G$, donde $G$ es uno de los grupos clásicos. Vamos a ver en particular el caso de $G=\mathrm{SO}_n(\RR)$; el resto se obtienen de forma similar, y pueden encontrarse en \todo{CITAR:Kobayashi-NomizuVol2}.
+
+Comenzamos considerando un elemento $A\in \mathfrak{so}_n(\RR)$ (es decir, una matriz $n\times n$ antisimétrica) y tomando su polinomio característico
+\begin{equation*}
+p_A(T) = \det(\lambda \mathbb{I}_n - A) = T^n + f_1(A) T^{n-2} + f_2(A) T^{n-4} + \cdots + f_m(A).
+\end{equation*}
+Esto nos determina unas funciones $f_1,\dots,f_m \in \RR[\mathfrak{so}_n]$. Como el polinomio característico es invariante por conjugación, estas funciones pertencen a $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.  Nótese que, como $(\lambda \mathbb{I}_n - A)^T = \lambda \mathbb{I}_n + A$, tenemos que $p_A(-T)=(-1)^n p_A(T)$, con lo cual el coeficiente que acompaña a cada $T^{n-i}$, con $i$ impar, se anula.
+
+En el caso en que $n=2m$ es par, existe otra función $p\in \RR[\mathfrak{so}_n(\RR)]$, denominada el \emph{pfaffiano}, que cumple que
+\begin{equation*}
+p(A)^2 = f_m(A) = \det(A)
+\end{equation*}
+y se define como sigue. Si denotamos $A=(a_{ij})_{i,j}$, entonces
+\begin{equation*}
+p(A) = \frac{1}{2^m m!} \sum_{\sigma \in \mathfrak{S}_{2m}} (-1)^\sigma \prod_{i=1}^m a_{\sigma(2i-1)\sigma(2i)}.
+\end{equation*}
+Equivalentemente, si definimos la $2$-forma en $\RR^{2m}$
+\begin{equation*}
+\omega_A = \sum_{i<j} A_{ij} dx^i \wedge dx^j,
+\end{equation*}
+entonces
+\begin{equation*}
+\omega_A^{m} = p(A) dx^1 \wedge \cdots dx^{2m}.
+\end{equation*}
+En particular, para $g\in \mathrm{GL}_{2n}(\RR)$, se tiene que $p(gAg^T)=\det(g)p(A)$, luego $p$ pertenece al anillo de invariantes $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.
 
 
-%\section{Clases de Chern}
-%a
-%
-%\section{Clases de Pontryagin}
-%a
-%
-%\section{Clases de Euler}
+
+\begin{thm}
+  Si $n=2m+1$ es impar, entonces
+  \begin{equation*}
+\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} = \RR[f_1,\dots,f_m].
+  \end{equation*}
+  Si $n=2m$ es par, entonces
+  \begin{equation*}
+\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} = \RR[f_1,\dots,f_{m-1},p].
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+Definimos $T\subset \mathrm{SO}_n(\RR)$ como el subgrupo de Lie conexo cuya álgebra de Lie $\mathfrak{t}$ está formada por las matrices de la forma
+\begin{equation*} [x_1,\dots,x_m]:=
+\begin{pmatrix}
+0 & x_1 \\
+-x_1 & 0 \\
+ &  & \ddots \\
+ &  & & 0 & x_m \\
+ &  & & -x_m & 0
+\end{pmatrix}
+\end{equation*}
+si $n=2m$ es par, o
+\begin{equation*} [x_1,\dots,x_m]:=
+\begin{pmatrix}
+0 & x_1 \\
+-x_1 & 0 \\
+ &  & \ddots \\
+ &  & & 0 & x_m \\
+ &  & & -x_m & 0 \\
+ &  & & & & 0
+\end{pmatrix},
+\end{equation*}
+si $n=2m+1$ es impar. Toda matriz antisimétrica puede conjugarse por un elemento de $\mathfrak{SO}_n(\RR)$ a una matriz de la forma anterior. Por tanto, se cumplen las hipótesis del teorema previo y tenemos que la restricción induce un isomorfismo
+\begin{equation*}
+\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} \rightarrow \RR[\mathfrak{t}]^N,
+\end{equation*}
+para
+\begin{equation*}
+N = \left\{ A \in \mathrm{SO}_n(\RR): A \mathfrak{t} A^{-1} \subset \mathfrak{t} \right\}.
+\end{equation*}
+
+Las funciones $f_1,\dots,f_m$ evaluadas en un elemento $[x_1,\dots,x_m]\in \mathfrak{t}$ son las funciones simétricas elementales en las variables $(x_1)^2,\dots,(x_m)^2$, por tanto,
+\begin{equation*}
+\RR[f_1,\dots,f_m] = \RR[(x_1)^2,\dots,(x_m)^2]^{\mathfrak{S}_m}.
+\end{equation*}
+Ahora, para cada par $(i,j)$, con $1\leq i<j \leq m$ podemos encontrar una matriz $A\in N$ tal que
+\begin{equation*}
+A [x_1,\dots,x_i,\dots,x_j,\dots,x_m] A^{-1} = [x_1,\dots,x_i,\dots,x_j,\dots,x_m].
+\end{equation*}
+Por ejemplo, para $i=1$ y $j=2$ podemos tomar
+\begin{equation*}
+  A=
+  \begin{pmatrix}
+    0 & \mathbb{I}_2 \\
+    \mathbb{I}_2 & 0 \\
+    && \mathbb{I}_{n-4}
+\end{pmatrix}.
+\end{equation*}
+También, para cada $i\in \left\{ 1,\dots,m \right\}$ podemos encontrar una matriz $B \in \mathrm{O}_n(\RR)$ con $B\mathfrak{t} B^{-1}\subset \mathfrak{t}$ tal que
+\begin{equation*}
+B [x_1,\dots,x_i,\dots,x_m] B^{-1} = [x_1,\dots,-x_i,\dots,x_m].
+\end{equation*}
+Por ejemplo, para $i=1$, podemos tomar
+\begin{equation*}
+  B =
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    && \mathbb{I}_{n-2}
+\end{pmatrix}.
+\end{equation*}
+Además, si $n$ es impar, también podemos tomar, en vez de esta $B$, la matriz
+\begin{equation*}
+  B' =
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+      && \mathbb{I}_{n-3} \\
+    &&& -1
+\end{pmatrix},
+\end{equation*}
+que cumple las misma propiedades, y que además es un elemento de $\mathrm{SO}_n(\RR)$, y por tanto de $N$. Esto prueba una igualdad
+\begin{equation*}
+\RR[\mathfrak{t}]^N = \RR[(x_1)^2,\dots,(x_m)^2]^{\mathfrak{S}_m}=\RR[f_1,\dots,f_m],
+\end{equation*}
+para $n=2m+1$, y por tanto un isomorfismo
+\begin{equation*}
+\RR[\mathfrak{so}_{2m+1}(\RR)]^{\mathrm{SO}_{2m+1}(\RR)} \cong \RR[f_1,\dots,f_m].
+\end{equation*}
+Si $n$ es par, para cada par $(i,j)$, con $1\leq i<j \leq m$ podemos encontrar una matriz $C\in N$ tal que
+\begin{equation*}
+C [x_1,\dots,x_i,\dots,x_j,\dots,x_m] A^{-1} = [x_1,\dots,-x_i,\dots,-x_j,\dots,x_m].
+\end{equation*}
+Por ejemplo, para $i=1$ y $j=2$, podemos tomar
+\begin{equation*}
+  C =
+  \begin{pmatrix}
+0 & 1 \\
+1 & 0 \\
+ &  & 0 & 1\\
+ &  & 1 & 0\\
+ &  &  &  & I_{n-4}
+\end{pmatrix}.
+\end{equation*}
+De aquí concluimos que todo elemento de $\RR[\ft]^N$ es una función simétrica en las variables $x_1,\dots,x_m$ y que cada uno de sus términos tiene la misma paridad en el grado en cada una de las variables. En otras palabras, todo elemento $f\in \RR[\ft]^N$ puede escribirse como
+\begin{equation*}
+f = g + x_1\cdots x_m h,
+\end{equation*}
+para $g,h \in \RR[(x_1)^2,\dots,(x_m)^2]$. Además, como $f$ es simétrica en las variables $x_1,\dots,x_m$, tenemos que $g,h\in \RR[(x_1)^2,\dots,(x_m)^2]^{\mathfrak{S}_m}=\RR[f_1,\dots,f_m]$. Finalmente, como $p$ restringido a $\mathfrak{t}$ es igual al polinomio $x_1\cdots x_m$ y $p^2=f_m$, concluimos que
+\begin{equation*}
+\RR[\ft]^N = \RR[f_1,\dots,f_{m-1},p],
+\end{equation*}
+y por tanto tenemos un isomorfismo
+\begin{equation*}
+\RR[\mathfrak{so}_{2m}(\RR)]^{\mathrm{SO}_{2m}(\RR)} \cong \RR[f_1,\dots,f_{m-1},p],
+\end{equation*}
+como queríamos probar.
+\end{proof}
+
+\section{El homomorfismo de Chern--Weil}
+aa
+
+\section{Clases de Euler y el teorema de Gauss--Bonnet}
+aa
 %a
 %
 %Aquí Poincaré--Hopf
 %a
-\chapter{Análisis global}
+\chapter{Un poco de análisis global}
 En construcción
 %\section{Estrella de Hodge y laplaciano}
 %\section{La ecuación de Poisson en superficies}
