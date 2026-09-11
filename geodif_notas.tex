@@ -1732,7 +1732,7 @@ Más generalmente, los automorfismos $\mathrm{Euc}(E)$ de un espacio euclidiano 
 0 \rar & V \rar & \mathrm{Euc}(E) \rar & \mathrm{O}(V,\langle-,-\rangle) \rar & 1.
   \end{tikzcd}
 \end{center}
-El grupo $\mathrm{Euc}_n(\RR)=\mathrm{Euc}(\RR^n)$ del espacio euclidiano estándar se denomina el grupo euclidiano.
+El grupo $\mathrm{Euc}(n)=\mathrm{Euc}(\RR^n)$ del espacio euclidiano estándar se denomina el grupo euclidiano.
 
 \subsection{Geometría riemanniana} Sea $M$ una variedad diferenciable. El papel del torsor de bases lo juega ahora el llamado \emph{fibrado de referencias}
 \begin{equation*}
@@ -2820,10 +2820,11 @@ Veamos algunos ejemplos típicos de grupos de Lie.
 \item Si $V$ es un espacio vectorial de dimensión finita, entonces $(V,+)$ es un grupo de Lie (conmutativo).
   \item El \emph{grupo general lineal}  $\GL(V)=\mathrm{Aut}(V)$ de automorfismos de $V$ es un grupo de Lie, no conmutativo si $\dim V > 1$. Cuando $V=\RR^n$, tenemos que $\GL_n(\RR):=\GL(\RR^n)$ es el grupo de las matrices invertibles $n\times n$. Como variedad, es simplemente el subconjunto abierto del espacio de las matrices $n\times n$, que es isomorfo a $\RR^{n^2}$, determinado por la condición $\det \neq 0$. La multiplicación y la inversión son polinomiales, y por tanto diferenciables. También podemos considerar el \emph{grupo especial lineal} $\mathrm{SL}(V)\subset \GL(V)$ formado por los automorfismos con $\det = 1$. Como subvariedad, es un subespacio cerrado de $\GL(V)$, determinado por la condición $\det = 1$, que se puede comprobar que determina una subvariedad regular.
 
-  \item Si $V$ está equipado con un producto escalar, podemos considerar el \emph{grupo ortogonal} $\mathrm{O}(V)$ de automorfismos de $V$ que preservan el producto escalar, y su subgrupo $\mathrm{SO}(V)\subset \mathrm{O}(V)$ formado por aquellos automorfismos con determinante $1$, denominado el \emph{grupo ortogonal especial}. Cuando $V=\RR^n$ con el producto escalar estándar, entonces $\mathrm{O}_n(\RR)=\mathrm{O}(\RR^n)$ es el grupo de las matrices $n\times n$ que cumplen la condición
+  \item Si $V$ está equipado con un producto escalar, podemos considerar el \emph{grupo ortogonal} $\mathrm{O}(V)$ de automorfismos de $V$ que preservan el producto escalar, y su subgrupo $\mathrm{SO}(V)\subset \mathrm{O}(V)$ formado por aquellos automorfismos con determinante $1$, denominado el \emph{grupo ortogonal especial}. Cuando $V=\RR^n$ con el producto escalar estándar, entonces $\mathrm{O}(n)=\mathrm{O}_n(\RR)=\mathrm{O}(\RR^n)$ es el grupo de las matrices ortogonales: matrices $n\times n$ que cumplen la condición
         \begin{equation*}
 A^T A = \mathbb{I}_n.
         \end{equation*}
+        También podemos considerar el subgrupo $\mathrm{SO}(n)=\mathrm{SO}_n(\RR)\subset \mathrm{O}(n)$ de las matrices ortogonales con determinante $1$.
 
   \item Si $V$ tiene dimensión par y está equipado con una forma bilineal antisimétrica $\omega$, podemos considerar el correspondiente \emph{grupo simpléctico} $\mathrm{Sp}(V)$ de automorfismos de $V$ que preservan $\omega$. Cuando $V=\RR^{2n}$ está equipado con la forma bilineal anisimétrica estándar
         \begin{equation*}
@@ -2842,9 +2843,23 @@ A^T J A = J,
           \end{pmatrix}.
         \end{equation*}
 
-        Estos grupos $\GL_n$, $\mathrm{SL}_n$, $\mathrm{O}_n$, $\mathrm{SO}_n$, $\mathrm{Sp}_n$ forman la clase de los \emph{grupos clásicos}. Nótese además que todos estos grupos pueden definirse de forma análoga sobre cualquier cuerpo o incluso sobre $\mathbb{Z}$. De hecho, es fácil ver que todas las condiciones que determinan estos grupos son polinomiales, de modo que éstos son ejemplos de \emph{grupos algebraicos}. El hecho de que se puedan definir sobre $\mathbb{Z}$ y que para cualquiera de estos grupos $G$ y para cualquier otro anillo $R$ se pueda recuperar el grupo sobre $R$ cambiando de base el grupo sobre $\mathbb{Z}$, de modo que $G(R) = G_{R}(R)$, significa que estos son \emph{grupos escindidos}.
+  \item Si $V$ es un espacio vectorial complejo equipado con una forma hermítica $h:V\times V\rightarrow \mathbb{C}$, es decir, con una forma sesquilineal ($h(\lambda v,w)=\lambda h(v,w)$, $h(v,\lambda w)=\bar{\lambda} h(v,w)$), podemos considerar el \emph{grupo unitario} $\mathrm{U}(V)$ de automorfismos de $V$ que preservan $h$. Cuando $V=\mathbb{C}^n$ está equipado con la forma hermítica estándar
+        \begin{equation*}
+h((x_1,\dots,x_n),(y_1,\dots,y_n)) = \sum_{i=1}^n x_i \bar{y}_i,
+        \end{equation*}
+        entonces $\mathrm{U}(n):= \mathrm{U}(\mathbb{C}^n)$ es el grupo de las matrices unitarias: matrices complejas $n\times n$ que cumplen la condición
+        \begin{equation*}
+A^\dagger A = \mathbb{I}_n,
+        \end{equation*}
+donde $A^\dagger$ es la matriz traspuesta conjugada de $A$. También se puede considerar el grupo $\mathrm{SU}(n)\subset \mathrm{U}(n)$ de las matrices unitarias con determinante $1$.
 \end{itemize}
 \end{ex}
+
+\begin{rmk}
+        Los grupos $\GL_n$, $\mathrm{SL}_n$, $\mathrm{O}_n$, $\mathrm{SO}_n$, $\mathrm{Sp}_n$ forman la clase de los \emph{grupos clásicos}. Nótese además que todos estos grupos pueden definirse de forma análoga sobre cualquier cuerpo o incluso sobre $\mathbb{Z}$. De hecho, es fácil ver que todas las condiciones que determinan estos grupos son polinomiales, de modo que éstos son ejemplos de \emph{grupos algebraicos}. El hecho de que se puedan definir sobre $\mathbb{Z}$ y que para cualquiera de estos grupos $G$ y para cualquier otro anillo $R$ se pueda recuperar el grupo sobre $R$ cambiando de base el grupo sobre $\mathbb{Z}$, de modo que $G(R) = G_{R}(R)$, significa que estos son \emph{grupos escindidos}.
+
+        Nótese además que los grupos $\mathrm{U}(n)$, $\mathrm{SU}(n)$, $\mathrm{O}(n)$ y $\mathrm{SO}(n)$ son compactos, de hecho, son los grupos compactos maximales de los grupos $\mathrm{GL}_n(\mathbb{C})$, $\mathrm{SL}_n(\mathbb{C})$, $\mathrm{GL}_n(\RR)$ y $\mathrm{SL}_n(\RR)$, respectivamente. También se puede probar que el compacto maximal del grupo simpléctico real $\mathrm{Sp}_{2n}(\RR)$ es también el grupo unitario $\mathrm{U}(n)$. Por otra parte, el compacto maximal del grupo simpléctico complejo $\mathrm{Sp}_{2n}(\mathbb{C})$ es otro grupo $\mathrm{Sp}(n)$, denominado el \emph{grupo simpléctico compacto}.
+\end{rmk}
 
 \subsection{} Para todo $g\in G$, podemos definir los difeomorfismos
 \begin{equation*}
@@ -3187,12 +3202,12 @@ P/H := P(G/H) = P\times^G (G/H).
 
 
 Muchas estructuras geométricas en variedades diferenciables se pueden entender como reducciones del grupo de estructura de sus fibrados de referencias.
-\subsection{Métricas riemannianas} Dar una métrica riemanniana en una variedad $M$ equivale a dar una reducción del grupo de estructura de su fibrado de referencias $\cB(M)$ a $\OO_n(\RR)\subset \GL_n(\RR)$. En efecto, toda matriz invertible $A$ descompone de forma única como
+\subsection{Métricas riemannianas} Dar una métrica riemanniana en una variedad $M$ equivale a dar una reducción del grupo de estructura de su fibrado de referencias $\cB(M)$ a $\OO(n)\subset \GL_n(\RR)$. En efecto, toda matriz invertible $A$ descompone de forma única como
         \begin{equation*}
 A= QS,
         \end{equation*}
-        donde $Q\in \OO_n(\RR)$ es una matriz ortogonal y $S$ es una matriz simétrica definida positiva. Por tanto, podemos identificar el cociente $P=\GL_n(\RR)/\OO_n(\RR)$ con el conjunto de las matrices simétricas definidas positivas, de modo que dar una sección de $\cB(M)\times^{\GL_n(\RR)} P$ equivale precisamente a definir un producto escalar en cada espacio tangente, de forma consistente con la estructura diferenciable; es decir, equivale a dar una métrica riemanniana.
-Más generalmente, se puede definir una noción de \emph{métrica riemanniana} en todo fibrado vectorial $V\rightarrow M$ como una reducción del grupo de estructura de $\cB(V)$ a $\OO_n(\RR)$.
+        donde $Q\in \OO(n)$ es una matriz ortogonal y $S$ es una matriz simétrica definida positiva. Por tanto, podemos identificar el cociente $P=\GL_n(\RR)/\OO(n)$ con el conjunto de las matrices simétricas definidas positivas, de modo que dar una sección de $\cB(M)\times^{\GL_n(\RR)} P$ equivale precisamente a definir un producto escalar en cada espacio tangente, de forma consistente con la estructura diferenciable; es decir, equivale a dar una métrica riemanniana.
+Más generalmente, se puede definir una noción de \emph{métrica riemanniana} en todo fibrado vectorial $V\rightarrow M$ como una reducción del grupo de estructura de $\cB(V)$ a $\OO(n)$.
 
 \subsection{Orientaciones} Dar una orientación en $M$ equivale a dar una reducción del grupo de estructura de $\cB(M)$ a $\GL_n^+(\RR)$, la componente conexa de $\GL_n(\RR)$ de las matrices con determinante positivo. El cociente $\GL_n(\RR)/\GL_n(\RR)^+$ es isomorfo a $\Z/2\Z$, de modo que para cualquier recubrimiento $M=\coprod_{i\in I} U_i$ de $M$ obtenemos una sucesión exacta en cohomología de \v{C}ech
 \begin{center}
@@ -3203,8 +3218,8 @@ Más generalmente, se puede definir una noción de \emph{métrica riemanniana} e
 
 Dado un fibrado vectorial $V\rightarrow M$, se define su \emph{primera clase de Stiefel--Whitney} $w_1(V)\in H^1(M,\Z/2\Z)$ como la imagen de $\cB(V)$ por la aplicación en la sucesión exacta anterior.  En particular, se define la primera clase de Stiefel--Whitney de $M$ como $w_1(M)=w_1(TM)$. Concluimos que una variedad es orientable si y sólo si $w_1(M)=0$. En general, decimos que un fibrado vectorial $V\rightarrow M$ es orientable si $w_1(V)=0$.
 
-\subsection{Forma de volumen} Dar una forma de volumen en $M$ equivale a dar una reducción del grupo de estructura de $\cB(M)$ a $\mathrm{SL}_n(\RR)$. En particular, una forma de volumen determina una orientación, ya que $\mathrm{SL}_n(\RR)\subset \GL_n(\RR)^+$. A su vez, una métrica riemanniana en una variedad orientada determina una forma de volumen ya que \[\OO_n(\RR) \cap \GL_n(\RR)^+=\OO_n(\RR)\cap \mathrm{SL}_n(\RR)= \SO_n(\RR).\]
-En otras palabras, una orientación junto con una métrica riemanniana determinan una reducción del grupo de estructura de $\cB(M)$ a $\SO_n(\RR)$.
+\subsection{Forma de volumen} Dar una forma de volumen en $M$ equivale a dar una reducción del grupo de estructura de $\cB(M)$ a $\mathrm{SL}_n(\RR)$. En particular, una forma de volumen determina una orientación, ya que $\mathrm{SL}_n(\RR)\subset \GL_n(\RR)^+$. A su vez, una métrica riemanniana en una variedad orientada determina una forma de volumen ya que \[\OO(n) \cap \GL_n(\RR)^+=\OO(n)\cap \mathrm{SL}_n(\RR)= \SO(n).\]
+En otras palabras, una orientación junto con una métrica riemanniana determinan una reducción del grupo de estructura de $\cB(M)$ a $\SO(n)$.
 
 \subsection{Estructuras presimplécticas} Supongamos que $M$ es una variedad de dimensión $2n$. Dar una reducción del grupo de estructura de $\cB(M)$ al grupo simpléctico $\mathrm{Sp}_n(\RR)\subset \GL_{2n}(\RR)$ equivale a dar una $2$-forma no degenerada $\omega \in \Omega^2(M)$. Esta $2$-forma se denomina una \emph{estructura presimpléctica} en $M$. Si además, $d\omega =0$, se dice que $\omega$ es una \emph{estructura simpléctica} y el par $(M,\omega)$ se denomina una \emph{variedad simpléctica}. En ese caso, el \emph{teorema de Darboux} garantiza que existen coordenadas locales $q^1,\dots,q^n, p^1,\dots,p^n$ de modo que $\omega = \sum_i dp^i \wedge dq^i$.
 
@@ -3238,23 +3253,23 @@ H^1(M,Z) \rar & \check{H}^1(M,\left\{U_i,i\in I\right\}, G) \rar & \check{H}^1(M
 \end{center}
 Vemos ahora que la obstrucción para que un $H$-fibrado principal $P$ provenga de un $G$-fibrado principal está precisamente en la imagen de $P$ en $H^2(M,Z)$.
 
-\subsection{Estructuras de spin} Un ejemplo sencillo de extensión central es el grupo de spin. Por definición, para $n>2$, se define el correspondiente \emph{grupo de spin real} $\mathrm{Spin}_n(\RR)$ como el recubridor universal del grupo $\SO_n(\RR)$. Resulta que el grupo fundamental de $\SO_n(\RR)$ es $\Z/2\Z$ (para $n=3$ se prueba a mano porque $\SO_3(\RR)\cong \mathbb{P}^3_{\RR}$, y para $n>3$ se deduce del caso $n=3$ por la sucesión exacta larga en homotopía; otra forma de probarlo es usando sistemas de raíces, ya que $\SO_n$ es un grupo escindido). Por tanto, se tiene una sucesión exacta corta
+\subsection{Estructuras de spin} Un ejemplo sencillo de extensión central es el grupo de spin. Por definición, para $n>2$, se define el correspondiente \emph{grupo de spin real} $\mathrm{Spin}(n)=\mathrm{Spin}_n(\RR)$ como el recubridor universal del grupo $\SO(n)$. Resulta que el grupo fundamental de $\SO(n)$ es $\Z/2\Z$ (para $n=3$ se prueba a mano porque $\SO(3)\cong \mathbb{P}^3_{\RR}$, y para $n>3$ se deduce del caso $n=3$ por la sucesión exacta larga en homotopía; otra forma de probarlo es usando sistemas de raíces, ya que $\SO_n$ es un grupo escindido). Por tanto, se tiene una sucesión exacta corta
 \begin{center}
   \begin{tikzcd}
-1\rar & \Z/2\Z \rar & \mathrm{Spin}_n(\RR) \rar & \SO_n(\RR) \rar & 1,
+1\rar & \Z/2\Z \rar & \mathrm{Spin}(n) \rar & \SO(n) \rar & 1,
   \end{tikzcd}
 \end{center}
 que induce una sucesión exacta
 \[
 \begin{adjustbox}{max width=\textwidth}
 \begin{tikzcd}[column sep = 10pt]
-H^1(M,\Z/2\Z) \rar & \check{H}^1(M,\{U_i,i\in I\}, \mathrm{Spin}_n(\RR)) \rar & \check{H}^1(M,\{U_i,i\in I\},\SO_n(\RR)) \rar & H^2(M,\Z/2\Z),
+H^1(M,\Z/2\Z) \rar & \check{H}^1(M,\{U_i,i\in I\}, \mathrm{Spin}(n)) \rar & \check{H}^1(M,\{U_i,i\in I\},\SO(n)) \rar & H^2(M,\Z/2\Z),
 \end{tikzcd}
 \end{adjustbox}
 \]
-donde $M=\coprod_{i\in I} U_i$ es un recubrimiento tal que cada $\mathrm{Spin}_n(\RR)(U_i)\rightarrow \SO_n(\RR)(U_i)$ es sobreyectiva.
+donde $M=\coprod_{i\in I} U_i$ es un recubrimiento tal que cada $\mathrm{Spin}(n)(U_i)\rightarrow \SO(n)(U_i)$ es sobreyectiva.
 
-Una \emph{estructura de spin} en una variedad riemanniana orientada $(M,g)$ de dimensión $n$ es un $\mathrm{Spin}_n(\RR)$-fibrado principal $\cB_{\mathrm{Spin}}(M)$ cuya imagen por la aplicación en la sucesión exacta anterior es el fibrado de referencias ortonormales positivas $\cB_{\mathrm{SO}}(M)$. La imagen $w_2(P)\in H^2(M,\Z/2\Z)$ de un $\SO_n(\RR)$ fibrado principal $P$ por la aplicación anterior se denomina la \emph{segunda clase de Stiefel--Whitney}. En particular, la segunda clase de Stiefel--Whitney de $M$ se define como $w_2(M)=w_2(\cB_{\SO}(M))$. De la sucesión exacta vemos que $M$ admite una estructura de spin si y sólo si $w_2(M)=0$. Además, la estructura de spin, si existe, no es necesariamente única, sino que hay tantas estructuras de spin diferentes como clases en $H^1(M,\Z/2\Z)$.
+Una \emph{estructura de spin} en una variedad riemanniana orientada $(M,g)$ de dimensión $n$ es un $\mathrm{Spin}(n)$-fibrado principal $\cB_{\mathrm{Spin}}(M)$ cuya imagen por la aplicación en la sucesión exacta anterior es el fibrado de referencias ortonormales positivas $\cB_{\mathrm{SO}}(M)$. La imagen $w_2(P)\in H^2(M,\Z/2\Z)$ de un $\SO(n)$-fibrado principal $P$ por la aplicación anterior se denomina la \emph{segunda clase de Stiefel--Whitney}. En particular, la segunda clase de Stiefel--Whitney de $M$ se define como $w_2(M)=w_2(\cB_{\SO}(M))$. De la sucesión exacta vemos que $M$ admite una estructura de spin si y sólo si $w_2(M)=0$. Además, la estructura de spin, si existe, no es necesariamente única, sino que hay tantas estructuras de spin diferentes como clases en $H^1(M,\Z/2\Z)$.
 
 
 \section{Conexiones}
@@ -3665,9 +3680,9 @@ En particular, la geometría de Cartan $(P,\omega)$ es localmente isomorfa a la 
 como queríamos probar.
 \end{proof}
 
-\subsection{Geometría euclidiana a la Klein} Recordemos el grupo euclidiano $\mathrm{Euc}_n(\RR)$, definido como el grupo de automorfismos afines del espacio euclidiano estándar que preservan el producto escalar. Dado un punto $p$ del espacio euclidiano, se tiene una inclusión $\OO_n(\RR)\rightarrow \mathrm{Euc}_n(\RR)$ como el grupo de transformaciones que preservan el punto y el producto escalar con respecto a ese punto. Podemos identificar entonces el espacio cociente $\mathrm{Euc}_n(\RR)/\OO_n(\RR)$ con el espacio vectorial $\RR^n$. El par $(\mathrm{Euc}_n(\RR),\OO_n(\RR))$ determina una geometría de Klein, denominada la \emph{geometría euclidiana}.
+\subsection{Geometría euclidiana a la Klein} Recordemos el grupo euclidiano $\mathrm{Euc}(n)$, definido como el grupo de automorfismos afines del espacio euclidiano estándar que preservan el producto escalar. Dado un punto del espacio euclidiano, se tiene una inclusión $\OO(n)\rightarrow \mathrm{Euc}(n)$ como el grupo de transformaciones que preservan el punto y el producto escalar con respecto a ese punto. Podemos identificar entonces el espacio cociente $\mathrm{Euc}(n)/\OO(n)$ con el espacio vectorial $\RR^n$. El par $(\mathrm{Euc}(n),\OO(n))$ determina una geometría de Klein, denominada la \emph{geometría euclidiana}.
 
-\subsection{Geometría riemanniana a la Cartan} Ahora, a una variedad riemanniana $(M,g)$ se le puede asociar el fibrado de referencias ortonormales $\pi:\cB_{\OO}(M)\rightarrow M$. Este fibrado está equipado con la conexión pricipal inducida por la conexión de Levi-Civita, cuya $1$-forma de conexión denotamos por $A \in \Omega^1(\cB_{\OO}(M),\so_n)$. Además, al tratarse de una conexión afín, el fibrado de referencias está equipado también con la \emph{$1$-forma de soldadura} $\theta=(\theta^1,\dots,\theta^n)\in \Omega^1(\cB_{\OO}(M),\RR^n)$, definida como sigue. Si $\bm{e} \in \cB_{\OO}(M)$ es una referencia ortogonal $\bm{e}:\RR^n\rightarrow T_xM$ en el punto $x=\pi(\bm{e})$ y $X\in T_{\bm{e}}\cB_{\OO}(M)$ es un vector tangente, definimos
+\subsection{Geometría riemanniana a la Cartan} Ahora, a una variedad riemanniana $(M,g)$ se le puede asociar el fibrado de referencias ortonormales $\pi:\cB_{\OO}(M)\rightarrow M$. Este fibrado está equipado con la conexión pricipal inducida por la conexión de Levi-Civita, cuya $1$-forma de conexión denotamos por $A \in \Omega^1(\cB_{\OO}(M),\so(n))$. Además, al tratarse de una conexión afín, el fibrado de referencias está equipado también con la \emph{$1$-forma de soldadura} $\theta=(\theta^1,\dots,\theta^n)\in \Omega^1(\cB_{\OO}(M),\RR^n)$, definida como sigue. Si $\bm{e} \in \cB_{\OO}(M)$ es una referencia ortogonal $\bm{e}:\RR^n\rightarrow T_xM$ en el punto $x=\pi(\bm{e})$ y $X\in T_{\bm{e}}\cB_{\OO}(M)$ es un vector tangente, definimos
 \begin{equation*}
 \theta_{\bm{e}}(X) = \bm{e}^{-1}(d_{\bm{e}}\pi(X)) \in \RR^n.
 \end{equation*}
@@ -3676,7 +3691,7 @@ Nótese que la $2$-forma
 T_A = d\theta + \frac{1}{2}A\wedge \theta
 \end{equation*}
 determina precisamente la torsión de la conexión. Como $A$ es la conexión de Levi-Civita, tenemos que $T_A=0$.
-La suma $\omega:= A + \theta \in \Omega^1(\cB_{\OO}(M),\mathfrak{euc}_n(\RR))$ determina una $1$-forma en $\cB_{\OO}(M)$ con valores en $\mathfrak{euc}_n(\RR)=\so_n(\RR) \oplus \RR^n$ y por tanto el par $(\cB_{\OO}(M),\omega)$ es una geometría de Cartan modelada sobre la geometría euclidiana $(\mathrm{Euc}_n(\RR),\OO_n(\RR))$. La curvatura de esta geometría es igual a
+La suma $\omega:= A + \theta \in \Omega^1(\cB_{\OO}(M),\mathfrak{euc}(n))$ determina una $1$-forma en $\cB_{\OO}(M)$ con valores en $\mathfrak{euc}(n)=\so(n) \oplus \RR^n$ y por tanto el par $(\cB_{\OO}(M),\omega)$ es una geometría de Cartan modelada sobre la geometría euclidiana $(\mathrm{Euc}(n),\OO(n))$. La curvatura de esta geometría es igual a
 \begin{equation*}
 \Omega = d\omega + \frac{1}{2}\omega \wedge \omega = dA + \frac{1}{2}A\wedge A + d\theta + \frac{1}{2}A\wedge \alpha = F_A + T_A = F_A.
 \end{equation*}
@@ -3698,7 +3713,7 @@ d\omega + \frac{1}{2}\omega \wedge \omega = K(\theta \wedge \theta).
 \end{equation*}
 
 \section{Formas espaciales}
-\subsection{} Supongamos que $(M,g)$ es una $n$-variedad riemanniana con curvatura seccional constante $K\in \RR$. Definimos el álgebra de Lie $\fg_K$ con espacio subyacente $\so_n(\RR)\oplus \RR^n$ y equipado con el corchete
+\subsection{} Supongamos que $(M,g)$ es una $n$-variedad riemanniana con curvatura seccional constante $K\in \RR$. Definimos el álgebra de Lie $\fg_K$ con espacio subyacente $\so(n)\oplus \RR^n$ y equipado con el corchete
 \begin{equation*}
 [(A,a),(B,b)]_{\fg_K} =([A,B] - K (a\wedge b), A b - Ba).
 \end{equation*}
@@ -3710,17 +3725,17 @@ puede entonces reescribirse como
 \begin{equation*}
 d\omega + \frac{1}{2}(\omega \wedge \omega)_{\fg_K} = 0.
 \end{equation*}
-De modo que $\omega$ puede verse como una $1$-forma valorada en $\fg_K$, y $(\cB_{\OO}(M),\omega)$ determina una geometría de Cartan plana modelada sobre $(G_K,\SO_n(\RR))$, donde $G_K$ es un grupo de Lie con álgebra de Lie $\fg_K$.
+De modo que $\omega$ puede verse como una $1$-forma valorada en $\fg_K$, y $(\cB_{\OO}(M),\omega)$ determina una geometría de Cartan plana modelada sobre $(G_K,\SO(n))$, donde $G_K$ es un grupo de Lie con álgebra de Lie $\fg_K$.
 
 \subsection{Geometrías de curvatura constante} Describamos ahora el espacio cociente $G_K/\SO_n(\RR)$.
-\subsubsection{Curvatura nula} Si $K=0$, entonces $\fg_K$ es isomorfo al álgebra $\mathfrak{euc}_n(\RR) = \so_n(\RR)\oplus \RR^n$, de modo que $G_K$ es el grupo euclidiano $\mathrm{Euc}_n(\RR)$ y $G_K/\SO_n(\RR)$ es el espacio euclidiano estándar $n$-dimensional, que denotamos por $\mathbb{E}^n$.
+\subsubsection{Curvatura nula} Si $K=0$, entonces $\fg_K$ es isomorfo al álgebra $\mathfrak{euc}(n) = \so(n)\oplus \RR^n$, de modo que $G_K$ es el grupo euclidiano $\mathrm{Euc}(n)$ y $G_K/\SO_n(\RR)$ es el espacio euclidiano estándar $n$-dimensional, que denotamos por $\mathbb{E}^n$.
 
 \subsubsection{Curvatura positiva o negativa}
 Comenzamos definiendo una aplicación inyectiva
 \begin{equation*}
 i:\fg_K \hookrightarrow \gl_{n+1}(\RR)
 \end{equation*}
-que envía cada par $(A,a) \in \so_n(\RR) \oplus \RR^n$ a la matriz
+que envía cada par $(A,a) \in \so(n) \oplus \RR^n$ a la matriz
 \begin{equation*}
   i(A,a)=
 \begin{pmatrix}
@@ -3754,7 +3769,7 @@ Por tanto, el correspondiente grupo $G_K\subset \GL_{n+1}(\RR)$ es el subgrupo d
 A D A^{-1} = D.
 \end{equation*}
 
-\subsubsection{Curvatura positiva} Si $K>0$, el grupo $G_K$ es isomorfo a $\SO_{n+1}(\RR)$, y el cociente $G_K/\SO_{n}(\RR)$ se identifica con la esfera $n$-dimensional de radio $R$, definida como
+\subsubsection{Curvatura positiva} Si $K>0$, el grupo $G_K$ es isomorfo a $\SO(n+1)$, y el cociente $G_K/\SO(n)$ se identifica con la esfera $n$-dimensional de radio $R$, definida como
 \begin{equation*}
 \mathbb{S}^n_R = \left\{ (x^1,\dots,x^n,t): (x^1)^2 + \cdots + (x^n)^2 + t^2 = R^2 \right\}
 \end{equation*}
@@ -3763,7 +3778,7 @@ y equipada con la métrica obtenida al restringir  la forma
   (dx^1)^2 + \cdots + (dx^n)^2 + (dt)^2 .
 \end{equation*}
 
-\subsubsection{Curvatura negativa} Si $K<0$, el grupo $G_K$ es isomorfo al grupo $\SO(1,n)$, y el cociente $G_K/\SO_n(\RR)$ se identifica con el espacio hiperbólico $n$-dimensional de radio $R$ definido como la hoja superior de la superficie
+\subsubsection{Curvatura negativa} Si $K<0$, el grupo $G_K$ es isomorfo al grupo $\SO(1,n)$, y el cociente $G_K/\SO(n)$ se identifica con el espacio hiperbólico $n$-dimensional de radio $R$ definido como la hoja superior de la superficie
 \begin{equation*}
 \mathbb{H}^n_R \cup (\mathbb{H}^n_R)'=  \left\{ (x^1,\dots,x^n,t): (x^1)^2 + \cdots + (x^n)^2 - t^2 = R^2 \right\}
 \end{equation*}
@@ -3775,7 +3790,7 @@ y equipado con la métrica obtenida al restringir la forma
 Concluimos lo siguiente.
 
 \begin{prop}
-Una $n$-variedad riemanniana $(M,g)$ con curvatura seccional constante $K\in \RR$ es localmente isométrica al espacio $G_K/\SO_n(\RR)$.
+Una $n$-variedad riemanniana $(M,g)$ con curvatura seccional constante $K\in \RR$ es localmente isométrica al espacio $G_K/\SO(n)$.
 \end{prop}
 
 \begin{proof}
@@ -3783,10 +3798,10 @@ Una $n$-variedad riemanniana $(M,g)$ con curvatura seccional constante $K\in \RR
   \begin{center}
     \begin{tikzcd}
      \cB_{\OO}(\widetilde{M}) \ar{r} \ar{d} & G_K \ar{d} \\
-     \widetilde{M} \ar{r} & G_K/\SO_n(\RR),
+     \widetilde{M} \ar{r} & G_K/\SO(n),
     \end{tikzcd}
   \end{center}
-donde $\varpi:\widetilde{M}\rightarrow M$ es el espacio recubridor universal, equipado con la métrica $\varpi^* g$. Cualquier sección local $s:U\subset M\rightarrow \tilde{M}$ de $\varpi$ determina una isometría entre $U$ y $\varpi^{-1}(U)$, y por tanto una isometría local a $G_K/\SO_n(\RR)$. Ahora, la existencia del isomorfismo entre $(\cB_{\OO}(\widetilde{M}),\omega)$ y $(G_K,G_K/\SO_n(\RR))$ se sigue de \todo{REF}, ya que $\omega$ es plana.
+donde $\varpi:\widetilde{M}\rightarrow M$ es el espacio recubridor universal, equipado con la métrica $\varpi^* g$. Cualquier sección local $s:U\subset M\rightarrow \tilde{M}$ de $\varpi$ determina una isometría entre $U$ y $\varpi^{-1}(U)$, y por tanto una isometría local a $G_K/\SO(n)$. Ahora, la existencia del isomorfismo entre $(\cB_{\OO}(\widetilde{M}),\omega)$ y $(G_K,G_K/\SO(n))$ se sigue de \todo{REF}, ya que $\omega$ es plana.
 \end{proof}
 
 \begin{defn}
@@ -3803,7 +3818,7 @@ Una \emph{forma espacial} es una variedad riemanniana $(M,g)$ completa y de curv
 \end{thm}
 
 \begin{proof}
-  En \todo{REF} hemos demostrado que existe una aplicación diferenciable $\varphi:\widetilde{M}\rightarrow G_K/\SO_n(\RR)=E_K$ que es una isometría local. Como $M$ es simplemente conexa, $\widetilde{M}=M$ y por tanto tenemos una isometría local $\varphi:M\rightarrow E_K$. Como $E_K$ es simplemente conexo, basta probar que $\varphi$ es una aplicación recubridora riemanniana. Esto quiere decir que $\varphi$ es sobreyectiva y que para todo punto $y \in E_K$ existe un entorno $V \subset E_K$ de $y$ tal que $\varphi^{-1}(V)=\coprod_{x \in \varphi^{-1}(x)} U_x$, donde cada $U_x$ es un entorno de $x$ y $\varphi|_{U_x}:U_x \rightarrow V$ es una isometría. Basta entonces probar el siguiente lema.
+  En \todo{REF} hemos demostrado que existe una aplicación diferenciable $\varphi:\widetilde{M}\rightarrow G_K/\SO(n)=E_K$ que es una isometría local. Como $M$ es simplemente conexa, $\widetilde{M}=M$ y por tanto tenemos una isometría local $\varphi:M\rightarrow E_K$. Como $E_K$ es simplemente conexo, basta probar que $\varphi$ es una aplicación recubridora riemanniana. Esto quiere decir que $\varphi$ es sobreyectiva y que para todo punto $y \in E_K$ existe un entorno $V \subset E_K$ de $y$ tal que $\varphi^{-1}(V)=\coprod_{x \in \varphi^{-1}(x)} U_x$, donde cada $U_x$ es un entorno de $x$ y $\varphi|_{U_x}:U_x \rightarrow V$ es una isometría. Basta entonces probar el siguiente lema.
 \end{proof}
 
 \begin{lemma}
@@ -3870,15 +3885,15 @@ Por tanto, $f=0$.
 \end{proof}
 
 \subsection{}
-Podemos usar el resultado anterior para obtener generadores del anillo $\RR[\fg]^G$, donde $G$ es uno de los grupos clásicos. Vamos a ver en particular el caso de $G=\mathrm{SO}_n(\RR)$; el resto se obtienen de forma similar, y pueden encontrarse en \todo{CITAR:Kobayashi-NomizuVol2}.
+Podemos usar el resultado anterior para obtener generadores del anillo $\RR[\fg]^G$, donde $G$ es uno de los grupos clásicos. Vamos a ver en particular el caso de $G=\mathrm{SO}(n)$; el resto se obtienen de forma similar, y pueden encontrarse en \todo{CITAR:Kobayashi-NomizuVol2}.
 
-Comenzamos considerando un elemento $A\in \mathfrak{so}_n(\RR)$ (es decir, una matriz $n\times n$ antisimétrica) y tomando su polinomio característico
+Comenzamos considerando un elemento $A\in \mathfrak{so}(n)$ (es decir, una matriz $n\times n$ antisimétrica) y tomando su polinomio característico
 \begin{equation*}
 p_A(T) = \det(T \mathbb{I}_n - A) = T^n + f_1(A) T^{n-2} + f_2(A) T^{n-4} + \cdots + f_m(A).
 \end{equation*}
-Esto nos determina unas funciones $f_1,\dots,f_m \in \RR[\mathfrak{so}_n(\RR)]$. Como el polinomio característico es invariante por conjugación, estas funciones pertencen a $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.  Nótese que, como $(T \mathbb{I}_n - A)^T = T \mathbb{I}_n + A$, tenemos que $p_A(-T)=(-1)^n p_A(T)$, con lo cual el coeficiente que acompaña a cada $T^{n-i}$, con $i$ impar, se anula.
+Esto nos determina unas funciones $f_1,\dots,f_m \in \RR[\mathfrak{so}(n)]$. Como el polinomio característico es invariante por conjugación, estas funciones pertencen a $\RR[\mathfrak{so}(n)]^{\mathrm{SO}(n)}$.  Nótese que, como $(T \mathbb{I}_n - A)^T = T \mathbb{I}_n + A$, tenemos que $p_A(-T)=(-1)^n p_A(T)$, con lo cual el coeficiente que acompaña a cada $T^{n-i}$, con $i$ impar, se anula.
 
-En el caso en que $n=2m$ es par, existe otra función $\mathrm{Pf}\in \RR[\mathfrak{so}_n(\RR)]$, denominada el \emph{pfaffiano}, que cumple que
+En el caso en que $n=2m$ es par, existe otra función $\mathrm{Pf}\in \RR[\mathfrak{so}(n)]$, denominada el \emph{pfaffiano}, que cumple que
 \begin{equation*}
 \mathrm{Pf}(A)^2 = f_m(A) = \det(A)
 \end{equation*}
@@ -3894,21 +3909,21 @@ entonces
 \begin{equation*}
 \omega_A^{m} = \mathrm{Pf}(A) dx^1 \wedge \cdots dx^{2m}.
 \end{equation*}
-En particular, para $g\in \mathrm{GL}_{2m}(\RR)$, se tiene que $\mathrm{Pf}(gAg^T)=\det(g)\mathrm{Pf}(A)$, luego $\mathrm{Pf}$ pertenece al anillo de invariantes $\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)}$.
+En particular, para $g\in \mathrm{GL}_{2m}(\RR)$, se tiene que $\mathrm{Pf}(gAg^T)=\det(g)\mathrm{Pf}(A)$, luego $\mathrm{Pf}$ pertenece al anillo de invariantes $\RR[\mathfrak{so}(n)]^{\mathrm{SO}(n)}$.
 
 \begin{thm}
   Si $n=2m+1$ es impar, entonces
   \begin{equation*}
-\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} = \RR[f_1,\dots,f_m].
+\RR[\mathfrak{so}(n)]^{\mathrm{SO}(n)} = \RR[f_1,\dots,f_m].
   \end{equation*}
   Si $n=2m$ es par, entonces
   \begin{equation*}
-\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} = \RR[f_1,\dots,f_{m-1},\mathrm{Pf}].
+\RR[\mathfrak{so}(n)]^{\mathrm{SO}(n)} = \RR[f_1,\dots,f_{m-1},\mathrm{Pf}].
   \end{equation*}
 \end{thm}
 
 \begin{proof}
-Definimos $T\subset \mathrm{SO}_n(\RR)$ como el subgrupo de Lie conexo cuya álgebra de Lie $\mathfrak{t}$ está formada por las matrices de la forma
+Definimos $T\subset \mathrm{SO}(n)$ como el subgrupo de Lie conexo cuya álgebra de Lie $\mathfrak{t}$ está formada por las matrices de la forma
 \begin{equation*} [x_1,\dots,x_m]:=
 \begin{pmatrix}
 0 & x_1 \\
@@ -3929,13 +3944,13 @@ si $n=2m$ es par, o
  &  & & & & 0
 \end{pmatrix},
 \end{equation*}
-si $n=2m+1$ es impar. Toda matriz antisimétrica puede conjugarse por un elemento de $\mathrm{SO}_n(\RR)$ a una matriz de la forma anterior. Por tanto, se cumplen las hipótesis del teorema previo y tenemos que la restricción induce un isomorfismo
+si $n=2m+1$ es impar. Toda matriz antisimétrica puede conjugarse por un elemento de $\mathrm{SO}(n)$ a una matriz de la forma anterior. Por tanto, se cumplen las hipótesis del teorema previo y tenemos que la restricción induce un isomorfismo
 \begin{equation*}
-\RR[\mathfrak{so}_n(\RR)]^{\mathrm{SO}_n(\RR)} \rightarrow \RR[\mathfrak{t}]^N,
+\RR[\mathfrak{so}(n)]^{\mathrm{SO}(n)} \rightarrow \RR[\mathfrak{t}]^N,
 \end{equation*}
 para
 \begin{equation*}
-N = \left\{ A \in \mathrm{SO}_n(\RR): A \mathfrak{t} A^{-1} \subset \mathfrak{t} \right\}.
+N = \left\{ A \in \mathrm{SO}(n): A \mathfrak{t} A^{-1} \subset \mathfrak{t} \right\}.
 \end{equation*}
 
 Las funciones $f_1,\dots,f_m$ evaluadas en un elemento $[x_1,\dots,x_m]\in \mathfrak{t}$ son las funciones simétricas elementales en las variables $(x_1)^2,\dots,(x_m)^2$, por tanto,
@@ -3955,7 +3970,7 @@ Por ejemplo, para $i=1$ y $j=2$ podemos tomar
     && \mathbb{I}_{n-4}
 \end{pmatrix}.
 \end{equation*}
-También, para cada $i\in \left\{ 1,\dots,m \right\}$ podemos encontrar una matriz $B \in \mathrm{O}_n(\RR)$ con $B\mathfrak{t} B^{-1}\subset \mathfrak{t}$ tal que
+También, para cada $i\in \left\{ 1,\dots,m \right\}$ podemos encontrar una matriz $B \in \mathrm{O}(n)$ con $B\mathfrak{t} B^{-1}\subset \mathfrak{t}$ tal que
 \begin{equation*}
 B [x_1,\dots,x_i,\dots,x_m] B^{-1} = [x_1,\dots,-x_i,\dots,x_m].
 \end{equation*}
@@ -3978,13 +3993,13 @@ Además, si $n$ es impar, también podemos tomar, en vez de esta $B$, la matriz
     &&& -1
 \end{pmatrix},
 \end{equation*}
-que cumple las misma propiedades, y que además es un elemento de $\mathrm{SO}_n(\RR)$, y por tanto de $N$. Esto prueba una igualdad
+que cumple las misma propiedades, y que además es un elemento de $\mathrm{SO}(n)$, y por tanto de $N$. Esto prueba una igualdad
 \begin{equation*}
 \RR[\mathfrak{t}]^N = \RR[(x_1)^2,\dots,(x_m)^2]^{\mathfrak{S}_m}=\RR[f_1,\dots,f_m],
 \end{equation*}
 para $n=2m+1$, y por tanto un isomorfismo
 \begin{equation*}
-\RR[\mathfrak{so}_{2m+1}(\RR)]^{\mathrm{SO}_{2m+1}(\RR)} \cong \RR[f_1,\dots,f_m].
+\RR[\mathfrak{so}(2m+1)]^{\mathrm{SO}(2m+1)} \cong \RR[f_1,\dots,f_m].
 \end{equation*}
 Si $n$ es par, para cada par $(i,j)$, con $1\leq i<j \leq m$ podemos encontrar una matriz $C\in N$ tal que
 \begin{equation*}
@@ -4011,7 +4026,7 @@ para $g,h \in \RR[(x_1)^2,\dots,(x_m)^2]$. Además, como $f$ es simétrica en la
 \end{equation*}
 y por tanto tenemos un isomorfismo
 \begin{equation*}
-\RR[\mathfrak{so}_{2m}(\RR)]^{\mathrm{SO}_{2m}(\RR)} \cong \RR[f_1,\dots,f_{m-1},\mathrm{Pf}],
+\RR[\mathfrak{so}(2m)]^{\mathrm{SO}(2m)} \cong \RR[f_1,\dots,f_{m-1},\mathrm{Pf}],
 \end{equation*}
 como queríamos probar.
 \end{proof}
@@ -4077,66 +4092,131 @@ En efecto,
 dh &= k \int_0^1 df(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt = k \int_0^1 \pi_{H_{A_t}}^* df(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt  \\
 &= k \int_0^1 f(\pi_{H_{A_t}}^*d\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt + k \int_0^1 f(\alpha \wedge \pi_{H_{A_t}}^* dF_t \wedge \overset{k-1}{\cdots} \wedge F_t) dt \\
 & +k \int_0^1 f(\alpha \wedge F_t \wedge \overset{k-1}{\cdots} \wedge \pi_{H_{A_t}}^*dF_t) dt = k \int_0^1 f\left(\frac{dF_t}{dt} \wedge F_t \wedge \overset{k-1}{\cdots} \wedge F_t\right) dt  \\
-  &= \int_0^1 \frac{d}{dt} f(F_t) dt = f(F_0) - f(F_1),
+  &= \int_0^1 \frac{d}{dt} f(F_t) dt = f(F_1) - f(F_0),
 \end{align*}
 como queríamos probar.
 \end{proof}
 
-
-
-
-\section{La clase de Euler y el teorema de Gauss--Bonnet}
-\subsection{La clase de Euler} Dado un $\SO_{2m}(\RR)$-fibrado principal $P\rightarrow M$, se define su \emph{clase de Euler} $e(P)\in H^{2m}(M,\RR)$ como la imagen del pfaffiano $\mathrm{Pf} \in \RR[\mathfrak{so}_{2m}(\RR)]^{\SO_{2m}(\RR)}$ por el homomorfismo de Chern--Weil,
+\subsection{Clases características} Supongamos que $G$ es un grupo de Lie cuyo anillo de invariantes $\RR[\fg]^G$ es un anillo de polinomios generado por ciertos polinomios invariantes $f_1,\dots,f_r\in \RR[\fg]^G$; es decir,
 \begin{equation*}
-e(P) = w_P(\mathrm{Pf}) \in H^{2m}(M,\RR).
+\RR[\fg]^G=\RR[f_1,\dots,f_r].
 \end{equation*}
-Es decir,
+Este es el caso, por ejemplo, del grupo $\SO(n)$, como hemos visto en la sección anterior.
+
+Dado un $G$-fibrado principal $P\rightarrow M$, sus \emph{clases características} son las clases de cohomología
 \begin{equation*}
-e(P) = \overline{\mathrm{Pf}}(F_A),
+w_P(f_i) \in H^*(M,\RR).
 \end{equation*}
-para cualquier conexión $A$ en $P$.
 
-La clase de Euler cumple las siguientes propiedades, que la caracterizan axiomáticamente.
+Por ejemplo, para $G=\OO(n)$, las clases características de un $\OO(n)$-fibrado principal $P\rightarrow M$ de la forma
+\begin{equation*}
+p_i(P)=w_P(f_i) \in H^*(M,\RR)
+\end{equation*}
+se denominan las \emph{clases de Pontrjagin} de $P$. Además, si $n=2m$ es par, y el fibrado $P$ admite una reducción a $\SO(2m)$, entonces podemos considerar la \emph{clase de Euler} de $P$, definida como la imagen del pfaffiano $\mathrm{Pf}\in \RR[\so(2m)]^{\SO(2m)}$ por el homomorfismo de Chern--Weil,
+\begin{equation*}
+e(P)= w_P(\mathrm{Pf}) \in H^{2m}(M,\RR).
+\end{equation*}
 
-\begin{thm} \leavevmode
-\begin{enumerate}
-  \item  (Naturalidad). Dados un $\SO_{2m}(\RR)$-fibrado principal $P\rightarrow M$ y una aplicación diferenciable $f:M'\rightarrow M$, se tiene que
-        \begin{equation*}
-e(f^* P ) = f^*(e(P))
-        \end{equation*}
-  \item (Normalización). Si $L$ es un $S^1$-fibrado principal, visto como un $\SO_2(\RR)$ fibrado principal por medio del isomorfismo natural $S^1\cong \SO_2(\RR)$, entonces la clase de Euler de $L$ coincide con su clase de Chern \todo{REF},
-        \begin{equation*}
-e(L)= c_1(L).
-        \end{equation*}
-  \item (Fórmula de la suma de Whitney). Sean $L_1,\dots,L_m$ $S^1$-fibrados principales, y sean $E_1,\dots,E_m$ los correspondientes fibrados vectoriales de rango $2$ asociados a ellos por la representación natural
-        \begin{equation*}
-S^1 \cong \SO_2(\RR) \hookrightarrow \GL(\RR^2).
-        \end{equation*}
-        Sea $P$ el $\SO_{2m}(\RR)$-fibrado principal obtenido como el fibrado de referencias del fibrado vectorial $E=E_1\oplus \cdots \oplus E_m$ compatibles con las estructuras $\SO_2(\RR)$ de cada $E_i$. Se tiene que
-        \begin{equation*}
-e(P) = e(L_1)\cdots e(L_m).
-        \end{equation*}
-\end{enumerate}
-\end{thm}
+Es particularmente interesante el caso en el que $\pi:P=\mathcal{B}_{\OO}(M)\rightarrow M$ es el fibrado de referencias de una variedad riemanniana $(M,g)$, equipado con la conexión de Levi--Civita, que denotamos por $A$. En ese caso, se definen las \emph{clases de Pontrjagin de $M$} como
+\begin{equation*}
+p_i(M) = p_i(\mathcal{B}_{\OO}(M)),
+\end{equation*}
+que están representadas por las formas $\gamma_i \in \Omega(M)$ que cumplen
+\begin{equation*}
+\pi^* \gamma_i = f_i(F_A).
+\end{equation*}
+Además, si $M$ es orientable y de dimensión par $n=2m$ y fijamos una orientación en $M$, obtenemos una reducción del grupo de estructura de $P$ a $\SO(2m)$ y podemos definir la \emph{clase de Euler de $M$} como
+\begin{equation*}
+e(M) = e(\mathcal{B}_{\SO}(M)),
+\end{equation*}
+que está representada por la forma $\gamma \in \Omega^{2m}(M)$ que cumple
+\begin{equation*}
+\pi^* \gamma= \mathrm{Pf}(F_A).
+\end{equation*}
 
-\begin{proof}
-a
-\end{proof}
-
+\section{El teorema de Chern--Gauss--Bonnet}
 \begin{thm}[Teorema de Chern--Gauss--Bonnet]
-  Sea $(M,g)$ una variedad riemanniana orientada de dimensión par $n=2m$ y sea $P=\mathcal{B}_{\SO}(M)$ su fibrado de referencias ortogonales compatibles con la orientación, que es un $\SO_{2m}(\RR)$-fibrado principal. Se tiene que
+  Sea $(M,g)$ una variedad riemanniana orientada de dimensión par $n=2m$ y sea $e(M)=[\gamma]$ su clase de Euler, que está representada por una forma $\gamma \in \Omega^{2m}(M)$ que cumple
+\begin{equation*}
+\pi^* \gamma= \mathrm{Pf}(F_A),
+\end{equation*}
+donde $A$ es la conexión de Levi--Civita de $(M,g)$ (vista como una conexión en el fibrado de referencias $\pi: \mathcal{B}_{\SO}(M)\rightarrow M$).
+  Se tiene que
   \begin{equation*}
-\int_{M} e(P) = (2\pi)^k \chi(M),
+\int_{M} \gamma = (2\pi)^m \chi(M),
   \end{equation*}
-donde $\chi(M)$ es la característica de Euler de $M$. En particular, si $R$ es la curvatura de $M$, se tiene que
-  \begin{equation*}
-\int_{M} \overline{\mathrm{Pf}}(R) = (2\pi)^k \chi(M).
-  \end{equation*}
+donde $\chi(M)$ es la característica de Euler de $M$.
 \end{thm}
 
-\begin{proof}
-a
+Antes de demostrar el teorema, necesitamos un lema previo.
+
+\begin{lemma}
+  Sea
+  \begin{equation*}
+SM = \left\{ (x,X_x) \in TM : \langle X_x,X_x \rangle_x = 1 \right\},
+  \end{equation*}
+  con $p:SM\rightarrow M$, $(x,X_x)\mapsto x$ el \emph{fibrado de esferas tangente} a $M$. Existe una $(2m-1)$-forma $\Pi \in \Omega^{2m-1}(SM)$ tal que \[d\Pi = p^* \gamma\] y tal que, para cada $x\in M$, la integral \[C_m:=\int_{p^{-1}(x)} \Pi\]
+  es una constante que sólo depende de $m$.
+\end{lemma}
+
+
+\begin{proof}[Demostración del lema]
+  Podemos ver el fibrado de referencias $\cB_{\SO}(M)$ como un $\SO(2m-1)$-fibrado principal sobre $SM$ por medio de la aplicación
+  \begin{equation*}
+\cB_{\SO}(M) \rightarrow SM,\ (e_1,\dots,e_{2m}) \mapsto e_1.
+  \end{equation*}
+  Por otra parte, podemos considerar el $\SO(2m)$-fibrado principal $p^*\cB_{\SO}(M)\rightarrow SM$, que es simplemente la extensión del fibrado anterior por la inclusión natural $\SO(2m-1)\hookrightarrow \SO(2m)$.
+
+  A partir de la conexión de Levi--Civita $A$ en $\cB_{\SO}(M)\rightarrow M$ podemos definir dos conexiones $A_0$ y $A_1$ en $p^* \cB_{\SO}(M)\rightarrow SM$. En primer lugar, definimos $A_1$ simplemente como el pullback $A_0=p^*A$ de la conexión de Levi--Civita. Ahora, podemos proyectar $A$ a la subálgebra $\mathfrak{so}(2m-1)\subset \mathfrak{so}(2m)$, lo que determina una conexión en el $\SO(2m-1)$-fibrado $\cB_{\SO}(M)\rightarrow SM$ y, a su vez, esta conexión se puede extender al fibrado $p^*\cB_{\SO}(M)\rightarrow SM$, lo que determina la otra conexión $A_0$. La diferencia entre estas dos conexiones es una forma
+  \begin{equation*}
+\alpha:= A_1 - A_0 \in \Omega^1(p^* \cB_{\SO}(M),\mathfrak{so}(2m)).
+  \end{equation*}
+  Ahora, para cada $t\in [0,1]$, definimos la conexión $A_t = A_0 +t \alpha$, y denotamos $F_t=F_{A_t}$. Finalmente, ponemos
+  \begin{equation*}
+\Pi = -m \int_0^1 \overline{\mathrm{Pf}}(\alpha \wedge F_t \wedge \overset{m-1}{\cdots}\wedge F_t) dt \in \Omega^{2m-1}(SM).
+  \end{equation*}
+  Un cálculo totalmente análogo al de la prueba de \todo{REF} muestra que
+\begin{equation*}
+d\Pi = \overline{\mathrm{Pf}}(F_1)- \overline{\mathrm{Pf}}(F_0).
+\end{equation*}
+Ahora, como $A_1 = p^* A$, tenemos que $F_1 = p^* F_A$, de modo que
+\begin{equation*}
+\overline{\mathrm{Pf}}(F_1) = p^* \overline{\mathrm{Pf}}(F_A) = p^* \gamma.
+\end{equation*}
+Por otra parte, como la restricción del pfaffiano a $\mathrm{so}(2m-1)$ es $0$, se tiene que
+\begin{equation*}
+\overline{\mathrm{Pf}}(F_0) = 0,
+\end{equation*}
+con lo cual $d\Pi = p^*\gamma$. Como la expresión de $\Pi$ en cada fibra es una expresión universal que sólo depende de la forma de Maurer--Cartan y las fibras de $SM$ se pueden identificar con la esfera unidad estándar $S^{2m-1}$, la integral $\int_{p^{-1}(x)}\Pi$ en cada fibra es una constante que tan sólo depende de $m$.
 \end{proof}
+
+\begin{proof}[Demostración del teorema]
+  Sea $X\in \fX(M)$ un campo vectorial que sólo tiene ceros aislados. Este campo determina una sección $\bar{X}:M\rightarrow SM$ de $p$, poniendo \[\bar{X}_x=X_x / \lVert X_x \rVert_x,\] que está bien definida en el abierto $M'=M\setminus \left\{ \text{ceros de } X \right\}$.
+  La imagen $N=\bar{X}(M')\subset SM$ es una subvariedad de $SM$ con borde. Además, su borde $\partial N$ es difeomorfo, como variedad orientada, a una unión disjunta
+  \begin{equation*}
+\partial N \cong \coprod_{x\in \left\{ \text{ceros de } X \right\}} (p^{-1}(x))^{\sqcup \ind_x X};
+  \end{equation*}
+  aquí, el signo de $\ind_x X$ indica la orientación que se le pone a $p^{-1}(x)$.
+  Por tanto, por el teorema de Stokes
+  \begin{equation*}
+\int_M \gamma = \int_N p^*\gamma = \int_N d\Pi = \int_{\partial N} \Pi = \sum_{x\in \left\{ \text{ceros de } X \right\}} \ind_x X \int_{S_x}p^{-1}(x) = C_m \ind X.
+  \end{equation*}
+Por el teorema de Poincaré--Hopf, $\ind X = \chi(M)$, y concluimos que
+\begin{equation*}
+\int_M \gamma = C_m \chi(M).
+\end{equation*}
+Basta considerar ahora el caso en que $M=(S^2)^m$. El término de la izquierda es
+\begin{equation*}
+\int_M \gamma = (\text{Área}(S^2))^m = (4\pi)^m = (2\pi)^m (\chi(S^2))^m = (2\pi)^m \chi((S^2)^m),
+\end{equation*}
+con lo cual
+\begin{equation*}
+C_m = (2\pi)^m,
+\end{equation*}
+como queríamos probar.
+\end{proof}
+
+
 \chapter{Un poco de análisis global}
 En construcción
 %\section{Estrella de Hodge y laplaciano}
