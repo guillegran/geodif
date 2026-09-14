@@ -398,6 +398,13 @@ f(1) = -f(0).
 \end{equation*}
 Esto contradice el teorema de Bolzano.
 
+Otra forma equivalente de definir el fibrado de Möbius es como el \emph{fibrado tautológico} $E\rightarrow \mathbb{RP}^1$, donde identificamos la circunferencia $S^1$ con la recta proyectiva real $\mathbb{RP}^1$. El espacio total de este fibrado es
+\begin{equation*}
+E = \left\{ (l,v) \in \mathbb{RP}^1 \times \RR^2 : v\in l \right\},
+\end{equation*}
+y la proyección $E\rightarrow \mathbb{RP}^1$ es la restricción de la proyección natural $\mathrm{pr}_1:\mathbb{RP}^1 \times \RR^2\rightarrow \mathbb{RP}^1$. De la misma forma se puede definir el fibrado tautológico $E\rightarrow \mathbb{RP}^n$, de rango $n$.
+
+
 \subsection{Funciones de transición} Sea $\pi:E\rightarrow M$ un fibrado vectorial real de rango $r$. Tomemos dos abiertos $U,V \subset M$, con intersección no vacía, junto con difeomorfismos $\varphi_U:E|_U\rightarrow U\times \RR^r$ y $\varphi_V:E|_V\rightarrow V\times \RR^r$ como en la definición anterior. Sobre la intersección $U\cap V$, podemos definir la aplicación
 \begin{equation*}
 \varphi_V \circ \varphi_U^{-1}: (U\cap V) \times \RR^r \rightarrow (U\cap V) \times \RR^r, (x,v) \mapsto (x, g_{UV}(x)v).
@@ -1067,6 +1074,18 @@ Los grupos de cohomología relativa existen y son únicos (salvo isomorfismo nat
 Hay varias formas de construir los grupos $H^k(X,A;\RR)$. La manera clásica es la \emph{cohomología singular}, en términos de los grupos de cadenas singulares (combinaciones lineales de cubos en $X$). Otra forma típica, que funciona en espacios paracompactos es la cohomología de \v{C}ech, en términos de recubrimientos por abiertos. La forma más directa es usando la teoría de haces: el grupo $H^k(X,A;\RR)$ es el grupo de cohomología de haces $H^k(j_{!}\underline{\RR}_U)$, donde $U=X\setminus A$ es el complemento de $A$, $j_!$ denota la extensión por $0$, y $\underline{\RR}_U$ es el haz constante $\RR$ en $U$.
 \end{rmk}
 
+\begin{rmk}
+Como $\RR^n$ es homotópicamente equivalente a un punto, sus grupos de cohomología son
+  \begin{equation*}
+    H^k(\RR^n,\RR) =
+    \begin{cases}
+\RR & \text{ si } k= 0,\\
+0 & \text{ si } k\neq 0.
+\end{cases}
+  \end{equation*}
+  Este hecho se conoce como el \emph{lema de Poincaré}.
+\end{rmk}
+
 \subsection{Cohomología de de Rham}
   Se define el \emph{complejo de de Rham} $\Omega^\bullet(M)$ asociado a una variedad diferenciable $M$ como el complejo de cadenas
   \begin{center}
@@ -1078,65 +1097,6 @@ Hay varias formas de construir los grupos $H^k(X,A;\RR)$. La manera clásica es 
   \begin{equation*}
 H^k_{\mathrm{dR}}(M) = H^k(\Omega^\bullet(M)) = \frac{\ker(d:\Omega^k(M)\rightarrow \Omega^{k+1}(M))}{d(\Omega^{k-1}(M))}.
   \end{equation*}
-
-\subsection{} Nótese la funtorialidad de las construcciones. Para cada aplicación diferenciable $f:M\rightarrow N$ tenemos una aplicación inducida $f^*:\Omega^\bullet(N)\rightarrow \Omega^\bullet(M)$ que envía cada forma diferencial a su pull-back. Veamos que, además, la cohomología de de Rham es invariante por homotopía. Puesto que toda aplicación continua se puede aproximar por aplicaciones diferenciables, bastará considerar homotopías diferenciables entre aplicaciones diferenciables.
-
-\begin{prop}
-  Sean $M$ y $N$ dos variedades diferenciables, $f_0,f_1:M\rightarrow N$ dos aplicaciones diferenciables y $f:M\times [0,1] \rightarrow N$ una homotopía diferenciable entre $f_0$ y $f_1$. Entonces existe una homotopía $h$ entre los morfismos de complejos $f_0^*,f_1^*:\Omega^\bullet(N)\rightarrow \Omega^\bullet(M)$.
-\end{prop}
-
-\begin{proof}
-  Basta demostrar que existe una homotopía $h_0$ entre los morfismos de complejos $i_0^*,i_1^*:\Omega^\bullet(M\times [0,1])\rightarrow \Omega^\bullet(M)$, donde $i_0,i_1:M\rightarrow M\times[0,1]$ son las inclusiones $i_0(x)=(x,0)$ e $i_1(x)=(x,1)$. En efecto, como $f_0=f\circ i_0$ y $f_1=f\circ i_1$, si tomamos $h=h_0 \circ f^*$ tenemos que, para toda forma diferencial $\alpha$,
-  \begin{equation*}
-h(d\alpha) + d(h\alpha) = h_0(f^* d\alpha) + d(h_0 f^*\alpha) = (h_0d+dh_0)(f^*\alpha)=(i_1^*-i_0^*)(f^*\alpha) = (g^*-f^*)(\alpha).
-  \end{equation*}
-  Finalmente, la homotopía $h_0$ puede construirse como la colección de aplicaciones
-  \begin{align*}
-    h_0: \Omega^k(M\times[0,1]) & \longrightarrow \Omega^{k-1}(M) \\
-    \alpha  & \longmapsto \int_0^1 i_{\partial_t}\omega dt,
-  \end{align*}
-  donde $t$ es la coordenada en $[0,1]$. En efecto, para ver que $h_0d+dh_0=i_1^*-i_0^*$ basta calcular en coordenadas locales $x^1,\dots,x^n$. Por la linealidad de $h_0$, basta probarlo en los casos
-  \begin{enumerate}
-  \item  $\alpha=\alpha(x,t)dt\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}}$
-  \item $\alpha=\alpha(x,t)dx^{i_1}\wedge\cdots\wedge dx^{i_k}$.
-  \end{enumerate}
-  Para el caso $1$
-  \begin{align*}
-  d(h_0\alpha) &= d \left[ \left( \int_0^1 \alpha(t,x) dt \right) dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}} \right] \\
-  &=   \partial_j\left( \int_0^1 \alpha(t,x) dt \right) dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}} \\
-  &=  \left( \int_0^1 \partial_j \alpha(t,x) dt \right) dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}},
-  \end{align*}
-  \begin{align*}
-    h_0(d\alpha) &= h \left( \partial_j \alpha(t,x) dt\wedge dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}} \right) \\
-    &= \int_0^1 \partial_j \alpha(t,x) i_{\partial_t}(dt\wedge dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}}) dt \\
-  &= - \left( \int_0^1 \partial_j \alpha(t,x) dt \right) dx^j\wedge dx^{i_1}\wedge \cdots \wedge dx^{i_{k-1}}.
-  \end{align*}
-  Luego $dh_0(\alpha)-h_0d(\alpha)=0$. Por otra parte,
-  \begin{align*}
-(i_0^* dt)_{(x,t)} &= d(t \circ i_0)_{(x,t)} = d(0) = 0 \\
-(i_1^* dt)_{(x,t)} &= d(t \circ i_1)_{(x,t)} = d(1) = 0 .
-  \end{align*}
-  Ahora, para el caso $2$ tenemos que $i_{\partial_t}\alpha = 0$, luego $dh_0\alpha=0$, mientras que
-  \begin{equation*}
-h_0(d\alpha) = \left(\int_0^1 \partial_t\alpha(t,x) dt\right) dx^{i_1} \wedge \cdots \wedge dx^{i_p} =(\alpha(1,x)-\alpha(0,x))  dx^{i_1} \wedge \cdots \wedge dx^{i_p} = i_1^*\alpha - i_0^* \alpha.
-  \end{equation*}
-En ambos casos, concluimos que $h_0$ da una homotopía entre $i_0^*$ e $i_1^*$.
-\end{proof}
-
-\begin{corol}[Lema de Poincaré]
-  Los grupos de cohomología de de Rham de $\RR^n$ son
-  \begin{equation*}
-    H^k_{\mathrm{dR}}(\RR^n) =
-    \begin{cases}
-\RR & \text{ si } k= 0,\\
-0 & \text{ si } k\neq 0.
-\end{cases}
-  \end{equation*}
-\end{corol}
-
-\begin{proof}
-Basta tomar una equivalencia homotópica entre $\RR^n$ y un punto.
-\end{proof}
 
 \begin{thm}[Teorema de de Rham]
   Sea $M$ una variedad diferenciable. Para cada $k\in \Z$ existe un isomorfismo
@@ -1194,7 +1154,7 @@ Estos grupos encajan en el siguiente diagrama
 \end{center}
 Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bullet(M,\RR)$ con $CH^k(M,\RR)=H^k(M_k,M_{k-1};\RR)\cong \RR^{c_k}$ y que sus grupos de cohomología coinciden con los grupos $H^\bullet(M,\RR)$. Concluimos que
 \begin{equation*}
-\chi(M) = \chi(R\Gamma(\underline{\RR}_M)) = \sum_{k} (-1)^k \dim H^k(M,\RR).
+\chi(M)= \sum_{k} (-1)^k \dim CH^k(M,\RR) =\sum_{k} (-1)^k \dim H^k(M,\RR).
 \end{equation*}
 Aquí, recordamos que la característica de Euler de un complejo $A^\bullet$ de espacios vectoriales se define como
 \begin{equation*}
@@ -4218,9 +4178,181 @@ como queríamos probar.
 
 
 \chapter{Un poco de análisis global}
-En construcción
-%\section{Estrella de Hodge y laplaciano}
-%\section{La ecuación de Poisson en superficies}
+\section{La ecuación de Poisson en variedades compactas}
+\subsection{} Durante todo este capítulo, $M$ denota una variedad diferenciable compacta, orientada y sin borde. Fijamos, además, una métrica riemanniana $g$ en $M$, que en coordenadas $\bm{x}=(x^1,\dots,x^n)$ se escribe como
+\begin{equation*}
+g = g_{ij} dx^i dx^j.
+\end{equation*}
+En particular, la forma de volúmen se escribe en coordenadas como
+\begin{equation*}
+\mathrm{dvol}_g = V dx^1\wedge \cdots \wedge dx^n,
+\end{equation*}
+para $V=\sqrt{\det g}$.
+
+\subsection{Gradiente, divergencia y laplaciano} Dada una función diferenciable $f:M\rightarrow \RR$, se define su \emph{gradiente} (con respecto a $g$)
+\begin{equation*}
+\grad_g f = (df)^\sharp \in \fX(M)
+\end{equation*}
+como el campo vectorial dual a la $1$-forma $df\in \Omega^1(M)$ con respecto a la métrica riemanniana. En coordenadas,
+\begin{equation*}
+(\grad_g f)^j = g^{ij} \partial_if.
+\end{equation*}
+En particular, si $g^{ij}=\delta^{ij}$ está representada por la matriz identidad, recuperamos la expresión típica del gradiente
+\begin{equation*}
+(\grad_g f)^i = \partial_if .
+\end{equation*}
+
+
+Dado un campo vectorial $X\in \fX(M)$, su \emph{divergencia} $\Div_g X: M\rightarrow \RR$ se define por medio de la ecuación
+\begin{equation*}
+\mathcal{L}_X \mathrm{dvol}_g = (\Div_g X) \mathrm{dvol}_g.
+\end{equation*}
+Ahora, por la fórmula mágica de Cartan,
+\begin{equation*}
+\mathcal{L}_X \mathrm{dvol}_g = d(i_X\mathrm{dvol}_g) + i_X(d\mathrm{dvol}_g) = d(i_X\mathrm{dvol}_g).
+\end{equation*}
+Por tanto, equivalentemente,
+\begin{equation*}
+(\Div_g X) \mathrm{dvol}_g=d(i_X\mathrm{dvol}_g).
+\end{equation*}
+En coordenadas, para un campo $X=X^i \partial_i$,
+\begin{equation*}
+\Div_g X = \partial_i X^i + X^i \left( \frac{1}{2} g^{kl} \partial_{i}g_{kl} \right).
+\end{equation*}
+En particular, si $g^{ij}=\delta^{ij}$,
+\begin{equation*}
+\Div_g X = \sum_{i} \partial_i X^i.
+\end{equation*}
+Del teorema de Stokes se sigue inmediatamente una ``versión riemanniana'' del teorema de la divergencia:
+\begin{equation*}
+\int_{N} (\Div_g X) \mathrm{dvol}_g = \int_{\partial N} i_X \mathrm{dvol}_g.
+\end{equation*}
+
+
+Finalemente, al igual que en el espacio euclidiano, definimos el \emph{laplaciano} de una función $f:M\rightarrow \RR$ como la divergencia de su gradiente:
+\begin{equation*}
+\Delta_g f = \Div_g (\grad_g f)
+\end{equation*}
+El operador $\Delta_g$ se denomina el \emph{operador de Laplace--Beltrami}.
+En coordenadas,
+\begin{equation*}
+\Delta_g f = g^{ij} \frac{\partial^2 f}{\partial x^i \partial x^j} - g^{il} \Gamma^j_{il} \partial_j f.
+\end{equation*}
+En particular, si $g^{ij}=\delta^{ij}$,
+\begin{equation*}
+\Delta_g f = \sum_{i} \frac{\partial^2 f}{(\partial x^i)^2}.
+\end{equation*}
+
+\subsection{} La \emph{ecuación de Poisson} en $(M,g)$, para una función diferenciable $\rho:M\rightarrow \RR$, es
+\begin{equation*}
+\Delta_g \phi = \rho.
+\end{equation*}
+Aquí, $\phi$ es la incógnita, es decir, se busca una función $\phi$ cuyo laplaciano sea $\rho$.
+
+Existe una primera condición necesaria para la existencia de una tal $\phi$, que es que
+\begin{equation*}
+\int_M \rho\ \mathrm{dvol}_g = 0.
+\end{equation*}
+En efecto, ya que
+\begin{equation*}
+\rho\ \mathrm{dvol}_g = \Div_g (\grad_g f)\ \mathrm{dvol}_g = d(i_{\grad_g f}\ \mathrm{dvol}_g),
+\end{equation*}
+y $\partial M = \varnothing$.
+
+\begin{thm}
+Para toda función diferenciable $\rho:M\rightarrow \RR$ con $\int_M \rho\ \mathrm{dvol}_g = 0$, existe una función diferenciable $\phi:M\rightarrow \RR$ tal que
+\begin{equation*}
+\Delta_g \phi = \rho.
+\end{equation*}
+Además, esta función es única salvo por la adición de una constante.
+\end{thm}
+
+\subsection{El producto $L^2$} La métrica riemanniana nos permite definir un producto escalar en el espacio de las funciones diferenciables $f:M\rightarrow \RR$, poniendo
+\begin{equation*}
+\langle f_1, f_2 \rangle_{L^2} = \int_M f_1f_2\ \mathrm{dvol}_g.
+\end{equation*}
+La completación del espacio $C^\infty(M)$ con respecto a la métrica determinada por este producto escalar es un espacio de Hilbert que se denota por $L^2(M)$.
+
+También podemos definir un producto escalar en el espacio de campos $\fX(M)$, poniendo
+\begin{equation*}
+\langle X_1, X_2 \rangle_{L^2} = \int_M \langle X_{1,x}, X_{2,x} \rangle_x\ \mathrm{dvol}_g.
+\end{equation*}
+Esto nos permite definir el \emph{producto de Sobolev} en $C^\infty(M)$, como
+\begin{equation*}
+\langle f_1,f_2 \rangle_{W^{1,2}} = \langle f_1,f_2 \rangle_{L^2} + \langle \grad f_1, \grad f_2 \rangle_{L^2}.
+\end{equation*}
+La completación del espacio $C^\infty(M)$ con respecto a la métrica determinada por este producto escalar es un espacio de Hilbert que se denota por $W^{1,2}(M)$ y se denomina el \emph{espacio de Sobolev} de $M$.
+Definimos también el \emph{producto de Dirichlet}, para $f_1,f_2 \in C^\infty(M)$,
+\begin{equation*}
+\langle f_1,f_2 \rangle_{H} = \langle \grad f_1, \grad f_2 \rangle_{L^2}.
+\end{equation*}
+El producto de Dirichlet no determina un producto escalar en $C^\infty(M)$, pero sí en el subespacio $C^\infty_0(M)\subset C^\infty(M)$ formado por las funciones diferenciables $f:M\rightarrow \RR$ con $\int_M f\ \dvol_g = 0$. Denotamos por $H$ al espacio de Hilbert obtenido como la completación de $C^\infty_0(M)$ con respecto al producto de Dirichlet. Necesitamos ahora el siguiente resultado fundamental \todo{REF}:
+
+\begin{thm}[Desigualdad de Poincaré]
+  Existe una constante $C>0$ tal que, para toda función $f\in C^\infty_0(M)$, se tiene
+  \begin{equation*}
+\lVert f \rVert_{L^2} \leq C \lVert \grad_g f \rVert_{L^2}.
+  \end{equation*}
+\end{thm}
+
+\subsection{} Como consecuencia de la desigualdad de Poincaré, la norma de Sobolev es equivalente a la determinada por el producto de Dirichlet en el espacio $C^\infty_0(M)$; por tanto el espacio de Hilbert $H$ es isométrico a la completación de $C^\infty_0(M)$ con respecto al producto de Sobolev. La clave es usar ahora el siguiente resultado sencillo de análisis funcional \todo{REF}:
+
+
+\begin{thm}[Teorema de representación de Riesz]
+Sea $H$ un espacio de Hilbert. Para toda forma lineal acotada $\alpha:H\rightarrow \RR$ existe un único elemento $a\in H$ tal que
+\begin{equation*}
+\alpha(v) = \langle a, v\rangle_H,
+\end{equation*}
+para todo $v\in H$.
+\end{thm}
+
+\subsection{} Nótese ahora que una función $\phi \in C_0^\infty(M)$ satisface la ecuación $\Delta_g \phi = \rho$ si y sólo si, para toda función $f\in C_0^\infty(M)$ se cumple que
+\begin{equation*}
+\langle f,\phi \rangle_{H} = \langle f, \rho \rangle_{L^2}.
+\end{equation*}
+En efecto,
+\begin{align*}
+\langle \grad_g f, \grad_g \phi \rangle_{L^2} &= \int_{M}\langle (\grad_g f)_x, (\grad_g \phi)_x \rangle_x \dvol_g = \int_{M} df \wedge i_{\grad_g \phi} \dvol_g \\ &= \int_M f d(i_{\grad_g \phi} \dvol_g) = \int_M f \Delta_g \phi\ \dvol_g= \langle f, \rho \rangle_{L^2}.
+\end{align*}
+
+Basta entonces considerar la forma lineal
+\begin{equation*}
+\alpha_\rho: H \rightarrow \RR,\ f \mapsto \langle f, \rho \rangle_{L^2},
+\end{equation*}
+que es continua porque $H\subset L^2(M)$. Aplicando el teorema de representación de Riesz a esta forma lineal, encontramos un elemento $\phi\in H$ tal que
+\begin{equation*}
+\langle f, \phi \rangle_H = \langle f, \rho \rangle_{L^2},
+\end{equation*}
+para toda $f\in C^\infty_0(M)$. Este elemento, que llamaremos la \emph{solución débil} a la ecuación de Poisson es nuestro candidato a solución. Tan sólo necesitamos probar que, en efecto $\phi \in C^\infty_0(M)$; es decir, que $\phi$ es una función $C^\infty$. Como esta propiedad es local, basta demostrar el siguiente resultado.
+
+\begin{thm}
+  Sea $\Omega\subset \RR^n$ un subconjunto acotado y sea $\rho \in C^\infty(M)$. Supongamos que $\phi$ es una función $L^2$ en $\Omega$ con la propiedad de que, para toda función $f\in C^\infty(\Omega)$ con soporte compacto, se tiene que
+  \begin{equation*}
+\int_\Omega \Delta f \phi = \int_\Omega f \rho.
+  \end{equation*}
+  Entonces $\phi$ es $C^\infty$ y satisface la ecuación $\Delta \phi = \rho$.
+\end{thm}
+
+\begin{proof}
+aa
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %\section{Superficies de Riemann compactas}
 
 %\nocite{*}
