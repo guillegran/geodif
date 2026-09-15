@@ -4177,9 +4177,9 @@ como queríamos probar.
 \end{proof}
 
 
-\chapter{Un poco de análisis global}
+\chapter{Un poco de análisis global: la ecuación de Poisson}
 \section{La ecuación de Poisson en variedades compactas}
-\subsection{} Durante todo este capítulo, $M$ denota una variedad diferenciable compacta, orientada y sin borde. Fijamos, además, una métrica riemanniana $g$ en $M$, que en coordenadas $\bm{x}=(x^1,\dots,x^n)$ se escribe como
+\subsection{} Durante todo este capítulo, $M$ denota una variedad diferenciable conexa, compacta, orientada y sin borde. Fijamos, además, una métrica riemanniana $g$ en $M$, que en coordenadas $\bm{x}=(x^1,\dots,x^n)$ se escribe como
 \begin{equation*}
 g = g_{ij} dx^i dx^j.
 \end{equation*}
@@ -4267,7 +4267,10 @@ Para toda función diferenciable $\rho:M\rightarrow \RR$ con $\int_M \rho\ \math
 Además, esta función es única salvo por la adición de una constante.
 \end{thm}
 
-\subsection{El producto $L^2$} La métrica riemanniana nos permite definir un producto escalar en el espacio de las funciones diferenciables $f:M\rightarrow \RR$, poniendo
+Dedicamos el resto del capítulo a la demostración de este teorema.
+
+\section{Esbozo de la demostración}
+\subsection{} La métrica riemanniana nos permite definir un producto escalar en el espacio de las funciones diferenciables $f:M\rightarrow \RR$, poniendo
 \begin{equation*}
 \langle f_1, f_2 \rangle_{L^2} = \int_M f_1f_2\ \mathrm{dvol}_g.
 \end{equation*}
@@ -4286,16 +4289,20 @@ Definimos también el \emph{producto de Dirichlet}, para $f_1,f_2 \in C^\infty(M
 \begin{equation*}
 \langle f_1,f_2 \rangle_{H} = \langle \grad f_1, \grad f_2 \rangle_{L^2}.
 \end{equation*}
-El producto de Dirichlet no determina un producto escalar en $C^\infty(M)$, pero sí en el subespacio $C^\infty_0(M)\subset C^\infty(M)$ formado por las funciones diferenciables $f:M\rightarrow \RR$ con $\int_M f\ \dvol_g = 0$. Denotamos por $H$ al espacio de Hilbert obtenido como la completación de $C^\infty_0(M)$ con respecto al producto de Dirichlet. Necesitamos ahora el siguiente resultado fundamental \todo{REF}:
+El producto de Dirichlet no determina un producto escalar en $C^\infty(M)$, pero sí en el subespacio $C^\infty_0(M)\subset C^\infty(M)$ formado por las funciones diferenciables $f:M\rightarrow \RR$ con $\int_M f\ \dvol_g = 0$. Denotamos por $H$ al espacio de Hilbert obtenido como la completación de $C^\infty_0(M)$ con respecto al producto de Dirichlet. Necesitamos ahora la siguiente estimación fundamental, que probamos en la siguiente sección.
 
-\begin{thm}[Desigualdad de Poincaré]
-  Existe una constante $C>0$ tal que, para toda función $f\in C^\infty_0(M)$, se tiene
+\begin{thm}[Desigualdad de Poincaré] \label{thm:desigualdad_poincare}
+  Existe una constante $C>0$ tal que, para toda función $f\in C^\infty(M)$, se tiene
+  \begin{equation*}
+\lVert f - \bar{f}_M \rVert_{L^2} \leq C \lVert \grad_g f \rVert_{L^2},
+  \end{equation*}
+  donde $\bar{f}_M= \tfrac{1}{\mathrm{vol}(M)} \int_M f \dvol_g$. En particular, si $f \in C^\infty_0(M)$, se tiene que
   \begin{equation*}
 \lVert f \rVert_{L^2} \leq C \lVert \grad_g f \rVert_{L^2}.
   \end{equation*}
 \end{thm}
 
-\subsection{} Como consecuencia de la desigualdad de Poincaré, la norma de Sobolev es equivalente a la determinada por el producto de Dirichlet en el espacio $C^\infty_0(M)$; por tanto el espacio de Hilbert $H$ es isométrico a la completación de $C^\infty_0(M)$ con respecto al producto de Sobolev. La clave es usar ahora el siguiente resultado sencillo de análisis funcional \todo{REF}:
+\subsection{} Como consecuencia de la desigualdad de Poincaré, la norma de Sobolev es equivalente a la determinada por el producto de Dirichlet en el espacio $C^\infty_0(M)$; por tanto el espacio de Hilbert $H$ es isométrico a la completación de $C^\infty_0(M)$ con respecto al producto de Sobolev. La clave es usar ahora el siguiente resultado fundamental de análisis funcional \todo{CITE}.
 
 
 \begin{thm}[Teorema de representación de Riesz]
@@ -4325,7 +4332,7 @@ que es continua porque $H\subset L^2(M)$. Aplicando el teorema de representació
 \end{equation*}
 para toda $f\in C^\infty_0(M)$. Este elemento, que llamaremos la \emph{solución débil} a la ecuación de Poisson es nuestro candidato a solución. Tan sólo necesitamos probar que, en efecto $\phi \in C^\infty_0(M)$; es decir, que $\phi$ es una función $C^\infty$. Como esta propiedad es local, basta demostrar el siguiente resultado.
 
-\begin{thm}
+\begin{thm}[Teorema de regularidad]
   Sea $\Omega\subset \RR^n$ un subconjunto acotado y sea $\rho \in C^\infty(M)$. Supongamos que $\phi$ es una función $L^2$ en $\Omega$ con la propiedad de que, para toda función $f\in C^\infty(\Omega)$ con soporte compacto, se tiene que
   \begin{equation*}
 \int_\Omega \Delta f \phi = \int_\Omega f \rho.
@@ -4333,27 +4340,136 @@ para toda $f\in C^\infty_0(M)$. Este elemento, que llamaremos la \emph{solución
   Entonces $\phi$ es $C^\infty$ y satisface la ecuación $\Delta \phi = \rho$.
 \end{thm}
 
+\section{La desigualdad de Poincaré}
+El primer paso para demostrar la desigualdad de Poincaré es demostrar un resultado similar en el espacio euclidiano.
+
+\begin{lemma} \label{lema:poincare-euclidiano}
+Sea $\Omega \subset \RR^n$ un subconjunto abierto, acotado y convexo, con diámetro $d$. Entonces, para toda función diferenciable $f: \bar{\Omega}\rightarrow \RR$, se tiene que
+\begin{equation*}
+\int_{\Omega} \lvert f - \bar{f}_{\Omega} \rvert^2 \leq 2^{n-1} d^2 \int_\Omega \lVert \nabla f \rVert^2,
+\end{equation*}
+donde $\bar{f}_{\Omega} = \tfrac{1}{\mathrm{vol}(\Omega)} \int_{\Omega} f$.
+\end{lemma}
+
+\subsection{} Antes de hacer la demostración, recordemos el siguiente hecho clave, válido para cualquier espacio de medida finita $(A,\mu)$, con $\mu(A)=m>0$: para toda función $f\in L^1(A,\mu)$,
+\begin{equation} \label{eq:promedios}
+\int_A \lvert f - \bar{f}_{A} \rvert^2 d\mu = \frac{1}{2m} \int_A \int_A \lvert f(x)- f(y) \lvert^2 d\mu(x) d\mu(y),
+\end{equation}
+donde $\bar{f}_{A} = \frac{1}{m} \int_A f$. Esto se sigue de hecho de que
+\begin{equation} \label{eq:promedios2}
+\int_A \lvert f - \bar{f}_A \rvert^2 d\mu \leq \int_A \lvert f - c \vert^2 d\mu
+\end{equation}
+para cualquier constante $c$.
+
+\begin{proof}[Demostración del Lema \ref{lema:poincare-euclidiano}]
+  Como $\Omega$ es convexo, para cualesquiera $x,y \in \Omega$, el segmento que los une está en $\Omega$, de modo que
+  \begin{equation*}
+f(y)-f(x) = \int_0^1 \langle \nabla f((1-t)x + ty), y-x \rangle dt.
+  \end{equation*}
+Como $\lvert y-x \rvert \leq d$, aplicando la desigualdad de Cauchy--Schwarz,
+\begin{equation*}
+\lvert f(y)-f(x) \vert^2 \leq d^2 \int_0^1 \lVert \nabla f((1-t)x + ty) \rVert^2 dt.
+\end{equation*}
+Integrando en $(x,y)$ y usando el teorema de Fubini,
+\begin{equation*}
+\int_{\Omega \times \Omega} \lvert f(y)-f(x) \vert^2 dx dy \leq d^2 \int_0^1 \int_{\Omega \times \Omega} \lVert \nabla f((1-t)x + ty) \rVert^2 dx dy dt.
+\end{equation*}
+Separamos ahora esta integral como
+\begin{align*}
+\int_0^1 \int_{\Omega \times \Omega} \lVert \nabla f((1-t)x + ty) \rVert^2 dx dy dt = & \int_0^{1/2} \int_{\Omega \times \Omega} \lVert \nabla f((1-t)x + ty) \rVert^2 dx dy dt \\ & + \int_{1/2}^1 \int_{\Omega \times \Omega} \lVert \nabla f((1-t)x + ty) \rVert^2 dx dy dt
+\end{align*}
+y acotamos cada uno de los términos por separado.
+Para $0\leq t \leq 1/2$, dejamos fijo $y$ y hacemos un cambio de variable $w=(1-t)x + ty$. Como $\Omega$ es convexo, tenemos que $w\in \Omega$ para estos valores de $t$, y $dw = (1-t)^n dx$. Como $(1-t)^{-n}\leq 2^n$, concluimos que
+\begin{equation*}
+\int_{\Omega} \left( \int_\Omega \lVert \nabla f((1-t)x + ty) \rVert^2 dx  \right) dy \leq 2^n \mathrm{vol}(\Omega) \int_{\Omega} \lVert \nabla f(w) \rVert^2 dw.
+\end{equation*}
+Para $1/2\leq t \leq 1$ obtenemos la misma cota dejando fijo $x$ y poniendo $w=(1-t)x + ty$, de modo que $dw = t^n dy$, con $t^{-n}\leq 2^n$. Concluimos que
+\begin{equation*}
+\int_{\Omega \times \Omega} \lvert f(y)-f(x) \vert^2 dx dy \leq d^22^n \mathrm{vol}(\Omega) \int_{\Omega} \lVert \nabla f(w) \rVert^2 dw.
+\end{equation*}
+El resultado se obtiene de la igualdad \eqref{eq:promedios}.
+\end{proof}
+
+Fijemos ahora un punto $x\in M$ y un sistema de coordenadas $(U',\bm{x})$ en un entorno de $x$ con $\bm{x}(x)=0$ y $g_{ij}(0)=\delta_{ij}$, para $i,j=1,\dots,n$. Por continuidad de las $g_{ij}$, existe un $r>0$ tal que la bola $B(0,2r)\subset \bm{x}(U')$ y de forma que, para todo $v \in \overline{B(0,2r)}$, se tiene que
+\begin{equation*}
+\frac{1}{2} \lVert v \rVert \leq \lVert v \rVert_g \leq 2\lVert v \rVert.
+\end{equation*}
+Denotamos $U_x=\bm{x}^{-1}(B(0,r))$.
+
+\begin{lemma} \label{lema:poincare-local}
+  Para toda $f\in C^\infty(M)$, se tiene que
+  \begin{equation*}
+\int_{U_x} \lvert f - \bar{f}_{U_x} \rvert^2 \dvol_g \leq 2^{2n+2} r^2 \int_{U_x} \lVert\grad_g f \rVert_g^2 \dvol_g.
+  \end{equation*}
+\end{lemma}
+
 \begin{proof}
-aa
+Usando las cotas de $\lVert v \rVert_g$ para $v\in \overline{B(0,2r)}$, tenemos que
+\begin{equation*}
+\dvol_g = V dx^1\wedge \cdots \wedge dx^n,
+\end{equation*}
+con $V:\overline{B(0,2r)}\rightarrow \RR$ una función con $2^{-n/2}\leq V \leq 2^{n/2}$.
+Ahora, la función $\tilde{f}=f\circ \bm{x}^{-1}:\overline{B(0,r)}\rightarrow \RR$ es una función diferenciable, y usando de nuevo las cotas para $\lVert - \rVert_g$,
+\begin{equation*}
+\lVert \grad_g f \rVert_g^2 = g^{ij} \partial_i \tilde{f} \partial_j\tilde{f} \geq \frac{1}{2} \lVert \nabla \tilde{f} \rVert^2.
+\end{equation*}
+Si denotamos $c=\frac{1}{\mathrm{vol}(B(0,r))} \int_B \tilde{f}$, usando la desigualdad \eqref{eq:promedios2}, tenemos que
+\begin{equation*}
+\int_{U_x} \lvert f - \bar{f}_{U_x} \rvert^2 \dvol_g \leq \int_{U_x} \lvert f - c \rvert^2 \dvol_g.
+\end{equation*}
+Finalmente, usando las cotas anteriores y el Lema \ref{lema:poincare-euclidiano} aplicado a $\Omega=B(0,r)$, que es convexo, con diámetro $d=2r$, concluimos que
+\begin{align*}
+  \int_{U_x} \lvert f - \bar{f}_{U_x} \rvert^2 \dvol_g &\leq \int_{U_x} \lvert f - c \rvert^2 \dvol_g \leq 2^{n/2} \int_{B(0,r)} \lvert \tilde{f} - c \rvert^2 \leq 2^{n/2}2^{n-1}(2r)^2 \int_{B(0,r)} \lVert \nabla \tilde{f} \rVert^2 \\
+                                & \leq 2^{n/2}2^{n+1}r^2 2 \int_{B(0,r)} \lVert \grad_g f \rVert_g^2 \leq 2^{n/2} 2^{n+2} r^2 2^{n/2} \int_{U_x} \lVert \grad_g f \rVert_g^2 \dvol_g \\
+                                  &= 2^{2n+2} r^2 \int_{U_x}\lVert \grad_g f \rVert_g^2 \dvol_g,
+\end{align*}
+como queríamos probar.
+\end{proof}
+
+El siguiente paso es ver qué sucede en las intersecciones. Para ello, decimos que un conjunto $U\subset M$ \emph{satisface $P(C_U)$} si
+\begin{equation*}
+\int_U \lvert f- \bar{f}_U \rvert^2 \dvol_g \leq C_U \int_U \lVert \grad_g f \rVert^2 \dvol_g
+\end{equation*}
+para toda $f\in C^\infty(M)$.
+
+\begin{lemma}
+  Sean $U,V\subset M$ conjuntos abiertos con $\mathrm{vol}(U\cap V)>0$, y supongamos que $U$ satisface $P(C_U)$ y $V$, $P(C_V)$. Entonces, $U\cup V$ satisface $P(C)$, con
+  \begin{equation*}
+C= 2 \left( 2 + \frac{4\mathrm{vol}(V)}{\mathrm{vol}(U\cap V)} \right) \max(C_U,C_V).
+  \end{equation*}
+\end{lemma}
+
+\begin{proof}
+  En primer lugar, comparamos los promedios en la intersección $U\cap V$,
+  \begin{align*}
+    \lvert \bar{f}_U - \bar{f}_V \rvert^2 &= \frac{1}{\mathrm{vol}(U\cap V)} \int_{U\cap V} \lvert \bar{f}_U - \bar{f}_V \rvert^2 \dvol_g \\ & \leq \frac{2}{\mathrm{vol}(U\cap V)} \int_{U\cap V} (\lvert f- \bar{f}_U\rvert^2 + \lvert f - \bar{f}_V \rvert^2) \dvol_g \\
+    & \leq \frac{2}{\mathrm{vol}(U\cap V)}\left(\int_{U} \lvert f- \bar{f}_U\rvert^2 + \int_V\lvert f- \bar{f}_V\rvert^2 \right).
+  \end{align*}
+  Ahora,
+  \begin{align*}
+    \int_{U\cup V} &\lvert f - \bar{f}_U \rvert^2 \dvol_g \leq \int_{U} \lvert f - \bar{f}_U \rvert^2 \dvol_g + \int_{V} \lvert f - \bar{f}_U \rvert^2 \dvol_g \\
+    & \leq \int_{U} \lvert f - \bar{f}_U \rvert^2 \dvol_g + 2 \int_{V} \lvert f - \bar{f}_V \rvert^2 \dvol_g + 2\mathrm{vol}(V)     \lvert \bar{f}_U - \bar{f}_V \rvert^2 \\
+                                         & \leq \left( 2 + \frac{4\mathrm{vol}(V)}{\mathrm{vol}(U\cap V)} \right)\int_{U} \lvert f - \bar{f}_U \rvert^2 \dvol_g + \int_{V} \lvert f - \bar{f}_V \rvert^2 \dvol_g\\
+    & \leq \left( 2 + \frac{4\mathrm{vol}(V)}{\mathrm{vol}(U\cap V)} \right) \max(C_U,C_V) \left( \int_U \lVert \grad_g f \rVert^2 \dvol_g +  \int_V \lVert \grad_g f \rVert^2 \dvol_g\right).
+  \end{align*}
+Finalmente, $\int_U \lVert \grad_g f \rVert^2 \dvol_g +  \int_V \lVert \grad_g f \rVert^2 \dvol_g \leq 2\int_{U\cup V} \lVert \grad_g f \rVert^2 \dvol_g$ y, usando la desigualdad \eqref{eq:promedios2}, tenemos que $\int_{U\cup V} \lvert f - \bar{f}_U \rvert^2 \dvol_g \leq \int_{U\cup V} \lvert f - \bar{f}_U \rvert^2 \dvol_g$.
+\end{proof}
+
+La familia de subconjuntos $\left\{ U_x:x\in M  \right\}$ obtenida del Lema \ref{lema:poincare-local} forma un recubrimiento abierto de $M$ y por compacidad podemos obtener un subrecubrimiento finito $U_1,\dots,U_N$, cada uno de los cuales satisface $P(C_i)$, con $C_i=2^{2n+2} r_i^2$. Además, como $M$ es conexa, estos abiertos cumplen que, para todo $k=1,\dots,N$, la intersección $U_k \cap \bigcup_{i=1, i\neq k}^N U_i \neq \varnothing$. Es más, podemos reordenar estos abiertos de tal forma que, si definimos, para cada $k=2,\dots,N$, el abierto $W_k=U_1\cup \cdots \cup U_{k-1}$, entonces las intersecciones $U_k \cap W_k \neq \varnothing$.
+
+\begin{proof}[Demostración de \ref{thm:desigualdad_poincare}]
+Sabemos que $W_1=U_1$ satisface $P(C_1)$ y, si $W_{k-1}$ satisface $P(D_{k-1})$, entonces, como $W_{k-1}\cap U_k$ es un abierto no vacío, la unión $W_k$ satisface $P(D_k)$, con
+\begin{equation*}
+D_k = 2 \left( 2+ \frac{4\mathrm{vol}(U_k)}{\mathrm{vol}(W_{k-1}\cap U_k)} \right) \max(D_{k-1},C_k).
+\end{equation*}
+Por tanto, $M=W_N$ satisface $P(D_N)$.
 \end{proof}
 
 
+\section{Regularidad de las soluciones}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%\section{Superficies de Riemann compactas}
+\chapter{Superficies de Riemann compactas}
+a
 
 %\nocite{*}
 %\printbibliography
