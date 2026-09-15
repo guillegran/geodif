@@ -4179,7 +4179,7 @@ como queríamos probar.
 
 \chapter{Un poco de análisis global: la ecuación de Poisson}
 \section{La ecuación de Poisson en variedades compactas}
-\subsection{} Durante todo este capítulo, $M$ denota una variedad diferenciable conexa, compacta, orientada y sin borde. Fijamos, además, una métrica riemanniana $g$ en $M$, que en coordenadas $\bm{x}=(x^1,\dots,x^n)$ se escribe como
+\subsection{} Durante todo este capítulo, $M$ denota una variedad diferenciable conexa, compacta, orientada y sin borde, de dimensión $n\geq 2$. Fijamos, además, una métrica riemanniana $g$ en $M$, que en coordenadas $\bm{x}=(x^1,\dots,x^n)$ se escribe como
 \begin{equation*}
 g = g_{ij} dx^i dx^j.
 \end{equation*}
@@ -4313,7 +4313,7 @@ Sea $H$ un espacio de Hilbert. Para toda forma lineal acotada $\alpha:H\rightarr
 para todo $v\in H$.
 \end{thm}
 
-\subsection{} Nótese ahora que una función $\phi \in C_0^\infty(M)$ satisface la ecuación $\Delta_g \phi = \rho$ si y sólo si, para toda función $f\in C_0^\infty(M)$ se cumple que
+\subsection{} Nótese ahora que una función $\phi \in C^\infty(M)$ satisface la ecuación $\Delta_g \phi = \rho$ si y sólo si, para toda función $f\in C^\infty(M)$ se cumple que
 \begin{equation*}
 \langle f,\phi \rangle_{H} = \langle f, \rho \rangle_{L^2}.
 \end{equation*}
@@ -4466,7 +4466,115 @@ Por tanto, $M=W_N$ satisface $P(D_N)$.
 \end{proof}
 
 
-\section{Regularidad de las soluciones}
+\section{Regularidad de las funciones armónicas}
+\subsection{} Para demostrar el teorema de regularidad, el primer paso es darse cuenta de que podemos reducir al caso en que $\rho=0$. En efecto, como la regularidad es una propiedad local, basta probar que $\phi$ es $C^\infty$ en cualquier subconjunto $\Omega'\subset \Omega$ cuya adherencia está contenida en el interior de $\Omega$. Podemos entonces tomar una función $\rho'$ que sea igual a $\rho$ en un entorno de la adherencia de $\Omega'$ y que tenga soporte compacto en $\Omega$. Supongamos ahora que podemos hallar una solución $\phi'\in C^\infty(\Omega)$ de la ecuación $\Delta \phi'=\rho'$. Entonces $\psi=\phi-\phi'$ es una solución débil de la ecuación $\Delta \psi=0$ en $\Omega'$. Si probamos que $\psi$ es $C^\infty$, entonces también lo será $\phi$. Una función con $\Delta \psi = 0$ se denomina una \emph{función armónica}.
+
+\subsection{} En primer lugar, veamos que, en efecto, es posible hallar una solución $\phi'\in C^\infty(\Omega)$ de la ecuación $\Delta \phi' = \rho'$, donde $\rho'$ tiene soporte compacto en $\Omega$. Esta solución se conoce clásicamente, y se construye en términos del \emph{potencial newtoniano}
+\begin{equation*}
+  \Gamma(x) =
+  \begin{cases}
+\frac{1}{(n-2) \mathrm{vol}(S^{n-1})} \frac{1}{\lVert x \rVert^{n-2}},& n\geq 3, \\
+- \frac{1}{2\pi} \log \lVert x \rVert,& n=2.
+\end{cases}
+\end{equation*}
+Esta función no está definida para $x=0$, pero es una función localmente integrable en $\RR^n$ y, para toda función $f\in C^\infty(\RR^n)$ con soporte compacto, la convolución $\Gamma * f$, definida como
+\begin{equation*}
+\Gamma * f (x) = \int_{\RR^n} \Gamma(y) f(x-y) dy,
+\end{equation*}
+pertenece a $C^\infty(\RR^n)$. Usando el siguiente lema, podemos tomar como nuestra solución $\phi'$ la función
+\begin{equation*}
+\phi' = \Gamma * \rho'.
+\end{equation*}
+
+
+\begin{lemma}
+  Si $f\in C^\infty(\RR^n)$ es una función con soporte compacto, entonces se tiene
+  \begin{equation*}
+\Gamma*(\Delta f) = f
+  \end{equation*}
+  y
+  \begin{equation*}
+\Delta(\Gamma * f) = f.
+  \end{equation*}
+\end{lemma}
+
+\begin{proof}
+  Para la primera igualdad, basta calcular en el punto $x=0$. Tenemos entonces
+  \begin{equation*}
+(\Gamma * \Delta f) (0) = \int_{\RR^n} \Gamma(y) \Delta f (y) dy.
+  \end{equation*}
+  Para calcular esta integral, podemos calcularla en un conjunto $\Omega_{\varepsilon,R}=B(0,R)\setminus B(0,\varepsilon)$ y hacer tender $R \rightarrow \infty$ y $\varepsilon \rightarrow 0$. Tenemos entonces, por el teorema de la divergencia
+  \begin{equation*}
+\int_{\Omega_{\varepsilon,R}} \Gamma(y)\Delta f(y) dy = \int_{\Omega_{\varepsilon,R}} \Delta \Gamma(y) f(y) dy + \int_{\partial \Omega} (-\Gamma \partial_rf + f \partial_r \Gamma) dS,
+  \end{equation*}
+  donde $dS$ es el elemento de superficie en $\partial \Omega$ y $r=\lVert x \rVert$.
+  Ahora, en $\RR^n\setminus \left\{ 0 \right\}$, tenemos
+  \begin{equation*}
+\frac{\partial \Gamma}{\partial r} = - \frac{1}{\mathrm{vol}(S^{n-1}) r^{n-1}}
+  \end{equation*}
+  y
+  \begin{equation*}
+\Delta \Gamma = \frac{\partial^2 \Gamma}{\partial r^2} + \frac{n-1}{r} \frac{\partial \Gamma}{\partial r} = 0.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+\int_{\Omega_{\varepsilon,R}} \Gamma(y)\Delta f(y) dy = \int_{r=\varepsilon} (-\Gamma \partial_rf + f \partial_r \Gamma) dS + \int_{r=R} (-\Gamma \partial_rf + f \partial_r \Gamma) dS.
+  \end{equation*}
+  Como $f$ tiene soporte compacto, la segunda integral en el lado derecho se anula si tomamos $R$ suficientemente grande. Por otra parte,
+  \begin{equation*}
+\left \lvert \int_{r=\varepsilon}\Gamma \partial_rf dS \right\rvert \leq \lvert \Gamma(\epsilon) \rvert \lVert \partial_r f \rVert_{\infty} \mathrm{vol}(S^{n-1}) \varepsilon^{n-1} \rightarrow 0,\ \varepsilon \rightarrow 0,
+  \end{equation*}
+  mientras que
+  \begin{equation*}
+\int_{r=\varepsilon} f \partial_r \Gamma dS = - \frac{1}{\mathrm{vol}(S^{n-1}) \varepsilon^{n-1}} \int_{r=\varepsilon} f dS \rightarrow f(0),\ \varepsilon\rightarrow 0.
+  \end{equation*}
+  Concluimos que $(\Gamma * \Delta f) (0)=f(0)$. La igualdad en los demás puntos se sigue de la invariancia bajo traslaciones.
+
+  Para la segunda igualdad, podemos derivar bajo el signo integral y poner
+  \begin{equation*}
+\Delta (\Gamma * f) = \int_{\RR^n} \Gamma(y) \Delta_xf(x-y) dy = \Gamma * \Delta f = f,
+  \end{equation*}
+que es lo que queríamos probar.
+\end{proof}
+
+\subsection{} Hemos reducido el problema al caso con $\rho=0$. Supongamos entonces que $\phi$ es una solución débil de $\Delta \phi = 0$ en $\Omega$. Se trata de probar que $\phi$ es $C^\infty$ en un abierto $\Omega'$ cuya adherencia está contenida en el interior de $\Omega$. Tomemos un número $\varepsilon >0$ tal que la distancia entre $\Omega'$ y el complementario de $\Omega$ es mayor que $\varepsilon$.
+
+La clave ahora será utilizar la \emph{propiedad del valor medio} de las funciones armónicas. Ésta nos dice que, si $\psi \in C^\infty(\Omega)$ es una función armónica, entonces, para toda bola cerrada $\bar{B}\subset \Omega$ y para todo punto $x\in B$, se tiene que
+\begin{equation*}
+\psi(x) =\frac{1}{\mathrm{vol}(\partial B)} \int_{\partial B} \psi = \frac{1}{\mathrm{vol}(B)} \int_B \psi.
+\end{equation*}
+
+Comenzamos por tomar una función diferenciable $\alpha:\RR\rightarrow \RR$ con $\alpha(r)$ constante para $r$ pequeño, con $\alpha(r)>0$ para $r\geq \varepsilon$ y tal que
+\begin{equation*}
+\mathrm{vol}(S^{n-1}) \int_0^\infty r^{n-1} \alpha(r) dr = 1.
+\end{equation*}
+Definimos $A(x)=\alpha(\lVert x \rVert)$, para $x\in \RR^n$. Esta $A$ es $C^\infty$ y cumple que $\int_{\RR^n} A = 1$. Supongamos ahora que $\psi\in C^\infty(B(0,\varepsilon))$ es una función armónica. Usando la propiedad del valor medio y cambiando a coordenadas polares, tenemos que
+\begin{equation*}
+(A*\psi)(0) = \int_{\RR^n} A(-x) \psi(x) dx = \int_0^\infty \int_{S^{n-1}_r} r^{n-1} \alpha(r) \psi(r,\theta) d\theta dr = \psi(0)
+\end{equation*}
+Por tanto, por la invariancia por traslaciones, se sigue que, para toda función $\psi \in C^\infty(\RR^n)$ tal que su laplaciano $\Delta\psi$ tiene soporte compacto $K\subset \RR^n$, se tiene que $A*\psi - \psi = 0$ en el subconjunto
+\begin{equation*}
+\left\{ x \in \RR^n: d(x,K) \geq \varepsilon  \right\}.
+\end{equation*}
+En particular, si $\phi$ es $C^\infty$ en $\Omega$, entonces $A*\phi = \phi$ en $\Omega'$. Recíprocamente, para toda función $\phi \in L^2$, la convolución $A* \phi \in C^\infty$. En conclusión, probar que $\phi \in C^\infty(\Omega')$ equivale a probar que $A*\phi = \phi$ en $\Omega'$.
+
+\subsection{} Para terminar, queremos probar que si $\phi$ es una solución débil de $\Delta \phi = 0$ en $\Omega$, entonces $A*\phi = \phi$ en $\Omega'$. Para ver esto basta ver que, para toda función $f\in C^\infty(\Omega')$ con soporte compacto, se tiene que
+\begin{equation*}
+\langle f, \phi - A*\phi \rangle_{L^2} = 0.
+\end{equation*}
+Ponemos $h=\Gamma* (f- A*f)= \Gamma*f - A* \Gamma* f$. Como $\Gamma*f$ es $C^\infty$ y $\Delta \Gamma * f = f$, tenemos que $\Delta \Gamma * f$ se anula fuera del soporte de $f$ y, por tanto, $A* \Gamma * f = \Gamma * f$ en el subconjunto
+\begin{equation*}
+\left\{ x \in \RR^n: d(x,\mathrm{sop}(f)) \geq \varepsilon  \right\}.
+\end{equation*}
+Por tanto, $h$ tiene suporte compacto en $\Omega$ y, como $\phi$ es una solución débil de $\Delta \phi = 0$, tenemos que
+\begin{equation*}
+\langle \Delta h, \phi \rangle_{L^2} = 0.
+\end{equation*}
+Pero $\Delta h = \Delta \Gamma * (f - A* f) = f- A*f$, luego
+\begin{equation*}
+0= \langle \Delta h, \phi \rangle_{L^2} = \langle f-A*f,\phi \rangle_{L^2} = \langle f, \phi-A*\phi \rangle_{L^2},
+\end{equation*}
+como queríamos probar.
 
 \chapter{Superficies de Riemann compactas}
 a
