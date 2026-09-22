@@ -1108,7 +1108,7 @@ H^k(M,\RR) \rightarrow H^k_{\mathrm{dR}}(M).
 \begin{rmk}
   Esta es una versión algo abstracta del teorema de de Rham. Una afirmación más concreta es que la aplicación dada por la integral
   \begin{equation*}
-C^k(M) \times \Omega^k(M) \rightarrow (\sigma,\omega) \mapsto \int_{\sigma([0,1]^k)} \omega
+C^k(M) \times \Omega^k(M) \rightarrow \RR,\ (\sigma,\omega) \mapsto \int_{[0,1]^k} \sigma^* \omega
   \end{equation*}
 emparejando $k$-cadenas singulares con $k$-formas determina un isomorfismo entre la cohomología singular de $M$ y su cohomología de de Rham. Esta versión abstracta puede probarse con la tecnología de la teoría de haces: basta ver que el complejo de de Rham proporciona una resolución acíclica del haz constante.
 \end{rmk}
@@ -1145,24 +1145,16 @@ Estos grupos encajan en el siguiente diagrama
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
   \begin{tikzcd}[column sep = 3pt]
-& & & H^k(M_{k+1},\RR) \cong H^k(M,\RR) \ar[hook]{rd} & & H^k(M_{k+1},\RR) = 0 & \\
+& & & H^k(M_{k+1},\RR) \cong H^k(M,\RR) \ar[hook]{rd} & & H^k(M_{k-1},\RR) = 0 & \\
 & & & & H^k(M_k,\RR) \ar{rd} \ar{ru}& & \\
 \cdots \rar & H^{k-1}(M_{k-1},M_{k-2};\RR) \ar{rd} \ar{rr} && H^k(M_k,M_{k-1};\RR) \ar{rr} \ar{ru} && H^{k+1}(M_{k+1},M_k;\RR) \ar{rd} \rar & \cdots \\
-& &H^{k-1}(M_{k-1},\RR) \ar[hook]{ru} & && & H^{k+1}(M_{k+1},\RR).
+& &H^{k-1}(M_{k-1},\RR) \ar{ru} & && & H^{k+1}(M_{k+1},\RR).
   \end{tikzcd}
   \end{adjustbox}
 \end{center}
 Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bullet(M,\RR)$ con $CH^k(M,\RR)=H^k(M_k,M_{k-1};\RR)\cong \RR^{c_k}$ y que sus grupos de cohomología coinciden con los grupos $H^\bullet(M,\RR)$. Concluimos que
 \begin{equation*}
 \chi(M)= \sum_{k} (-1)^k \dim CH^k(M,\RR) =\sum_{k} (-1)^k \dim H^k(M,\RR).
-\end{equation*}
-Aquí, recordamos que la característica de Euler de un complejo $A^\bullet$ de espacios vectoriales se define como
-\begin{equation*}
-\chi(A^\bullet) = \sum_{k}(-1)^k \dim A^k.
-\end{equation*}
-Esta función es aditiva, en el sentido de que, si $0\rightarrow A^\bullet \rightarrow B^\bullet \rightarrow C^\bullet \rightarrow 0$ es una sucesión exacta corta de complejos, entonces
-\begin{equation*}
-\chi(B^\bullet) = \chi(A^\bullet) + \chi(C^\bullet).
 \end{equation*}
 
 \begin{ej}
@@ -1171,7 +1163,7 @@ Esta función es aditiva, en el sentido de que, si $0\rightarrow A^\bullet \righ
   \item \textbf{Esferas}. Una $n$-esfera $S^n$ admite una descomposición celular con dos celdas: una $0$-celda y una $n$-celda. Por tanto, su complejo celular $CH^\bullet(S^n,\RR)$ es
           \begin{center}
             \begin{tikzcd}
-0 \rar & \RR \rar & 0 \rar & \cdots \rar & \RR \rar & 0.
+0 \rar & \RR \rar & 0 \rar & \cdots \rar & 0  \rar & \RR \rar & 0.
             \end{tikzcd}
           \end{center}
           Por tanto,
@@ -1450,7 +1442,6 @@ F: D^n \rightarrow S^{n-1}, \ x \mapsto \frac{x-f(x)}{\lVert x-f(x) \rVert},
 h: S^{n-1} \times [0,1] \rightarrow S^{n-1}, \ x \mapsto h(x,t) = \frac{x-tf(x)}{\lVert x-tf(x) \rVert}
   \end{equation*}
   da una homotopía entre $f=h(-,1)$ y la identidad $\id_{S^{n-1}}=h(-,0)$. Por tanto, $\deg f = \deg \id_{S^{n-1}} = 1$ y llegamos a una contradicción.
-
 \end{proof}
 
 \subsection{El índice de un campo vectorial} Sea $M$ una variedad diferenciable de dimensión $n$ y $X$ un campo vectorial en $M$. Supongamos que $x\in M$ es un punto en el cual $X_x=0$, y que es un punto aislado en el conjunto de los puntos con tal propiedad; decimos que $x$ es un \emph{cero aislado} de $X$. En tal caso, podemos tomar una pequeña bola cerrada $D$ en torno a $x$ de forma que $X$ no se anula en ningún otro punto de $D$. Tomando unas coordenadas locales $\bm{x}$ en $D$, podemos definir la aplicación
