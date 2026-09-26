@@ -1136,12 +1136,73 @@ donde cada pieza $M_k$, llamada el \emph{$k$-esqueleto} de la descomposición, s
 \end{equation*}
 se denomina la \emph{característica de Euler} de $M$.
 
-Se tiene entonces un isomorfismo
+\begin{prop}
+  Se tienen los siguientes isomorfismos:
+  \begin{enumerate}
+\item
+          \begin{equation*}
+            H^k(M_i,M_{i-1};\RR) \cong
+            \begin{cases}
+              0, & \text{si } k\neq i,\\
+              \RR^{c_k}, & \text{si } k=i.
+            \end{cases}
+          \end{equation*}
+    \item $H^k(M_i,\RR) = 0$, para $i< k$;
+    \item $H^k(M_i,\RR) \cong H^k(M,\RR)$, para $i>k$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  1. Usando el axioma de escisión y el axioma de homotopía, tenemos que
+  \begin{equation*}
+H^k(M_i,M_{i-1};\RR) \cong \bigoplus_{j=1}^{c_i} H^k(e_j,\partial e_j;\RR),
+  \end{equation*}
+  con cada $e_j \cong \RR^i$.
+  Por tanto, basta calcular el grupo de cohomología $H^k(D^i,\partial D^i;\RR)$, donde $D^i$ es un $i$-disco cerrado. Si $i,k>1$, podemos usar el axioma de exactitud y el hecho de que $H^k(D^i,\RR) = 0$ para obtener un isomorfismo $H^k(D^i,\partial D^i;\RR) \cong H^{k-1}(S^{i-1},\RR)$. Tomamos ahora un disco cerrado $D^{i-1}\subset S^{i-1}$, embebido como un hemisferio sur, y tomamos $U\subset S^{i-1}$ el complemento del polo sur. Como $U$ retrae por deformación a un punto, aplicando el axioma de exactitud, tenemos
+  \begin{equation*}
+H^{k-1}(S^{i-1},U;\RR) \cong H^{k-1}(S^{i-1},\RR).
+  \end{equation*}
+  Ahora, por el axioma de escisión y por el axioma de homotopía, usando que $U\cap D^{i-1}$ retrae por deformación al borde $\partial D^{i-1}$,
+  \begin{equation*}
+H^{k-1}(S^{i-1},U;\RR) \cong H^{k-1}(D^{i-1},\partial D^{i-1};\RR).
+  \end{equation*}
+  Obtenemos una serie de isomorfismos
+  \begin{equation*}
+H^{k}(D^i,\partial D^i;\RR) \cong H^{k-1}(D^{i-1},\partial D^{i-1};\RR) \cong \cdots \cong H^{k-i+2}(D^2,\partial D^2;\RR) \cong H^{k-i+1}(D^1,\partial D^1;\RR).
+  \end{equation*}
+  Terminamos calculando los grupos de cohomología $H^p(D^1,\partial D^1;\RR)$. Por el axioma de exactitud, obtenemos una sucesión exacta
+  \begin{equation*}
+      \begin{tikzcd}
+H^{p-1}(D^1,\RR)  \rar & H^{p-1}(\partial D^1,\RR) \rar & H^{p}(D^1,\partial D^1;\RR) \rar & H^{p}(D^1,\RR) .
+      \end{tikzcd}
+  \end{equation*}
+ Ahora, como $D^1$ retrae por deformación a un punto y $\partial D^1$ son dos puntos, concluimos que $H^p(D^1,\partial D^1;\RR)=0$ para $p\neq 1$. Para $p=1$, tenemos una sucesión exacta
 \begin{equation*}
-H^k(M_{k},M_{k-1};\RR) \cong \RR^{c_k},
+  \begin{tikzcd}
+\RR \ar{rr}{a \mapsto (a,-a)} && \RR \oplus \RR \rar & H^1(D^1,\partial D^1;\RR) \rar & 0,
+  \end{tikzcd}
 \end{equation*}
-para cada $k\in \Z$.
-Estos grupos encajan en el siguiente diagrama
+de modo que $H^1(D^1,\partial D^1;\RR) \cong \RR^2 / \left\{ (a,-a) : a\in \RR \right\} \cong \RR$.
+
+2. Tomamos ahora la sucesión exacta asociada al par $(M_i,M_{i-1})$ y obtenemos una sucesión exacta
+\begin{equation*}
+    \begin{tikzcd}
+H^{k}(M_i,M_{i-1};\RR) \rar & H^{k}(M_i,\RR) \rar & H^{k}(M_{i-1},\RR) \rar & H^{k+1}(M_i,M_{i-1};\RR).
+    \end{tikzcd}
+\end{equation*}
+Ahora, si $i<k$, por el punto 1, los espacios de los extremos son nulos y obtenemos un isomorfismo $H^k(M_i,\RR)\cong H^k(M_{i-1},\RR)$. Iterando este argumento, obtenemos un isomorfismo
+\begin{equation*}
+H^k(M_i,\RR) \cong H^k(M_0,\RR) \cong 0.
+\end{equation*}
+
+3. En primer lugar, podemos asumir que $k\leq n$, ya que para $k>n$ ambos grupos son $0$. De nuevo, consideramos la sucesión exacta asociada al par $(M_i,M_{i-1})$. Para $i>k+1$, los espacios de los extremos son nulos y obtenemos un isomorfismo $H^k(M_i,\RR)\cong H^k(M_{i-1},\RR)$. En particular, como $M=M_n$, tenemos un isomorfismo
+\begin{equation*}
+H^k(M,\RR) \cong H^k(M_{i},\RR),
+\end{equation*}
+para todo $i> k$.
+\end{proof}
+
+Los grupos $H^k(M_k,M_{k-1};\RR)$ encajan en el siguiente diagrama
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
   \begin{tikzcd}[column sep = 3pt]
