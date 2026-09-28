@@ -1155,10 +1155,9 @@ se denomina la \emph{característica de Euler} de $M$.
 \begin{proof}
   1. Usando el axioma de escisión y el axioma de homotopía, tenemos que
   \begin{equation*}
-H^k(M_i,M_{i-1};\RR) \cong \bigoplus_{j=1}^{c_i} H^k(e_j,\partial e_j;\RR),
+H^k(M_i,M_{i-1};\RR) \cong \bigoplus_{j=1}^{c_i} H^k(e_j,\partial e_j;\RR).
   \end{equation*}
-  con cada $e_j \cong \RR^i$.
-  Por tanto, basta calcular el grupo de cohomología $H^k(D^i,\partial D^i;\RR)$, donde $D^i$ es un $i$-disco cerrado. Si $i,k>1$, podemos usar el axioma de exactitud y el hecho de que $H^k(D^i,\RR) = 0$ para obtener un isomorfismo $H^k(D^i,\partial D^i;\RR) \cong H^{k-1}(S^{i-1},\RR)$. Tomamos ahora un disco cerrado $D^{i-1}\subset S^{i-1}$, embebido como un hemisferio sur, y tomamos $U\subset S^{i-1}$ el complemento del polo sur. Como $U$ retrae por deformación a un punto, aplicando el axioma de exactitud, tenemos
+  Por tanto, basta calcular el grupo de cohomología $H^k(D^i,\partial D^i;\RR)$, donde $D^i$ es un $i$-disco cerrado. Si $i,k>1$, podemos usar el axioma de exactitud y el hecho de que $H^k(D^i,\RR) = 0$ para obtener un isomorfismo $H^k(D^i,\partial D^i;\RR) \cong H^{k-1}(S^{i-1},\RR)$. Si $k<i$, entonces este grupo es trivial, por el teorema de de Rham. Asumimos entonces que $k\geq i$. Tomamos ahora un disco cerrado $D^{i-1}\subset S^{i-1}$, embebido como un hemisferio sur, y tomamos $U\subset S^{i-1}$ el complemento del polo sur. Como $U$ retrae por deformación a un punto, aplicando el axioma de exactitud, tenemos
   \begin{equation*}
 H^{k-1}(S^{i-1},U;\RR) \cong H^{k-1}(S^{i-1},\RR).
   \end{equation*}
@@ -1218,7 +1217,7 @@ Este diagrama nos dice que podemos considerar el \emph{complejo celular} $CH^\bu
 \chi(M)= \sum_{k} (-1)^k \dim CH^k(M,\RR) =\sum_{k} (-1)^k \dim H^k(M,\RR).
 \end{equation*}
 
-\begin{ej}
+\begin{ex}
   Veamos ahora algunos ejemplos.
   \begin{enumerate}
   \item \textbf{Esferas}. Una $n$-esfera $S^n$ admite una descomposición celular con dos celdas: una $0$-celda y una $n$-celda. Por tanto, su complejo celular $CH^\bullet(S^n,\RR)$ es
@@ -1256,7 +1255,7 @@ H^k(\Sigma_g,\RR) = CH^k(\Sigma_g,\RR) =
 \chi(M) = 2-2g .
           \end{equation*}
   \end{enumerate}
-\end{ej}
+\end{ex}
 
 
 \subsection{Cohomología con soportes compactos} Los \emph{grupos de cohomología con soporte compacto} de un espacio topológico $X$ (con coeficientes en $\RR$), se definen como límites directos
@@ -1369,11 +1368,17 @@ f = f(x) - \sum_{i=1}^\lambda(x^i)^2 + \sum_{i=\lambda + 1}^n (x^i)^2.
   \end{equation*}
 \end{thm}
 
+También nos será muy útil el siguiente resultado, que es posible demostrar usando la existencia de un embebimiento de cualquier variedad en algún espacio euclidiano y argumentos típicos de transversalidad (por ejemplo, usando el teorema de Sard).
+
+\begin{thm}
+  Toda variedad diferenciable $M$ admite una función de Morse.
+\end{thm}
+
 \subsection{Característica de Euler via teoría de Morse} Lo interesante ahora es que el índice de una función de Morse tiene información topológica. Consideramos entonces una variedad diferenciable compacta $M$ y una función de Morse $f:M\rightarrow \RR$. Tomamos ahora unos valores $a_0< \dots <a_N \in \RR\setminus \VC(f)$ de forma que $a_0< \min f$, que $a_N> \max f$ y que cada intervalo $(a_{k-1},a_k)$ contiene un único valor crítico $c_k$.
 
-Para cada $a\in \RR$, denotamos $M_a=f^{-1}(a)$. Si $a$ no es un valor crítico, entonces, por el teorema de la función implícita, el subconjunto $M_a\subset M$ es de hecho una subvariedad regular. Más generalmente, para cada $k=0,1,\dots,N$, definimos $M_k=f^{-1}((-\infty,a_k])$. Esto proporciona una descomposición
+Para cada $a\in \RR$, denotamos $M_a=f^{-1}(a)$. Si $a$ no es un valor crítico, entonces, por el teorema de la función implícita, el subconjunto $M_a\subset M$ es de hecho una subvariedad regular. Más generalmente, para cada $k=-1,0,1,\dots,N$, definimos $M_k=f^{-1}((-\infty,a_k])$. Esto proporciona una descomposición
 \begin{equation*}
-\varnothing = M_0 \subset M_1 \subset \cdots \subset M_k \subset M_{k+1} \subset \cdots \subset M_{N-1} \subset M_N = M.
+\varnothing = M_{-1} \subset M_0 \subset M_1 \subset \cdots \subset M_k \subset M_{k+1} \subset \cdots \subset M_{N-1} \subset M_N = M.
 \end{equation*}
 Ahora, para cada $k$ tenemos una sucesión exacta larga
 \begin{center}
@@ -1390,7 +1395,7 @@ Sumando en $k$, obtenemos
 \chi(M) = \chi(M_N) =\sum_{k=0}^N (\chi(M_{k+1})- \chi(M_k)) = \sum_{k=0}^N \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR).
 \end{equation*}
 
-Basta entonces calcular las cohomologías relativas $H^i(M_{k+1},M_k;\RR)$. Como $f$ es una función de Morse y $M$ es compacta, hay una cantidad finita de puntos críticos en la preimagen $f^{-1}(c_k)=\left\{ x_1,\dots,x_m \right\}$. En torno a cada uno de estos puntos $x_j\in f^{-1}(c_k)$, podemos tomar unas coordenadas en las que $f$ se escribe como
+Basta entonces calcular las cohomologías relativas $H^i(M_{k+1},M_k;\RR)$. Como $M$ es compacta y $f$ es de Morse, hay una cantidad finita de puntos críticos en la preimagen $f^{-1}(c_k)=\left\{ x_1,\dots,x_m \right\}$. En torno a cada uno de estos puntos $x_j\in f^{-1}(c_k)$, podemos tomar unas coordenadas en las que $f$ se escribe como
   \begin{equation*}
 f = c_k - \sum_{i=1}^{\lambda_j}(x^i)^2 + \sum_{i=\lambda_j + 1}^n (x^i)^2,
   \end{equation*}
@@ -1404,7 +1409,7 @@ f^{-1}(c_k+\varepsilon) = \coprod_{j=1}^m \left\{ \sum_{i=1}^{\lambda_j}(x^i)^2 
 \end{equation*}
 Cada una de las piezas $C_j^-$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $C_j^+$ es homeomorfa al producto $D^{\lambda_j}\times S^{n-\lambda_j-1}$. Tenemos entonces que el par $(M_{k+1},M_k)$ es homotópicamente equivalente al par
 \begin{equation*}
-\coprod_{j=1}^m (D^{\lambda_j} \times D^{n-\lambda_j}, S^{\lambda_j-1},D^{n-\lambda_j}),
+\coprod_{j=1}^m (D^{\lambda_j} \times D^{n-\lambda_j}, S^{\lambda_j-1}\times D^{n-\lambda_j}),
 \end{equation*}
 que a su vez es homotópicamente equivalente al par
 \begin{equation*}
@@ -1422,11 +1427,10 @@ Concluimos entonces que
 Hemos demostrado lo siguiente.
 
 \begin{thm}
-  Si $f:M\rightarrow \RR$ es una función de Morse, entonces
+  Si $M$ es compacta y $f:M\rightarrow \RR$ es una función de Morse, entonces
   \begin{equation*}
 \chi(M) = \sum_{x\in \Crit(f)} (-1)^{\lambda_x(f)}.
   \end{equation*}
-
 \end{thm}
 
 \subsection{Teoría del grado} Una aplicación diferenciable propia $f:M\rightarrow N$ entre dos variedades de la misma dimensión $n$ induce una aplicación en las cohomologías con soporte compacto
@@ -1470,7 +1474,7 @@ f^{-1}(V) = \coprod_{x\in f^{-1}(y)} U_x
   \end{equation*}
   de entornos $U_x$ de cada $x\in f^{-1}(y)$ y de modo que $f$ restringe a un difeomorfismo $f_x:=f|_{U_x}:U_x\rightarrow V$ para cada $x$. Tomemos entonces una $n$-forma $\omega \in \Omega_c^n(V)$.  Podemos descomponer
   \begin{equation*}
-\deg f \int_N \omega=\int_M f^* \omega = \sum_{x\in f^{-1}(x)} \int_{U_x} f_x^* \omega  = \sum_{x\in f^{-1}(x)} \epsilon_f(x) \int_V \omega = \sum_{x\in f^{-1}(x)} \epsilon_f(x) ,
+\deg f \int_N \omega=\int_M f^* \omega = \sum_{x\in f^{-1}(y)} \int_{U_x} f_x^* \omega  = \sum_{x\in f^{-1}(y)} \epsilon_f(x) \int_V \omega = \sum_{x\in f^{-1}(y)} \epsilon_f(x) \int_N \omega ,
   \end{equation*}
   donde hemos usado que cada $f_x$ es un difeomorfismo.
 \end{proof}
@@ -1505,7 +1509,7 @@ h: S^{n-1} \times [0,1] \rightarrow S^{n-1}, \ x \mapsto h(x,t) = \frac{x-tf(x)}
   da una homotopía entre $f=h(-,1)$ y la identidad $\id_{S^{n-1}}=h(-,0)$. Por tanto, $\deg f = \deg \id_{S^{n-1}} = 1$ y llegamos a una contradicción.
 \end{proof}
 
-\subsection{El índice de un campo vectorial} Sea $M$ una variedad diferenciable de dimensión $n$ y $X$ un campo vectorial en $M$. Supongamos que $x\in M$ es un punto en el cual $X_x=0$, y que es un punto aislado en el conjunto de los puntos con tal propiedad; decimos que $x$ es un \emph{cero aislado} de $X$. En tal caso, podemos tomar una pequeña bola cerrada $D$ en torno a $x$ de forma que $X$ no se anula en ningún otro punto de $D$. Tomando unas coordenadas locales $\bm{x}$ en $D$, podemos definir la aplicación
+\subsection{El índice de un campo vectorial} Sea $M$ una variedad diferenciable compacta de dimensión $n$ y $X$ un campo vectorial en $M$. Supongamos que $x\in M$ es un punto en el cual $X_x=0$, y que es un punto aislado en el conjunto de los puntos con tal propiedad; decimos que $x$ es un \emph{cero aislado} de $X$. En tal caso, podemos tomar una pequeña bola cerrada $D$ en torno a $x$ de forma que $X$ no se anula en ningún otro punto de $D$. Tomando unas coordenadas locales $\bm{x}$ en $D$, podemos definir la aplicación
 \begin{equation*}
 D \setminus \left\{ x \right\} \rightarrow S^{n-1}, \ \bm{x} \mapsto \frac{X(\bm{x})}{\lVert X(\bm{x}) \rVert},
 \end{equation*}
@@ -2069,7 +2073,7 @@ K(x) := \lambda_1 \lambda_2 = \det(S_x),
 que permanece invariante al cambiar la orientación normal.
 
 \begin{thm}[Gauss--Bonnet]
-  Sea $S\subset E$ una superficie no singular con métrica riemanniana inducida $g$ y curvatura de Gauss $K:S\rightarrow \RR$. Se tiene que
+  Sea $S\subset E$ una superficie compacta no singular con métrica riemanniana inducida $g$ y curvatura de Gauss $K:S\rightarrow \RR$. Se tiene que
   \begin{equation*}
 \int_S K d\mathrm{vol}_g = 2\pi \chi(S),
   \end{equation*}
@@ -2166,7 +2170,7 @@ donde hemos usado que $\deg \bm{n} = \chi(S)/2$, por el lema de Hopf.
 \end{proof}
 
 \begin{rmk}
-La misma demostración del teorema de Gauss--Bonnet sirve para hipersuperficies de dimensión par, con la definición adecuada de curvatura de Gauss. En efecto, si $M\subset \RR^{2N+1}$ es una hipersuperficie, podemos definir la correspondiente aplicación de Gauss $\bm{n}:M\rightarrow S^{2N}$. La \emph{curvatura de Gauss} $K$ se define como la función
+La misma demostración del teorema de Gauss--Bonnet sirve para hipersuperficies compactas de dimensión par, con la definición adecuada de curvatura de Gauss. En efecto, si $M\subset \RR^{2N+1}$ es una hipersuperficie, podemos definir la correspondiente aplicación de Gauss $\bm{n}:M\rightarrow S^{2N}$. La \emph{curvatura de Gauss} $K$ se define como la función
 \begin{equation*}
 K: M \rightarrow \RR, \ x \mapsto \det(d\bm{n}(x)).
 \end{equation*}
@@ -4148,7 +4152,7 @@ que está representada por la forma $\gamma \in \Omega^{2m}(M)$ que cumple
 
 \section{El teorema de Chern--Gauss--Bonnet}
 \begin{thm}[Teorema de Chern--Gauss--Bonnet]
-  Sea $(M,g)$ una variedad riemanniana orientada de dimensión par $n=2m$ y sea $e(M)=[\gamma]$ su clase de Euler, que está representada por una forma $\gamma \in \Omega^{2m}(M)$ que cumple
+  Sea $(M,g)$ una variedad riemanniana compacta y orientada de dimensión par $n=2m$ y sea $e(M)=[\gamma]$ su clase de Euler, que está representada por una forma $\gamma \in \Omega^{2m}(M)$ que cumple
 \begin{equation*}
 \pi^* \gamma= \mathrm{Pf}(F_A),
 \end{equation*}
