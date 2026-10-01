@@ -1401,21 +1401,22 @@ f = c_k - \sum_{i=1}^{\lambda_j}(x^i)^2 + \sum_{i=\lambda_j + 1}^n (x^i)^2,
   \end{equation*}
 donde $\lambda_j = \lambda_{x_j}(f)$. Podemos escribir entonces, para algún $\varepsilon>0$,
 \begin{equation*}
-f^{-1}(c_k-\varepsilon) = \coprod_{j=1}^m \left\{ \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 = - \varepsilon \right\} =: \coprod_{j=1}^m C_j^-
+f^{-1}(c_k-\varepsilon) = \coprod_{j=1}^m \left\{ \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 = - \varepsilon \right\} =: \coprod_{j=1}^m C_j
 \end{equation*}
 y
 \begin{equation*}
-f^{-1}(c_k+\varepsilon) = \coprod_{j=1}^m \left\{ \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 = + \varepsilon \right\} =: \coprod_{j=1}^m C_j^+.
+f^{-1}([c_k-\varepsilon,c_k+\varepsilon]) = \coprod_{j=1}^m \left\{ -\varepsilon \leq \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 \leq \varepsilon \right\} =: \coprod_{j=1}^m D_j.
 \end{equation*}
-Cada una de las piezas $C_j^-$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $C_j^+$ es homeomorfa al producto $D^{\lambda_j}\times S^{n-\lambda_j-1}$. Tenemos entonces que el par $(M_{k+1},M_k)$ es homotópicamente equivalente al par
+Cada una de las piezas $C_j$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $D_j$ es homeomorfa al producto $D^{\lambda_j}\times D^{n-\lambda_j}$. Nótese que $M_{k+1}$ es homotópicamente equivalente a $f^{-1}((-\infty,c_k+\varepsilon])$, ya que se puede retraer por deformación uno al otro usando el flujo del gradiente de $f$, que no se anula en $f^{-1}((c_k+\varepsilon, a_{k+1}))$. Por la propiedad de homotopía, obtenemos un isomorfismo
 \begin{equation*}
-\coprod_{j=1}^m (D^{\lambda_j} \times D^{n-\lambda_j}, S^{\lambda_j-1}\times D^{n-\lambda_j}),
+H^i(M_{k+1},M_k;\RR) \cong H^i(f^{-1}((-\infty,c_k+\varepsilon]), M_k;\RR).
 \end{equation*}
-que a su vez es homotópicamente equivalente al par
-\begin{equation*}
-\coprod_{j=1}^m (D^{\lambda_j} , S^{\lambda_j-1}).
-\end{equation*}
-Ahora, la cohomología relativa $H^i(D^{\lambda_j},S^{\lambda_j-1};\RR)$ es isomorfa a $\RR$ si $\lambda_j=i$ y nula en caso contrario. Por tanto,
+Tenemos entonces
+\begin{align*}
+H^i(M_{k+1},M_k;\RR)  & \cong H^i(f^{-1}([c_k-\varepsilon,c_k+\varepsilon]),f^{-1}(c_k-\varepsilon); \RR) \\ & \cong \bigoplus_{j=1}^m H^i(D^{\lambda_j} \times D^{n-\lambda_j},S^{\lambda_j-1}\times D^{n-\lambda_j};\RR) \\ & \cong  \bigoplus_{j=1}^m H^i(D^{\lambda_j},S^{\lambda_j-1};\RR),
+\end{align*}
+aplicando la propiedad de escisión en el primer paso, aditividad en el segundo y homotopía en el tercero (usando que $D^{n-\lambda_j}$ es homotópicamente equivalente a un punto).
+Ahora, recordemos que la cohomología relativa $H^i(D^{\lambda_j},S^{\lambda_j-1};\RR)$ es isomorfa a $\RR$ si $\lambda_j=i$ y nula en caso contrario. Por tanto,
 \begin{equation*}
 \dim H^i(M_{k+1},M_k;\RR) = \sum_{j=1}^m \delta_{i \lambda_j}.
 \end{equation*}
@@ -1423,6 +1424,27 @@ Concluimos entonces que
 \begin{equation*}
 \chi(M) = \sum_{k=0}^N \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR) = \sum_{k=0}^N \sum_i (-1)^i \sum_{j=1}^m \delta_{i \lambda_j} = \sum_{x\in \Crit(f)} (-1)^{\lambda_x(f)}.
 \end{equation*}
+
+\begin{center}
+\centering
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Imagenes/Morse0.png}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Imagenes/Morse1.png}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Imagenes/Morse2.png}
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \centering
+  \includegraphics[width=\textwidth]{Imagenes/morse_euler_superficies_cerradas.png}
+\end{center}
 
 Hemos demostrado lo siguiente.
 
