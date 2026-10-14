@@ -519,7 +519,7 @@ Un tensor de tipo $(1,0)$ es simplemente una sección de $TM$, es decir, un \emp
 \fX(M) = \mathcal{T}^1_0(M) = \Gamma(M,TM).
 \end{equation*}
 
-Un tensor de tipo $(0,2)$ determina una forma bilineal en cada espacio tangente $T_xM$, $x\in M$. En particular, si el tensor es simétrico y la forma es no degenerada en cada punto, el tensor se denomina una \emph{métrica} (riemanniana).
+Un tensor de tipo $(0,2)$ determina una forma bilineal en cada espacio tangente $T_xM$, $x\in M$. En particular, si el tensor es simétrico y la forma es definida positiva en cada punto, el tensor se denomina una \emph{métrica} (riemanniana).
 
 Un tensor antisimétrico de tipo $(0,k)$ se denomina una \emph{forma diferencial de grado $k$} o \emph{$k$-forma diferencial}. El espacio de las $k$-formas diferenciales se denota como
 \begin{equation*}
@@ -1349,7 +1349,7 @@ H^k_c(M,\RR)^* \cong H^{n-k}(M,\RR).
 De nuevo, la tecnología de la teoría de haces permite hacer este paso local-global, y es la herramienta principal detrás de la prueba de la dualidad de Poincaré global. La orientabilidad de la variedad es crucial. En efecto, en general el ``dual'' del haz constante es el \emph{haz de orientaciones}, que es isomorfo al haz constante si y sólo si $M$ admite una orientación.
 \end{rmk}
 
-\section{Teoría de Morse y teoría del grado}
+\section{Teoría de Morse}
 \subsection{Funciones de Morse} Otra forma de estudiar la topología de las variedades diferenciables es por medio de las funciones de Morse. Si $M$ es una variedad diferenciable de dimensión $n$ y $f:M\rightarrow \RR$ es una función, se denomina un \emph{punto crítico} de $f$ a un punto $x\in M$ tal que $d_xf =0$. Se denota por $\Crit(f)\subset M$ el conjunto de los puntos críticos de $f$. La imagen $\VC(f)\subset \RR$ de este conjunto es el conjunto de los \emph{valores críticos}. El \emph{hessiano} de $f$ en un punto crítico $x\in \Crit(f)$ es la forma bilineal $\Hess_x(f):T_xM\times T_xM \rightarrow \RR$ definida por
 \begin{equation*}
 \Hess_x(f)(X_x,Y_x) = X_x\circ Y_x(f) = Y_x\circ X_x(f).
@@ -1455,7 +1455,8 @@ Hemos demostrado lo siguiente.
   \end{equation*}
 \end{thm}
 
-\subsection{Teoría del grado} Una aplicación diferenciable propia $f:M\rightarrow N$ entre dos variedades de la misma dimensión $n$ induce una aplicación en las cohomologías con soporte compacto
+\section{Teoría del grado}
+\subsection{El grado de Brouwer} Una aplicación diferenciable propia $f:M\rightarrow N$ entre dos variedades de la misma dimensión $n$ induce una aplicación en las cohomologías con soporte compacto
 \begin{equation*}
 f^* : H^n_c(M,\RR)\longrightarrow H^n_c(N,\RR).
 \end{equation*}
@@ -1531,6 +1532,7 @@ h: S^{n-1} \times [0,1] \rightarrow S^{n-1}, \ x \mapsto h(x,t) = \frac{x-tf(x)}
   da una homotopía entre $f=h(-,1)$ y la identidad $\id_{S^{n-1}}=h(-,0)$. Por tanto, $\deg f = \deg \id_{S^{n-1}} = 1$ y llegamos a una contradicción.
 \end{proof}
 
+\section{El teorema de Poincaré--Hopf}
 \subsection{El índice de un campo vectorial} Sea $M$ una variedad diferenciable compacta de dimensión $n$ y $X$ un campo vectorial en $M$. Supongamos que $x\in M$ es un punto en el cual $X_x=0$, y que es un punto aislado en el conjunto de los puntos con tal propiedad; decimos que $x$ es un \emph{cero aislado} de $X$. En tal caso, podemos tomar una pequeña bola cerrada $D$ en torno a $x$ de forma que $X$ no se anula en ningún otro punto de $D$. Tomando unas coordenadas locales $\bm{x}$ en $D$, podemos definir la aplicación
 \begin{equation*}
 D \setminus \left\{ x \right\} \rightarrow S^{n-1}, \ \bm{x} \mapsto \frac{X(\bm{x})}{\lVert X(\bm{x}) \rVert},
@@ -1653,7 +1655,7 @@ luego $\deg \bm{n} = \tfrac{1}{2}\chi(M)$.
 que recordamos que es una forma bilineal simétrica y definida positiva. Recordemos también que una base $\left\{ e_1,\dots,e_n \right\}$ de $V$ se denomina \emph{ortonormal} si $\langle e_i, e_j \rangle = \delta_{ij}$. El algoritmo de Gram--Schmidt permite producir una base ortonormal a partir de una base cualquiera.
 
 \begin{defn}
-  Una \emph{métrica riemanniana} (o, simplemente, una \emph{métrica}) en una variedad diferenciable $M$ es una elección de producto escalar $\langle-,-\rangle_x:T_xM \times T_xM \rightarrow \RR$ en cada espacio tangente, que depende del punto $x$ de forma diferenciable. Equivalentemente, una métrica riemanniana es un tensor simétrico y no degenerado de tipo $(0,2)$.
+  Una \emph{métrica riemanniana} (o, simplemente, una \emph{métrica}) en una variedad diferenciable $M$ es una elección de producto escalar $\langle-,-\rangle_x:T_xM \times T_xM \rightarrow \RR$ en cada espacio tangente, que depende del punto $x$ de forma diferenciable. Equivalentemente, una métrica riemanniana es un tensor simétrico y definido positivo de tipo $(0,2)$.
 
   Un par $(M,g)$ formado por una variedad diferenciable con una métrica riemanniana en ella, se denomina una \emph{variedad riemanniana}. Una \emph{isometría} entre dos variedades Riemannianas $(M_1,g_1)$ y $(M_2,g_2)$ es una aplicación diferenciable  $f:M\rightarrow N$ tal que $f^*g_2 = g_1$.
 \end{defn}
@@ -1880,7 +1882,7 @@ que es un vector unitario perpendicular a $\bm{n}$.
 \end{equation*}
 determina una elección del vector tangente unitario. Nótese que, para $s\in \RR$, tenemos
 \begin{equation*}
-\bm{t}(s):= \bm{t}|_{x(s)} = \left. \frac{\partial}{\partial s} \right|_{x(s)} = \frac{d\gamma}{ds}.
+\bm{t}(s):= \bm{t}|_{\gamma(s)} = \left. \frac{\partial}{\partial s} \right|_{\gamma(s)} = \frac{d\gamma}{ds}.
 \end{equation*}
 
 \subsection{Curvatura de una curva}
@@ -1890,7 +1892,7 @@ Por la simetría del producto escalar y por regla de Leibniz, tenemos que
 \end{equation*}
 Por tanto, podemos escribir
 \begin{equation*}
-\frac{d\bm{t}}{ds}(s) = \kappa(x(s)) \bm{n}|_{x(s)},
+\frac{d\bm{t}}{ds}(s) = \kappa(\gamma(s)) \bm{n}|_{\gamma(s)},
 \end{equation*}
 donde $\kappa:C\rightarrow \RR$ es una función denominada la \emph{curvatura} de $C\subset E$.
 
@@ -1991,7 +1993,7 @@ Denotamos
   A(s)=
 \begin{pmatrix}
   0 & 0 & 0 \\
-  ds & 0 & -\kappa(s) \\
+  1 & 0 & -\kappa(s) \\
   0 & \kappa(s) & 0
 \end{pmatrix}.
 \end{equation*}
@@ -2038,7 +2040,7 @@ de modo que podemos ver la aplicación de Weingarten como un operador
 S_x:T_xS\rightarrow T_xS.
 \end{equation*}
 
-\subsection{Curvatura, operador de forma y segunda forma fundamental} Una forma de introducir una noción de curvatura para $S$ es considerar, para cada $p\in S$, la aplicación
+\subsection{Curvatura, operador de forma y segunda forma fundamental} Una forma de introducir una noción de curvatura para $S$ es considerar, para cada $x\in S$, la aplicación
 \begin{equation*}
 \kappa_x: \mathbb{P}(T_x S) \rightarrow \RR,
 \end{equation*}
@@ -2094,6 +2096,8 @@ K(x) := \lambda_1 \lambda_2 = \det(S_x),
 \end{equation*}
 que permanece invariante al cambiar la orientación normal.
 
+\section{El teorema de Gauss--Bonnet}
+
 \begin{thm}[Gauss--Bonnet]
   Sea $S\subset E$ una superficie compacta no singular con métrica riemanniana inducida $g$ y curvatura de Gauss $K:S\rightarrow \RR$. Se tiene que
   \begin{equation*}
@@ -2122,73 +2126,6 @@ En efecto, la característica de Euler de la esfera es $2$.
 \int_S K d\mathrm{vol}_g =\int_S \bm{n}^* d\mathrm{vol}_{S(V)} = \deg \bm{n} \int_S d\mathrm{vol}_{S(V)}=4\pi \deg \bm{n} = 2\pi\chi(S),
   \end{equation*}
 donde hemos usado que $\deg \bm{n} = \chi(S)/2$, por el lema de Hopf.
-%
-%Recordemos ahora que el grado $\deg \bm{n}$ puede computarse como
-%\begin{equation*}
-%\deg \bm{n} = \sum_{p \in \bm{n}^{-1}(q)} \mathrm{sgn} \det(d_p \bm{n}),
-%\end{equation*}
-%donde $q\in S(V)$ es cualquier valor regular. Ahora, recordemos que
-%\begin{equation*}
-%d_p \bm{n} = - \mathrm{Hess}_p F,
-%\end{equation*}
-%donde $F$ es cualquier función $F:T_pS\rightarrow \RR$ con $F(0)=0$ y $d_0F=0$ tal que $S$ es localmente su gráfica.
-%
-%El siguiente paso es considerar una función de altura $H:E\rightarrow \RR$. Para ello, consideramos un punto base $p_0\in E$, de modo que podemos identificar $E$ y $V$, y fijamos un vector unitario $u\in S(V)$. Definimos
-%\begin{equation*}
-%H(v) = \langle u,v\rangle.
-%\end{equation*}
-%Para cada número real $a\in \RR$, podemos considerar el conjunto de nivel
-%\begin{equation*}
-%S_a = H^{-1}(a) \cap S = \left\{ p \in S: H(p)=a \right\},
-%\end{equation*}
-%que es posiblemente vacío. De hecho, como $S$ es compacta, existe un $M>0$ tal que para $S_a=\varnothing$ para $a<-M$ y para $a>M$.
-%Los puntos críticos de $H$ son aquellos $p\in S$ para los que
-%\begin{equation*}
-%\grad H (p) = 0.
-%\end{equation*}
-%Dado un punto crítico $p$ podemos tener uno de los siguientes casos
-%\begin{itemize}
-%\item $p$ es un mínimo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
-%  \item $p$ es un máximo de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = 1$.
-%    \item $p$ es un punto de silla de $H$, de modo que $\mathrm{sgn} \det(\mathrm{Hess}_p H) = -1$.
-%\end{itemize}
-%Sea $\varphi:\RR \times S \rightarrow S$ el flujo generado por el campo $-\grad H$.
-%Utilizando $\varphi$, podemos construir una descomposición en celdas de $S$ de la siguiente forma:
-%\begin{itemize}
-%  \item para cada mínimo $p$ de $H$, tenemos una $2$-celda
-%        \begin{equation*}
-%\Delta_{p} = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) =p  \right\},
-%        \end{equation*}
-%  \item los vértices (las $0$-celdas) son los máximos de $H$,
-%\item a cada punto de silla $p$ le corresponde una $1$-celda
-%        \begin{equation*}
-%A_p = \left\{ q \in S: \lim_{t\rightarrow \infty} \varphi(t,q) = p \right\}.
-%        \end{equation*}
-%\end{itemize}
-%Por tanto, concluimos que
-%\begin{equation*}
-%\chi(S) = \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H).
-%\end{equation*}
-%
-%A priori, habría que tener un poco más de cuidado en la elección de $H$, ya que podría pasar que tuviera infinitos puntos críticos, o que las $1$-celdas así definidas unan puntos de silla con puntos de silla, y no puntos de silla con máximos, como deseamos. Con argumentos típicos de topología diferencial se puede modificar ligeramente la función $H$ para evitar que se de esa situación patológica. En términos técnicos, lo que se busca es que $\grad H$ sea un \textit{campo de Morse--Smale}.
-%
-%Por otra parte, tenemos que $\nabla H = u$, de modo que los puntos críticos $p$ de $H$ son aquellos para los cuales
-%\begin{equation*}
-%\langle u, v \rangle = 0
-%\end{equation*}
-%para todo $v\in T_pS$ o, lo que es lo mismo
-%\begin{equation*}
-%\mathrm{Crit}(H) = \bm{n}^{-1}(u) \cup \bm{n}^{-1}(-u).
-%\end{equation*}
-%Además, si tomamos coordenadas locales en torno a un punto crítico $p$ con $p=0$, $v=(0,0,1)$ y $S$ dada por $z=F(x,y)$, entonces
-%\begin{equation*}
-%F = H|_S,
-%\end{equation*}
-%de modo que $\mathrm{Hess}_p(H) = \mathrm{Hess}_p(F)$. Concluimos que
-%\begin{align*}
-%\chi(S) &= \sum_{p\in \mathrm{Crit}(H)} \mathrm{sgn} \det(\mathrm{Hess}_p H) \\ &= \sum_{p \in \bm{n}^{-1}(u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) + \sum_{p \in \bm{n}^{-1}(-u)} \mathrm{sgn} \det(\mathrm{Hess}_p F) = -2\deg(\bm{n}),
-%\end{align*}
-%como queríamos probar
 \end{proof}
 
 \begin{rmk}
@@ -2204,7 +2141,7 @@ donde $\mathrm{vol}(S^{2N})$ es el ``$2N$-volumen'' de la $2N$-esfera de radio $
 \end{rmk}
 
 
-\section{Geometría riemanniana intrínseca}
+\section{Geometría riemanniana intrínseca en superficies}
 \subsection{} Vamos a concluir nuestro estudio de las superficies viendo qué aspectos de la geometría de superficies en el espacio $S\subset E$ son intrínsecos a la superficie $S$, con su estructura riemanniana (dada por la primera forma fundamental) y no dependen del espacio ambiente. En primer lugar, veremos que el tensor de curvatura de Riemann en superficies se reduce simplemente a la curvatura de Gauss. Por tanto, la curvatura de Gauss es intrínseca. Este es el contenido del \emph{teorema egregio de Gauss}. Seguidamente, estudiaremos la \emph{derivada covariante}, que nos proporcionará una interpretación geométrica de los símbolos de Christoffel.
 
 \begin{thm}[Teorema egregio de Gauss]
@@ -2250,16 +2187,16 @@ R^1_{212}(0,0) = \partial_1 \Gamma^1_{22}(0,0) - \partial_2\Gamma^1_{21}(0,0).
   \end{equation*}
   Por tanto,
   \begin{equation*}
-R^1_{212}(0,0) = (\partial_{11}F \partial_{22}F - \partial_{12}F\partial_{21}F)|_{(0,0)} = \det \mathrm{Hess}_{(0,0)} F = K(p),
+R^1_{212}(0,0) = (\partial_{11}F \partial_{22}F - \partial_{12}F\partial_{21}F)|_{(0,0)} = \det \mathrm{Hess}_{(0,0)} F = K(x),
   \end{equation*}
 como queríamos probar.
 \end{proof}
 
 \subsection{} Procedemos ahora a dar una interpretación geométrica de los símbolos de Christoffel. Comenzamos estudiando la noción de \emph{paralelismo}. En un espacio euclidiano $E$, dado un campo vectorial $X:E\rightarrow V$, podemos calcular sus derivadas direccionales a lo largo de una dirección $v_x \in T_xE$, definiendo
 \begin{equation*}
-D_{v_x} X : = \lim_{t\rightarrow 0} \frac{X(p+tv_x)-X(p)}{t}.
+D_{v_x} X : = \lim_{t\rightarrow 0} \frac{X(x+tv_x)-X(x)}{t}.
 \end{equation*}
-Si $\gamma:(-\varepsilon,\varepsilon)\rightarrow E$ es una curva con $\gamma(0)=p$ y $\gamma'(0)=v_x$, entonces
+Si $\gamma:(-\varepsilon,\varepsilon)\rightarrow E$ es una curva con $\gamma(0)=x$ y $\gamma'(0)=v_x$, entonces
 \begin{equation*}
 D_{v_x} X = \left. \frac{d}{dt}\right|_{t=0} X(\gamma(t)).
 \end{equation*}
@@ -2346,6 +2283,7 @@ Por tanto,
 como queríamos probar.
 \end{proof}
 
+\section{La conexión de Levi-Civita}
 \begin{defn}
 Sea $M$ una variedad diferenciable y $E\rightarrow M$ un fibrado vectorial (real). Una \emph{conexión} en $E$ es una aplicación $\RR$-lineal
 \begin{equation*}
@@ -2375,8 +2313,6 @@ Dada una variedad riemanniana $(M,g)$, existe una única conexión afín y libre
 \end{equation*}
 Es decir, tal que $\nabla$ preserva la métrica $g$. Dicha conexión se denomina la \emph{conexión de Levi-Civita}.
 \end{thm}
-
-\section{La conexión de Levi-Civita}
 \subsection{Expresión de una conexión en coordenadas} Sea $M$ una variedad diferenciable y $E\rightarrow M$ un fibrado vectorial. Denotamos por $\cB(E)\rightarrow M$ el correspondiente fibrado de referencias, cuya fibra en un punto $x\in M$ es el conjunto $\cB(E)_x=\cB(E_x)$ de las bases de $E_x$. Cada fibra $\cB(E)_x$ es un torsor bajo el grupo $\GL_r(\RR)$, donde $r$ es el rango de $E$. Una \emph{referencia local} de $E$ en un abierto $U\subset M$ es una sección local $\bm{e}: U \rightarrow \cB(E)$ o, lo que es lo mismo, una tupla $\bm{e}=(e_1,\dots,e_r)$ de secciones $e_i:U\rightarrow E$ que determina una base de $E_x$ en cada punto $x\in U$. Cualquier otra sección $s$ de $E$ en $U$ se escribe como
 \begin{equation*}
 s = s^i e_i.
@@ -2388,7 +2324,7 @@ Supongamos ahora que $\nabla: \Omega^0(M;E) \rightarrow \Omega^1(M;E)$ es una co
 \end{equation*}
 Agrupando las $A^i_j$, obtenemos una $1$-forma $A\in \Omega^1(U;\End E)$ que cumple
 \begin{equation*}
-\nabla(\bm{e}) = A \bm{e}.
+\nabla(\bm{e}) = \bm{e} A.
 \end{equation*}
 A su vez, tenemos
 \begin{equation*}
@@ -2404,7 +2340,7 @@ A^i_j=A^i_{kj} dx^k,
 \end{equation*}
 de modo que
 \begin{equation*}
-\nabla(s^i) =(\partial_k s^i + s^jA^i_{kj}) dx^k .
+(\nabla s)^i = ds^i + s^j A^i_{kj} dx^k .
 \end{equation*}
 
 Si se toma una referencia distinta $\bm{e}'$, relacionada con $\bm{e}$ por una aplicación diferenciable $h:U\rightarrow \GL_r(\RR)$, de modo que $\bm{e}'=\bm{e} h$, entonces podemos escribir
@@ -2446,7 +2382,7 @@ Cambiar a unas nuevas coordenadas $\bm{y}:U\rightarrow \RR^n$ corresponde a camb
 \end{equation*}
 
 
-\subsection{Conexión de Levi-Civita} Pasamos a construir la conexión de Levi-Civita en una variedad riemanniana $(M,g)$. Para ello, tomamos unas coordenadas locales $\bm{x}:U\rightarrow \RR^n$ y consideramos los correspondientes símbolos de Christoffel
+\subsection{Construcción de la conexión de Levi-Civita} Pasamos a construir la conexión de Levi-Civita en una variedad riemanniana $(M,g)$. Para ello, tomamos unas coordenadas locales $\bm{x}:U\rightarrow \RR^n$ y consideramos los correspondientes símbolos de Christoffel
 \begin{equation*}
 \Gamma^{l}_{jk} = \frac{g^{li}}{2} \left( \frac{\partial g_{ij}}{\partial x^k} + \frac{\partial g_{ik}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^i} \right).
 \end{equation*}
@@ -2463,11 +2399,11 @@ La única conexión afín $\nabla$ en $M$ libre de torsión y con $\nabla g  = 0
 \begin{proof}
   En efecto, si $\nabla$ es una conexión con $\nabla g=0$, tenemos
   \begin{equation*}
-0 = \nabla_{\partial_k} g = \nabla_{\partial_k} g_{ij} dx_idx_j = \left( \partial_k g_{ij} - g_{tj}A^t_{ki}- g_{it}A^t_{kj} \right) dx_i dx_j.
+0 = \nabla_{\partial_k} g = \nabla_{\partial_k} g_{ij} dx^idx^j = \left( \partial_k g_{ij} - g_{tj}A^t_{ki}- g_{it}A^t_{kj} \right) dx^i dx^j.
   \end{equation*}
   Por tanto,
   \begin{equation*}
-\partial_k g_{ij} = A_{kij} - A_{kji}.
+\partial_k g_{ij} = A_{kij} + A_{kji}.
   \end{equation*}
   Ahora, si $\nabla$ es libre de torsión, tenemos que $A_{kij}=A_{ikj}$, de modo que
   \begin{equation*}
@@ -2490,23 +2426,23 @@ Sea $(M,g)$ una variedad riemanniana y $\nabla$ su conexión de Levi-Civita.  En
 
 \subsection{Ecuación de las geodésicas} Podemos escribir ahora la ecuación $\nabla_{\gamma'}\gamma'=0$ en coordenadas, y obtener la ecuación local de las geodésicas. En coordenadas, $\gamma$ se escribe como $\gamma=(\gamma^1,\dots,\gamma^n)$, y el campo $\gamma'$ puede escribirse como
 \begin{equation*}
-(\gamma')_{\gamma(t)} = (\frac{d\gamma^1}{dt},\dots,\frac{d\gamma^n}{dt}).
+(\gamma')_{\gamma(t)} = \left(\frac{d\gamma^1}{dt},\dots,\frac{d\gamma^n}{dt}\right) = \frac{d\gamma^i}{dt} \partial_i.
 \end{equation*}
 Por tanto,
 \begin{equation*}
-\nabla \gamma' = (\partial_k\frac{d\gamma^i}{dt} + \frac{d\gamma^j}{dt} \Gamma^i_{kj}) dx^k.
+(\nabla \gamma')^i = d\left(\frac{d\gamma^i}{dt} \right) +  \Gamma^i_{kj}\frac{d\gamma^j}{dt} dx^k.
 \end{equation*}
 Evaluando en $\gamma'$, tenemos
 \begin{equation*}
-\nabla_{\gamma'} \gamma' = \frac{d^2 \gamma^i}{dt^2} +  \Gamma^i_{kj}\frac{d\gamma^j}{dt} \frac{d\gamma^k}{dt}.
+(\nabla_{\gamma'} \gamma')^i = \frac{d^2 \gamma^i}{dt^2} +  \Gamma^i_{kj}\frac{d\gamma^j}{dt} \frac{d\gamma^k}{dt}.
 \end{equation*}
 Por tanto, las geodésicas son soluciones de las ecuaciones locales
 \begin{equation*}
-\frac{d^2 \gamma^i}{dt^2} + \Gamma^i_{kj}\frac{d\gamma^j}{dt} \frac{d\gamma^k}{dt} = 0.
+\frac{d^2 \gamma^i}{dt^2} + \Gamma^i_{kj}\frac{d\gamma^j}{dt} \frac{d\gamma^k}{dt} = 0, \ \ i=1,\dots,n.
 \end{equation*}
-Esto es un sistema de EDOs de orden $2$. Por tanto, por la teoría clásica de ecuaciones diferenciales sabemos que, dados un punto $x\in M$ y un vector $v\in T_pM$, existe una única geodésica $\gamma_{x,v}:I_{x,v}\rightarrow M$, para algún intervalo maximal $I_{x,v}$, que cumple que $\gamma(0)=0$ y $\gamma'(0)=v$. Además, si $M$ es compacta, este intervalo $I_{x,v}$ es todo $\RR$.
+Esto es un sistema de EDOs de orden $2$. Por tanto, por la teoría clásica de ecuaciones diferenciales sabemos que, dados un punto $x\in M$ y un vector $v\in T_xM$, existe una única geodésica $\gamma_{x,v}:I_{x,v}\rightarrow M$, para algún intervalo maximal $I_{x,v}$, que cumple que $\gamma(0)=x$ y $\gamma'(0)=v$. Además, si $M$ es compacta, este intervalo $I_{x,v}$ es todo $\RR$.
 
-\subsection{El principio variacional} Las geodésicas minimizan localmente la distancia. Esto quiere decir que, para todo punto $x\in M$ existe un entorno $U$ de $x$ tal que, para todo punto $y\in U$ existe una única geodésica $\gamma:[0,d]\rightarrow M$ tal que $\lVert \gamma'(0) \rVert_{g} = 1$, $\gamma(0)=x$, y $\gamma(d)=y$, donde $d=d(x,y)$. Otra afirmación equivalente, pero con más significado físico es que las geodésicas cumplen el ``principio de mínima acción''. Una forma de ver esto es definiendo el \emph{funcional de acción} $\cS$, que a cada curva $\gamma:[0,d]\rightarrow M$ con $\langle \gamma'(0),\gamma'(0) \rangle_{\gamma(0)} = 1$, $\gamma(0)=p$, y $\gamma(d)=q$ le asocia el valor
+\subsection{El principio variacional} Las geodésicas minimizan localmente la distancia. Esto quiere decir que, para todo punto $x\in M$ existe un entorno $U$ de $x$ tal que, para todo punto $y\in U$ existe una única geodésica $\gamma:[0,d]\rightarrow M$ tal que $\lVert \gamma'(0) \rVert_{g} = 1$, $\gamma(0)=x$, y $\gamma(d)=y$, donde $d=d(x,y)$. Otra afirmación equivalente, pero con más significado físico es que las geodésicas cumplen el ``principio de mínima acción''. Una forma de ver esto es definiendo el \emph{funcional de acción} $\cS$, que a cada curva $\gamma:[0,d]\rightarrow M$ con $\langle \gamma'(0),\gamma'(0) \rangle_{\gamma(0)} = 1$, $\gamma(0)=x$, y $\gamma(d)=y$ le asocia el valor
 \begin{equation*}
 \cS (\gamma) = \frac{1}{2} \int_{0}^d \langle \gamma'(t),\gamma'(t) \rangle_{\gamma(t)} dt.
 \end{equation*}
@@ -2572,7 +2508,7 @@ Una variedad riemanniana $(M,g)$ es \emph{(geodésicamente) completa} si para to
 La demostración del teorema de Hopf--Rinow puede leerse en \todo{CITAR}.
 
 \section{Curvatura de una variedad riemanniana}
-\subsection{Curvatura de Riemann} En secciones previas ya hemos introducido el \emph{tensor de curvatura de Riemann} $R\in \mathcal{T}^1_3(M)$ asociado a una variedad riemanniana $(M,g)$, que en coordenadas locales se expresa como
+En secciones previas ya hemos introducido el \emph{tensor de curvatura de Riemann} $R\in \mathcal{T}^1_3(M)$ asociado a una variedad riemanniana $(M,g)$, que en coordenadas locales se expresa como
 \begin{equation*}
 R=R^i_{jkl} \partial_i \otimes dx^j \otimes dx^k \otimes dx^l,
 \end{equation*}
@@ -2661,7 +2597,7 @@ Equivalentemente,
 \end{equation*}
 donde $(e_1,e_2,\dots,e_n)$ es una base ortogonal de $T_xM$. En coordenadas, $\mathrm{Ric}=R_{ij} dx^i\otimes dx^j$, para
 \begin{equation*}
-\mathrm{Ric}_{ij} = \frac{1}{n-1} R^{k}_{jki} = \frac{1}{n-1} R^k_{ikj}.
+R_{ij} = \frac{1}{n-1} R^{k}_{jki} = \frac{1}{n-1} R^k_{ikj}.
 \end{equation*}
 
 Como el tensor de Ricci es simétrico, está determinado por la \emph{curvatura de Ricci}
@@ -2687,7 +2623,7 @@ S^{n-2} = \left\{ u \in T_xM: u \perp X, \lVert u \rVert = 1 \right\}.
 \end{equation*}
  En coordenadas
 \begin{equation*}
-\mathrm{Scal} = g^{ij} R_{ij}.
+\mathrm{Scal} = R := g^{ij} R_{ij}.
 \end{equation*}
 Equivalentemente, $\mathrm{Scal}(x)$ es el promedio de todas las curvaturas seccionales en $x$, esto es
 \begin{equation*}
@@ -2695,11 +2631,19 @@ Equivalentemente, $\mathrm{Scal}(x)$ es el promedio de todas las curvaturas secc
 \end{equation*}
 para $\sigma_{ij}$ el plano generado por los vectores $e_i$ y $e_j$ de una base ortonormal $e_1,\dots,e_n$ de $T_xM$.
 
-
-
-
-
-
+\subsection{El tensor de Einstein} El tensor simétrico de tipo $(0,2)$
+\begin{equation*}
+G = \mathrm{Ric} - \frac{1}{2} g\ \mathrm{Scal},
+\end{equation*}
+que en coordenadas se escribe como
+\begin{equation*}
+G_{ij} = R_{ij} - \frac{1}{2} g_{ij} R,
+\end{equation*}
+se denomina el \emph{tensor de Einstein}. En su versión lorentziana, describe la curvatura del espacio-tiempo. Concretamente, en la teoría de la relatividad general, se postula que el espacio-tiempo es una variedad lorentziana de dimensión 4 (como una variedad riemanniana, pero donde el tensor métrico $g_{\mu\nu}$ tiene signatura $(-,+,+,+)$, en vez de $(+,+,+,+)$, con el signo $-$ correspondiendo a la dirección temporal). La métrica de este espacio tiempo está determinada por el \emph{tensor de energía-momento} $T_{\mu\nu}$, un tensor de tipo $(0,2)$ que expresa la distribución de la energía en el espacio-tiempo (por ejemplo, la determinada por una cierta distribución de la materia). Concretamente, la métrica $g_{\mu\nu}$ es aquella que satisface la \emph{ecuación de campo de Einstein}
+\begin{equation*}
+G_{\mu\nu} = T_{\mu\nu}.
+\end{equation*}
+En relatividad general, la interacción gravitatoria es una consecuencia de la curvatura del espacio-tiempo, por el hecho de que las trayectorias seguidas por las partículas en un espacio-tiempo curvo han de ser geodésicas. La ecuación de campo de Einstein explica cómo la distribución de materia/energía en el universo determina el campo gravitatorio.
 
 \chapter{Álgebras y grupos de Lie}
 
@@ -3259,7 +3203,7 @@ Dado un fibrado vectorial $V\rightarrow M$, se define su \emph{primera clase de 
 \subsection{Forma de volumen} Dar una forma de volumen en $M$ equivale a dar una reducción del grupo de estructura de $\cB(M)$ a $\mathrm{SL}_n(\RR)$. En particular, una forma de volumen determina una orientación, ya que $\mathrm{SL}_n(\RR)\subset \GL_n(\RR)^+$. A su vez, una métrica riemanniana en una variedad orientada determina una forma de volumen ya que \[\OO(n) \cap \GL_n(\RR)^+=\OO(n)\cap \mathrm{SL}_n(\RR)= \SO(n).\]
 En otras palabras, una orientación junto con una métrica riemanniana determinan una reducción del grupo de estructura de $\cB(M)$ a $\SO(n)$.
 
-\subsection{Estructuras presimplécticas} Supongamos que $M$ es una variedad de dimensión $2n$. Dar una reducción del grupo de estructura de $\cB(M)$ al grupo simpléctico $\mathrm{Sp}_n(\RR)\subset \GL_{2n}(\RR)$ equivale a dar una $2$-forma no degenerada $\omega \in \Omega^2(M)$. Esta $2$-forma se denomina una \emph{estructura presimpléctica} en $M$. Si además, $d\omega =0$, se dice que $\omega$ es una \emph{estructura simpléctica} y el par $(M,\omega)$ se denomina una \emph{variedad simpléctica}. En ese caso, el \emph{teorema de Darboux} garantiza que existen coordenadas locales $q^1,\dots,q^n, p^1,\dots,p^n$ de modo que $\omega = \sum_i dp^i \wedge dq^i$.
+\subsection{Estructuras casi-simplécticas} Supongamos que $M$ es una variedad de dimensión $2n$. Dar una reducción del grupo de estructura de $\cB(M)$ al grupo simpléctico $\mathrm{Sp}_n(\RR)\subset \GL_{2n}(\RR)$ equivale a dar una $2$-forma no degenerada $\omega \in \Omega^2(M)$. Esta $2$-forma se denomina una \emph{estructura casi-simpléctica} en $M$. Si además, $d\omega =0$, se dice que $\omega$ es una \emph{estructura simpléctica} y el par $(M,\omega)$ se denomina una \emph{variedad simpléctica}. En ese caso, el \emph{teorema de Darboux} garantiza que existen coordenadas locales $q^1,\dots,q^n, p^1,\dots,p^n$ de modo que $\omega = \sum_i dp^i \wedge dq^i$.
 
 \subsection{Estructuras casi-complejas} De nuevo, supongamos que $M$ es una variedad de dimensión $2n$. El grupo $\GL_{n}(\C)$ de las matrices invertibles $n\times n$ con entradas en los números complejos admite una inclusión natural en $\GL_{2n}(\RR)$ en la forma
 \begin{equation*}
@@ -3310,7 +3254,7 @@ donde $M=\coprod_{i\in I} U_i$ es un recubrimiento tal que cada $\mathrm{Spin}(n
 Una \emph{estructura de spin} en una variedad riemanniana orientada $(M,g)$ de dimensión $n$ es un $\mathrm{Spin}(n)$-fibrado principal $\cB_{\mathrm{Spin}}(M)$ cuya imagen por la aplicación en la sucesión exacta anterior es el fibrado de referencias ortonormales positivas $\cB_{\mathrm{SO}}(M)$. La imagen $w_2(P)\in H^2(M,\Z/2\Z)$ de un $\SO(n)$-fibrado principal $P$ por la aplicación anterior se denomina la \emph{segunda clase de Stiefel--Whitney}. En particular, la segunda clase de Stiefel--Whitney de $M$ se define como $w_2(M)=w_2(\cB_{\SO}(M))$. De la sucesión exacta vemos que $M$ admite una estructura de spin si y sólo si $w_2(M)=0$. Además, la estructura de spin, si existe, no es necesariamente única, sino que hay tantas estructuras de spin diferentes como clases en $H^1(M,\Z/2\Z)$.
 
 
-\section{Conexiones}
+\section{Conexiones en fibrados principales}
 \begin{defn}
   Sea $\pi:P\rightarrow M$ un fibrado principal. Dado un punto $p\in P$, se define el \emph{subespacio vertical} como $V_p=\ker d_p\pi \subset T_p P$. Más generalmente, se define la \emph{distribución vertical} $V=\ker d\pi \subset TP$.
 \end{defn}
@@ -3884,7 +3828,7 @@ s_x: V \rightarrow M, \ \exp_y(v) \mapsto \exp_x((d_x\varphi)^{-1}(v)),
 \end{proof}
 
 
-\chapter{Introducción a las clases características}
+\chapter{Clases características}
 
 \section{Polinomios invariantes}
 \subsection{} Sea $V$ un espacio vectorial sobre $\RR$. Recordemos que habíamos definido el álgebra simétrica $S(V)=\bigoplus_{k=0}^\infty S^k(V)$, y que esta se podía identificar con el álgebra polinomial $\RR[V]$, cuyos elementos son funciones polinomiales en los elementos $x_1,\dots,x_n$ de una base del espacio dual $V^*$. Supongamos que $G$ es un grupo que actúa en $V$ por transformaciones lineales; es decir, que existe un homomorfismo de grupos $G\rightarrow \GL(V)$. Definimos la $\RR$-álgebra de funciones polinomiales $G$-invariantes como el anillo
@@ -4255,7 +4199,7 @@ como queríamos probar.
 \end{proof}
 
 
-\chapter{Un poco de análisis global: la ecuación de Poisson}
+\chapter{Introducción al análisis global: la ecuación de Poisson}
 \section{La ecuación de Poisson en variedades compactas}
 \subsection{} Durante todo este capítulo, $M$ denota una variedad diferenciable conexa, compacta, orientada y sin borde, de dimensión $n\geq 2$. Fijamos, además, una métrica riemanniana $g$ en $M$, que en coordenadas $\bm{x}=(x^1,\dots,x^n)$ se escribe como
 \begin{equation*}
@@ -4347,7 +4291,7 @@ Además, esta función es única salvo por la adición de una constante.
 
 Dedicamos el resto del capítulo a la demostración de este teorema.
 
-\section{Esbozo de la demostración}
+\section{Resolución de la ecuación de Poisson}
 \subsection{} La métrica riemanniana nos permite definir un producto escalar en el espacio de las funciones diferenciables $f:M\rightarrow \RR$, poniendo
 \begin{equation*}
 \langle f_1, f_2 \rangle_{L^2} = \int_M f_1f_2\ \mathrm{dvol}_g.
@@ -4653,9 +4597,6 @@ Pero $\Delta h = \Delta \Gamma * (f - A* f) = f- A*f$, luego
 0= \langle \Delta h, \phi \rangle_{L^2} = \langle f-A*f,\phi \rangle_{L^2} = \langle f, \phi-A*\phi \rangle_{L^2},
 \end{equation*}
 como queríamos probar.
-%
-%\chapter{Superficies de Riemann compactas}
-%a
 
 %\nocite{*}
 %\printbibliography
