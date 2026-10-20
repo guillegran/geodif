@@ -1376,26 +1376,26 @@ También nos será muy útil el siguiente resultado, que es posible demostrar us
 
 \subsection{Característica de Euler via teoría de Morse} Lo interesante ahora es que el índice de una función de Morse tiene información topológica. Consideramos entonces una variedad diferenciable compacta $M$ y una función de Morse $f:M\rightarrow \RR$. Tomamos ahora unos valores $a_0< \dots <a_N \in \RR\setminus \VC(f)$ de forma que $a_0< \min f$, que $a_N> \max f$ y que cada intervalo $(a_{k-1},a_k)$ contiene un único valor crítico $c_k$.
 
-Para cada $a\in \RR$, denotamos $M_a=f^{-1}(a)$. Si $a$ no es un valor crítico, entonces, por el teorema de la función implícita, el subconjunto $M_a\subset M$ es de hecho una subvariedad regular. Más generalmente, para cada $k=-1,0,1,\dots,N$, definimos $M_k=f^{-1}((-\infty,a_k])$. Esto proporciona una descomposición
+Para cada $a\in \RR$, denotamos $M_a=f^{-1}(a)$. Si $a$ no es un valor crítico, entonces, por el teorema de la función implícita, el subconjunto $M_a\subset M$ es de hecho una subvariedad regular. Más generalmente, para cada $k=0,1,\dots,N$, definimos $M_k=f^{-1}((-\infty,a_k])$. Esto proporciona una descomposición
 \begin{equation*}
-\varnothing = M_{-1} \subset M_0 \subset M_1 \subset \cdots \subset M_k \subset M_{k+1} \subset \cdots \subset M_{N-1} \subset M_N = M.
+\varnothing =  M_0 \subset M_1 \subset \cdots \subset M_{k-1} \subset M_{k} \subset \cdots \subset M_{N-1} \subset M_N = M.
 \end{equation*}
 Ahora, para cada $k$ tenemos una sucesión exacta larga
 \begin{center}
   \begin{tikzcd}[column sep=1em]
-\cdots \rar & H^{q}(M_{k+1},M_k;\RR) \rar & H^q(M_{k+1},\RR) \rar & H^q(M_k,\RR) \rar & H^{q+1}(M_{k+1},M_k;\RR) \rar & \cdots.
+\cdots \rar & H^{q}(M_{k},M_{k-1};\RR) \rar & H^q(M_{k},\RR) \rar & H^q(M_{k-1},\RR) \rar & H^{q+1}(M_{k},M_{k-1};\RR) \rar & \cdots.
   \end{tikzcd}
 \end{center}
 Por tanto,
 \begin{equation*}
-\chi(M_{k+1})- \chi(M_k) = \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR).
+\chi(M_{k})- \chi(M_{k-1}) = \sum_{i} (-1)^i \dim H^i(M_{k},M_{k-1};\RR).
 \end{equation*}
 Sumando en $k$, obtenemos
 \begin{equation*}
-\chi(M) = \chi(M_N) =\sum_{k=0}^N (\chi(M_{k+1})- \chi(M_k)) = \sum_{k=0}^N \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR).
+\chi(M) = \chi(M_N) =\sum_{k=1}^N (\chi(M_{k})- \chi(M_{k-1})) = \sum_{k=1}^N \sum_{i} (-1)^i \dim H^i(M_{k},M_{k-1};\RR).
 \end{equation*}
 
-Basta entonces calcular las cohomologías relativas $H^i(M_{k+1},M_k;\RR)$. Como $M$ es compacta y $f$ es de Morse, hay una cantidad finita de puntos críticos en la preimagen $f^{-1}(c_k)=\left\{ x_1,\dots,x_m \right\}$. En torno a cada uno de estos puntos $x_j\in f^{-1}(c_k)$, podemos tomar unas coordenadas en las que $f$ se escribe como
+Basta entonces calcular las cohomologías relativas $H^i(M_{k},M_{k-1};\RR)$. Como $M$ es compacta y $f$ es de Morse, para cada $k=1,\dots,N$, hay una cantidad finita de puntos críticos en la preimagen $f^{-1}(c_k)=\left\{ x_1,\dots,x_m \right\}$. En torno a cada uno de estos puntos $x_j\in f^{-1}(c_k)$, podemos tomar unas coordenadas en las que $f$ se escribe como
   \begin{equation*}
 f = c_k - \sum_{i=1}^{\lambda_j}(x^i)^2 + \sum_{i=\lambda_j + 1}^n (x^i)^2,
   \end{equation*}
@@ -1407,22 +1407,27 @@ y
 \begin{equation*}
 f^{-1}([c_k-\varepsilon,c_k+\varepsilon]) = \coprod_{j=1}^m \left\{ -\varepsilon \leq \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 \leq \varepsilon \right\} =: \coprod_{j=1}^m D_j.
 \end{equation*}
-Cada una de las piezas $C_j$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $D_j$ es homeomorfa al producto $D^{\lambda_j}\times D^{n-\lambda_j}$. Nótese que $M_{k+1}$ es homotópicamente equivalente a $f^{-1}((-\infty,c_k+\varepsilon])$, ya que se puede retraer por deformación uno al otro usando el flujo del gradiente de $f$, que no se anula en $f^{-1}((c_k+\varepsilon, a_{k+1}))$. Por la propiedad de homotopía, obtenemos un isomorfismo
+Cada una de las piezas $C_j$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $D_j$ es homeomorfa al producto $D^{\lambda_j}\times D^{n-\lambda_j}$. Nótese que $M_{k}=f^{-1}((-\infty,a_k])$ es homotópicamente equivalente a $f^{-1}((-\infty,c_k+\varepsilon])$, ya que se puede retraer por deformación uno al otro usando el flujo del gradiente de $f$, que no se anula en $f^{-1}((c_k+\varepsilon, a_{k}))$. De la misma forma, como no hay valores críticos en el intervalo $(a_{k-1},c_k-\varepsilon)$, el espacio $M_{k-1}=f^{-1}((-\infty,a_{k-1}])$ es homotópicamente equivalente a $f^{-1}((-\infty,c_{k}-\varepsilon])$.
+Por la propiedad de homotopía, obtenemos un isomorfismo
 \begin{equation*}
-H^i(M_{k+1},M_k;\RR) \cong H^i(f^{-1}((-\infty,c_k+\varepsilon]), M_k;\RR).
+H^i(M_{k},M_{k-1};\RR) \cong H^i(f^{-1}((-\infty,c_k+\varepsilon]), f^{-1}((-\infty,c_k-\varepsilon]);\RR).
 \end{equation*}
-Tenemos entonces
+Aplicamos ahora el axioma de escisión al subconjunto $Z=f^{-1}((-\infty,c_k-\tfrac{3\varepsilon}{2}))$, cuya adherencia está contenida en el interior de $f^{-1}((-\infty,c_k-\varepsilon])$, y obtenemos
+\begin{equation*}
+H^i(M_{k},M_{k-1};\RR) \cong H^i(f^{-1}([c_k-\tfrac{3\varepsilon}{2},c_k+\varepsilon]), f^{-1}([c_k-\tfrac{3\varepsilon}{2},c_k-\varepsilon]);\RR).
+\end{equation*}
+Si $\varepsilon$ es suficientemente pequeño, entonces no hay ningún valor crítico en $[c_{k}-\tfrac{3\varepsilon}{2},c_{k}-\varepsilon]$, luego tenemos que
 \begin{align*}
-H^i(M_{k+1},M_k;\RR)  & \cong H^i(f^{-1}([c_k-\varepsilon,c_k+\varepsilon]),f^{-1}(c_k-\varepsilon); \RR) \\ & \cong \bigoplus_{j=1}^m H^i(D^{\lambda_j} \times D^{n-\lambda_j},S^{\lambda_j-1}\times D^{n-\lambda_j};\RR) \\ & \cong  \bigoplus_{j=1}^m H^i(D^{\lambda_j},S^{\lambda_j-1};\RR),
+H^i(M_{k},M_{k-1};\RR)  & \cong H^i(f^{-1}([c_k-\varepsilon,c_k+\varepsilon]),f^{-1}(c_k-\varepsilon); \RR) \\ & \cong \bigoplus_{j=1}^m H^i(D^{\lambda_j} \times D^{n-\lambda_j},S^{\lambda_j-1}\times D^{n-\lambda_j};\RR) \\ & \cong  \bigoplus_{j=1}^m H^i(D^{\lambda_j},S^{\lambda_j-1};\RR);
 \end{align*}
-aplicando la propiedad de escisión en el primer paso, aditividad en el segundo y homotopía en el tercero (usando que $D^{n-\lambda_j}$ es homotópicamente equivalente a un punto).
+donde hemos aplicado la propiedad de escisión en el primer paso, aditividad en el segundo y homotopía en el tercero (usando que $D^{n-\lambda_j}$ es homotópicamente equivalente a un punto).
 Ahora, recordemos que la cohomología relativa $H^i(D^{\lambda_j},S^{\lambda_j-1};\RR)$ es isomorfa a $\RR$ si $\lambda_j=i$ y nula en caso contrario. Por tanto,
 \begin{equation*}
-\dim H^i(M_{k+1},M_k;\RR) = \sum_{j=1}^m \delta_{i \lambda_j}.
+\dim H^i(M_{k},M_{k-1};\RR) = \sum_{j=1}^m \delta_{i \lambda_j}.
 \end{equation*}
 Concluimos entonces que
 \begin{equation*}
-\chi(M) = \sum_{k=0}^N \sum_{i} (-1)^i \dim H^i(M_{k+1},M_k;\RR) = \sum_{k=0}^N \sum_i (-1)^i \sum_{j=1}^m \delta_{i \lambda_j} = \sum_{x\in \Crit(f)} (-1)^{\lambda_x(f)}.
+\chi(M) = \sum_{k=1}^N \sum_{i} (-1)^i \dim H^i(M_{k},M_{k-1};\RR) = \sum_{k=1}^N \sum_i (-1)^i \sum_{j=1}^m \delta_{i \lambda_j} = \sum_{x\in \Crit(f)} (-1)^{\lambda_x(f)}.
 \end{equation*}
 
 \begin{center}
@@ -2853,7 +2858,7 @@ dados por la multiplicación por la izquierda y por la derecha. También podemos
 \end{equation*}
 
 \subsection{}
-Un campo vectorial $X\in \fX(G)$ es \emph{invariante por la izquierda} is $(L_g)_* X = X$ para todo $g\in G$; en otras palabras, si $X_g = d_1L_g(X_1)$ para todo $g\in G$. El corchete de Lie de dos campos invariantes por la izquierda es invariante por la izquierda; en efecto, si $X$ e $Y$ son invariantes por la izquierda entonces están $L_g$-relacionados consigo mismos, para todo $g$, y por tanto $[X,Y]$ está $L_g$-relacionado consigo mismo para todo $g$, de modo que $[X,Y]$ es $L_g$-invariante. Por tanto, el subespacio $\fX(G)^G\subset \fX(G)$ de los campos invariantes por la izquierda forma una subálgebra de Lie de $\fX(G)$. Nótese que un campo vectorial invariante por la izquierda está determinado por su valor en la identidad $1\in G$, de modo que tenemos un isomorfismo de espacios vectoriales
+Un campo vectorial $X\in \fX(G)$ es \emph{invariante por la izquierda} si $(L_g)_* X = X$ para todo $g\in G$; en otras palabras, si $X_g = d_1L_g(X_1)$ para todo $g\in G$. El corchete de Lie de dos campos invariantes por la izquierda es invariante por la izquierda; en efecto, si $X$ e $Y$ son invariantes por la izquierda entonces están $L_g$-relacionados consigo mismos, para todo $g$, y por tanto $[X,Y]$ está $L_g$-relacionado consigo mismo para todo $g$, de modo que $[X,Y]$ es $L_g$-invariante. Por tanto, el subespacio $\fX(G)^G\subset \fX(G)$ de los campos invariantes por la izquierda forma una subálgebra de Lie de $\fX(G)$. Nótese que un campo vectorial invariante por la izquierda está determinado por su valor en la identidad $1\in G$, de modo que tenemos un isomorfismo de espacios vectoriales
 \begin{equation*}
 \fX(G)^G \rightarrow T_1 G, \ X\mapsto X_1.
 \end{equation*}
