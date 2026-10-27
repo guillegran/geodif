@@ -1407,7 +1407,7 @@ y
 \begin{equation*}
 f^{-1}([c_k-\varepsilon,c_k+\varepsilon]) = \coprod_{j=1}^m \left\{ -\varepsilon \leq \sum_{i=1}^{\lambda_j}(x^i)^2 - \sum_{i=\lambda_j + 1}^n (x^i)^2 \leq \varepsilon \right\} =: \coprod_{j=1}^m D_j.
 \end{equation*}
-Cada una de las piezas $C_j$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $D_j$ es homeomorfa al producto $D^{\lambda_j}\times D^{n-\lambda_j}$. Nótese que $M_{k}=f^{-1}((-\infty,a_k])$ es homotópicamente equivalente a $f^{-1}((-\infty,c_k+\varepsilon])$, ya que se puede retraer por deformación uno al otro usando el flujo del gradiente de $f$, que no se anula en $f^{-1}((c_k+\varepsilon, a_{k}))$. De la misma forma, como no hay valores críticos en el intervalo $(a_{k-1},c_k-\varepsilon)$, el espacio $M_{k-1}=f^{-1}((-\infty,a_{k-1}])$ es homotópicamente equivalente a $f^{-1}((-\infty,c_{k}-\varepsilon])$.
+Cada una de las piezas $C_j$ es homeomorfa al producto $S^{\lambda_j-1} \times D^{n-\lambda_j}$ de una esfera de dimensión $\lambda_j-1$ y de una bola cerrada $(n-\lambda_j)$-dimensional. Por otra parte, cada una de las piezas $D_j$ es homeomorfa al producto $D^{\lambda_j}\times D^{n-\lambda_j}$. Nótese que $M_{k}=f^{-1}((-\infty,a_k])$ es homotópicamente equivalente a $f^{-1}((-\infty,c_k+\varepsilon])$, ya que se puede retraer por deformación uno al otro usando el flujo del gradiente de $f$, que no se anula en $f^{-1}([c_k+\varepsilon, a_{k}])$. De la misma forma, como no hay valores críticos en el intervalo $[a_{k-1},c_k-\varepsilon]$, el espacio $M_{k-1}=f^{-1}((-\infty,a_{k-1}])$ es homotópicamente equivalente a $f^{-1}((-\infty,c_{k}-\varepsilon])$.
 Por la propiedad de homotopía, obtenemos un isomorfismo
 \begin{equation*}
 H^i(M_{k},M_{k-1};\RR) \cong H^i(f^{-1}((-\infty,c_k+\varepsilon]), f^{-1}((-\infty,c_k-\varepsilon]);\RR).
@@ -1420,7 +1420,7 @@ Si $\varepsilon$ es suficientemente pequeño, entonces no hay ningún valor crí
 \begin{align*}
 H^i(M_{k},M_{k-1};\RR)  & \cong H^i(f^{-1}([c_k-\varepsilon,c_k+\varepsilon]),f^{-1}(c_k-\varepsilon); \RR) \\ & \cong \bigoplus_{j=1}^m H^i(D^{\lambda_j} \times D^{n-\lambda_j},S^{\lambda_j-1}\times D^{n-\lambda_j};\RR) \\ & \cong  \bigoplus_{j=1}^m H^i(D^{\lambda_j},S^{\lambda_j-1};\RR);
 \end{align*}
-donde hemos aplicado la propiedad de escisión en el primer paso, aditividad en el segundo y homotopía en el tercero (usando que $D^{n-\lambda_j}$ es homotópicamente equivalente a un punto).
+donde hemos aplicado la propiedad de homotopía en el primer paso, aditividad en el segundo y homotopía otra vez en el tercero (usando que $D^{n-\lambda_j}$ es homotópicamente equivalente a un punto).
 Ahora, recordemos que la cohomología relativa $H^i(D^{\lambda_j},S^{\lambda_j-1};\RR)$ es isomorfa a $\RR$ si $\lambda_j=i$ y nula en caso contrario. Por tanto,
 \begin{equation*}
 \dim H^i(M_{k},M_{k-1};\RR) = \sum_{j=1}^m \delta_{i \lambda_j}.
@@ -2576,7 +2576,7 @@ Se puede ver que, de hecho, la curvatura es esencialmente un fenómeno ``en dime
 \end{rmk}
 
 \begin{prop}
-Sea $x\in M$ y $\sigma \subset T_xM$ un plano. Consideremos una bola $B^d_{\varepsilon}(0)\subset T_xM$ y la superficie $S=\exp_x(\sigma \cap B_{\varepsilon}(0)) \subset M$. Entonces, la curvatura seccional $K_x(\sigma)$ coincide con la curvatura de Gauss de $S$ en $x$.
+Sea $x\in M$ y $\sigma \subset T_xM$ un plano. Consideremos una bola $B_{\varepsilon}(0)\subset T_xM$ y la superficie $S=\exp_x(\sigma \cap B_{\varepsilon}(0)) \subset M$. Entonces, la curvatura seccional $K_x(\sigma)$ coincide con la curvatura de Gauss de $S$ en $x$.
 \end{prop}
 
 \begin{proof}
@@ -2600,7 +2600,7 @@ Equivalentemente,
 \begin{equation*}
 \mathrm{Ric}_x(Y,Z) = \frac{1}{n-1} \sum_i R_x(Y,e_i,Z,e_i),
 \end{equation*}
-donde $(e_1,e_2,\dots,e_n)$ es una base ortogonal de $T_xM$. En coordenadas, $\mathrm{Ric}=R_{ij} dx^i\otimes dx^j$, para
+donde $(e_1,e_2,\dots,e_n)$ es una base ortonormal de $T_xM$. En coordenadas, $\mathrm{Ric}=R_{ij} dx^i\otimes dx^j$, para
 \begin{equation*}
 R_{ij} = \frac{1}{n-1} R^{k}_{jki} = \frac{1}{n-1} R^k_{ikj}.
 \end{equation*}
@@ -2654,7 +2654,7 @@ En relatividad general, la interacción gravitatoria es una consecuencia de la c
 
 \section{Álgebras de Lie}
 \begin{defn}
-  Un \emph{álgebra de Lie} (real) es un espacio vectorial real $\fg$ equipado de un \emph{corchete de Lie}: una forma bilineal antisimétrica
+  Un \emph{álgebra de Lie} (real) es un espacio vectorial real $\fg$ equipado de un \emph{corchete de Lie}: una aplicación bilineal antisimétrica
   \begin{equation*}
 [-,-]: \fg \times \fg \rightarrow \fg, \ (x,y)\mapsto [x,y]
   \end{equation*}
@@ -2813,7 +2813,7 @@ A^T A = \mathbb{I}_n.
         \end{equation*}
         También podemos considerar el subgrupo $\mathrm{SO}(n)=\mathrm{SO}_n(\RR)\subset \mathrm{O}(n)$ de las matrices ortogonales con determinante $1$.
 
-  \item Si $V$ tiene dimensión par y está equipado con una forma bilineal antisimétrica $\omega$, podemos considerar el correspondiente \emph{grupo simpléctico} $\mathrm{Sp}(V)$ de automorfismos de $V$ que preservan $\omega$. Cuando $V=\RR^{2n}$ está equipado con la forma bilineal anisimétrica estándar
+  \item Si $V$ tiene dimensión par y está equipado con una forma bilineal antisimétrica y no degenerada $\omega$, podemos considerar el correspondiente \emph{grupo simpléctico} $\mathrm{Sp}(V)$ de automorfismos de $V$ que preservan $\omega$. Cuando $V=\RR^{2n}$ está equipado con la forma bilineal anisimétrica estándar
         \begin{equation*}
 \omega((x_1,\dots,x_n,y_1,\dots,y_n),(x_1',\dots,x_n',y_1',\dots,y_n')) = \sum_{i=1}^n x_iy_i' - y_i x_i',
         \end{equation*}
