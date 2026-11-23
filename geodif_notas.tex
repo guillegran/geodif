@@ -3270,29 +3270,6 @@ R_{g,*} D_p = D_{p\cdot g}
 \end{equation*}
 para todo $g\in G$. Nótese que la distribución vertical es $G$-invariante, ya que $\pi(p\cdot g) = \pi(p)$ por definición.
 
-\begin{defn}
-  Una ($G$-)\emph{conexión} (principal) $A$ en $P$ está dada por una distribución $G$-invariante $H^A\subset TP$, llamada la \emph{distribución horizontal de la conexión}, tal que
-  \begin{equation*}
-TP = V \oplus H^A.
-  \end{equation*}
-  En otras palabras, una conexión es una escisión de la siguiente sucesión exacta corta de fibrados vectoriales sobre $P$
-  \begin{center}
-    \begin{tikzcd}
-0 \rar & V \rar & TP \rar{d\pi} & \pi^* TM \rar & 0.
-    \end{tikzcd}
-  \end{center}
-\end{defn}
-
-\subsection{} Podemos considerar la proyección horizontal $\pi_H: TP \rightarrow TP$ definida como
-\begin{equation*}
-  \pi_H(X) =
-  \begin{cases}
-X & \text{ si } X \in H, \\
-0 & \text{ si } X \in V.
-\end{cases}
-\end{equation*}
-Para cada $X\in TP$, denotamos $X^h=\pi_H(X)$.
-
 \subsection{El campo fundamental} La acción de $G$ en $P$ determina una ``acción infinitesimal'' $\fg \rightarrow \fX(P)$, que a cada $X\in \fg$ le asigna el \emph{campo fundamental} $X^+$ cuyo valor en un punto $p\in P$ es
 \begin{equation*}
 X^+_p = \left. \frac{d}{dt} \right|_{t=0} (p \cdot \exp(tX)).
@@ -3312,6 +3289,53 @@ R_{g,*} X^+_p &= \left. \frac{d}{dt} \right|_{t=0} R_g(p\cdot \exp(tX)) =  \left
 \end{align*}
 Por tanto, $R_{g,*}X^+= (\mathrm{ad}_{g^{-1}}X)^+$.
 
+\begin{ex}
+Supongamos que $E\rightarrow M$ es un fibrado vectorial de rango $r$ y sea $\nabla:\Gamma(M,E)\rightarrow \Omega^1(M;E)$ una conexión en $E$. Podemos definir entonces la distribución horizontal $H^\nabla\subset TE$ asociada a esta conexión. Para ello notamos que una sección de $TE$ está determinada por un campo tangente $X \in \fX(M)$ y una sección $s \in \Gamma(M,E)$; la distribución $H_E^\nabla \subset TE$ está entonces determinada por sus secciones
+\begin{equation*}
+  \Gamma(M,H_E^\nabla) = \left\{ (X,s) \in \Gamma(M,TE): \nabla_X s= (\nabla s)(X) = 0 \right\}.
+\end{equation*}
+De la misma forma, podemos definir la distribución horizontal $H^\nabla$ en su fibrado de referencias $\cB(E)$: una sección de $T\cB(E)$ está determinada por un campo tangente $X\in \fX(M)$ y por unas secciones $s_1,\dots,s_r \in \Gamma(M,E)$, de modo que
+\begin{equation*}
+  \Gamma(M,H^\nabla) = \left\{ (X,s_1,\dots,s_r) \in \Gamma(M,T\cB(E)): \nabla_X s_i = 0 \text{ para cada }i=1,\dots,r \right\}.
+\end{equation*}
+
+Recordemos además que, para cada sección $(X,s_1,\dots,s_r)$ de $T\cB(E)$ (definida en un abierto $U\subset M$) tenemos una matriz $(A_{i}^j)_{i,j=1,\dots,n} \in C^\infty(U,\mathfrak{gl}(n,\RR))$ cuyas entradas son las funciones $A_i^j\in C^\infty(U)$ determinadas por la igualdad
+\begin{equation*}
+\nabla_X s_i = A_i^j s_j.
+\end{equation*}
+La asignación
+\begin{equation*}
+(X,s_1,\dots,s_r) \mapsto (A_{i}^j)_{i,j=1,\dots,n}
+\end{equation*}
+determina una $1$-forma $A \in \Omega^1(\cB(E),\mathfrak{gl}(n,\RR))$ con coeficientes en $\mathfrak{gl}(n,\RR)$. Equivalentemente, determina un morfismo de fibrados $T\cB(E)\rightarrow V$, cuyo núcleo es precisamente la distribución horizontal $H^\nabla \subset T\cB(E)$.
+
+
+
+\end{ex}
+
+\begin{defn}
+  Una ($G$-)\emph{conexión} (principal) en $P$ está dada por una distribución $G$-invariante $H\subset TP$, llamada la \emph{distribución horizontal de la conexión}, tal que
+  \begin{equation*}
+TP = V \oplus H.
+  \end{equation*}
+  En otras palabras, una conexión es una escisión de la siguiente sucesión exacta corta de fibrados vectoriales sobre $P$
+  \begin{center}
+    \begin{tikzcd}
+0 \rar & V \rar & TP \rar{d\pi} & \pi^* TM \rar & 0.
+    \end{tikzcd}
+  \end{center}
+\end{defn}
+
+\subsection{} Podemos considerar la proyección horizontal $\pi_H: TP \rightarrow TP$ definida como
+\begin{equation*}
+  \pi_H(X) =
+  \begin{cases}
+X & \text{ si } X \in H, \\
+0 & \text{ si } X \in V.
+\end{cases}
+\end{equation*}
+Para cada $X\in TP$, denotamos $X^h=\pi_H(X)$.
+
 \subsection{La $1$-forma de conexión} Una escisión de la sucesión exacta corta
   \begin{center}
     \begin{tikzcd}
@@ -3328,7 +3352,7 @@ X & \text{ si } Y \text{ es vertical, con } Y=X^+,\\
 0 & \text{ si } Y\in H^A .
 \end{cases}
   \end{equation*}
-Esta $1$-forma se denomina la \emph{$1$-forma de conexión} de $A$.
+Esta $1$-forma se denomina la \emph{$1$-forma de conexión}.
 
 Veamos como actúa $G$ en esta $1$-forma,
 \begin{equation*}
@@ -3407,42 +3431,42 @@ La distribución vertical $V$ puede definirse en cualquier fibrado $E\rightarrow
 \end{equation*}
 En particular, si $E$ es un fibrado vectorial, entonces $s^*V\rightarrow M$ es isomorfo a $E\rightarrow M$, por tanto $\nabla s: \fX(M)\rightarrow \Gamma(E)$, y la aplicación $s\mapsto \nabla s$ determina una conexión lineal en $E$.
 
-Supongamos ahora que $P$ es un $G$-fibrado principal y $A$ es una conexión en $P$. Sea $F$ una $G$-variedad, y consideremos la proyección natural
+Supongamos ahora que $P$ es un $G$-fibrado principal y $H$ es una conexión en $P$. Sea $F$ una $G$-variedad, y consideremos la proyección natural
 \begin{equation*}
 q: P \times F \rightarrow E:= P \times^G F = (P\times F)/G.
 \end{equation*}
-Podemos definir una conexión de Ehresmann $H$ en $E$ como
+Podemos definir una conexión de Ehresmann $H_E$ en $E$ como
 \begin{equation*}
-H= q_*(H^A \oplus 0),
+H_E= q_*(H \oplus 0),
 \end{equation*}
 es decir, para cada punto $e=[p,f]\in E$, ponemos
 \begin{equation*}
-H_e = d_{(p,f)} q (H^A_p \oplus 0).
+(H_{E})_e = d_{(p,f)} q (H_p \oplus 0).
 \end{equation*}
 La definición no depende del representante $(p,f)$; en efecto,
 \begin{equation*}
 d_{(p,f)} q (X,0) = d_{pg, g^{-1} f} q ((R_g)_* X,0),
 \end{equation*}
-y recordemos que la distribución $H^A$ es $G$-invariante: $R_{g,*} H^A_p = H^A_{p\cdot g}$.
+y recordemos que la distribución $H$ es $G$-invariante: $R_{g,*} H_p = H_{p\cdot g}$.
 
 \section{Curvatura}
 \begin{defn}
-  Sea $P$ un $G$-fibrado principal y $A$ una conexión en $P$. Se define la \emph{($2$-forma de) curvatura} de $A$ como la $2$-forma
+  Sea $P$ un $G$-fibrado principal y $A$ una $1$-forma de conexión en $P$. Se define la \emph{($2$-forma de) curvatura} de la conexión como la $2$-forma
   \begin{equation*}
-F_A = \pi_H^* (dA) \in \Omega^2(P;\fg).
+F = \pi_H^* (dA) \in \Omega^2(P;\fg).
   \end{equation*}
 
 \end{defn}
 
 \subsection{} La curvatura mide la obstrucción a la integrabilidad de la distribución horizontal. En efecto, por definición
 \begin{equation*}
-F_A(X,Y) = dA(X^h,Y^h) = X^h A(Y^h) - Y^h A(X^h) - A([X^h,Y^h]) = - A([X^h,Y^h]),
+F(X,Y) = dA(X^h,Y^h) = X^h A(Y^h) - Y^h A(X^h) - A([X^h,Y^h]) = - A([X^h,Y^h]),
 \end{equation*}
-ya que $A$ se anula en la distribución horizontal. Por tanto, $F_A(X,Y)=0$ si y sólo si el campo $[X^h,Y^h]$ es horizontal.
+ya que $A$ se anula en la distribución horizontal. Por tanto, $F(X,Y)=0$ si y sólo si el campo $[X^h,Y^h]$ es horizontal.
 
 \begin{prop}[Ecuación de estructura]
 \begin{equation*}
-F_A = d A + \tfrac{1}{2} A\wedge A.
+F = d A + \tfrac{1}{2} A \wedge A.
 \end{equation*}
 \end{prop}
 
@@ -3472,25 +3496,25 @@ A([X,Y^+]) = 0.
 
 \begin{prop}[Identidad de Bianchi]
 \begin{equation*}
-\pi^*_H dF_A = 0.
+\pi^*_H dF = 0.
 \end{equation*}
 \end{prop}
 
 \begin{proof}
 \begin{align*}
-  \pi_H^* dF_A &= \pi_H^* d(dA + \tfrac{1}{2} A \wedge A) = \pi_H^* (\tfrac{1}{2} dA \wedge A - \tfrac{1}{2} A \wedge dA) \\
+  \pi_H^* dF &= \pi_H^* d(dA + \tfrac{1}{2} A \wedge A) = \pi_H^* (\tfrac{1}{2} dA \wedge A - \tfrac{1}{2} A \wedge dA) \\
   &= \pi_H^* (dA \wedge A) = (\pi_H^* dA) \wedge (\pi_H^* A) =0.
 \end{align*}
 \end{proof}
 
 
-\subsection{} Equivalentemente, la curvatura $F_A$ puede verse como una $2$-forma con valores en el \emph{fibrado adjunto}
+\subsection{} Equivalentemente, la curvatura $F$ puede verse como una $2$-forma con valores en el \emph{fibrado adjunto}
 \begin{equation*}
 \ad P := P(\fg) = P \times^G \fg,
 \end{equation*}
 asociado a la acción adjunta de $G$ en $\fg$. En efecto, podemos tomar un recubrimiento $M=\coprod_{i\in I} U_i$ de modo que $P$ es trivial sobre cada $U_i$, y una familia de secciones $s=(s_i)_{i\in I}$, con $s_i \in \Gamma(U_i,P)$ y con funciones de transición $g_{ij} \in G(U_{ij})$. Para cada $i\in I$, definimos
 \begin{equation*}
-F_i = s_i^* F_A = d A_i + \tfrac{1}{2} A_i \wedge A_i.
+F_i = s_i^* \Omega = d A_i + \tfrac{1}{2} A_i \wedge A_i.
 \end{equation*}
 Ahora, usando la igualdad $A_i = \ad_{g_{ij}}\circ A_j + (g_{ij}^{-1})^* \theta$ y la ecuación de Maurer--Cartan $d\theta = -\tfrac{1}{2} \theta \wedge \theta$, concluimos que
 \begin{equation*}
@@ -3499,50 +3523,53 @@ F_i = \ad_{g_{ij}} \circ F_j.
 
 \chapter{Holonomía y espacios de curvatura constante}
 \section{Holonomía y conexiones planas}
-\subsection{Transporte paralelo} Sea $\pi:P\rightarrow M$ un $G$-fibrado principal y $A$ una conexión en $P$, con distribución horizontal $H^A\subset TP$. Una curva diferenciable $\tilde{\gamma}:[0,1]\rightarrow P$ se dice \emph{horizontal} si $\tilde{\gamma}'(t) \in H^A_{\tilde{\gamma}(t)}$ para todo $t$. Equivalentemente, $\tilde{\gamma}$ es horizontal si
+\subsection{Transporte paralelo} Sea $\pi:P\rightarrow M$ un $G$-fibrado principal y $H\subset TP$ una conexión en $P$. Una curva diferenciable $\tilde{\gamma}:[0,1]\rightarrow P$ se dice \emph{horizontal} si $\tilde{\gamma}'(t) \in H_{\tilde{\gamma}(t)}$ para todo $t$. Equivalentemente, $\tilde{\gamma}$ es horizontal si
 \begin{equation*}
 A(\tilde{\gamma}'(t)) = 0.
 \end{equation*}
-Localmente, en un abierto $U\subset M$ trivializante para $P$, podemos ver $\tilde{\gamma}(t)$ como un par $(\gamma(t),g(t))$, donde $\gamma=\pi \circ \tilde{\gamma}$ y $g:[0,1]\rightarrow G$ es una curva diferenciable. La ecuación anterior se escribe ahora como
+
+Localmente, dados un abierto $U\subset M$ y una sección $s\in \Gamma(U,P)$, podemos ver $\tilde{\gamma}(t)$ como un par $(\gamma(t),g(t))$, donde $\gamma=\pi \circ \tilde{\gamma}$ y $g:[0,1]\rightarrow G$ es una curva diferenciable. La ecuación anterior se escribe ahora como
 \begin{equation*}
-\ad_{g^{-1}(t)} A_U(\gamma'(t))  + (g^* \theta) (\gamma'(t)) = 0.
+\ad_{g^{-1}(t)} (s^*A)(\gamma'(t))  + (g^* \theta) (\gamma'(t)) = 0.
 \end{equation*}
-Vemos ahora que se trata de un sistema de EDOs de orden $1$ con coeficientes $C^\infty$, de modo que se le puede aplicar la teoría de existencia y unicidad de soluciones. Concluimos que, si prescribimos $g(0)$, entonces $g(1)$ está determinado unívocamente. Globalmente: dados una curva $\gamma:[0,1]\rightarrow M$ y un elemento $p\in P$, existe una única curva horizontal $\tilde{\gamma}^A_p:[0,1]\rightarrow P$ tal que $\gamma=\pi \circ \tilde{\gamma}^A_p$ y $\tilde{\gamma}^A_p(0)=p$. Definimos el \emph{transporte paralelo} a lo largo de $\gamma$ determinado por $A$ como la aplicación
+Si tomamos una base de $\fg$, obtenemos un sistema de EDOs de orden $1$ con coeficientes $C^\infty$, de modo que se le puede aplicar la teoría de existencia y unicidad de soluciones. Concluimos que, si prescribimos el camino $\gamma$ y el valor $g(0)$, entonces $g(1)$ está determinado unívocamente.
+
+Globalmente: dados una curva $\gamma:[0,1]\rightarrow M$ y un elemento $p\in P$, existe una única curva horizontal $\tilde{\gamma}_p:[0,1]\rightarrow P$ tal que $\gamma=\pi \circ \tilde{\gamma}_p$ y $\tilde{\gamma}_p(0)=p$. Definimos el \emph{transporte paralelo} a lo largo de $\gamma$ determinado por la conexión como la aplicación
 \begin{equation*}
-\Pi^A_\gamma: P_{\gamma(0)} \rightarrow P_{\gamma(1)}, \ p \mapsto \tilde{\gamma}_p(1).
+\Pi_\gamma: P_{\gamma(0)} \rightarrow P_{\gamma(1)}, \ p \mapsto \tilde{\gamma}_p(1).
 \end{equation*}
 
-El transporte paralelo es un morfismo de $G$-torsores, es decir, para todo $g\in G$, se tiene que $\Pi^A_\gamma(p\cdot g)= \Pi^A_{\gamma}(p)\cdot g$. En efecto, la curva $\tilde{\gamma}_p\cdot g$ es horizontal, proyecta a $\gamma$, y en $0$ es igual a $p\cdot g$.
+El transporte paralelo es un morfismo de $G$-torsores, es decir, para todo $g\in G$, se tiene que $\Pi_\gamma(p\cdot g)= \Pi_{\gamma}(p)\cdot g$. En efecto, la curva $\tilde{\gamma}_p\cdot g$ es horizontal, proyecta a $\gamma$, y en $0$ es igual a $p\cdot g$.
 
 \subsection{Holonomía} Tomemos ahora un lazo $\sigma:[0,1]\rightarrow M$, con $x=\sigma(0)=\sigma(1)$. El transporte paralelo determina una aplicación
 \begin{equation*}
-\Pi^A_\sigma: P_x \rightarrow P_x, \ p \mapsto \tilde{\sigma}_p(1).
+\Pi_\sigma: P_x \rightarrow P_x, \ p \mapsto \tilde{\sigma}_p(1).
 \end{equation*}
-Ahora, fijemos $p \in P_x$. Como $p$ y $\Pi^A_\sigma(p)$ están en la misma fibra, existe un único $g\in G$ tal que
+Ahora, fijemos $p \in P_x$. Como $p$ y $\Pi_\sigma(p)$ están en la misma fibra, existe un único $g\in G$ tal que
 \begin{equation*}
-\Pi^A_\sigma(p) = p \cdot g.
+\Pi_\sigma(p) = p \cdot g.
 \end{equation*}
-Este elemento se denota por $\mathrm{Hol}^A_{p}(\sigma)$ y se denomina la \emph{holonomía} del lazo $\sigma$ en $p$ determinada por $A$. Si sustituimos $p$ por otro punto $p\cdot h$ en la misma fibra, entonces
+Este elemento se denota por $\mathrm{Hol}_{p}(\sigma)$ y se denomina la \emph{holonomía} del lazo $\sigma$ en $p$ determinada por la conexión. Si sustituimos $p$ por otro punto $p\cdot h$ en la misma fibra, entonces
 \begin{equation*}
-\mathrm{Hol}^A_{p\cdot h} (\sigma) = h^{-1} \mathrm{Hol}^A_{p}(\sigma) h.
+\mathrm{Hol}_{p\cdot h} (\sigma) = h^{-1} \mathrm{Hol}_{p}(\sigma) h.
 \end{equation*}
 Por tanto, la holonomía no depende del punto escogido en la fibra salvo por conjugación.
 
 Todo junto, esto determina una aplicación
 \begin{equation*}
-\mathrm{Hol}^A_p:\left\{ \text{Lazos en }M \text{ basados en }x \right\} \rightarrow G,\ \sigma \mapsto \mathrm{Hol}^A_p(\sigma).
+\mathrm{Hol}_p:\left\{ \text{Lazos en }M \text{ basados en }x \right\} \rightarrow G,\ \sigma \mapsto \mathrm{Hol}_p(\sigma).
 \end{equation*}
 Además, nótese que la holonomía del lazo trivial es $1\in G$ y que la holonomía de la concatenación de dos lazos es igual al producto de sus holonomías.
 
 \begin{defn}
-Una \emph{conexión plana} es una conexión $A$ con $F_A=0$.
+Una \emph{conexión plana} es una conexión con $F=0$.
 \end{defn}
 
 \begin{thm}
   Sean $x\in M$ y $p \in P_x$.
-  Si $A$ es una conexión plana, entonces el transporte paralelo $\Pi_\gamma^A$ sólo depende de la clase de homotopía del camino $\gamma$. Por tanto, $\mathrm{Hol}^A_{p}$ desciende a un homomorfismo de grupos
+  El transporte paralelo $\Pi_\gamma$ de una conexión plana sólo depende de la clase de homotopía del camino $\gamma$. Por tanto, $\mathrm{Hol}_{p}$ desciende a un homomorfismo de grupos
   \begin{equation*}
-\rho=\mathrm{Hol}^A_p: \pi_1(M,x) \rightarrow G,\ [\sigma] \mapsto \mathrm{Hol}^A_p(\sigma).
+\rho=\mathrm{Hol}_p: \pi_1(M,x) \rightarrow G,\ [\sigma] \mapsto \mathrm{Hol}_p(\sigma).
   \end{equation*}
   Además, existe un isomorfismo canónico de $G$-fibrados principales
   \begin{equation*}
@@ -3555,18 +3582,18 @@ Una \emph{conexión plana} es una conexión $A$ con $F_A=0$.
 para la acción $[\sigma]\cdot (y,g) = (y\cdot [\sigma]^{-1}, \rho([\sigma])g)$.
 \end{thm}
 \begin{proof}
-En primer lugar, se trata de demostrar que, dada una aplicación diferenciable \[\gamma:[0,1]\times [0,1]\rightarrow M,\] con $\gamma(-,0)=x_0$, $\gamma(-,1)=x_1$ entonces $\Pi^A_{\gamma_t}=\Pi^A_{\gamma_{t'}}$ para cualesquiera $t,t'\in [0,1]$, donde estamos denotando $\gamma_t(-)=\gamma(t,-)$.
+En primer lugar, se trata de demostrar que, dada una aplicación diferenciable \[\gamma:[0,1]\times [0,1]\rightarrow M,\] con $\gamma(-,0)=x_0$, $\gamma(-,1)=x_1$ entonces $\Pi_{\gamma_t}=\Pi_{\gamma_{t'}}$ para cualesquiera $t,t'\in [0,1]$, donde estamos denotando $\gamma_t(-)=\gamma(t,-)$.
 
-Si $A$ es plana, por el teorema de Frobenius, la distribución horizontal $H^A\subset TP$ es integrable. Esto quiere decir que, para todo $p\in P$, existe una subvariedad $N^A_p \subset P$, que contiene a $p$, y de modo que $T_q N^A_p = H^A_q$ para todo $q\in N^A_p$. Ahora, tenemos que $d_q\pi: H^A_q \rightarrow T_{\pi(q)}M$ es un isomorfismo, para todo $q\in P$. En particular, $\pi$ determina un isomorfismo $d_q\pi: T_qN^A_p \rightarrow T_{\pi(q)}M$ para todo $q\in N^A_p$ y por tanto define un difeomorfismo local
+Como la conexión es plana, por el teorema de Frobenius, la distribución horizontal $H\subset TP$ es integrable. Esto quiere decir que, para todo $p\in P$, existe una subvariedad $N_p \subset P$, que contiene a $p$, y de modo que $T_q N_p = H_q$ para todo $q\in N_p$. Ahora, tenemos que $d_q\pi: H_q \rightarrow T_{\pi(q)}M$ es un isomorfismo, para todo $q\in P$. En particular, $\pi$ determina un isomorfismo $d_q\pi: T_qN_p \rightarrow T_{\pi(q)}M$ para todo $q\in N_p$ y por tanto define un difeomorfismo local
 \begin{equation*}
-\pi^A_p:=\pi|_{N^A_p}: N^A_p \longrightarrow M.
+\pi_p:=\pi|_{N_p}: N_p \longrightarrow M.
 \end{equation*}
 
-Para cada $t\in [0,1]$, podemos levantar horizontalmente cada camino $\gamma_t:[0,1]\rightarrow M$ a un camino $\tilde{\gamma}^A_{t,p}:[0,1]\rightarrow P$, que cumple que $\tilde{\gamma}^A_{t,p}(0)=p$. Como el levantamiento es horizontal, de hecho tenemos que $\tilde{\gamma}^A_{t,p}:[0,1]\rightarrow N_p$. Además, como $\gamma_t(1)=x_1$ para todo $t$, tenemos que $\tilde{\gamma}^A_{t,p}(1)\in (\pi_p^A)^{-1}(x_1)$. Definimos entonces la aplicación continua
+Para cada $t\in [0,1]$, podemos levantar horizontalmente cada camino $\gamma_t:[0,1]\rightarrow M$ a un camino $\tilde{\gamma}_{t,p}:[0,1]\rightarrow P$, que cumple que $\tilde{\gamma}_{t,p}(0)=p$. Como el levantamiento es horizontal, de hecho tenemos que $\tilde{\gamma}_{t,p}:[0,1]\rightarrow N_p$. Además, como $\gamma_t(1)=x_1$ para todo $t$, tenemos que $\tilde{\gamma}_{t,p}(1)\in (\pi_p)^{-1}(x_1)$. Definimos entonces la aplicación continua
 \begin{equation*}
-q: [0,1] \rightarrow (\pi_p^A)^{-1}(x_1),\ t \mapsto \tilde{\gamma}^A_{t,p}(1) = \Pi^A_{\gamma_t}(p).
+q: [0,1] \rightarrow \pi_p^{-1}(x_1),\ t \mapsto \tilde{\gamma}_{t,p}(1) = \Pi_{\gamma_t}(p).
 \end{equation*}
-Como $\pi_p^A$ es un difeomorfismo local, la fibra $(\pi_p^A)^{-1}(x_1)$ es discreta, de modo que $q$ es constante.
+Como $\pi_p$ es un difeomorfismo local, la fibra $(\pi_p)^{-1}(x_1)$ es discreta, de modo que $q$ es constante.
 
 Para la última parte, recordemos que el recubridor universal $\widetilde{M}\rightarrow M$ podía identificarse con el espacio de clases de homotopía de caminos
 \begin{equation*}
@@ -3578,14 +3605,14 @@ El grupo fundamental actúa naturalmente por concatenación como
 \end{equation*}
 Definimos entonces
 \begin{equation*}
-\Psi_{p} :\widetilde{M} \times G \rightarrow P,\ ([\gamma], g) \mapsto \Pi^A_{\gamma}(p) \cdot g.
+\Psi_{p} :\widetilde{M} \times G \rightarrow P,\ ([\gamma], g) \mapsto \Pi_{\gamma}(p) \cdot g.
 \end{equation*}
 En efecto,
 \begin{equation*}
-\Psi_{p}([\gamma]\cdot [\sigma]^{-1}, \rho([\sigma]) \cdot g) = \Pi^A_{\gamma}(p)\mathrm{Hol}_{p}(\sigma)^{-1} \rho([\sigma]) g = \Psi_{p}([\gamma],g).
+\Psi_{p}([\gamma]\cdot [\sigma]^{-1}, \rho([\sigma]) \cdot g) = \Pi_{\gamma}(p)\mathrm{Hol}_{p}(\sigma)^{-1} \rho([\sigma]) g = \Psi_{p}([\gamma],g).
 \end{equation*}
 De modo que $\Psi_{p}$ desciende a una aplicación $\Phi_{p}:\widetilde{M} \times^\rho G \rightarrow P$, que es claramente un isomorfismo. En efecto, su inversa envía cada punto $p' \in P$ a la clase del par $([\gamma],g)$, donde $[\gamma]$ es la clase de homotopía de un camino que une $x$ y $\pi(p')$ (que está bien definida salvo elementos de $\pi_1(M,x)$), y $g$ es el elemento tal que
-$p' = \Pi^A_\gamma(p) \cdot g$.
+$p' = \Pi_\gamma(p) \cdot g$.
 \end{proof}
 
 \begin{rmk}
@@ -3599,11 +3626,11 @@ determina una conexión, que es plana por la ecuación de Maurer--Cartan. Sus ho
 \end{equation*}
 y desciende a una conexión plana en $\widetilde M\times^\rho G$. Su representación de holonomía, calculada con respecto a la clase de $(\tilde x,1)$, es $\rho$.
 
-El teorema anterior afirma que toda conexión plana se obtiene de esta manera, salvo isomorfismo y conjugación de $\rho$. En efecto, basta ver que $\Psi_p^* A = \pr_G^* \theta$. Para ello, definimos $s: \tilde{M} \rightarrow P$ como $s([\gamma])=\Psi_p([\gamma],1)=\Pi^A_\gamma(p)$, de modo que $\Psi_p([\gamma],g) = s([\gamma]) \cdot g$ y
+El teorema anterior afirma que toda conexión plana se obtiene de esta manera, salvo isomorfismo y conjugación de $\rho$. En efecto, basta ver que $\Psi_p^* A = \pr_G^* \theta$. Para ello, definimos $s: \tilde{M} \rightarrow P$ como $s([\gamma])=\Psi_p([\gamma],1)=\Pi_\gamma(p)$, de modo que $\Psi_p([\gamma],g) = s([\gamma]) \cdot g$ y
 \begin{equation*}
 \Psi_p^* A = \Ad_{g^{-1}}(s^* A) + \pr_G^* \theta = \pr_G^* \theta.
 \end{equation*}
-La última igualdad se sigue del hecho de que, por construcción, $s^* A = 0$.
+La última igualdad se sigue del hecho de que, por construcción, $s^* A= 0$.
 \end{rmk}
 
 \section{Geometría a la Cartan}
